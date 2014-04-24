@@ -1,1 +1,15 @@
 .idea/workspace.xml
+LaTeX/*.4ct
+LaTeX/*.4tc
+LaTeX/*.aux
+LaTeX/*.bbl
+LaTeX/*.lof
+LaTeX/*.log
+LaTeX/*.lot
+LaTeX/*.out
+LaTeX/*.pdf
+LaTeX/*.synctex.gz
+LaTeX/*.tmp
+LaTeX/*.toc
+LaTeX/*.tps
+LaTeX/*.xref

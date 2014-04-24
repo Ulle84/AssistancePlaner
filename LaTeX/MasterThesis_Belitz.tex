@@ -1,0 +1,178 @@
+\documentclass[12pt,a4paper,titlepage]{article} % article scrreprt (KOMA Script Report)
+
+%\linespread{2.00} % Zeilenabstand
+										
+%%%%% INPUT %%%%%
+\usepackage[utf8]{inputenc}
+\usepackage{ngerman}
+\usepackage[pdftex]{graphicx} %png und pdf kann eingefügt werden
+%\usepackage{graphics}
+
+% für Literatur
+\usepackage[ngerman]{babel}
+\usepackage{babelbib}
+
+% für \newboolean{allpages} \setboolean{allpages}{false} --> \ifallpages ... \fi
+\usepackage{ifthen}
+
+%\usepackage{listings}
+%\usepackage{amssymb}
+%\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{rotating}		%um Tabellen zu drehen
+
+% Header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}	%Löschen der Vorbelegung
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+%\fancyhead[R]{\leftmark \hspace{10mm} \thepage}
+%\fancyfoot[L]{\footnotesize{Nichtlineare Bildsensoren}}
+%\fancyfoot[C]{\thepage}
+%\fancyfoot[R]{\footnotesize{Ulrich Belitz}}
+
+\title{Diplomarbeit: Nichtlineare Bildsensoren}
+\author{Ulrich Belitz}
+
+%Paket für spezielle PDF features.
+\usepackage[%
+	pdftitle={Diplomarbeit: Nichtlineare Bildsensoren},% Titel des PDF Dokuments.
+	pdfauthor={Ulrich Belitz},               % Autor des PDF Dokuments.
+	pdfsubject={Nichtlineare Bildsensoren}, % Thema des PDF Dokuments.
+	pdfcreator={TeXnicCenter and MikTeX},    % Erzeuger des PDF Dokuments.
+	%pdfkeywords={}                          % Schlüsselwörter für das PDF.
+	% (Diese werden von Suchmaschinen auch für PDF Dokumente indexiert.)
+	pdfpagemode=UseOutlines,   % Inhaltsverzeichnis anzeigen beim Öffnen
+	pdfdisplaydoctitle=false,  % Dokumenttitel statt Dateiname anzeigen.
+	pdflang=de                 % Sprache des Dokuments.
+]{hyperref}
+
+%Anführungszeichen
+\usepackage[babel,german=quotes]{csquotes}	%\enquote{TEXT}
+
+%Farben
+\usepackage{color}
+\definecolor{LinkColor}{rgb}{0, 0, 0}
+\definecolor{LinkColor1}{rgb}{0,0,0}
+\definecolor{LinkColor2}{rgb}{0,0.5,0}
+
+%Farbeinstellungen für die Links im PDF Dokument.
+
+\hypersetup{%
+	colorlinks=true,%        Aktivieren von farbigen Links im Dokument (keine Rahmen)
+	linkcolor=LinkColor,%    Farbe festlegen.
+	citecolor=LinkColor2,%   	Farbe festlegen.
+	filecolor=LinkColor1,%    Farbe festlegen.
+	menucolor=LinkColor,%    Farbe festlegen.
+	urlcolor=LinkColor1,%     Farbe von URL's im Dokument.
+	bookmarksnumbered=true,%  Überschriftsnummerierung im PDF Inhalt anzeigen.
+	pdfstartview=FitH%        FitH || FitV  -  Horizontalen Platz ausnutzen
+}
+
+% manuelle Silbentrennung
+\hyphenation{Knick-stel-le}
+\hyphenation{Knick-stel-len}
+
+\newlength{\plotBreite} \setlength{\plotBreite}{0.9\textwidth}
+
+\begin{document}
+\pagenumbering{Roman}
+\begin{titlepage}
+%\includegraphics{img/sickLogo.pdf}
+\hspace{35mm} % per Hand angepasst, muss geändert werden, falls sich Dokumentabmaße ändern!
+%\includegraphics{img/LogoFBMN}
+\begin{flushright}
+	\scriptsize
+	Studiengang Optotechnik und Bildverarbeitung\\[4cm]
+\end{flushright}
+%\vspace*{4cm}
+\begin{center}
+	
+%	zur Erlangung des akademischen Grades eines \\[5mm]
+%		\textbf{Diplomingenieur (FH)\\[1cm]}
+	\textbf{\Huge{Nichtlineare Bildsensoren}}\\[4mm]%\\[10mm]}
+	\textbf{\large{(Non-linear Imagers)}}\\[10mm]
+	\textbf{\Large{Diplomarbeit \\[38mm]}} % 44mm
+
+%	\large{erstellt im Sommersemester 2009}\\[10mm]
+%	\large{Eingereicht an der \\
+%		Hochschule Darmstadt\\
+%		Fachbereich Mathematik und Naturwissenschaften\\
+%		Studiengang Optotechnik und Bildverarbeitung (OBV)\\
+%		zur Erlangung des akademischen Grades eines \\[5mm]
+%		\textbf{Diplomingenieur (FH)\\[5mm]}}
+	\begin{tabular}{ll}
+		\textbf{Verfasser} & Ulrich Belitz, geb. am 4. April 1984\\[3mm]
+		\hline
+		& \\
+		\textbf{Auftraggeber} & SICK AG, Standort Waldkirch\\[2mm]
+		\textbf{Betreuer des Auftraggebers} & Dr. Stefan Mack\\[3mm]
+		\hline
+		& \\
+		\textbf{Referent der Hochschule} & Prof. Dr. Christoph Heckenkamp\\[2mm]
+		\textbf{Korreferent der Hochschule} & Prof. Dr. Harald Scharfenberg\\[3mm]
+		\hline
+		& \\
+		\textbf{Erstellungszeitraum} & 2. März 2009 bis \today \\[2mm] % alternativ: Bearbeitungszeitraum
+		\textbf{Abgabedatum} & 14. September 2009
+	\end{tabular}
+%	\vfill
+\end{center}
+%\vfill
+\end{titlepage}
+
+\clearpage
+\newpage
+
+
+%\thispagestyle{plain}	% kein Style
+%\Large\textbf{Zusammenfassung}\\[5mm]
+%\normalsize
+\section*{Zusammenfassung}
+
+\clearpage
+\newpage
+
+\section*{Danksagung}
+
+\newpage
+
+\section*{Eidesstattliche Erklärung}
+Hiermit versichere ich eidesstattlich, dass die vorliegende Diplomarbeit von mir selbstständig und ohne fremde Hilfe angefertigt worden ist, insbesondere, dass ich alle Stellen, die wörtlich oder annähernd wörtlich oder dem Gedanken nach aus Veröffentlichungen, unveröffentlichten Unterlagen und Gesprächen entnommen worden sind, als solche an den entsprechenden Stellen innerhalb der Arbeit kenntlich gemacht habe. Ich bin mir bewusst, dass eine falsche Versicherung rechtliche Folgen haben wird.\\[10mm]
+Taunusstein, den \today \\[15mm]
+\noindent\rule[1pt]{0.40\textwidth}{1pt}\\
+Ulrich Belitz
+\newpage
+
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Anforderungstermittlung}
+\subsection{Personenl}
+\subsubsection{Betreuter}
+Der Betreute ist ein körperlich behinderter Mensch, der an Muskelschwäche leidet.
+Aus Respekt vor dem körperlich erkrankten Menschen wird nicht von dem \enquote{Behinderten} gesprochen, sondern stets von dem \enquote{Betreuten}.
+
+\clearpage
+\newpage
+
+\bibliographystyle{babplain}
+\bibliography{../BibTeX/literatur}
+\clearpage
+\newpage
+\begin{appendix}
+
+
+\section{Erster Anhang}
+\end{appendix}
+\end{document}
