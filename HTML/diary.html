@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+ <head>
+  <title>Diary</title>
+  <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all" />
+  <script language="JavaScript" src="../JavaScript/calendar.js"></script>
+ </head>
+ <body>
+  <!-- Template
+  <div class="entry">
+    <h1>.04.2014</h1>
+    <ul>
+     <li></li>
+    </ul>
+  </div>
+  -->
+  <div class="entry">
+   <h1>24.04.2014</h1>
+   <ul>
+    <li>Öffentliche Notizen werden im Kalender als Tabelle angezeigt</li>
+    <li>Öffentliche und private Notizen werden im Dienstplan angezeigt</li>
+   </ul>
+   <img src="../Images/Screenshots/CalendarPublicNotes.png" class="HighResolution" />
+   <img src="../Images/Screenshots/RosterWithNotes.png" class="HighResolution" />
+  </div>
+  <div class="entry">
+   <h1>23.04.2014</h1>
+   <ul>
+    <li>Nachbereitung Input Patrick</li>
+    <li>Stundenübersicht der Assistenten</li>
+    <li>Monats-Plan-Tabelle als genauere Möglichkeit für Patrick die Dienste zu planen</li>
+    <li>Speichern und Laden der Monats-Plan-Tabelle mit AJAX</li>
+    <li>Dienst-Zeiten werden auch im Kalender angezeigt</li>
+    <li>Speichern des Kalenders überarbeitet - jetzt auch mit AJAX, keine versteckten Input-Element mehr</li>
+    <li>Master-Mode aus Kalender rausgeschmissen, da nicht mehr benötigt</li>
+   </ul>
+   <img src="../Images/Screenshots/HourTable.png" class="HighResolution" />
+   <img src="../Images/Screenshots/MonthPlan2.png" class="HighResolution" />
+   <img src="../Images/Screenshots/CalendarImplementationWithTimes.png" class="HighResolution" />
+  </div>
+  <div class="entry">
+   <h1>22.04.2014</h1>
+   <ul>
+    <li>AJAX Test mit POST-Parametern - Vorbereitung für Speichern des Dienstplans auf dem Server</li>
+    <li>Roster kann gespeichert werden - mit Hilfe von AJAX</li>
+    <li>Roster kann geladen werden</li>
+    <li>Besuch bei Patrick - gemeinsame manuelle Dienstplanerstellung für den Mai mit Hilfe meiner Software - hat anstatt 4-5 Stunden nur eine knappe Stunde gedauert (inklusive Erklärungen und Übertragen in Excel)</li>
+    <li>Feedback von Patrick war sehr positiv - schon jetzt stellt die Software eine Erleichterung für ihn da</li>
+    <li>In der Dienstplan-Tabelle werden die Überschriften wochenweise wiederholt für bessere Lesbarkeit</li>
+   </ul>
+   <img src="../Images/Screenshots/RosterSketch2.png" class="HighResolution"/>
+  </div>
+  <div class="entry">
+   <h1>21.04.2014</h1>
+   <ul>
+    <li>Roster kann die Parameter Jahr und Monat übergeben werden</li>
+    <li>Refactoring von doppeltem Code - DRY Don't repeat yourself</li>
+    <li>Problem: += bei Strings gibt es in PHP nicht - das Pendant ist .=</li>
+    <li>JavaScript Funktion die client-seitig den Dienstplan überprüft, dass es genau EIN Dienst und genaue EINE Bereitschaft gibt</li>
+    <li>Skype mit Freddy</li>
+   </ul>
+  </div>
+  <div class="entry">
+   <h1>19.04.2014</h1>
+   <ul>
+    <li>Darstellung der möglichen Termine als Tabelle</li>
+    <li>Manuelle Dienstplanerstellung (per Klick) möglich</li>
+   </ul>
+   <img src="../Images/Screenshots/RosterSketch.png" class="HighResolution"/>
+  </div>
+  <div class="entry">
+   <h1>18.04.2014</h1>
+   <ul>
+    <li>Einarbeitung PHP-Forms mit <a href="http://www.w3schools.com/PHP/php_forms.asp">W3Schools</a></li>
+    <li>Erstellung PHP Form mit Eingabe des Namens, Verstecktes Feld mit möglichen Daten (was mit JavaScript befüllt wird)</li>
+    <li>Speichern der eingegebenen Daten als Text-File auf dem Server</li>
+    <li>Problem: Text-File wird nicht auf Server gespeichert (beim lokalen Test funktioniert es) - Lösung: Rechte auf Server mussten angepasst werden - chmod 777 UserInput </li>
+    <li>Calendar.php von außen parametrierbar gemacht mittels GET - z. B. calendar.php?year=2014&month=4</li>
+    <li>index.php -> automatische Weiterleitung auf calendar.php mit nächstem Monat</li>
+    <li>Möglichkeit für Patrick freie Tage zu markieren -> master-Mode</li>
+    <li>Freie Tage werden den Assistenen angezeigt</li>
+    <li>Versuch Mailversand leider gescheitert</li>
+   </ul>
+   <img src="../Images/Screenshots/NameAndSubmit.png" class="HighResolution"/>
+  </div>
+  <div class="entry">
+   <h1>17.04.2014</h1>
+   <ul>
+    <li>Einarbeitung PHP mit <a href="http://www.w3schools.com/PHP">W3Schools</a></li>
+    <li>Implementierung HTML-Kalender mit gut/schlecht Terminen in PHP</li>
+    <li>Hochladen des Kalenders auf den Server</li>
+    <li>Test auf iPhone, iPad und Desktop</li>
+   <img src="../Images/Screenshots/CalendarImplementation.png" class="HighResolution"/>
+   </ul>
+  </div>
+  <div class="entry">
+    <h1>16.04.2014</h1>
+    <ul>
+     <li>PhpStorm runtergeladen und installiert</li>
+     <li>PHP Version in PhpStorm eingerichtet</li>
+     <li>Chrome + Extension installiert, damit ich mit PhpStorm debuggen kann</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h1>15.04.2014</h1>
+    <ul>
+     <li>Anmeldung Masterarbeit</li>
+     <li>Experiment HTML-Kalender mit gut/schlecht Terminen</li>
+     <li>Erstes Skype-Gespräch mit Freddy</li>
+     <img src="../Images/Screenshots/CalendarSketch.png" class="HighResolution"/>
+    </ul>
+  </div> 
+  <div class="entry">
+    <h1>14.04.2014</h1>
+    <ul>
+     <li>Gespräch mit Patrick Sieben bei ihm zu Hause</li>
+    </ul>
+  </div>
+  <div class="entry">
+   <h1>Vorarbeiten ohne Datum</h1>
+   <ul>
+    <li>Server organisiert</li>
+    <li>Server eingerichtet (Apache, PHP, Samba-Share)</li>
+    <li>Titel überlegt</li>
+    <li>Recherche Sturzerkennung</li>
+    <li>2 Besprechungen mit Prof. Mahr</li>
+   </ul>
+  </div>
+ </body>
+</html>

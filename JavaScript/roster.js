@@ -1,0 +1,148 @@
+var serviceDescription = "Dienst";
+var standbyDescription = "Bereitschaft"
+var columnOffsetLeft = 4;
+var columnOffsetRight = 2;
+
+function entryClicked(element) {
+
+    switch (element.getAttribute("class")) {
+        case "good":
+            element.setAttribute("class", "service");
+            element.textContent = serviceDescription;
+            break;
+        case "service":
+            element.setAttribute("class", "standby");
+            element.textContent = standbyDescription;
+            break;
+        case "standby":
+            element.setAttribute("class", "good");
+            element.textContent = "";
+            break;
+    }
+
+    calcHours(); //TODO only one column is affected - do not calculate the whole table
+}
+
+function checkRoster() {
+    var rosterTable = window.document.getElementById("rosterTable")
+
+    var rows = rosterTable.getElementsByClassName("rosterData");
+
+    for (var i = 1; i < rows.length; i++) {
+        var countOfService = 0;
+        var countOfStandby = 0;
+
+        // check that we have ONE 'Dienst' and ONE 'Bereitschaft'
+        var data = rows[i].getElementsByTagName("td");
+
+        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+            if (data[j].textContent == serviceDescription) {
+                countOfService++;
+            }
+
+            if (data[j].textContent == standbyDescription) {
+                countOfStandby++;
+            }
+        }
+
+        if (countOfService != 1 || countOfStandby != 1) {
+            alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
+            return false;
+        }
+    }
+
+    alert("Alles in Orndung!");
+    return true;
+}
+
+function saveRoster() {
+    //TODO checkRoster();
+
+
+    document.getElementById("myDiv").innerHTML = "";
+
+
+    var content = "";
+
+    var rosterTable = window.document.getElementById("rosterTable")
+
+    var rows = rosterTable.getElementsByClassName("rosterData");
+
+    var persons = rows[0].getElementsByTagName("th");
+
+    for (var i = 1; i < rows.length; i++) {
+        var personOfService = "";
+        var personOfStandby = "";
+
+        var data = rows[i].getElementsByTagName("td");
+
+        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+            if (data[j].textContent == serviceDescription) {
+                personOfService = persons[j].textContent;
+            }
+
+            if (data[j].textContent == standbyDescription) {
+                personOfStandby = persons[j].textContent;
+            }
+        }
+
+        content += personOfService + ";" + personOfStandby + "\n";
+    }
+
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+        }
+    }
+
+    var year = window.document.getElementById("year").textContent;
+    var month = window.document.getElementById("month").textContent;
+
+    xmlhttp.open("POST", "../PHP/rosterSaver.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
+}
+
+function calcHours() {
+    var rosterTable = window.document.getElementById("rosterTable");
+    var hourTable = window.document.getElementById("hourTable");
+
+    var serviceHoursIndex = 2;
+    var standbyHoursIndex = 3;
+
+
+    var rows = rosterTable.getElementsByClassName("rosterData");
+
+    var persons = rows[0].getElementsByTagName("th");
+
+    var hours = new Array();
+
+    for (var i = columnOffsetLeft; i < persons.length - columnOffsetRight; i++) {
+        hours[persons[i].textContent] = 0.0;
+    }
+
+    for (var i = 1; i < rows.length; i++) {
+        var data = rows[i].getElementsByTagName("td");
+
+        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+            if (data[j].textContent == serviceDescription) {
+                hours[persons[j].textContent] += parseFloat(data[serviceHoursIndex].textContent);
+            }
+
+            if (data[j].textContent == standbyDescription) {
+                hours[persons[j].textContent] += parseFloat(data[standbyHoursIndex].textContent);
+            }
+        }
+    }
+
+    for (var i = columnOffsetLeft; i < persons.length - columnOffsetRight; i++) {
+        var element = window.document.getElementById("hours" + persons[i].textContent);
+        element.textContent = hours[persons[i].textContent];
+    }
+}
+
+
+
