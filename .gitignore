@@ -1,4 +1,8 @@
 .idea/*.xml
+.idea/*.iml
+.idea/.name
+.idea/scopes/*.xml
+
 LaTeX/*.4ct
 LaTeX/*.4tc
 LaTeX/*.aux
