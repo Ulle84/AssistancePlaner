@@ -15,5 +15,6 @@
 <a href="PHP/monthPlan.php">Monats-Plan</a> <br />
 <a href="PHP/roster.php">Dienst-Plan</a> <br />
 <a href="PHP/team.php">Team</a> <br />
+<a href="PHP/defaultTimes.php">Standard Dienst-Zeiten</a> <br />
 </body>
 </html>

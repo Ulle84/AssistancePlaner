@@ -1,15 +1,50 @@
-2
-Ulrich
-Belitz
-U.Belitz@gmx.de
-unknown
-90
-3
-Mo;Di;Do;Fr
+7
+Jonas
 
 
 
+130
 
 
+Oliver
+
+
+
+80
+
+
+Norman
+
+
+
+50
+
+
+Rene
+
+
+
+70
+
+
+Stefan
+
+
+
+50
+
+
+Jan
+
+
+
+45
+
+
+Lars
+
+
+
+30
 
 

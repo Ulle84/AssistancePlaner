@@ -146,7 +146,6 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
     echo '<td class="hidden">' . $standby[$i] . '</td>';
 
 
-
     foreach ($dateSheet as $x => $x_value) {
         $allDates = explode(';', $x_value);
 
@@ -178,8 +177,7 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
     echo '<td class=';
     if (!$showPrivateNotes) {
         echo '"hidden"';
-    }
-    else {
+    } else {
         echo '"left"';
     }
     echo '>' . $notesPrivate[$i] . '</td>';
@@ -213,7 +211,34 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
 
 echo "</table>";
 
+//TODO refaktoring - es ist doof, dass die ganze Zeit noch das File offen ist.
+if (file_exists($fileName)) {
+    fclose($file);
+}
+
 echo '<h1>Stundenübersicht</h1>';
+
+$fileName = "../Data/Team/team.txt";
+$teamHours = array();
+if (file_exists($fileName)) {
+    $teamExists = true;
+    $file = fopen($fileName, "r");
+
+    $numberOfTeamMembers = (int)rtrim(fgets($file));
+
+
+    for ($i = 0; $i < $numberOfTeamMembers; $i++) {
+        $firstName = rtrim(fgets($file));
+        for ($j = 0; $j < 3; $j++) {
+            fgets($file);
+        }
+        $teamHours[$firstName] = (int)rtrim(fgets($file));
+        for ($j = 0; $j < 2; $j++) {
+            fgets($file);
+        }
+    }
+    fclose($file);
+}
 
 
 echo '<table id="hourTable">';
@@ -221,21 +246,23 @@ echo '<table id="hourTable">';
 echo '<tr>';
 echo '<th>Person</th>';
 echo '<th>Stunden</th>';
+echo '<th>Benötigte Stunden</th>';
+echo '<th>Differenz in Stunden</th>';
+echo '<th>Differenz in Prozent</th>';
 echo '</tr>';
 
 foreach ($dateSheet as $x => $x_value) {
     echo '<tr>';
-    echo '<td>' . $x . "</td>";
-    echo '<td id="hours' . $x . '"></td>';
+    echo '<td class="left">' . $x . "</td>";
+    echo '<td class="right" id="hours' . $x . '"></td>';
+    echo '<td class="right">' . $teamHours[$x] . '</td>';
+    echo '<td class="right"></td>';
+    echo '<td class="right"></td>';
     echo '</tr>';
 }
 
 
 echo '</table>';
-
-if (file_exists($fileName)) {
-    fclose($file);
-}
 
 echo '<div id="year" class="hidden">' . $year . '</div>';
 echo '<div id="month" class="hidden">' . $month . '</div>';

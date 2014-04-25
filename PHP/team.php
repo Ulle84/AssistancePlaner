@@ -55,19 +55,6 @@
             echo '</tr>';
         }
     }
-
-    /*
-            <td>
-                <input type="checkbox" value="Mo"/>Mo
-                <input type="checkbox" value="Di"/>Di
-                <input type="checkbox" value="Mi"/>Mi
-                <input type="checkbox" value="Do"/>Do
-                <input type="checkbox" value="Fr"/>Fr
-                <input type="checkbox" value="Sa"/>Sa
-                <input type="checkbox" value="So"/>So
-            </td>
-     */
-
     ?>
 
 </table>

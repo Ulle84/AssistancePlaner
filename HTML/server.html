@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+ <title>Server</title>
+ <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all" />
+</head>
+<body>
+
+<h1>Installierte Pakete</h1>
+<ul>
+ <li>apache2</li>
+ <li>php5</li>
+ <li>samba</li>
+ <li>sendmail</li>
+</ul>
+
+<h1>Mail-Versand mit PHP</h1>
+<ul>
+ <li>apt-get install sendmail</li>
+ <li>sudo nano /etc/php5/apache2/php.ini</li>
+ <li>sendmail_path = /usr/sbin/sendmail -t -i</li>
+ <li>sudo reboot</li>
+ <li>sudo sendmailconfig</li>
+</ul>
+
+</body>
+</html>

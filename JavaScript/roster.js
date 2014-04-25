@@ -141,6 +141,14 @@ function calcHours() {
     for (var i = columnOffsetLeft; i < persons.length - columnOffsetRight; i++) {
         var element = window.document.getElementById("hours" + persons[i].textContent);
         element.textContent = hours[persons[i].textContent];
+
+        var targetHours = parseFloat(element.nextSibling.textContent);
+        var calculatedHours = parseFloat(hours[persons[i].textContent]);
+        var percentage = calculatedHours / targetHours * 100 - 100;
+        var diff = calculatedHours - targetHours;
+
+        element.nextSibling.nextSibling.textContent = diff;
+        element.nextSibling.nextSibling.nextSibling.textContent = Math.round(percentage) + " %";
     }
 }
 
