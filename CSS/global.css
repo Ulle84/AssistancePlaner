@@ -77,3 +77,7 @@ tr:last-child > td {
 .left {
     text-align: left;
 }
+
+.wrapLongText {
+    max-width: 600px;
+}

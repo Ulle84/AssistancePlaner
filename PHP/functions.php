@@ -50,34 +50,22 @@ function generate_header($month, $year) {
 }
 
 function get_weekday_description ($weekday) {
-    $description = "";
+    $weekdays = get_weekdays();
 
-    switch($weekday)
-    {
-        case 1:
-            $description = "Mo";
-            break;
-        case 2:
-            $description = "Di";
-            break;
-        case 3:
-            $description = "Mi";
-            break;
-        case 4:
-            $description = "Do";
-            break;
-        case 5:
-            $description = "Fr";
-            break;
-        case 6:
-            $description = "Sa";
-            break;
-        case 7:
-            $description = "So";
-            break;
-    }
+    return $weekdays[$weekday - 1];
+}
 
-    return $description;
+function get_weekdays() {
+    $weekdays = array();
+    $weekdays[0] = "Mo";
+    $weekdays[1] = "Di";
+    $weekdays[2] = "Mi";
+    $weekdays[3] = "Do";
+    $weekdays[4] = "Fr";
+    $weekdays[5] = "Sa";
+    $weekdays[6] = "So";
+
+    return $weekdays;
 }
 
 function get_short_date ($year, $month, $day) {

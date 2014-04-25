@@ -1,5 +1,8 @@
 \documentclass[12pt,a4paper,titlepage]{article} % article scrreprt (KOMA Script Report)
 
+%Kurz-Titel: Assistenzplaner
+%Lang-Titel: Assistenzplaner - Serverbasierte Software zur Koordinierung der Assistenten für behinderte Menschen
+
 %\linespread{2.00} % Zeilenabstand
 										
 %%%%% INPUT %%%%%
@@ -77,6 +80,25 @@
 
 \newlength{\plotBreite} \setlength{\plotBreite}{0.9\textwidth}
 
+\usepackage{listings,xcolor}
+\usepackage{inconsolata}
+
+\definecolor{dkgreen}{rgb}{0,.6,0}
+\definecolor{dkblue}{rgb}{0,0,.6}
+\definecolor{dkyellow}{cmyk}{0,0,.8,.3}
+
+\lstset{
+  language        = php,
+  basicstyle      = \small\ttfamily,
+  keywordstyle    = \color{dkblue},
+  stringstyle     = \color{red},
+  identifierstyle = \color{dkgreen},
+  commentstyle    = \color{gray},
+  emph            =[1]{php},
+  emphstyle       =[1]\color{black},
+  emph            =[2]{if,and,or,else},
+  emphstyle       =[2]\color{dkyellow}}
+
 \begin{document}
 \pagenumbering{Roman}
 \begin{titlepage}
@@ -96,13 +118,6 @@
 	\textbf{\large{(Non-linear Imagers)}}\\[10mm]
 	\textbf{\Large{Diplomarbeit \\[38mm]}} % 44mm
 
-%	\large{erstellt im Sommersemester 2009}\\[10mm]
-%	\large{Eingereicht an der \\
-%		Hochschule Darmstadt\\
-%		Fachbereich Mathematik und Naturwissenschaften\\
-%		Studiengang Optotechnik und Bildverarbeitung (OBV)\\
-%		zur Erlangung des akademischen Grades eines \\[5mm]
-%		\textbf{Diplomingenieur (FH)\\[5mm]}}
 	\begin{tabular}{ll}
 		\textbf{Verfasser} & Ulrich Belitz, geb. am 4. April 1984\\[3mm]
 		\hline
@@ -157,11 +172,34 @@ Ulrich Belitz
 
 \pagenumbering{arabic}
 
-\section{Anforderungstermittlung}
-\subsection{Personenl}
+\section{Anforderungsermittlung}
+\subsection{Personen}
 \subsubsection{Betreuter}
 Der Betreute ist ein körperlich behinderter Mensch, der an Muskelschwäche leidet.
-Aus Respekt vor dem körperlich erkrankten Menschen wird nicht von dem \enquote{Behinderten} gesprochen, sondern stets von dem \enquote{Betreuten}.
+Aus Respekt vor dem körperlich erkrankten Menschen wird in der vorliegenden Ausarbeitung nicht von dem \enquote{Behinderten} gesprochen, sondern stets von dem \enquote{Betreuten}.
+\subsubsection{Assistent}
+Daas ist ein Typo.
+
+
+\section{Code-Test}
+\begin{lstlisting}
+<?php
+/* this is a stupid example */
+$username = $_POST["username"];
+$passwort = $_POST["passwort"];
+
+$pass = md5($passwort);
+
+// another comment
+if($username=="Andavos" and
+$pass=="fd0d9cdefd5d42dfa36c74a449aa8214") {
+   echo "Herzlich Willkommen";
+}
+else {
+   echo "Login Fehlgeschlagen";
+}
+?>
+\end{lstlisting}
 
 \clearpage
 \newpage

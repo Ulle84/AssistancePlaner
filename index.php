@@ -2,33 +2,18 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer</title>
-    <script type="text/javascript">
-        <!--
-        <?php
-        // get current month and year
-        $month = (int)date("m");
-        $year = (int)date("Y");
-
-        $month++;
-        if ($month == 13)
-        {
-            $month = 1;
-            $year++;
-        }
-
-         echo 'window.location.href = "./PHP/calendar.php?year=' . $year . '&month=' . $month . '";';
-        ?>
-        //-->
-    </script>
+    <title>Assistenz Planer - Übersicht</title>
+    <link rel="stylesheet" type="text/css" href="CSS/global.css" media="all"/>
 </head>
 <body>
-<noscript>
-    <div>
-        In Ihrem Browser ist JavaScript nicht implementiert, bzw. deaktiviert.<br />
-        Bitte aktivieren Sie JavaScript.
-    </div>
-</noscript>
+<a href="HTML/diary.html">Tägliche Notizen</a> <br />
+<a href="HTML/ToDo.html">ToDo</a> <br />
+<a href="HTML/userStories.html">User Stories</a> <br />
+<a href="HTML/info.html">Informationen</a> <br />
 
+<a href="PHP/calendar.php">Kalender</a> <br />
+<a href="PHP/monthPlan.php">Monats-Plan</a> <br />
+<a href="PHP/roster.php">Dienst-Plan</a> <br />
+<a href="PHP/team.php">Team</a> <br />
 </body>
 </html>
