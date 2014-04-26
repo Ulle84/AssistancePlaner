@@ -269,12 +269,14 @@ echo '<div id="month" class="hidden">' . $month . '</div>';
 
 ?>
 
+<br />
 
-<div class="button" onclick="checkRoster()">Check Roster</div>
+<input type="button" value="Dienstplan prüfen" onclick="checkRoster()" />
+<input type="button" value="Dienstplan speichern" onclick="save()" />
 
-<div class="button" onclick="saveRoster()">Save Roster</div>
-Answer of Server:
-<div id="myDiv"></div>
+<br />
+
+Antwort vom Server: <span id="httpResponse"></span>
 
 </body>
 </html>

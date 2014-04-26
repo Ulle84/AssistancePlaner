@@ -7,6 +7,6 @@ $fh = fopen($fileName, "w");
 fwrite($fh, ($content));
 fclose($fh);
 
-echo "input was saved";
+echo "Eingaben wurden gespeichert";
 
 ?>

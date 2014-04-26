@@ -124,7 +124,7 @@ while ($cellCounter % 7 != 0) {
 
 echo "</tr>";
 echo "</table>";
-//TODO AJAX instead of form
+
 echo '<br />Name: <input id="name" type="text" />';
 
 echo '<div id="year" class="hidden">' . $year . '</div>';
@@ -134,11 +134,14 @@ echo '<div id="month" class="hidden">' . $month . '</div>';
 
 ?>
 
-<div class="button" onclick="markAllDates()">Alle Daten markieren</div>
-<div class="button" onclick="save()">Speichern</div>
+<br />
 
-Answer of Server:
-<div id="myDiv"></div>
+<input type="button" value="Alle Daten markieren" onclick="markAllDates()" />
+<input type="button" value="Speichern" onclick="save()" />
+
+<br />
+
+Antwort vom Server: <span id="httpResponse"></span>
 
 
 </body>

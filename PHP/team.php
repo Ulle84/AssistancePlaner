@@ -51,7 +51,7 @@
                 echo '/><span>' . $weekdays[$j] . ' </span>';
             }
             echo '</td>';
-            echo '<td class="left"><div class="button" onclick="removeMember(this)">Löschen</div></td>';
+            echo '<td class="left"><input type="button" value="Löschen" onclick="removeMember(this)" /></div></td>';
             echo '</tr>';
         }
     }
@@ -59,11 +59,14 @@
 
 </table>
 
-<div class="button" onclick="newMember()">Neues Mitglied</div>
-<div class="button" onclick="saveTable()">Tabelle speichern</div>
+<br />
 
-Answer of Server:
-<div id="httpResponse"></div>
+<input type="button" value="Neues Mitglied" onclick="newMember()" />
+<input type="button" value="Tabelle speichern" onclick="saveTable()" />
+
+<br />
+
+Answer of Server: <span id="httpResponse"></span>
 </body>
 </html>
 

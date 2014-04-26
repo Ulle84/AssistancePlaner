@@ -55,11 +55,12 @@ function checkRoster() {
     return true;
 }
 
-function saveRoster() {
+function save() {
     //TODO checkRoster();
 
+    var httpResponse = document.getElementById("httpResponse");
 
-    document.getElementById("myDiv").innerHTML = "";
+    httpResponse.innerHTML = "";
 
 
     var content = "";
@@ -94,7 +95,7 @@ function saveRoster() {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
 

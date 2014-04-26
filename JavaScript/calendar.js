@@ -25,7 +25,8 @@ function markAllDates() {
 }
 
 function save() {
-    document.getElementById("myDiv").innerHTML = "";
+    var httpResponse = document.getElementById("httpResponse");
+    httpResponse.innerHTML = "";
 
     var name = window.document.getElementById("name").value;
 
@@ -44,7 +45,7 @@ function save() {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
 

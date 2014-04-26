@@ -11,6 +11,6 @@ fwrite($fh, ($name . "\r\n"));
 fwrite($fh, ($content . "\r\n"));
 fclose($fh);
 
-echo "input was saved";
+echo "Eingabe wurde gespeichert";
 
 ?>

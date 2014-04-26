@@ -69,10 +69,13 @@
 
     ?>
 
-    <div class="button" onclick="save()">Speichern</div>
+    <br/>
 
-    Answer of Server:
-    <div id="httpResponse"></div>
+    <input type="button" value="Speichern" onclick="save()"/>
+
+    <br/>
+
+    Antwort vom Server: <span id="httpResponse"></span>
 
 
 </body>

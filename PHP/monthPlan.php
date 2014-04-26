@@ -39,20 +39,36 @@
     $defaultBegin = array();
     $defaultEnd = array();
 
-    $defaultBegin[1] = "17:00";
-    $defaultEnd[1] = "08:00";
-    $defaultBegin[2] = "13:00";
-    $defaultEnd[2] = "08:00";
-    $defaultBegin[3] = "17:00";
-    $defaultEnd[3] = "08:00";
-    $defaultBegin[4] = "13:00";
-    $defaultEnd[4] = "08:00";
-    $defaultBegin[5] = "14:00";
-    $defaultEnd[5] = "13:00";
-    $defaultBegin[6] = "13:00";
-    $defaultEnd[6] = "13:00";
-    $defaultBegin[7] = "13:00";
-    $defaultEnd[7] = "08:00";
+    // TODO this code is double - compare with defaultTimes.php
+    $fileName = "../Data/Organization/defaultTimes.txt";
+    $defaultTimesExists = false;
+    if (file_exists($fileName)) {
+        $defaultTimesExists = true;
+
+        $file = fopen($fileName, "r");
+
+        for ($i = 1; $i <= 7; $i++) {
+            $times = fgets($file);
+            $defaultBegin[$i] = substr($times, 0, 5);
+            $defaultEnd[$i] = substr($times, 8, 5);
+        }
+        fclose($file);
+    } else {
+        $defaultBegin[1] = "17:00";
+        $defaultEnd[1] = "08:00";
+        $defaultBegin[2] = "13:00";
+        $defaultEnd[2] = "08:00";
+        $defaultBegin[3] = "17:00";
+        $defaultEnd[3] = "08:00";
+        $defaultBegin[4] = "13:00";
+        $defaultEnd[4] = "08:00";
+        $defaultBegin[5] = "14:00";
+        $defaultEnd[5] = "13:00";
+        $defaultBegin[6] = "13:00";
+        $defaultEnd[6] = "13:00";
+        $defaultBegin[7] = "13:00";
+        $defaultEnd[7] = "08:00";
+    }
 
     $monthPlanExists = false;
     $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
@@ -130,10 +146,13 @@
 
     ?>
 
-    <div class="button" onclick="saveMonthPlan()">Speichern</div>
+    <br />
 
-    Answer of Server:
-    <div id="myDiv"></div>
+    <input type="button" value="Speichern" onclick="save()" />
+
+    <br />
+
+    Antwort vom Server: <span id="httpResponse"></span>
 
 
 </body>

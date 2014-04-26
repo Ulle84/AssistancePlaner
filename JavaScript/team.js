@@ -52,11 +52,11 @@ function newMember() {
     tr.appendChild(tdCheckBoxes);
 
     var td = window.document.createElement("td");
-    var div = window.document.createElement("div");
-    div.textContent = "Löschen";
-    div.setAttribute("class", "button");
-    div.setAttribute("onclick", "removeMember(this)");
-    td.appendChild(div);
+    var input = window.document.createElement("input");
+    input.setAttribute("value", "Löschen");
+    input.setAttribute("type", "button");
+    input.setAttribute("onclick", "removeMember(this)");
+    td.appendChild(input);
     tr.appendChild(td);
 }
 

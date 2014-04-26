@@ -1,6 +1,8 @@
-function saveMonthPlan() {
+function save() {
 
-    document.getElementById("myDiv").innerHTML = "";
+    var httpResponse = document.getElementById("httpResponse");
+
+    httpResponse.innerHTML = "";
 
     var content = "";
 
@@ -22,7 +24,7 @@ function saveMonthPlan() {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
 
