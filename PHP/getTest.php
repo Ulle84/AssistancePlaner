@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Assistenz Planer</title>
-    <link rel="stylesheet" type="text/css" href="CSS/calendar.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="CSS/calendar.css" media="all"/>
     <script language="JavaScript" src="JavaScript/calendar.js"></script>
 </head>
 <body>

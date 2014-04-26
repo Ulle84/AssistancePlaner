@@ -1,13 +1,13 @@
-.bad   {
-	background-color: #FFB2B2;
+.bad {
+    background-color: #FFB2B2;
 }
 
 .date {
     text-align: right;
 }
 
-.good   {
-	background-color: #99E699;
+.good {
+    background-color: #99E699;
 }
 
 .service {

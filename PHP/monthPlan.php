@@ -88,8 +88,7 @@
         echo '<td><input value="';
         if ($monthPlanExists) {
             echo $startTimes[$i];
-        }
-        else {
+        } else {
             echo $defaultBegin[date("N", mktime(0, 0, 0, $month, $i, $year))];
         }
         echo '" type="text" size="5" maxlength="5" /></td>';
@@ -98,8 +97,7 @@
         echo '<td><input value="';
         if ($monthPlanExists) {
             echo $stopTimes[$i];
-        }
-        else {
+        } else {
             echo $defaultEnd[date("N", mktime(0, 0, 0, $month, $i, $year))];
         }
         echo '" type="text" size="5" maxlength="5" /></td>';

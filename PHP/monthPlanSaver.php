@@ -8,7 +8,7 @@ echo "plan was saved";
 
 $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
 $fh = fopen($fileName, "w");
-fwrite($fh,($content));
+fwrite($fh, ($content));
 fclose($fh);
 
 ?>

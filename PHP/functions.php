@@ -1,11 +1,11 @@
 <?php
 // set of functions - Don't repeat yourself!
 
-function generate_header($month, $year) {
+function generate_header($month, $year)
+{
     $string = "<h1>";
 
-    switch($month)
-    {
+    switch ($month) {
         case 1:
             $string .= "Januar";
             break;
@@ -49,13 +49,15 @@ function generate_header($month, $year) {
     return $string;
 }
 
-function get_weekday_description ($weekday) {
+function get_weekday_description($weekday)
+{
     $weekdays = get_weekdays();
 
     return $weekdays[$weekday - 1];
 }
 
-function get_weekdays() {
+function get_weekdays()
+{
     $weekdays = array();
     $weekdays[0] = "Mo";
     $weekdays[1] = "Di";
@@ -68,10 +70,11 @@ function get_weekdays() {
     return $weekdays;
 }
 
-function get_short_date ($year, $month, $day) {
+function get_short_date($year, $month, $day)
+{
     $shortDate = get_weekday_description(date("N", mktime(0, 0, 0, $month, $day, $year)));
 
-    $shortDate .=  ", " . date("d.m.", mktime(0, 0, 0, $month, $day, $year));
+    $shortDate .= ", " . date("d.m.", mktime(0, 0, 0, $month, $day, $year));
 
     return $shortDate;
 }
