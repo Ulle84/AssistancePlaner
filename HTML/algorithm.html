@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+ <title>Algorithmus für Dienstplanerstellung</title>
+ <link rel="stylesheet" type="text/css" href="../CSS/documentation.css" media="all"/>
+ <script language="JavaScript" src="../JavaScript/documentation.js"></script>
+</head>
+<body onload="init()">
+<h1>Eingabe</h1>
+Text-File im Format:
+<div class="code">
+ Rene<br />
+ 1;2;3;4;5;16;17;18;22;23;24;25;28;29;30<br />
+ Oliver<br />
+ 1;2;4;5;6;7;9;11;13;14;15;16;18;19;20;21;22;23;24;25;26;27;28;29;30;31<br />
+ ...
+</div>
+
+<h1>Ausgabe</h1>
+Text-File im Format:
+<div class="code">
+ 27.04.2014 21:20<br />
+ Oliver;Rene<br />
+ Rene;Oliver<br />
+ ...
+</div>
+
+<h1>Parameter</h1>
+<h2>Betreuungsabdeckung</h2>
+Es muss eine Betreuungsabdeckung von 100% erreicht werden!
+
+<h2>Prioritäten Assistenten</h2>
+Die Vorlieben des Betreuten in Bezug auf die Assistenten (inklusive Wochentage) sollten möglichst gut erfüllt sein.
+
+<h2>Stundenauslastung Assistenten</h2>
+Die Stundenauslastung der Assistenen sollte an ihrem "Budget" gemessen möglichst gleichmäßig sein.
+
+<h1>Erster "dummer" Versuch</h1>
+Berücksichtigt nur die Betreuungsabdeckung.
+<ul>
+ <li>Gehe zu jedem Tag</li>
+ <li>Schaue, ob es 2 Assistenen gibt, die Zeit haben</li>
+ <li>Gib dem ersten freien Assistenen den Dienst, dem zweiten freien die Bereitschaft</li>
+</ul>
+
+</body>
+</html>
