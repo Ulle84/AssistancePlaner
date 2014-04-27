@@ -3,9 +3,10 @@
 <html>
 <head>
  <title>Probleme</title>
- <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+ <link rel="stylesheet" type="text/css" href="../CSS/documentation.css" media="all"/>
+ <script language="JavaScript" src="../JavaScript/documentation.js"></script>
 </head>
-<body>
+<body onload="init()">
 <h1>Mailversand mit PHP</h1>
 PHP mail() Funktion gibt eine 1 zurück, aber keine Mail wird versand. <br/>
 sendmail Programm installiert und in PHP.ini angegeben hat leider nichts gebracht. <br/>
@@ -17,13 +18,14 @@ Alternativen
 Lösung: PHPMailer mit GMail Account hat funktioniert!
 
 <h1>Sonderzeichen</h1>
+<h2>Problem</h2>
 Folgende Sonderzeichen können Probleme machen:
 <ul>
  <li>Doppeltes Hochkomma</li>
  <li>Einfaches Hochkomma</li>
  <li>Kaufmännisches Und</li>
 </ul>
-<h2>Lösungen</h2>
+<h2>Lösung</h2>
 <h3>Hochkommas</h3>
 Das Problem mit Hochkommas kann man umgehen, wenn man beim Ausgeben (echo) in PHP die Funktion htmlspecialchars verwendet.
 

@@ -163,8 +163,10 @@ function checkAvailability() {
 
     for (var i = 1; i < rows.length; i++) {
         var available = rows[i].getElementsByClassName("good");
+        var service = rows[i].getElementsByClassName("service");
+        var standby = rows[i].getElementsByClassName("standby");
 
-        if (available.length < 2) {
+        if (available.length + service.length + standby.length < 2) {
             badDaysCount++;
             if (badDays != "") {
                 badDays += "   ";
