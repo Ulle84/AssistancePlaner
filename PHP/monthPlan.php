@@ -121,14 +121,14 @@
         // private notes
         echo '<td><input value="';
         if ($monthPlanExists) {
-            echo $notesPublic[$i];
+            echo htmlspecialchars($notesPublic[$i]);
         }
         echo '" type="text" size="30" maxlength="200" /></td>';
 
         // public notes
         echo '<td><input value="';
         if ($monthPlanExists) {
-            echo $notesPrivate[$i];
+            echo htmlspecialchars($notesPrivate[$i]);
         }
         echo '" type="text" size="30" maxlength="200" /></td>';
 

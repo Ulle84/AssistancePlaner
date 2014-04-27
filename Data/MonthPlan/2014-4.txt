@@ -1,5 +1,5 @@
 14:00 - 08:00
-Arbeitsassistenz
+Arbeitsassistenz "test"
 Spiel FC Bayern
 17:00 - 08:00
 Kann ein paar Minuten später werden
@@ -11,8 +11,8 @@ Wichtiger Termin im Büro
 Treffpunkt: Supermarkt
 Freundin zu Besuch
 13:00 - 13:00
-
-
+hallo = böse
+nach böse
 13:00 - 08:00
 
 

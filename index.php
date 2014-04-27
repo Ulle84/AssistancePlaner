@@ -18,5 +18,6 @@
 <a href="HTML/ToDo.html">ToDo</a> <br/>
 <a href="HTML/userStories.html">User Stories</a> <br/>
 <a href="HTML/info.html">Informationen</a> <br/>
+<a href="HTML/problems.html">Probleme und Lösungen</a> <br/>
 </body>
 </html>
