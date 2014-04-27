@@ -131,18 +131,13 @@
             echo htmlspecialchars($notesPrivate[$i]);
         }
         echo '" type="text" size="30" maxlength="200" /></td>';
-
-
         echo '</tr>';
-
     }
 
     echo '</table>';
 
     echo '<div id="year" class="hidden">' . $year . '</div>';
     echo '<div id="month" class="hidden">' . $month . '</div>';
-
-
 
     ?>
 
