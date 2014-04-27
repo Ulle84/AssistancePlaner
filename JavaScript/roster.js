@@ -153,5 +153,39 @@ function calcHours() {
     }
 }
 
+function checkAvailability() {
+    var rosterTable = window.document.getElementById("rosterTable");
+
+    var rows = rosterTable.getElementsByClassName("rosterData");
+
+    var badDaysCount = 0;
+    var badDays = "";
+
+    for (var i = 1; i < rows.length; i++) {
+        var available = rows[i].getElementsByClassName("good");
+
+        if (available.length < 2) {
+            badDaysCount++;
+            if (badDays != "") {
+                badDays += "   ";
+            }
+            badDays += rows[i].firstChild.textContent;
+        }
+    }
+
+    if (badDaysCount == 1) {
+        alert("Es gibt einen Tag, an dem nicht genug Assistenten Zeit haben:\n" + badDays);
+    }
+    if (badDaysCount > 1) {
+        alert("Es gibt Tage, an denen nicht genug Assistenten Zeit haben:\n" + badDays);
+    }
+
+}
+
+function init() {
+    calcHours();
+    checkAvailability();
+}
+
 
 

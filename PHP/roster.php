@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/roster.js"></script>
 </head>
-<body onload="calcHours()">
+<body onload="init()">
 
 <?php
 
@@ -68,6 +68,8 @@ if (file_exists($fileName)) {
     exit;
 }
 
+echo generate_header($month, $year);
+
 $rosterExists = false;
 $servicePerson = array();
 $standbyPerson = array();
@@ -75,6 +77,8 @@ $fileName = "../Data/Roster/" . $year . "-" . $month . ".txt";
 if (file_exists($fileName)) {
     $rosterExists = true;
     $file = fopen($fileName, "r");
+
+    echo '<div>Letzte Änderung des Dienstplans: ' . rtrim(fgets($file)) . '</div>';
 
     for ($i = 1; $i <= $numberOfDays; $i++) {
         $line = rtrim(fgets($file));
@@ -84,9 +88,6 @@ if (file_exists($fileName)) {
     }
 
 }
-
-
-echo generate_header($month, $year);
 
 echo '<table id="rosterTable">';
 
@@ -255,7 +256,13 @@ foreach ($dateSheet as $x => $x_value) {
     echo '<tr>';
     echo '<td class="left">' . $x . "</td>";
     echo '<td class="right" id="hours' . $x . '"></td>';
-    echo '<td class="right">' . $teamHours[$x] . '</td>';
+    echo '<td class="right">';
+    if (array_key_exists($x, $teamHours)) {
+        echo $teamHours[$x];
+    } else {
+        echo '0';
+    }
+    echo '</td>'; //TODO check that $x is in teamHours
     echo '<td class="right"></td>';
     echo '<td class="right"></td>';
     echo '</tr>';
@@ -269,12 +276,12 @@ echo '<div id="month" class="hidden">' . $month . '</div>';
 
 ?>
 
-<br />
+<br/>
 
-<input type="button" value="Dienstplan prüfen" onclick="checkRoster()" />
-<input type="button" value="Dienstplan speichern" onclick="save()" />
+<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>
+<input type="button" value="Dienstplan speichern" onclick="save()"/>
 
-<br />
+<br/>
 
 Antwort vom Server: <span id="httpResponse"></span>
 
