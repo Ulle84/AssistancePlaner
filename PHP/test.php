@@ -139,6 +139,25 @@ $_COOKIE
 $_SESSION
 */
 
+// 2-dim array
+$x = 4;
+$y = 3;
+
+$twoDimArray = array();
+for ($i = 0; $i < $y; $i++) {
+    $twoDimArray[$i] = array();
+    for ($j = 0; $j < $x; $j++) {
+        $twoDimArray[$i][$j] = $i * $x + $j;
+    }
+}
+
+for ($i = 0; $i < $y; $i++) {
+    for ($j = 0; $j < $x; $j++) {
+        echo $twoDimArray[$i][$j] . ' ';
+    }
+    echo '<br />';
+}
+
 ?>
 
 

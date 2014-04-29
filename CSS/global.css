@@ -9,6 +9,10 @@ br {
     margin-bottom: 12px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #25467D;
+}
+
 h1 {
     font-size: 130%;
 }
@@ -36,7 +40,7 @@ input {
 
 table {
     font-size: 10pt;
-    border: 2px solid black;
+    border: 2px solid #25467D;;
     border-spacing: 0px;
 }
 
