@@ -81,9 +81,13 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
 }
 
 // rating of assistants
-$rating['A'] = 2;
-$rating['B'] = 4;
-$rating['C'] = 3;
+$rating['Rene'] = 70;
+$rating['Oliver'] = 80;
+$rating['Jonas'] = 130;
+$rating['Norman'] = 50;
+$rating['Stefan'] = 50;
+$rating['Jan'] = 45;
+$rating['Lars'] = 30;
 
 // multiply dateSheet with rating
 for ($i = 1; $i <= $numberOfDays; $i++) {
@@ -153,6 +157,32 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
 }
 
 fclose($fh);
+
+// test sort
+$test = array();
+$testEntry1 = array();
+$testEntry2 = array();
+$testEntry3 = array();
+
+array_push($testEntry1, 10);
+array_push($testEntry1, 20);
+
+array_push($testEntry2, 30);
+array_push($testEntry2, 40);
+
+array_push($testEntry3, 50);
+array_push($testEntry3, 60);
+
+
+array_push($test, $testEntry1);
+array_push($test, $testEntry2);
+array_push($test, $testEntry3);
+
+print_r($test);
+echo '<br /><br />';
+rsort($test);
+print_r($test);
+
 
 ?>
 
