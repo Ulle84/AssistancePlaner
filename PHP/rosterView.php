@@ -12,6 +12,7 @@
 <?php
 
 require_once 'functions.php';
+require_once 'AssistanceInput.php';
 
 $month = date("n");
 $year = date("Y");
@@ -271,19 +272,29 @@ foreach ($dateSheet as $x => $x_value) {
 
 echo '</table>';
 
-echo '<div id="year" class="hidden">' . $year . '</div>';
-echo '<div id="month" class="hidden">' . $month . '</div>';
+
+echo '<br/>';
+
+echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>';
+echo '<input type="button" value="Dienstplan speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
 
 ?>
 
-<br/>
 
-<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>
-<input type="button" value="Dienstplan speichern" onclick="save()"/>
 
 <br/>
 
 Antwort vom Server: <span id="httpResponse"></span>
+
+<hr />
+
+<?php
+$assistanceInput = new AssistanceInput();
+$assistanceInput->readFromFile("../Data/AssistanceInput/" . $year . "-" . $month . ".txt");
+
+
+?>
+
 
 </body>
 </html>

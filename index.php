@@ -9,7 +9,7 @@
 <h1>Anwendung Assistenz Planer</h1>
 <a target="_blank" href="PHP/calendarView.php">Kalender</a> <br/>
 <a target="_blank" href="PHP/monthPlan.php">Monats-Plan</a> <br/>
-<a target="_blank" href="PHP/roster.php">Dienst-Plan</a> <br/>
+<a target="_blank" href="PHP/rosterView.php">Dienst-Plan</a> <br/>
 <a target="_blank" href="PHP/teamTable.php">Team</a> <br/>
 <a target="_blank" href="PHP/defaultTimes.php">Standard Dienst-Zeiten</a> <br/>
 

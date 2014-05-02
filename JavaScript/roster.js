@@ -55,7 +55,7 @@ function checkRoster() {
     return true;
 }
 
-function save() {
+function save(year, month) {
     //TODO checkRoster();
 
     var httpResponse = document.getElementById("httpResponse");
@@ -98,9 +98,6 @@ function save() {
             httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
-
-    var year = window.document.getElementById("year").textContent;
-    var month = window.document.getElementById("month").textContent;
 
     xmlhttp.open("POST", "../PHP/rosterSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

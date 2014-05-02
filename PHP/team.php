@@ -1,7 +1,7 @@
 <?php
 
-require_once 'TeamMember.php';
-require_once 'functions.php';
+require 'TeamMember.php';
+require 'functions.php';
 
 class Team
 {
@@ -70,6 +70,14 @@ class Team
         echo '<td class="left" onclick="edit(this)">' . $teamMember->phoneNumber . '</td>';
         echo '<td class="left" onclick="edit(this)">' . $teamMember->hoursPerMonth . '</td>';
         echo '<td class="left" onclick="edit(this)">' . $teamMember->priority . '</td>';
+
+
+        /*echo '<td><input type="text" size="12" maxlength="50" value="' . $teamMember->firstName . '"/></td>';
+        echo '<td><input type="text" size="18" maxlength="50" value="' . $teamMember->lastName . '"/></td>';
+        echo '<td><input type="text" size="15" maxlength="50" value="' . $teamMember->eMailAddress . '"/></td>';
+        echo '<td><input type="text" size="15" maxlength="50" value="' . $teamMember->phoneNumber . '"/></td>';
+        echo '<td><input type="text" size="18" maxlength="3" style="text-align: right" value="' . $teamMember->hoursPerMonth . '"/></td>';
+        echo '<td><input type="text" size="11" maxlength="2" style="text-align: right" value="' . $teamMember->priority . '"/></td>';*/
 
         $weekdays = get_weekdays();
         echo '<td>';
