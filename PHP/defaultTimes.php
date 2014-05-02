@@ -12,7 +12,6 @@
 require_once 'WorkingTimes.php';
 
 $workingTimes = new WorkingTimes();
-$workingTimes->readFromFile("../Data/Organization/defaultTimes.txt");
 $workingTimes->printTable();
 
 ?>

@@ -9,24 +9,30 @@ class WorkingTimes
 
     function __construct()
     {
-        $this->begin[1] = "17:00";
-        $this->begin[2] = "13:00";
-        $this->begin[3] = "17:00";
-        $this->begin[4] = "13:00";
-        $this->begin[5] = "14:00";
-        $this->begin[6] = "13:00";
-        $this->begin[7] = "13:00";
+        $fileName = "../Data/Organization/defaultTimes.txt";
+        if (file_exists($fileName)) {
+            $this->readFromFile($fileName);
+        } else {
 
-        $this->end[1] = "08:00";
-        $this->end[2] = "08:00";
-        $this->end[3] = "08:00";
-        $this->end[4] = "08:00";
-        $this->end[5] = "13:00";
-        $this->end[6] = "13:00";
-        $this->end[7] = "08:00";
+            $this->begin[1] = "17:00";
+            $this->begin[2] = "13:00";
+            $this->begin[3] = "17:00";
+            $this->begin[4] = "13:00";
+            $this->begin[5] = "14:00";
+            $this->begin[6] = "13:00";
+            $this->begin[7] = "13:00";
+
+            $this->end[1] = "08:00";
+            $this->end[2] = "08:00";
+            $this->end[3] = "08:00";
+            $this->end[4] = "08:00";
+            $this->end[5] = "13:00";
+            $this->end[6] = "13:00";
+            $this->end[7] = "08:00";
+        }
     }
 
-    public function readFromFile($fileName)
+    private function readFromFile($fileName)
     {
         if (!file_exists($fileName)) {
             return;
@@ -51,7 +57,6 @@ class WorkingTimes
         echo '<th>Dienstende</th>';
         echo '</tr>';
 
-
         $weekdays = get_weekdays();
         for ($i = 1; $i <= 7; $i++) {
             echo '<tr>';
@@ -61,7 +66,6 @@ class WorkingTimes
             echo '</tr>';
 
         }
-
         echo '</table>';
     }
 }

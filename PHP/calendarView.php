@@ -12,7 +12,7 @@
 
 <?php
 
-require_once "Month.php";
+require_once "MonthPlan.php";
 
 $month = date("n");
 $year = date("Y");
@@ -25,7 +25,7 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
-$calendar = new Month($year, $month);
+$calendar = new MonthPlan($year, $month);
 $calendar->readFromFile("../Data/MonthPlan/" . $year . "-" . $month . ".txt");
 $calendar->printHeader();
 $calendar->printPublicNotes();

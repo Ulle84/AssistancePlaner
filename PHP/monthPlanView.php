@@ -10,7 +10,7 @@
 <body>
 
 <?php
-require_once 'Month.php';
+require_once 'MonthPlan.php';
 
 $month = date("n");
 $year = date("Y");
@@ -23,7 +23,7 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
-$monthInstance = new Month($year, $month);
+$monthInstance = new MonthPlan($year, $month);
 $monthInstance->readFromFile("../Data/MonthPlan/" . $year . "-" . $month . ".txt");
 $monthInstance->printTable();
 
