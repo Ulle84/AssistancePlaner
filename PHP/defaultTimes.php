@@ -18,7 +18,7 @@
 
     <?php
 
-    require 'functions.php';
+    require_once 'functions.php';
 
     $defaultBegin = array();
     $defaultEnd = array();

@@ -11,7 +11,7 @@
 
 <?php
 
-require 'functions.php';
+require_once 'functions.php';
 
 $month = date("n");
 $year = date("Y");

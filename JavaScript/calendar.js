@@ -24,7 +24,7 @@ function markAllDates() {
      */
 }
 
-function save() {
+function save(year, month) {
     var httpResponse = document.getElementById("httpResponse");
     httpResponse.innerHTML = "";
 
@@ -48,9 +48,6 @@ function save() {
             httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
-
-    var year = window.document.getElementById("year").textContent;
-    var month = window.document.getElementById("month").textContent;
 
     xmlhttp.open("POST", "../PHP/calendarSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

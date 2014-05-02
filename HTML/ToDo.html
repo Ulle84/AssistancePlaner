@@ -18,27 +18,25 @@
 <ul>
  <li>Dritte Version Algorithmus mit Berücksichtigung der Wochentage</li>
  <li>Vierte Version Algorithmus mit Berücksichtigung der Stundenkontingente</li>
- <li>Refactoring: Sinnvolle Klassen definieren und implementieren, Schwerpunkt Team!</li>
  <li>Algorithmus: Daten von Team dynamisch</li>
  <li>Mail an Team verschicken</li>
- <li class="important">Erste PHP-Klasse entwerfen</li>
  <li>Files ...Saver.php zu einem File zusammenfassen?</li>
  <li>Bemerkungen bei Eingabe der Daten - Möglichkeit für Assistenten noch mehr Informationen zu liefern</li>
  <li>User-Login</li>
  <li>htmlspecialchars konsequent verwenden</li>
  <li>alle input-Elemente auf '&' prüfen</li>
- <li>Stundenkontigent nur Zahleneingaben erlauben</li>
- <li>Bedingte Formattierung bei Stundenübersicht</li>
-
  <!--
 function checkContent(element) {
-    // string.replace(new RegExp("\"", 'g'), "&quot;");
-    if (element.value.contains("&")) {
-        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
-        element.value = element.value.replace(new RegExp("&", 'g'), "");
-    }
+   // string.replace(new RegExp("\"", 'g'), "&quot;");
+   if (element.value.contains("&")) {
+       element.value = element.value.replace(new RegExp("&", 'g'), "");
+       alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+   }
 }
- -->
+-->
+ <li>Stundenkontigent nur Zahleneingaben erlauben</li>
+ <li>Bedingte Formattierung bei Stundenübersicht</li>
+ <li>Team-Tabelle: input-Element direkt sichtbar nicht erst bei onclick</li>
 </ul>
 
 

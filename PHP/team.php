@@ -1,6 +1,7 @@
 <?php
 
-require 'TeamMember.php';
+require_once 'TeamMember.php';
+require_once 'functions.php';
 
 class Team
 {
@@ -43,17 +44,65 @@ class Team
         }
     }
 
+    private function printHeader()
+    {
+        echo '<tr>';
+
+        echo '<th>Vorname</th>';
+        echo '<th>Nachname</th>';
+        echo '<th>E-Mail Adresse</th>';
+        echo '<th>Telefonnummer</th>';
+        echo '<th>Stundenkontingent</th>';
+        echo '<th>Priorisierung</th>';
+        echo '<th>Bevorzugte Tage</th>';
+        echo '<th>Löschen</th>';
+
+        echo '</tr>';
+    }
+
+    private function printTeamMember($teamMember)
+    {
+        echo '<tr>';
+
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->firstName . '</td>';
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->lastName . '</td>';
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->eMailAddress . '</td>';
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->phoneNumber . '</td>';
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->hoursPerMonth . '</td>';
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->priority . '</td>';
+
+        $weekdays = get_weekdays();
+        echo '<td>';
+        for ($j = 0; $j < 7; $j++) {
+            echo '<input type="checkbox" value="' . $weekdays[$j] . '"';
+
+            if (in_array($weekdays[$j], $teamMember->preferredWeekdays)) {
+                echo ' checked="true"';
+            }
+
+            echo '/><span>' . $weekdays[$j] . ' </span>';
+        }
+        echo '</td>';
+
+        echo '<td class="left"><input type="button" value="Löschen" onclick="removeMember(this)" /></div></td>';
+
+        echo '</tr>';
+    }
+
     public function printTable()
     {
+        echo '<table id="' . $this->tableId . '">';
+        $this->printHeader();
+
         if ($this->numberOfTeamMembers == 0) {
+            echo '</table>';
             return;
         }
 
-        echo '<table id="' . $this->tableId . '">';
-        $this->teamMembers[0]->printHeader();
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
-            $this->teamMembers[$i]->printContent();
+            $this->printTeamMember($this->teamMembers[$i]);
         }
+
         echo '</table>';
     }
 }

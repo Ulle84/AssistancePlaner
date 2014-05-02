@@ -1,4 +1,4 @@
-function save() {
+function save(year, month) {
 
     var httpResponse = document.getElementById("httpResponse");
 
@@ -27,9 +27,6 @@ function save() {
             httpResponse.innerHTML = xmlhttp.responseText;
         }
     }
-
-    var year = window.document.getElementById("year").textContent;
-    var month = window.document.getElementById("month").textContent;
 
     xmlhttp.open("POST", "../PHP/monthPlanSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

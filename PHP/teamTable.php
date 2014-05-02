@@ -10,7 +10,7 @@
 
 <?php
 
-require 'Team.php';
+require_once 'Team.php';
 
 $team = new Team();
 $team->setTableId("team");
