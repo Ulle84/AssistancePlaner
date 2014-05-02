@@ -2,6 +2,7 @@
 
 require_once 'Day.php';
 require_once 'functions.php';
+require_once 'WorkingTimes.php';
 
 class Month
 {
@@ -16,28 +17,27 @@ class Month
         $this->year = $year;
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
+
+        $workingTimes = new WorkingTimes();
+        $workingTimes->readFromFile("../Data/Organization/defaultTimes.txt");
+
+        $weekday = date("N", mktime(0, 0, 0, $month, 1, $year));
+
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $this->days[$i] = new Day();
+            $this->days[$i]->dayNumber = $i;
+            $this->days[$i]->weekday = $weekday;
+            $this->days[$i]->serviceBegin = $workingTimes->begin[$weekday];
+            $this->days[$i]->serviceEnd = $workingTimes->end[$weekday];
 
-            //TODO setDefaultTimes
+            $weekday++;
+            if ($weekday == 8) {
+                $weekday = 1;
+            }
 
-            /*
-             * $defaultBegin[1] = "17:00";
-    $defaultEnd[1] = "08:00";
-    $defaultBegin[2] = "13:00";
-    $defaultEnd[2] = "08:00";
-    $defaultBegin[3] = "17:00";
-    $defaultEnd[3] = "08:00";
-    $defaultBegin[4] = "13:00";
-    $defaultEnd[4] = "08:00";
-    $defaultBegin[5] = "14:00";
-    $defaultEnd[5] = "13:00";
-    $defaultBegin[6] = "13:00";
-    $defaultEnd[6] = "13:00";
-    $defaultBegin[7] = "13:00";
-    $defaultEnd[7] = "08:00";
-             */
+            $this->days[$i]->calculateWorkingHours();
         }
+
     }
 
     public function readFromFile($fileName)
@@ -56,6 +56,7 @@ class Month
                 $day->publicNotes = rtrim(fgets($file));
                 $day->privateNotes = rtrim(fgets($file));
                 $day->dayNumber = $i;
+                $day->calculateWorkingHours();
 
                 $this->days[$i] = $day;
             }
@@ -148,7 +149,7 @@ class Month
         // print days
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             echo '<td class="bad" onclick="dateClicked(this)"><b>' . $i . '</b><br />';
-            echo $this->days[$i]->serviceBegin .' - ' . $this->days[$i]->serviceEnd . '</td>';
+            echo $this->days[$i]->serviceBegin . ' - ' . $this->days[$i]->serviceEnd . '</td>';
             $cellCounter++;
 
             if ($cellCounter % 7 == 0 && $i != $this->daysPerMonth) {
@@ -194,4 +195,5 @@ class Month
         }
     }
 }
+
 ?>

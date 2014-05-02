@@ -27,7 +27,6 @@ if (isset($_GET['month'])) {
 $monthInstance = new Month($year, $month);
 $monthInstance->readFromFile("../Data/MonthPlan/" . $year . "-" . $month . ".txt");
 $monthInstance->printTable();
-$monthInstance->printCalendar();
 
 echo '<br />';
 echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
