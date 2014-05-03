@@ -59,7 +59,7 @@ while (!feof($file)) {
         $dateSheet[$count] = array();
         $allDates = explode(';', $dates);
         for ($i = 1; $i <= $numberOfDays; $i++) {
-            if (in_array($i, $allDates)) {
+            if ($allDates[$i - 1] == 1) {
                 $dateSheet[$count][$i] = 1;
             } else {
                 $dateSheet[$count][$i] = 0;
