@@ -8,6 +8,7 @@ class MonthPlan
 {
     public $year;
     public $month;
+    public $calendarId = "calendar";
     public $days = array();
 
     private $daysPerMonth;
@@ -153,7 +154,7 @@ class MonthPlan
 
         $weekday = date("N", mktime(0, 0, 0, $this->month, 1, $this->year));
 
-        echo '<table>';
+        echo '<table id="' . $this->calendarId .'" >';
 
         $this->printCalendarHeader();
 

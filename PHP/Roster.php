@@ -13,6 +13,7 @@ class Roster
     private $lastChange;
     private $servicePerson = array();
     private $standbyPerson = array();
+    private $rosterExist = false;
 
     private $team;
     private $assistanceInput;
@@ -31,6 +32,10 @@ class Roster
 
         $this->readFromFile("../Data/Roster/" . $year . "-" . $month . ".txt");
 
+        if (!$this->rosterExist) {
+            $this->createRoster();
+        }
+
         $this->team = new Team();
         $this->assistanceInput = new AssistanceInput($year, $month);
         $this->monthPlan = new MonthPlan($year, $month);
@@ -39,6 +44,8 @@ class Roster
     private function readFromFile($fileName)
     {
         if (file_exists($fileName)) {
+            $this->rosterExist = true;
+
             $file = fopen($fileName, "r");
 
             $this->lastChange = rtrim(fgets($file));
@@ -53,6 +60,19 @@ class Roster
         }
     }
 
+    private function writeToFile()
+    {
+        $fileName = "../Data/Roster/" . $this->year . "-" . $this->month . ".txt";
+        $fh = fopen($fileName, "w");
+        fwrite($fh, date("d.m.Y H:i\n"));
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            fwrite($fh, $this->servicePerson[$i] . ';' . $this->standbyPerson[$i] . "\n");
+        }
+
+        fclose($fh);
+    }
+
     private function printTableHeader($first)
     {
         echo '<tr';
@@ -65,8 +85,8 @@ class Roster
         echo '<th class="hidden">Dienst</th>';
         echo '<th class="hidden">Bereitschaft</th>';
 
-        foreach ($this->assistanceInput->assistanceInput as $x => $x_value) {
-            echo "<th>" . $x . "</th>";
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+            echo "<th>" . $name . "</th>";
         }
 
         echo '<th>Bemerkungen (öffentlich)</th>';
@@ -83,19 +103,17 @@ class Roster
         echo '<td class="hidden">' . $day->serviceHours . '</td>';
         echo '<td class="hidden">' . $day->standbyHours . '</td>';
 
-        foreach ($this->assistanceInput->assistanceInput as $x => $x_value) {
-            $allDates = explode(';', $x_value);
-
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             $className = "";
             $cellTextContent = "";
-            if (in_array($day->dayNumber, $allDates)) {
+            if ($dates[$day->dayNumber-1] == 1) {
                 $className = "good";
-                if ($x == $this->standbyPerson[$day->dayNumber]) {
+                if ($name == $this->standbyPerson[$day->dayNumber]) {
                     $className = "standby";
                     $cellTextContent = "Bereitschaft";
                 }
 
-                if ($x == $this->servicePerson[$day->dayNumber]) {
+                if ($name == $this->servicePerson[$day->dayNumber]) {
                     $className = "service";
                     $cellTextContent = "Dienst";
                 }
@@ -169,6 +187,30 @@ class Roster
 
 
         echo '</table>';
+    }
+
+    private function createRoster()
+    {
+        $this->createRosterAlgorithm1();
+    }
+
+    private function createRosterAlgorithm1()
+    {
+        // give the first available the service and the second available the standby
+
+        // transform data
+
+
+        // check that there is enough availability
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+
+        }
+
+    }
+
+    private function createRosterAlgorithm2()
+    {
+        // give the best rated the service and the second best rated the standby
     }
 }
 

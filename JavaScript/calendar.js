@@ -24,7 +24,7 @@ function markAllDates() {
      */
 }
 
-function save(year, month) {
+function save(year, month, id) {
     var httpResponse = document.getElementById("httpResponse");
     httpResponse.innerHTML = "";
 
@@ -32,14 +32,37 @@ function save(year, month) {
 
     var content = "";
 
-    var goodDates = window.document.getElementsByClassName("good");
+    var cells = window.document.getElementById(id).getElementsByTagName("td");
+
+    var firstEntry = true;
+    for (var i = 0; i < cells.length; i++) {
+        if (cells[i].textContent != "")
+        {
+            if (firstEntry) {
+                firstEntry = false;
+            }
+            else {
+                content += ";";
+            }
+
+            if (cells[i].getAttribute("class") == "good") {
+                content += "1";
+            }
+            else
+            {
+                content += "0";
+            }
+        }
+    }
+
+    /*var goodDates = window.document.getElementsByClassName("good");
 
     for (var i = 0; i < goodDates.length; i++) {
         if (i > 0) {
             content += ";";
         }
         content += goodDates[i].firstChild.textContent;
-    }
+    }*/
 
     var xmlhttp = new XMLHttpRequest();
 

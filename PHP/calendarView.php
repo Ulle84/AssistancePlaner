@@ -25,7 +25,9 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+$id = 'calendar';
 $calendar = new MonthPlan($year, $month);
+$calendar->calendarId = $id;
 $calendar->printHeader();
 $calendar->printPublicNotes();
 $calendar->printCalendar();
@@ -33,7 +35,7 @@ $calendar->printCalendar();
 echo '<br />Name: <input id="name" type="text" /><br />';
 
 echo '<input type="button" value="Alle Daten markieren" onclick="markAllDates()" />';
-echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')" />';
+echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ', \'' . $id . '\')" />';
 
 ?>
 

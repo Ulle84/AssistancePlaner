@@ -22,7 +22,7 @@ class AssistanceInput
                 $dates = rtrim(fgets($file));
 
                 if ($name != "") {
-                    $this->assistanceInput[$name] = $dates;
+                    $this->assistanceInput[$name] = explode(";", $dates);
                 }
             }
             fclose($file);
