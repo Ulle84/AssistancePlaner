@@ -14,7 +14,6 @@ require_once 'Team.php';
 
 $team = new Team();
 $team->setTableId("team");
-$team->readFromFile("../Data/Team/team.txt");
 $team->printTable();
 
 ?>

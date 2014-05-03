@@ -18,20 +18,24 @@ class MonthPlan
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
-        $workingTimes = new WorkingTimes();
-
-        $weekday = date("N", mktime(0, 0, 0, $month, 1, $year));
+        $defaultWorkingTimes = new WorkingTimes();
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $this->days[$i] = new Day();
             $this->days[$i]->dayNumber = $i;
-            $this->days[$i]->weekday = $weekday;
-            $this->days[$i]->serviceBegin = $workingTimes->begin[$weekday];
-            $this->days[$i]->serviceEnd = $workingTimes->end[$weekday];
+        }
 
-            $weekday++;
-            if ($weekday == 8) {
-                $weekday = 1;
+        $this->initWeekdays();
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+
+            $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
+
+            if (file_exists($fileName)) {
+                $this->readFromFile($fileName);
+            } else {
+                $this->days[$i]->serviceBegin = $defaultWorkingTimes->begin[$this->days[$i]->weekday];
+                $this->days[$i]->serviceEnd = $defaultWorkingTimes->end[$this->days[$i]->weekday];
             }
 
             $this->days[$i]->calculateWorkingHours();
@@ -39,7 +43,21 @@ class MonthPlan
 
     }
 
-    public function readFromFile($fileName)
+    private function initWeekdays()
+    {
+        $weekday = date("N", mktime(0, 0, 0, $this->month, 1, $this->year));
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $this->days[$i]->weekday = $weekday;
+
+            $weekday++;
+            if ($weekday == 8) {
+                $weekday = 1;
+            }
+        }
+    }
+
+    private function readFromFile($fileName)
     {
         if (file_exists($fileName)) {
             $file = fopen($fileName, "r");
@@ -62,6 +80,8 @@ class MonthPlan
 
             fclose($file);
         }
+
+        $this->initWeekdays();
     }
 
     private function hasPublicNotes()
@@ -102,6 +122,8 @@ class MonthPlan
 
     public function printTable()
     {
+        echo '<h1>Monatsplan für ' . get_month_description($this->month) . ' ' . $this->year . '</h1>';
+
         echo '<table>';
         $this->printTableHeader();
 

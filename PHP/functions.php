@@ -3,49 +3,50 @@
 
 function generate_header($month, $year)
 {
-    $string = "<h1>";
+    return "<h1>" . get_month_description($month) . " " . $year . "</h1>";
+}
 
+function get_month_description($month)
+{
+    $string = "";
     switch ($month) {
         case 1:
-            $string .= "Januar";
+            $string = "Januar";
             break;
         case 2:
-            $string .= "Februar";
+            $string = "Februar";
             break;
         case 3:
-            $string .= "März";
+            $string = "März";
             break;
         case 4:
-            $string .= "April";
+            $string = "April";
             break;
         case 5:
-            $string .= "Mai";
+            $string = "Mai";
             break;
         case 6:
-            $string .= "Juni";
+            $string = "Juni";
             break;
         case 7:
-            $string .= "Juli";
+            $string = "Juli";
             break;
         case 8:
-            $string .= "August";
+            $string = "August";
             break;
         case 9:
-            $string .= "September";
+            $string = "September";
             break;
         case 10:
-            $string .= "Oktober";
+            $string = "Oktober";
             break;
         case 11:
-            $string .= "November";
+            $string = "November";
             break;
         case 12:
-            $string .= "Dezember";
+            $string = "Dezember";
             break;
     }
-
-    $string .= " " . $year . "</h1>";
-
     return $string;
 }
 

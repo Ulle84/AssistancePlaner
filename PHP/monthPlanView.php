@@ -24,7 +24,6 @@ if (isset($_GET['month'])) {
 }
 
 $monthInstance = new MonthPlan($year, $month);
-$monthInstance->readFromFile("../Data/MonthPlan/" . $year . "-" . $month . ".txt");
 $monthInstance->printTable();
 
 echo '<br />';

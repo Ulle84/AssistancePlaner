@@ -1,7 +1,7 @@
 <?php
 
-require 'TeamMember.php';
-require 'functions.php';
+require_once 'TeamMember.php';
+require_once 'functions.php';
 
 class Team
 {
@@ -9,6 +9,11 @@ class Team
 
     public $teamMembers = array();
     public $numberOfTeamMembers = 0;
+
+    function __construct()
+    {
+        $this->readFromFile("../Data/Team/team.txt");
+    }
 
     public function setTableId($tableId)
     {
@@ -99,6 +104,8 @@ class Team
 
     public function printTable()
     {
+        echo '<h1>Team Übersicht</h1>';
+
         echo '<table id="' . $this->tableId . '">';
         $this->printHeader();
 
@@ -112,6 +119,16 @@ class Team
         }
 
         echo '</table>';
+    }
+
+    public function getHours()
+    {
+        //TODO use real key, not the firstName
+        $hours = array();
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            $hours[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->hoursPerMonth;
+        }
+        return $hours;
     }
 }
 

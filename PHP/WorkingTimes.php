@@ -50,6 +50,8 @@ class WorkingTimes
 
     public function printTable()
     {
+        echo '<h1>Arbeitszeiten</h1>';
+
         echo '<table id="defaultTimes">';
         echo '<tr>';
         echo '<th>Wochentag</th>';

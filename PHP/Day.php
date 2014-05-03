@@ -26,6 +26,11 @@ class Day
             $this->standbyHours = 1.0;
         }
     }
+
+    public function getWorkingHours()
+    {
+        return $this->serviceBegin . " - " . $this->serviceEnd;
+    }
 }
 
 ?>

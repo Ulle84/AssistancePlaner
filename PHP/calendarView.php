@@ -26,7 +26,6 @@ if (isset($_GET['month'])) {
 }
 
 $calendar = new MonthPlan($year, $month);
-$calendar->readFromFile("../Data/MonthPlan/" . $year . "-" . $month . ".txt");
 $calendar->printHeader();
 $calendar->printPublicNotes();
 $calendar->printCalendar();
