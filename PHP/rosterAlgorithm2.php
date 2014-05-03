@@ -9,6 +9,8 @@
 
 <?php
 
+require_once 'Team.php';
+
 /*
  * stupid algorithm
  * checks, that there are two assistants available every day
@@ -80,14 +82,8 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
     }
 }
 
-// rating of assistants
-$rating['Rene'] = 70;
-$rating['Oliver'] = 80;
-$rating['Jonas'] = 130;
-$rating['Norman'] = 50;
-$rating['Stefan'] = 50;
-$rating['Jan'] = 45;
-$rating['Lars'] = 30;
+$team = new Team();
+$rating = $team->getPriorities();
 
 // multiply dateSheet with rating
 for ($i = 1; $i <= $numberOfDays; $i++) {
@@ -105,7 +101,7 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
     $ratings = array();
     for ($j = 0; $j < $count; $j++) {
 
-        if ($dateSheet[$j][$i] > 1) {
+        if ($dateSheet[$j][$i] > 0) {
             array_push($ratings, $dateSheet[$j][$i]);
         }
     }
@@ -123,7 +119,6 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
         }
     }
 }
-
 
 // Output score table to page
 echo '<table>';
@@ -157,33 +152,6 @@ for ($i = 1; $i <= $numberOfDays; $i++) {
 }
 
 fclose($fh);
-
-// test sort
-$test = array();
-$testEntry1 = array();
-$testEntry2 = array();
-$testEntry3 = array();
-
-array_push($testEntry1, 10);
-array_push($testEntry1, 20);
-
-array_push($testEntry2, 30);
-array_push($testEntry2, 40);
-
-array_push($testEntry3, 50);
-array_push($testEntry3, 60);
-
-
-array_push($test, $testEntry1);
-array_push($test, $testEntry2);
-array_push($test, $testEntry3);
-
-print_r($test);
-echo '<br /><br />';
-rsort($test);
-print_r($test);
-
-
 ?>
 
 </body>

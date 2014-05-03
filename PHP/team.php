@@ -130,6 +130,15 @@ class Team
         }
         return $hours;
     }
+
+    public function getPriorities()
+    {
+        $priorities = array();
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            $priorities[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->priority;
+        }
+        return $priorities;
+    }
 }
 
 ?>
