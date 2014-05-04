@@ -11,40 +11,40 @@ Oliver
 
 
 80
-2
+1
 
 Norman
 
 
 
 50
-3
+1
 
 Rene
 
 
 
 70
-4
+1
 
 Stefan
 
 
 
 50
-5
+1
 
 Jan
 
 
 
 45
-6
+1
 
 Lars
 
 
 
 30
-7
+1
 

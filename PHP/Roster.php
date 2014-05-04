@@ -30,15 +30,15 @@ class Roster
             $this->standbyPerson[$i] = "";
         }
 
+        $this->team = new Team();
+        $this->assistanceInput = new AssistanceInput($year, $month);
+        $this->monthPlan = new MonthPlan($year, $month);
+
         $this->readFromFile("../Data/Roster/" . $year . "-" . $month . ".txt");
 
         if (!$this->rosterExist) {
             $this->createRoster();
         }
-
-        $this->team = new Team();
-        $this->assistanceInput = new AssistanceInput($year, $month);
-        $this->monthPlan = new MonthPlan($year, $month);
     }
 
     private function readFromFile($fileName)
@@ -106,7 +106,7 @@ class Roster
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             $className = "";
             $cellTextContent = "";
-            if ($dates[$day->dayNumber-1] == 1) {
+            if ($dates[$day->dayNumber - 1] == 1) {
                 $className = "good";
                 if ($name == $this->standbyPerson[$day->dayNumber]) {
                     $className = "standby";
@@ -191,26 +191,133 @@ class Roster
 
     private function createRoster()
     {
-        $this->createRosterAlgorithm1();
+        $this->createRosterAlgorithm2();
     }
 
     private function createRosterAlgorithm1()
     {
-        // give the first available the service and the second available the standby
+        // strategy: give the first available the service and the second available the standby
 
-        // transform data
-
+        if (!$this->assistanceInput->dataExist) {
+            return;
+        }
 
         // check that there is enough availability
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-
+            $sum = 0;
+            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+                $sum += $dates[$i - 1];
+            }
+            if ($sum < 2) {
+                return;
+            }
         }
 
+        // set service and standby
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $serviceTaken = false;
+            $standbyTaken = false;
+            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+                if ($dates[$i - 1] == 1) {
+                    if (!$serviceTaken) {
+                        $this->servicePerson[$i] = $name;
+                        $serviceTaken = true;
+                        continue;
+                    }
+                    if (!$standbyTaken) {
+                        $this->standbyPerson[$i] = $name;
+                        $standbyTaken = true;
+                        continue;
+                    }
+                }
+            }
+        }
+
+        //$this->writeToFile();
     }
 
     private function createRosterAlgorithm2()
     {
-        // give the best rated the service and the second best rated the standby
+        // strategy give the best rated the service and the second best rated the standby
+
+        if (!$this->assistanceInput->dataExist) {
+            return;
+        }
+
+        // check that there is enough availability
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $sum = 0;
+            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+                $sum += $dates[$i - 1];
+            }
+            if ($sum < 2) {
+                return;
+            }
+        }
+
+        // calculate score table
+        $priorities = $this->team->getPriorities();
+        $scoreTable = $this->assistanceInput->assistanceInput;
+
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $scoreTable[$name][$i - 1] *= $priorities[$name];
+            }
+        }
+
+        $this->printScoreTable($scoreTable);
+
+        // set service and standby
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $scores = array();
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] > 0) {
+                    array_push($scores, $dates[$i - 1]);
+                }
+            }
+            rsort($scores);
+
+            $serviceTaken = false;
+            $standbyTaken = false;
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] == $scores[0] && !$serviceTaken) {
+                    $serviceTaken = true;
+                    $this->servicePerson[$i] = $name;
+                    continue;
+                }
+
+                if ($dates[$i - 1] == $scores[1] && !$standbyTaken) {
+                    $standbyTaken = true;
+                    $this->standbyPerson[$i] = $name;
+                    continue;
+                }
+            }
+        }
+
+        //$this->writeToFile();
+    }
+
+    private function printScoreTable($scoreTable)
+    {
+        echo '<table>';
+
+        echo '<tr>';
+        echo '<th>Tag</th>';
+        foreach ($scoreTable as $name => $dates) {
+            echo '<th>' . $name . '</th>';
+        }
+        echo '</tr>';
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            echo '<tr>';
+            echo '<td>' . $i . '</td>';
+            foreach ($scoreTable as $name => $dates) {
+                echo '<td>' . $dates[$i - 1] . '</td>';
+            }
+            echo '</tr>';
+        }
+
+        echo '</table>';
     }
 }
 

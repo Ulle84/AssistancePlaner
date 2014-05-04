@@ -4,6 +4,7 @@
 class AssistanceInput
 {
     public $assistanceInput = array();
+    public $dataExist = false;
 
     function __construct($year, $month)
     {
@@ -22,6 +23,7 @@ class AssistanceInput
                 $dates = rtrim(fgets($file));
 
                 if ($name != "") {
+                    $this->dataExist = true;
                     $this->assistanceInput[$name] = explode(";", $dates);
                 }
             }
