@@ -81,12 +81,16 @@ function saveTable() {
                 var checkBoxes = data[j].getElementsByTagName("input");
                 var contentCheckBoxes = "";
                 for (var k = 0; k < checkBoxes.length; k++) {
-                    if (checkBoxes[k].checked == true) {
-                        if (contentCheckBoxes != "") {
-                            contentCheckBoxes += ";";
-                        }
-                        contentCheckBoxes += checkBoxes[k].value;
+                    if (contentCheckBoxes != "") {
+                        contentCheckBoxes += ";";
                     }
+                    if (checkBoxes[k].checked == true) {
+                        contentCheckBoxes += 1;
+                    }
+                    else {
+                        contentCheckBoxes += 0;
+                    }
+
                 }
                 content += contentCheckBoxes + "\n";
             }
