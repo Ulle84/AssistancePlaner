@@ -191,7 +191,7 @@ class Roster
 
     private function createRoster()
     {
-        $this->createRosterAlgorithm3();
+        $this->createRosterAlgorithm4();
     }
 
     private function createRosterAlgorithm1()
@@ -332,6 +332,109 @@ class Roster
         }
 
         $this->printScoreTable($scoreTable);
+
+        // set service and standby
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $scores = array();
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] > 0) {
+                    array_push($scores, $dates[$i - 1]);
+                }
+            }
+            rsort($scores);
+
+            $serviceTaken = false;
+            $standbyTaken = false;
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] == $scores[0] && !$serviceTaken) {
+                    $serviceTaken = true;
+                    $this->servicePerson[$i] = $name;
+                    continue;
+                }
+
+                if ($dates[$i - 1] == $scores[1] && !$standbyTaken) {
+                    $standbyTaken = true;
+                    $this->standbyPerson[$i] = $name;
+                    continue;
+                }
+            }
+        }
+
+        //$this->writeToFile();
+    }
+
+    private function createRosterAlgorithm4()
+    {
+        // strategy give the best rated the service and the second best rated the standby
+        // look also for preferred weekdays
+        // look also for the quota of hours
+
+        if (!$this->assistanceInput->dataExist) {
+            return;
+        }
+
+        // check that there is enough availability
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $sum = 0;
+            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+                $sum += $dates[$i - 1];
+            }
+            if ($sum < 2) {
+                return;
+            }
+        }
+
+        // calculate complete quota of hours
+        $totalQuotaOfHours = 0;
+        $quotaOfHours = $this->team->getHours();
+        foreach ($quotaOfHours as $name => $value) {
+            $totalQuotaOfHours += $value;
+        }
+        echo 'total quota of hours: ' . $totalQuotaOfHours . '<br />';
+
+        // calculate service and standby hours
+        $totalOfServiceHours = 0;
+        $totalOfStandbyHours = 0;
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
+            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
+        }
+        echo 'total of service and standby hours: ' . ($totalOfServiceHours + $totalOfStandbyHours) . '<br />';
+
+
+        // calculate score table
+        $priorities = $this->team->getPriorities();
+        $scoreTable = $this->assistanceInput->assistanceInput;
+        $preferredWeekdays = $this->team->getPreferredWeekdays();
+
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $scoreTable[$name][$i - 1] *= $priorities[$name];
+                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                    $scoreTable[$name][$i - 1] *= 2;
+                }
+            }
+        }
+
+        $this->printScoreTable($scoreTable);
+
+        // convert data
+        $convertedData = array();
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $entry = array();
+                array_push($entry, $scoreTable[$name][$i - 1]);
+                array_push($entry, $name);
+                array_push($entry, $i);
+
+                array_push($convertedData, $entry);
+            }
+        }
+        rsort($convertedData);
+
+        //TODO
+        // iterate over $convertedData
+        // first set all services, than set all standbys
 
         // set service and standby
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {

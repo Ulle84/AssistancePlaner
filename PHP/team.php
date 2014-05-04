@@ -89,7 +89,7 @@ class Team
         for ($j = 0; $j < 7; $j++) {
             echo '<input type="checkbox" value="' . $weekdays[$j] . '"';
 
-            if (in_array($weekdays[$j], $teamMember->preferredWeekdays)) {
+            if ($teamMember->preferredWeekdays[$j] == 1) {
                 echo ' checked="true"';
             }
 
