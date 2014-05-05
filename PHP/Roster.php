@@ -390,7 +390,6 @@ class Roster
         foreach ($quotaOfHours as $name => $value) {
             $totalQuotaOfHours += $value;
         }
-        echo 'total quota of hours: ' . $totalQuotaOfHours . '<br />';
 
         // calculate service and standby hours
         $totalOfServiceHours = 0;
@@ -399,8 +398,11 @@ class Roster
             $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
             $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
         }
-        echo 'total of service and standby hours: ' . ($totalOfServiceHours + $totalOfStandbyHours) . '<br />';
 
+        if ($totalOfServiceHours < ($totalOfServiceHours + $totalOfStandbyHours)) {
+            //TODO
+            //increase the amount of hours per assistant
+        }
 
         // calculate score table
         $priorities = $this->team->getPriorities();
@@ -416,12 +418,15 @@ class Roster
             }
         }
 
-        $this->printScoreTable($scoreTable);
+        //$this->printScoreTable($scoreTable);
 
         // convert data
         $convertedData = array();
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                if ($scoreTable[$name][$i - 1] == 0) {
+                    continue;
+                }
                 $entry = array();
                 array_push($entry, $scoreTable[$name][$i - 1]);
                 array_push($entry, $name);
@@ -432,12 +437,33 @@ class Roster
         }
         rsort($convertedData);
 
-        //TODO
-        // iterate over $convertedData
-        // first set all services, than set all standbys
+        //$this->printConvertedDataTable($convertedData);
 
         // set service and standby
-        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+        $tolerance = 1;
+        $run = 0;
+        while (!$this->isRosterComplete()) {
+            for ($i = 0; $i < count($convertedData); $i++) {
+                if ($this->servicePerson[$convertedData[$i][2]] == "") {
+                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($tolerance * $run)) {
+                        $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                        $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
+                    }
+                } else {
+                    if ($this->standbyPerson[$convertedData[$i][2]] == "") {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($tolerance * $run)) {
+                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                        }
+                    }
+                }
+            }
+            $run++;
+        }
+        echo "run-counter: " . $run . '<br />';
+
+
+        /*for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $scores = array();
             foreach ($scoreTable as $name => $dates) {
                 if ($dates[$i - 1] > 0) {
@@ -461,13 +487,15 @@ class Roster
                     continue;
                 }
             }
-        }
+        }*/
 
         //$this->writeToFile();
     }
 
     private function printScoreTable($scoreTable)
     {
+        echo '<h1>Score-Table</h1>';
+
         echo '<table>';
 
         echo '<tr>';
@@ -487,6 +515,40 @@ class Roster
         }
 
         echo '</table>';
+    }
+
+    private function printConvertedDataTable($convertedData)
+    {
+        echo '<h1>Score-Table sorted</h1>';
+        echo '<table>';
+        echo '<tr>';
+        echo '<th>Rank</th>';
+        echo '<th>Score</th>';
+        echo '<th>Name</th>';
+        echo '<th>Day</th>';
+        echo '</tr>';
+        for ($i = 0; $i < count($convertedData); $i++) {
+            echo '<tr>';
+            echo '<td>' . ($i + 1) . '</td>';
+            echo '<td>' . $convertedData[$i][0] . '</td>';
+            echo '<td>' . $convertedData[$i][1] . '</td>';
+            echo '<td>' . $convertedData[$i][2] . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+
+    private function isRosterComplete()
+    {
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            if ($this->servicePerson[$i] == "") {
+                return false;
+            }
+            if ($this->standbyPerson[$i] == "") {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
