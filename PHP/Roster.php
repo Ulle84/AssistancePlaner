@@ -439,55 +439,48 @@ class Roster
 
         //$this->printConvertedDataTable($convertedData);
 
-        // set service and standby
-        $tolerance = 1;
-        $run = 0;
-        while (!$this->isRosterComplete()) {
+        // set service
+        $serviceTolerance = 4;
+        $serviceRun = 0;
+        while (!$this->isServiceComplete()) {
             for ($i = 0; $i < count($convertedData); $i++) {
+                /*if ($run == 0 && $i < 10) {
+                    echo 'rank: ' . $i . '<br />';
+                    echo 'name: ' . $convertedData[$i][1] . '<br />';
+                    echo 'quota of hours: ' . $quotaOfHours[$convertedData[$i][1]] . '<br />';
+                    echo 'hours of service: ' . $this->monthPlan->days[$convertedData[$i][2]]->serviceHours . '<br />';
+                    echo 'hours of standby: ' . $this->monthPlan->days[$convertedData[$i][2]]->standbyHours . '<br />';
+                    echo '<hr />';
+                }*/
+
+
                 if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($tolerance * $run)) {
+                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
                         $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
                         $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
                     }
-                } else {
-                    if ($this->standbyPerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($tolerance * $run)) {
-                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
-                        }
+                }
+            }
+            $serviceRun++;
+        }
+        echo "service-run-counter: " . $serviceRun . '<br />';
+
+        // set standby
+        $standbyTolerance = 0.5;
+        $standbyRun = 0;
+        while (!$this->isStandbyComplete()) {
+            for ($i = 0; $i < count($convertedData); $i++) {
+                if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
+                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
+                        $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                        $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
                     }
                 }
+
             }
-            $run++;
+            $standbyRun++;
         }
-        echo "run-counter: " . $run . '<br />';
-
-
-        /*for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $scores = array();
-            foreach ($scoreTable as $name => $dates) {
-                if ($dates[$i - 1] > 0) {
-                    array_push($scores, $dates[$i - 1]);
-                }
-            }
-            rsort($scores);
-
-            $serviceTaken = false;
-            $standbyTaken = false;
-            foreach ($scoreTable as $name => $dates) {
-                if ($dates[$i - 1] == $scores[0] && !$serviceTaken) {
-                    $serviceTaken = true;
-                    $this->servicePerson[$i] = $name;
-                    continue;
-                }
-
-                if ($dates[$i - 1] == $scores[1] && !$standbyTaken) {
-                    $standbyTaken = true;
-                    $this->standbyPerson[$i] = $name;
-                    continue;
-                }
-            }
-        }*/
+        echo "standby-run-counter: " . $standbyRun . '<br />';
 
         //$this->writeToFile();
     }
@@ -540,10 +533,22 @@ class Roster
 
     private function isRosterComplete()
     {
+        return $this->isServiceComplete() && $this->isStandbyComplete();
+    }
+
+    private function isServiceComplete()
+    {
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             if ($this->servicePerson[$i] == "") {
                 return false;
             }
+        }
+        return true;
+    }
+
+    private function isStandbyComplete()
+    {
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             if ($this->standbyPerson[$i] == "") {
                 return false;
             }
