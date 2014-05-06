@@ -4,6 +4,18 @@ require_once 'AssistanceInput.php';
 require_once 'Team.php';
 require_once 'MonthPlan.php';
 
+function compare($value1, $value2)
+{
+    $a = $value1[0];
+    $b = $value2[0];
+
+    if ($a == $b)
+    {
+        return 0;
+    }
+
+    return ($a < $b) ? -1 : +1;
+}
 
 class Roster
 {
@@ -435,24 +447,27 @@ class Roster
                 array_push($convertedData, $entry);
             }
         }
-        rsort($convertedData);
 
-        //$this->printConvertedDataTable($convertedData);
+        $this->printConvertedDataTable($convertedData);
+
+        shuffle($convertedData); // shuffle, so not all services are in a row
+        usort($convertedData, 'compare');
+
+        $this->printConvertedDataTable($convertedData);
 
         // set service
         $serviceTolerance = 4;
         $serviceRun = 0;
         while (!$this->isServiceComplete()) {
             for ($i = 0; $i < count($convertedData); $i++) {
-                /*if ($run == 0 && $i < 10) {
-                    echo 'rank: ' . $i . '<br />';
-                    echo 'name: ' . $convertedData[$i][1] . '<br />';
-                    echo 'quota of hours: ' . $quotaOfHours[$convertedData[$i][1]] . '<br />';
-                    echo 'hours of service: ' . $this->monthPlan->days[$convertedData[$i][2]]->serviceHours . '<br />';
-                    echo 'hours of standby: ' . $this->monthPlan->days[$convertedData[$i][2]]->standbyHours . '<br />';
-                    echo '<hr />';
+                /*$maxServicesOnPiece = 2;
+                if ($this->daysPerMonth - $convertedData[$i][2] > $maxServicesOnPiece) {
+                    if ($this->servicePerson[$convertedData[$i][2] + 1] == $convertedData[$i][1]) {
+                        if ($this->servicePerson[$convertedData[$i][2] + 2] == $convertedData[$i][1]) {
+                            continue;
+                        }
+                    }
                 }*/
-
 
                 if ($this->servicePerson[$convertedData[$i][2]] == "") {
                     if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
