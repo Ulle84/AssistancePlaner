@@ -9,12 +9,11 @@ function compare($value1, $value2)
     $a = $value1[0];
     $b = $value2[0];
 
-    if ($a == $b)
-    {
+    if ($a == $b) {
         return 0;
     }
 
-    return ($a < $b) ? -1 : +1;
+    return ($a > $b) ? -1 : +1;
 }
 
 class Roster
@@ -411,10 +410,11 @@ class Roster
             $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
         }
 
-        if ($totalOfServiceHours < ($totalOfServiceHours + $totalOfStandbyHours)) {
-            //TODO
-            //increase the amount of hours per assistant
+        $scaleFactor = $totalOfServiceHours / ($totalOfServiceHours + $totalOfStandbyHours);
+        if ($scaleFactor < 1) {
+            $scaleFactor = 1;
         }
+        echo 'scale factor: ' . $scaleFactor . '<br />';
 
         // calculate score table
         $priorities = $this->team->getPriorities();
@@ -448,54 +448,78 @@ class Roster
             }
         }
 
-        $this->printConvertedDataTable($convertedData);
+        //$this->printConvertedDataTable($convertedData);
 
-        shuffle($convertedData); // shuffle, so not all services are in a row
-        usort($convertedData, 'compare');
 
-        $this->printConvertedDataTable($convertedData);
+        $serviceRunMax = 2;
+        $standbyRunMax = 5;
 
-        // set service
-        $serviceTolerance = 4;
-        $serviceRun = 0;
-        while (!$this->isServiceComplete()) {
-            for ($i = 0; $i < count($convertedData); $i++) {
-                /*$maxServicesOnPiece = 2;
-                if ($this->daysPerMonth - $convertedData[$i][2] > $maxServicesOnPiece) {
-                    if ($this->servicePerson[$convertedData[$i][2] + 1] == $convertedData[$i][1]) {
-                        if ($this->servicePerson[$convertedData[$i][2] + 2] == $convertedData[$i][1]) {
-                            continue;
+        $serviceRun = $serviceRunMax + 1;
+        $standbyRun = $standbyRunMax + 1;
+
+        $completeRun = 0;
+
+        $start = microtime(true);
+        while ($serviceRun > $serviceRunMax || $standbyRun > $standbyRunMax) {
+
+            shuffle($convertedData); // shuffle, so not all services are in a row
+            usort($convertedData, 'compare');
+
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $this->servicePerson[$i] = "";
+                $this->standbyPerson[$i] = "";
+            }
+
+            $quotaOfHours = $this->team->getHours($scaleFactor);
+
+            // set service
+            $serviceTolerance = 2;
+            $serviceRun = 0;
+            while (!$this->isServiceComplete()) {
+                for ($i = 0; $i < count($convertedData); $i++) {
+                    /*$maxServicesOnPiece = 2;
+                    if ($this->daysPerMonth - $convertedData[$i][2] > $maxServicesOnPiece) {
+                        if ($this->servicePerson[$convertedData[$i][2] + 1] == $convertedData[$i][1]) {
+                            if ($this->servicePerson[$convertedData[$i][2] + 2] == $convertedData[$i][1]) {
+                                continue;
+                            }
+                        }
+                    }*/
+
+                    if ($this->servicePerson[$convertedData[$i][2]] == "") {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
+                            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
                         }
                     }
-                }*/
-
-                if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
-                        $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                        $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
-                    }
                 }
+                $serviceRun++;
             }
-            $serviceRun++;
-        }
-        echo "service-run-counter: " . $serviceRun . '<br />';
 
-        // set standby
-        $standbyTolerance = 0.5;
-        $standbyRun = 0;
-        while (!$this->isStandbyComplete()) {
-            for ($i = 0; $i < count($convertedData); $i++) {
-                if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                    if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
-                        $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                        $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+            // set standby
+            $standbyTolerance = 0.5;
+            $standbyRun = 0;
+            while (!$this->isStandbyComplete()) {
+                for ($i = 0; $i < count($convertedData); $i++) {
+                    if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
+                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                        }
                     }
-                }
 
+                }
+                $standbyRun++;
             }
-            $standbyRun++;
+
+            /*echo "service-run-counter: " . $serviceRun . '<br />';
+            echo "standby-run-counter: " . $standbyRun . '<br />';*/
+            $completeRun++;
         }
-        echo "standby-run-counter: " . $standbyRun . '<br />';
+        $time_taken = microtime(true) - $start;
+        echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
+        echo "total-run-counter: " . $completeRun . '<br />';
+        echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
 
         //$this->writeToFile();
     }

@@ -28,8 +28,8 @@ if (isset($_GET['month'])) {
 }
 
 $roster = new Roster($year, $month);
-$roster->printTable();
 $roster->printHourTable();
+$roster->printTable();
 
 echo '<br/>';
 

@@ -1,9 +1,10 @@
+<?php include('auth.php'); ?>
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
 <head>
     <title>Assistenz Planer - Übersicht</title>
-    <link rel="stylesheet" type="text/css" href="CSS/global.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
 </head>
 <body>
 <h1>Anwendung Assistenz Planer</h1>

@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        header('Location: http://'.$hostname.($path == '/' ? '' : $path).'/../index.php');
+        header('Location: http://'.$hostname.($path == '/' ? '' : $path).'/index.php');
         exit;
     }
 }

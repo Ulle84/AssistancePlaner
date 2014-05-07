@@ -121,12 +121,12 @@ class Team
         echo '</table>';
     }
 
-    public function getHours()
+    public function getHours($scaleFactor = 1)
     {
         //TODO use real key, not the firstName
         $hours = array();
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
-            $hours[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->hoursPerMonth;
+            $hours[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->hoursPerMonth * $scaleFactor;
         }
         return $hours;
     }
