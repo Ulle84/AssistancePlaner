@@ -8,6 +8,7 @@
     <script language="JavaScript" src="../JavaScript/team.js"></script>
 </head>
 <body>
+<?php include('userInformation.php'); ?>
 
 <?php
 

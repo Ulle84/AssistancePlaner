@@ -89,3 +89,7 @@ tr:last-child > td {
 .wrapLongText {
     max-width: 600px;
 }
+
+#userInformation {
+    text-align: right;
+}

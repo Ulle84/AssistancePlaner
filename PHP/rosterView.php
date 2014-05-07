@@ -9,6 +9,7 @@
     <script language="JavaScript" src="../JavaScript/roster.js"></script>
 </head>
 <body onload="init()">
+<?php include('userInformation.php'); ?>
 
 <?php
 

@@ -10,6 +10,7 @@
     <script language="JavaScript" src="../JavaScript/calendar.js"></script>
 </head>
 <body>
+<?php include('userInformation.php'); ?>
 
 <?php
 

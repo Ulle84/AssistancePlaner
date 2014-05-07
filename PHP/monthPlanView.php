@@ -9,6 +9,7 @@
     <script language="JavaScript" src="../JavaScript/monthPlan.js"></script>
 </head>
 <body>
+<?php include('userInformation.php'); ?>
 
 <?php
 require_once 'MonthPlan.php';

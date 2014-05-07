@@ -10,33 +10,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Benutzername und Passwort werden überprüft
     if ($username == 'benjamin' && $passwort == 'geheim') {
-        $_SESSION['angemeldet'] = true;
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['userName'] = $username;
+        //TODO master und develop mode
 
         // Weiterleitung zur geschützten Startseite
         if ($_SERVER['SERVER_PROTOCOL'] == 'HTTP/1.1') {
             if (php_sapi_name() == 'cgi') {
                 header('Status: 303 See Other');
-            }
-            else {
+            } else {
                 header('HTTP/1.1 303 See Other');
             }
         }
 
-        header('Location: http://'.$hostname.($path == '/' ? '' : $path).'/index.php');
+        header('Location: http://' . $hostname . ($path == '/' ? '' : $path) . '/index.php');
         exit;
     }
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<!DOCTYPE html>
+<meta charset="utf-8">
 <head>
-    <title>Geschützter Bereich</title>
+    <title>Assistenz Planer - Login</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
 </head>
 <body>
-<form action="login.php" method="post">
-    Username: <input type="text" name="username" /><br />
-    Passwort: <input type="password" name="passwort" /><br />
-    <input type="submit" value="Anmelden" />
-</form>
+<div class="center">
+    <form action="login.php" method="post">
+        <table>
+            <!--
+            <tr>
+                <td colspan="2">Bitte loggen Sie sich ein!</td>
+            </tr>
+            -->
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username"/></td>
+            </tr>
+            <tr>
+                <td>Passwort:</td>
+                <td><input type="password" name="passwort"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Anmelden"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
