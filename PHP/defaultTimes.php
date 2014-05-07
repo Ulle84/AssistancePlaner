@@ -1,4 +1,4 @@
-<?php include('auth.php'); ?>
+<?php include('authentication.php'); ?>
 
 <!DOCTYPE html>
 <meta charset="utf-8">
