@@ -29,3 +29,10 @@ th, td {
     top: 50%;
     margin: -100px 0 0 -250px;
 }
+
+#loginResponse {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -120px 0 0 -250px;
+}

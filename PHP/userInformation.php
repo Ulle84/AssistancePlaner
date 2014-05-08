@@ -1,9 +1,11 @@
 <?php
-    $username = "";
-    if (isset($_SESSION['userName']))
-    {
-        $username = $_SESSION['userName'];
-    }
+$username = "";
+if (isset($_SESSION['userName'])) {
+    $username = $_SESSION['userName'];
+}
 
-    echo '<div id="userInformation">Eingeloggter User: ' . $username . ' <a href="changePassword.php">Passwort ändern</a> <a href="logout.php">Logout</a></div>';
+echo '<div id="userInformation">Eingeloggter User: ' . $username . '&nbsp;&nbsp;&nbsp;&nbsp;';
+echo '&nbsp;&nbsp;&nbsp;<a href="index.php">Home</a>';
+echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';
+echo '&nbsp;&nbsp;&nbsp;<a href="logout.php">Logout</a></div>';
 ?>

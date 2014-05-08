@@ -1,11 +1,15 @@
 <?php
 
+require_once('Team.php');
+require_once('Passwords.php');
+
 $content = $_POST['content'];
 
-$fileName = "../Data/Team/team.txt";
-$fh = fopen($fileName, "w");
-fwrite($fh, ($content));
-fclose($fh);
+$team = new Team();
+$team->saveToFile($content);
+
+$passwords = new Passwords();
+$passwords->checkTeam($team->getLoginNames());
 
 echo "Team wurde gespeichert";
 

@@ -25,13 +25,18 @@ function removeMember(element) {
     }
 }
 
+function resetPassword(element) {
+    alert("TODO");
+    //TODO reset password
+}
+
 function newMember() {
     var team = window.document.getElementById("team");
 
     var tr = window.document.createElement("tr");
     team.getElementsByTagName("tbody")[0].appendChild(tr);
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         var td = window.document.createElement("td");
         td.setAttribute("class", "left");
         td.setAttribute("onclick", "edit(this)");
@@ -52,15 +57,48 @@ function newMember() {
     tr.appendChild(tdCheckBoxes);
 
     var td = window.document.createElement("td");
+    td.setAttribute("class", "left");
     var input = window.document.createElement("input");
     input.setAttribute("value", "Löschen");
     input.setAttribute("type", "button");
     input.setAttribute("onclick", "removeMember(this)");
     td.appendChild(input);
+    var input2 = window.document.createElement("input");
+    input2.setAttribute("value", "Passwort zurücksetzen");
+    input2.setAttribute("type", "button");
+    input2.setAttribute("onclick", "resetPassword(this)");
+    td.appendChild(input2);
     tr.appendChild(td);
 }
 
+function checkLoginNames() {
+    var teamTable = window.document.getElementById("team")
+    var rows = teamTable.getElementsByTagName("tr");
+
+    var loginNames = [];
+    for (var i = 1; i < rows.length; i++) {
+        var data = rows[i].getElementsByTagName("td");
+        loginNames.push(data[0].textContent);
+    }
+
+    loginNames.sort();
+    var last = loginNames[0];
+    for (var i = 1; i < loginNames.length; i++) {
+        if (loginNames[i] == last) {
+            return false;
+        }
+        last = loginNames[i];
+    }
+    return true;
+
+}
+
 function saveTable() {
+    if (!checkLoginNames()) {
+        alert("Die Tabelle kann nicht gespeichert werden!\nBitte Login-Namen überprüfen.\nEs darf keiner doppelt vorkommen!")
+        return;
+    }
+
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
 
@@ -74,10 +112,10 @@ function saveTable() {
     for (var i = 1; i < rows.length; i++) {
         var data = rows[i].getElementsByTagName("td");
         for (var j = 0; j < data.length; j++) {
-            if (j < 6) {
+            if (j < 7) {
                 content += data[j].textContent + "\n";
             }
-            if (j == 6) {
+            if (j == 7) {
                 var checkBoxes = data[j].getElementsByTagName("input");
                 var contentCheckBoxes = "";
                 for (var k = 0; k < checkBoxes.length; k++) {

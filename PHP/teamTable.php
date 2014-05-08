@@ -5,6 +5,7 @@
 <head>
     <title>Assistenz Planer - Team</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/userInformation.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/team.js"></script>
 </head>
 <body>

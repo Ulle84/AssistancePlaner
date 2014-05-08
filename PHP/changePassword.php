@@ -4,9 +4,11 @@
 <head>
     <title>Assistenz Planer - Passwort ändern</title>
     <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/userInformation.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/changePassword.js"></script>
 </head>
 <body>
+<?php include('userInformation.php'); ?>
 <div class="center">
     <table>
         <tr>
@@ -23,7 +25,7 @@
         </tr>
         <tr>
             <td>Wiederholung neues Passwort:</td>
-            <td><input type="password" name="newPasswordRepetition" id="newPasswordRepetition"/></td>
+            <td><input onkeydown="if (event.keyCode == 13) changePassword()" type="password" name="newPasswordRepetition" id="newPasswordRepetition"/></td>
         </tr>
         <tr>
             <td></td>

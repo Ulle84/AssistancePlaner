@@ -1,17 +1,20 @@
 <?php
 
+require_once('Passwords.php');
+
 $userName = $_POST['userName'];
 $oldPassword = $_POST['oldPassword'];
 $newPassword = $_POST['newPassword'];
 
-/*$fileName = "../Data/Organization/defaultTimes.txt";
-$fh = fopen($fileName, "w");
-fwrite($fh, ($content));
-fclose($fh);*/
+$passwords = new Passwords();
 
+if (!$passwords->checkUser($userName, $oldPassword)) {
+    echo 'Altes Passwort ist nicht korrekt!';
+    exit;
+}
 
-echo $userName . '<br />';
-echo $oldPassword . '<br />';
-echo $newPassword . '<br />'
+$passwords->setPassword($userName, $newPassword);
+
+echo 'Neues Passwort wurde gespeichert!';
 
 ?>

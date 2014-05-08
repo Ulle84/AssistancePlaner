@@ -1,20 +1,23 @@
 <?php
+
+require_once('Passwords.php');
+require_once('Settings.php');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
 
     $username = $_POST['username'];
-    $passwort = $_POST['passwort'];
+    $password = $_POST['passwort'];
 
     $hostname = $_SERVER['HTTP_HOST'];
     $path = dirname($_SERVER['PHP_SELF']);
 
-    // Benutzername und Passwort werden überprüft
-    if ($username == 'benjamin' && $passwort == 'geheim') {
+    $passwords = new Passwords();
+    if ($passwords->checkUser($username, $password)) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userName'] = $username;
         //TODO master und develop mode
 
-        // Weiterleitung zur geschützten Startseite
         if ($_SERVER['SERVER_PROTOCOL'] == 'HTTP/1.1') {
             if (php_sapi_name() == 'cgi') {
                 header('Status: 303 See Other');
@@ -23,8 +26,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        header('Location: http://' . $hostname . ($path == '/' ? '' : $path) . '/index.php');
+        $settings = new Settings();
+        $pageName = "";
+
+        if ($password == $settings->standardPassword)
+        {
+            $pageName = "changePassword.php";
+        }
+        else {
+            $pageName = "index.php";
+        }
+
+        header('Location: http://' . $hostname . ($path == '/' ? '' : $path) . '/' . $pageName);
         exit;
+
+    }
+    else {
+        echo '<div id="loginResponse">Falsches Passwort eingegeben!</div>';
     }
 }
 ?>

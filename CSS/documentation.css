@@ -148,6 +148,11 @@ tr:last-child > td {
 	border-bottom: 0px;
 }
 
+.highResolution {
+    zoom: 0.5;
+    margin-left: 40px;
+}
+
 .indented {
 	padding-left: 30px;
 }

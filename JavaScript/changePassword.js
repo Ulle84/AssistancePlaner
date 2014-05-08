@@ -7,6 +7,11 @@ function changePassword() {
     var newPassword = window.document.getElementById("newPassword");
     var newPasswordRepetition = window.document.getElementById("newPasswordRepetition");
 
+    if (newPassword.value == "") {
+        alert("Neues Passwort darf nicht leer sein!");
+        return;
+    }
+
     if (newPassword.value != newPasswordRepetition.value) {
         alert("Neues Passwort und Wiederholung des neuen Passwortes sind verschieden!\nBitte erneut eingeben!");
         newPassword.value = "";

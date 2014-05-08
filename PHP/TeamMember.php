@@ -2,6 +2,7 @@
 
 class TeamMember
 {
+    public $loginName;
     public $firstName;
     public $lastName;
     public $eMailAddress;

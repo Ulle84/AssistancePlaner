@@ -6,13 +6,14 @@ require_once 'functions.php';
 class Team
 {
     private $tableId = "teamTable";
+    private $fileName = "../Data/Team/team.txt";
 
     public $teamMembers = array();
     public $numberOfTeamMembers = 0;
 
     function __construct()
     {
-        $this->readFromFile("../Data/Team/team.txt");
+        $this->readFromFile();
     }
 
     public function setTableId($tableId)
@@ -20,13 +21,13 @@ class Team
         $this->tableId = $tableId;
     }
 
-    public function readFromFile($fileName)
+    public function readFromFile()
     {
         $this->numberOfTeamMembers = 0;
         $this->teamMembers = array();
 
-        if (file_exists($fileName)) {
-            $file = fopen($fileName, "r");
+        if (file_exists($this->fileName)) {
+            $file = fopen($this->fileName, "r");
 
             $this->numberOfTeamMembers = (int)rtrim(fgets($file));
 
@@ -34,6 +35,7 @@ class Team
             for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
                 $teamMember = new TeamMember();
 
+                $teamMember->loginName = rtrim(fgets($file));
                 $teamMember->firstName = rtrim(fgets($file));
                 $teamMember->lastName = rtrim(fgets($file));
                 $teamMember->eMailAddress = rtrim(fgets($file));
@@ -49,10 +51,31 @@ class Team
         }
     }
 
+    public function saveToFile($content)
+    {
+        if (file_exists($this->fileName)) {
+            $fh = fopen($this->fileName, "w");
+            fwrite($fh, ($content));
+            fclose($fh);
+        }
+
+        $this->readFromFile();
+    }
+
+    public function getLoginNames()
+    {
+        $loginNames = array();
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            array_push($loginNames, $this->teamMembers[$i]->loginName);
+        }
+        return $loginNames;
+    }
+
     private function printHeader()
     {
         echo '<tr>';
 
+        echo '<th>Login Name</th>';
         echo '<th>Vorname</th>';
         echo '<th>Nachname</th>';
         echo '<th>E-Mail Adresse</th>';
@@ -60,7 +83,7 @@ class Team
         echo '<th>Stundenkontingent</th>';
         echo '<th>Priorisierung</th>';
         echo '<th>Bevorzugte Tage</th>';
-        echo '<th>Löschen</th>';
+        echo '<th>Aktionen</th>';
 
         echo '</tr>';
     }
@@ -69,6 +92,7 @@ class Team
     {
         echo '<tr>';
 
+        echo '<td class="left" onclick="edit(this)">' . $teamMember->loginName . '</td>';
         echo '<td class="left" onclick="edit(this)">' . $teamMember->firstName . '</td>';
         echo '<td class="left" onclick="edit(this)">' . $teamMember->lastName . '</td>';
         echo '<td class="left" onclick="edit(this)">' . $teamMember->eMailAddress . '</td>';
@@ -97,7 +121,8 @@ class Team
         }
         echo '</td>';
 
-        echo '<td class="left"><input type="button" value="Löschen" onclick="removeMember(this)" /></div></td>';
+        echo '<td class="left"><input type="button" value="Löschen" onclick="removeMember(this)" />';
+        echo '<input type="button" value="Passwort zurücksetzen" onclick="resetPassword(this)" /></td>';
 
         echo '</tr>';
     }

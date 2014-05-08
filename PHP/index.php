@@ -5,6 +5,7 @@
 <head>
     <title>Assistenz Planer - Übersicht</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/userInformation.css" media="all"/>
 </head>
 <body>
 <?php include('userInformation.php'); ?>
