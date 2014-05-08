@@ -36,6 +36,14 @@ class Passwords
         }
     }
 
+    public function resetPassword($userName)
+    {
+        if (array_key_exists($userName, $this->passwords)) {
+            $this->passwords[$userName] = $this->hashPassword($this->settings->standardPassword);
+            $this->saveToFile();
+        }
+    }
+
     public function checkTeam($teamLoginNames)
     {
         $save = false;
@@ -89,9 +97,6 @@ class Passwords
 
     private function saveToFile()
     {
-        if (!file_exists($this->fileName)) {
-            return;
-        }
 
         $fh = fopen($this->fileName, "w");
 
@@ -100,7 +105,6 @@ class Passwords
         fwrite($fh, ($count . "\n"));
 
         foreach ($this->passwords as $name => $password) {
-            //for ($i = 0; $i < $count; $i++) {
             fwrite($fh, ($name . "\n"));
             fwrite($fh, ($password . "\n"));
         }

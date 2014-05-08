@@ -2,6 +2,7 @@
 
 require_once 'TeamMember.php';
 require_once 'functions.php';
+require_once 'Settings.php';
 
 class Team
 {
@@ -53,11 +54,9 @@ class Team
 
     public function saveToFile($content)
     {
-        if (file_exists($this->fileName)) {
-            $fh = fopen($this->fileName, "w");
-            fwrite($fh, ($content));
-            fclose($fh);
-        }
+        $fh = fopen($this->fileName, "w");
+        fwrite($fh, ($content));
+        fclose($fh);
 
         $this->readFromFile();
     }
@@ -130,6 +129,10 @@ class Team
     public function printTable()
     {
         echo '<h1>Team Übersicht</h1>';
+
+        $settings = new Settings();
+        echo '<div class="forbiddenName">developer</div>';
+        echo '<div class="forbiddenName">' . $settings->adminName . '</div>';
 
         echo '<table id="' . $this->tableId . '">';
         $this->printHeader();

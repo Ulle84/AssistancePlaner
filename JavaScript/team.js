@@ -26,8 +26,22 @@ function removeMember(element) {
 }
 
 function resetPassword(element) {
-    alert("TODO");
-    //TODO reset password
+    var response = document.getElementById("httpResponse");
+    response.innerHTML = "";
+
+    var userName = element.parentNode.parentNode.firstChild.textContent;
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            response.innerHTML = xmlhttp.responseText;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/resetPassword.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("userName=" + userName);
 }
 
 function newMember() {
@@ -81,10 +95,19 @@ function checkLoginNames() {
         loginNames.push(data[0].textContent);
     }
 
+    var forbiddenNames = window.document.getElementsByClassName("forbiddenName");
+    for (var i = 0; i < forbiddenNames.length; i++) {
+        if (loginNames.indexOf(forbiddenNames[i].textContent) > 1) {
+            alert(forbiddenNames[i].textContent + " ist kein erlaubter Login-Name!\nBitte neuen Namen vergeben!");
+            return false;
+        }
+    }
+
     loginNames.sort();
     var last = loginNames[0];
     for (var i = 1; i < loginNames.length; i++) {
         if (loginNames[i] == last) {
+            alert("Die Tabelle kann nicht gespeichert werden!\nDer Login-Name " + last + " ist doppelt enthalten.");
             return false;
         }
         last = loginNames[i];
@@ -95,7 +118,6 @@ function checkLoginNames() {
 
 function saveTable() {
     if (!checkLoginNames()) {
-        alert("Die Tabelle kann nicht gespeichert werden!\nBitte Login-Namen überprüfen.\nEs darf keiner doppelt vorkommen!")
         return;
     }
 

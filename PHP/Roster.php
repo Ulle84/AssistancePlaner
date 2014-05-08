@@ -143,13 +143,16 @@ class Roster
 
     }
 
-    public function printTable()
+    private function printTableBase()
     {
         echo '<h1>Dienstplan für ' . get_month_description($this->month) . ' ' . $this->year . '</h1>';
-
         echo 'Letze Änderung: ' . $this->lastChange . '<br />';
-
         echo '<table id="rosterTable">';
+    }
+
+    public function printTableAdmin()
+    {
+        $this->printTableBase();
 
         $this->printTableHeader(true);
 
@@ -161,6 +164,35 @@ class Roster
 
         }
 
+        echo '</table>';
+    }
+
+    public function printTableAssistant()
+    {
+        if ($this->lastChange == "") {
+            echo 'Der Dienstplan für den Monat ' . get_month_description($this->month) . ' ' . $this->year . ' wurde noch nicht fertiggestellt.';
+            return;
+        }
+
+        $this->printTableBase();
+
+        echo '<tr>';
+        echo '<th>Datum</th>';
+        echo '<th>Zeit</th>';
+        echo '<th>Dienst</th>';
+        echo '<th>Bereitschaft</th>';
+        echo '<th>Bemerkungen</th>';
+        echo '</tr>';
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            echo '<tr>';
+            echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
+            echo '<td>' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
+            echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
+            echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
+            echo '<td class="left">' . $this->monthPlan->days[$i]->publicNotes . '</td>';
+            echo '</tr>';
+        }
         echo '</table>';
     }
 
@@ -414,7 +446,9 @@ class Roster
         if ($scaleFactor < 1) {
             $scaleFactor = 1;
         }
-        echo 'scale factor: ' . $scaleFactor . '<br />';
+        if ($_SESSION['developer']) {
+            echo 'scale factor: ' . $scaleFactor . '<br />';
+        }
 
         // calculate score table
         $priorities = $this->team->getPriorities();
@@ -517,9 +551,11 @@ class Roster
             $completeRun++;
         }
         $time_taken = microtime(true) - $start;
-        echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
-        echo "total-run-counter: " . $completeRun . '<br />';
-        echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
+        if ($_SESSION['developer']) {
+            echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
+            echo "total-run-counter: " . $completeRun . '<br />';
+            echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
+        }
 
         //$this->writeToFile();
     }

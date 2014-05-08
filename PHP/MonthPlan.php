@@ -3,11 +3,13 @@
 require_once 'Day.php';
 require_once 'functions.php';
 require_once 'WorkingTimes.php';
+require_once 'AssistanceInput.php';
 
 class MonthPlan
 {
     public $year;
     public $month;
+    public $assistanceInput;
     public $calendarId = "calendar";
     public $days = array();
 
@@ -20,6 +22,7 @@ class MonthPlan
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
         $defaultWorkingTimes = new WorkingTimes();
+        $this->assistanceInput = new AssistanceInput($year, $month);
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $this->days[$i] = new Day();
@@ -154,7 +157,7 @@ class MonthPlan
 
         $weekday = date("N", mktime(0, 0, 0, $this->month, 1, $this->year));
 
-        echo '<table id="' . $this->calendarId .'" >';
+        echo '<table id="' . $this->calendarId . '" >';
 
         $this->printCalendarHeader();
 
@@ -168,9 +171,20 @@ class MonthPlan
             $cellCounter++;
         }
 
+        $dataStored = false;
+        if (array_key_exists($_SESSION['userName'], $this->assistanceInput->assistanceInput)) {
+            $dataStored = true;
+        }
+
         // print days
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            echo '<td class="bad" onclick="dateClicked(this)"><b>' . $i . '</b><br />';
+            $className = "bad";
+            if ($dataStored) {
+                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] > 0) {
+                    $className = "good";
+                }
+            }
+            echo '<td class="' . $className . '" onclick="dateClicked(this)"><b>' . $i . '</b><br />';
             echo $this->days[$i]->serviceBegin . ' - ' . $this->days[$i]->serviceEnd . '</td>';
             $cellCounter++;
 

@@ -30,19 +30,24 @@ if (isset($_GET['month'])) {
 }
 
 $roster = new Roster($year, $month);
-$roster->printHourTable();
-$roster->printTable();
 
-echo '<br/>';
+if ($_SESSION['developer'] || $_SESSION['admin']) {
+    $roster->printTableAdmin();
+    $roster->printHourTable();
 
-echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>';
-echo '<input type="button" value="Dienstplan speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
+    echo '<br/>';
+    echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>';
+    echo '<input type="button" value="Dienstplan speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
+
+    echo '<br/>';
+
+    echo 'Antwort vom Server: <span id="httpResponse"></span>';
+}
+else {
+    $roster->printTableAssistant();
+}
 
 ?>
-
-<br/>
-
-Antwort vom Server: <span id="httpResponse"></span>
 
 </body>
 </html>

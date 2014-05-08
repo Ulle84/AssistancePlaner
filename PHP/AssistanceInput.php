@@ -5,30 +5,44 @@ class AssistanceInput
 {
     public $assistanceInput = array();
     public $dataExist = false;
+    private $fileName;
 
     function __construct($year, $month)
     {
-        $this->readFromFile("../Data/AssistanceInput/" . $year . "-" . $month . ".txt");
+        $this->fileName = "../Data/AssistanceInput/" . $year . "-" . $month . ".txt";
+        $this->readFromFile();
     }
 
-    public function readFromFile($fileName)
+    private function readFromFile()
     {
-        if (file_exists($fileName)) {
+        if (file_exists($this->fileName)) {
             $this->assistanceInput = array();
 
-            $file = fopen($fileName, "r");
+            $file = fopen($this->fileName, "r");
 
             while (!feof($file)) {
                 $name = rtrim(fgets($file));
                 $dates = rtrim(fgets($file));
 
                 if ($name != "") {
-                    $this->dataExist = true;
                     $this->assistanceInput[$name] = explode(";", $dates);
+                    $this->dataExist = true;
                 }
             }
             fclose($file);
         }
+    }
+
+    public function saveToFile()
+    {
+        $file = fopen($this->fileName, "w");
+
+        foreach ($this->assistanceInput as $name => $dates) {
+            fwrite($file, $name . "\n");
+            fwrite($file, implode(";", $dates) . "\n");
+        }
+
+        fclose($file);
     }
 }
 

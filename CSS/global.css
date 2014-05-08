@@ -69,6 +69,10 @@ tr:last-child > td {
     margin: 5px;
 }
 
+.forbiddenName {
+    display: none;
+}
+
 .hidden {
     display: none;
 }
