@@ -14,6 +14,7 @@
 
 <?php
 require_once 'MonthPlan.php';
+require_once 'MonthNavigation.php';
 
 $month = date("n");
 $year = date("Y");
@@ -26,11 +27,14 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+$navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
+
 $monthInstance = new MonthPlan($year, $month);
 $monthInstance->printTable();
 
 echo '<br />';
 echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
+echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
 
 ?>
 

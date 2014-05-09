@@ -32,3 +32,23 @@ function save(year, month) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
 }
+
+function notifyTeam(year, month) {
+    var httpResponse = document.getElementById("httpResponse");
+
+    httpResponse.innerHTML = "";
+
+    var content = "ToDo"; // ToDO additional text input
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            httpResponse.innerHTML = xmlhttp.responseText;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/notifyTeam.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
+}

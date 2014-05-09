@@ -22,6 +22,18 @@ class Team
         $this->tableId = $tableId;
     }
 
+    public function getMailAddresses()
+    {
+        $mailAddresses = array();
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            $completeName = $this->teamMembers[$i]->firstName . ' ' . $this->teamMembers[$i]->lastName;
+            if ($this->teamMembers[$i]->eMailAddress != "") {
+                $mailAddresses[$this->teamMembers[$i]->eMailAddress] = $completeName;
+            }
+        }
+        return $mailAddresses;
+    }
+
     public function readFromFile()
     {
         $this->numberOfTeamMembers = 0;
@@ -151,30 +163,27 @@ class Team
 
     public function getHours($scaleFactor = 1)
     {
-        //TODO use real key, not the firstName
         $hours = array();
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
-            $hours[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->hoursPerMonth * $scaleFactor;
+            $hours[$this->teamMembers[$i]->loginName] = $this->teamMembers[$i]->hoursPerMonth * $scaleFactor;
         }
         return $hours;
     }
 
     public function getPriorities()
     {
-        //TODO use real key, not the firstName
         $priorities = array();
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
-            $priorities[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->priority;
+            $priorities[$this->teamMembers[$i]->loginName] = $this->teamMembers[$i]->priority;
         }
         return $priorities;
     }
 
     public function getPreferredWeekdays()
     {
-        //TODO use real key, not the firstName
         $weekdays = array();
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
-            $weekdays[$this->teamMembers[$i]->firstName] = $this->teamMembers[$i]->preferredWeekdays;
+            $weekdays[$this->teamMembers[$i]->loginName] = $this->teamMembers[$i]->preferredWeekdays;
         }
         return $weekdays;
     }

@@ -17,6 +17,7 @@
 require_once 'functions.php';
 require_once 'AssistanceInput.php';
 require_once 'Roster.php';
+require_once 'MonthNavigation.php';
 
 $month = date("n");
 $year = date("Y");
@@ -29,6 +30,8 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+$navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
+
 $roster = new Roster($year, $month);
 
 if ($_SESSION['developer'] || $_SESSION['admin']) {
@@ -36,7 +39,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     $roster->printHourTable();
 
     echo '<br/>';
-    echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster()"/>';
+    echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(1)"/>';
     echo '<input type="button" value="Dienstplan speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
 
     echo '<br/>';

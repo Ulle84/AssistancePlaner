@@ -36,5 +36,4 @@ if ($passwords->checkUser($username, $password)) {
     echo 'Falsches Passwort eingegeben!';
 }
 
-
 ?>

@@ -23,7 +23,7 @@ function entryClicked(element) {
     calcHours(); //TODO only one column is affected - do not calculate the whole table
 }
 
-function checkRoster() {
+function checkRoster(showSuccess) {
     var rosterTable = window.document.getElementById("rosterTable")
 
     var rows = rosterTable.getElementsByClassName("rosterData");
@@ -51,12 +51,16 @@ function checkRoster() {
         }
     }
 
-    alert("Alles in Orndung!");
+    if (showSuccess) {
+        alert("Alles in Orndung!");
+    }
     return true;
 }
 
 function save(year, month) {
-    //TODO checkRoster();
+    if (!checkRoster(false)) {
+        return;
+    }
 
     var httpResponse = document.getElementById("httpResponse");
 

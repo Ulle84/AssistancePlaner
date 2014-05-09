@@ -32,8 +32,7 @@
             <td><input onclick="changePassword()" type="submit" value="Passwort ändern"/></td>
         </tr>
     </table>
-    Antwort vom Server: <span id="httpResponse"></span>
-
+    <span id="httpResponse"></span>
 </div>
 </body>
 </html>

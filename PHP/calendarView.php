@@ -16,6 +16,7 @@
 <?php
 
 require_once "MonthPlan.php";
+require_once "MonthNavigation.php";
 
 $month = date("n");
 $year = date("Y");
@@ -27,6 +28,8 @@ if (isset($_GET['year'])) {
 if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
+
+$navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 
 $id = 'calendar';
 $calendar = new MonthPlan($year, $month);

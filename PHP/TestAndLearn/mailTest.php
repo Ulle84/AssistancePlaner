@@ -1,11 +1,14 @@
 <?php
 
-require '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
+require '../../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
+//$mail->setLanguage('de');
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup server
+$mail->SMTPKeepAlive = true;
+$mail->SMTPDebug  = 1;
+$mail->Host = 'smtp.gmail.com';// ;gmail-smtp-msa.l.google.com';  // Specify main and backup server
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = 'AssistenzPlaner';                            // SMTP username
 $mail->Password = 'l<\O.Oix0cApV<5!j^*VupN4N';                           // SMTP password
