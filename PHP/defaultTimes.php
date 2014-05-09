@@ -15,9 +15,11 @@
 <?php
 require_once 'WorkingTimes.php';
 
-$workingTimes = new WorkingTimes();
-$workingTimes->printTable();
+if ($_SESSION['developer'] || $_SESSION['admin']) {
 
+    $workingTimes = new WorkingTimes();
+    $workingTimes->printTable();
+}
 ?>
 
 <br/>

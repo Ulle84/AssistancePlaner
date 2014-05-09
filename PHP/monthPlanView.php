@@ -27,15 +27,17 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
-$navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
+if ($_SESSION['developer'] || $_SESSION['admin']) {
 
-$monthInstance = new MonthPlan($year, $month);
-$monthInstance->printTable();
+    $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 
-echo '<br />';
-echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
-echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
+    $monthInstance = new MonthPlan($year, $month);
+    $monthInstance->printTable();
 
+    echo '<br />';
+    echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
+    echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
+}
 ?>
 
 <br/>

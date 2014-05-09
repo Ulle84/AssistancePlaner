@@ -15,19 +15,21 @@
 
 require_once 'Team.php';
 
-$team = new Team();
-$team->setTableId("team");
-$team->printTable();
-
+if ($_SESSION['developer'] || $_SESSION['admin']) {
+    $team = new Team();
+    $team->setTableId("team");
+    $team->printTable();
+}
 ?>
 
-<br />
+<br/>
 
-<input type="button" value="Neues Mitglied" onclick="newMember()" />
-<input type="button" value="Tabelle speichern" onclick="saveTable()" />
+<input type="button" value="Neues Mitglied" onclick="newMember()"/>
+<input type="button" value="Tabelle speichern" onclick="saveTable()"/>
 
-<br />
+<br/>
 Answer of Server: <span id="httpResponse"></span>
+
 </body>
 </html>
 
