@@ -175,28 +175,66 @@ Ulrich Belitz
 \section{Aufgabenstellung} % alternativ: Ziel der Arbeit
 
 \section{Grundlagen}
+\subsection{Webentwicklung}
+\subsubsection{PHP}
+\subsubsection{HTML}
+\subsubsection{CSS}
+\subsubsection{JavaScript}
+-> buch von Koch
+\subsubsection{AJAX}
+\subsection{Agile Softwareentwicklung}
+\subsubsection{User Stories}
+\subsection{Modellgetriebene Software-Entwicklung}
+\subsubsection{SysML}
+\subsection{Datenbanken} % natürlich nur, wenn verwendet ;-)
 
 \section{Anforderungsermittlung / Analyse} %TODO für einen Titel entscheiden
-\subsection{Beteiligte Personen}
+\subsection{Begrifflichkeiten}
+
 \subsubsection{Betreuter}
-Der Betreute ist ein körperlich behinderter Mensch, der an Muskelschwäche leidet.
+Der Betreute ist ein körperlich behinderter Mensch, der an Muskelschwäche leidet. %TODO Genauer beschreiben?
 Aus Respekt vor dem körperlich erkrankten Menschen wird in der vorliegenden Ausarbeitung nicht von dem \enquote{Behinderten} gesprochen, sondern stets von dem \enquote{Betreuten}.
+
 \subsubsection{Assistent}
-Daas ist ein Typo.
+Der Assistent ist ein Helfer, der dem Betreuten zur Hand geht und ihn im alltäglichen Leben unterstützt. All das, was der Betreute nicht selbst erledigen kann, wird durch einen Assistenten erledigt.
+
+\subsubsection{Team}
+Das Team besteht aus mehreren Assistenten (während der Entstehung dieser Ausarbeitung aus 7 Stück).
+
+\subsubsection{Monatsplan}
+Im Monatsplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. Während den Bereitschaftszeiten muss der Assistent telefonisch erreichbar sein und innerhalb kurzer Zeit zum Betreuten kommen um den Dienst zu übernehmen. Die Dienste gehen frühestens um 13 Uhr, spätestens um 17 Uhr los und gehen bis 8 Uhr, bzw. 13 Uhr am Folgetag. 
+
+\subsubsection{Stundenkontigent}
+Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Jeder Assistent möchte sein Stundenkontigent möglichst gut ausgeschöpft bekommen. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen. %TODO die letzten zwei Sätze direkt hintereinadner hören sich doof an!
 
 \subsection{Ist-Prozess}
+Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Betreute für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
+Die Assistenten haben auf diese E-Mail geantwortet und darin beschrieben wann sie Zeit für Dienste haben.
+Der Betreute hat manuell mit Hilfe einer Excel-Tabelle den Dienstplan erstellt und musste dabei ständig zwischen Excel-Tabelle und allen Antworten des Teams (sieben an der Zahl) wechseln. Nach der Fertigstellung des Dienstplans hat der Betreute eine E-Mail mit dem Dienstplan an sein Team geschickt.
+Die Dienstplanerstellung hat den Betreuten viel Zeit (ca. vier bis fünf Stunden im Monat) und Nerven gekostet.
+%TODO Ablaufdiagramm?
 
 
 \subsection{Soll-Prozess}
-
+Der Betreute gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommdenen Monat ein. Per Knopfdruck wird das Team per E-Mail informiert und darum gebeten die freien Tage auf einer Webseite (Link ist in der E-Mail enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben wird ein Dienstplan-Vorschlag erstellt und dem Betreuten eine E-Mail geschickt mit einem Link auf den Dienstplan. Der Dienstplan kann von dem Betreuten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Betreute gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
+Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Betreuten sinkt auf unter eine halbe Stunde.
+%TODO Ablaufdiagramm?
 
 \subsection{User Stories}
+Aus der Formulierung des Soll-Prozesses sind einige User-Stories abgeleitet worden:
+%TODO User-Stories einfügen
 
 
 \subsection{Abgeleitete Anforderungen}
+\subsubsection{Serverbasierte Anwendung}
+\subsubsection{User Management}
+
 
 \section{Software-Design} % oder reinfach nur Design?
-
+Modellgetriebene Software-Entwicklung
+SysML Modell
+UML Ablaufdiagramme
+Datenbankmodell?
 
 \section{Implementierung}
 
@@ -232,6 +270,10 @@ else {
 \begin{appendix}
 
 
-\section{Erster Anhang}
+\section{Entwicklungsumgebung}
+\subsection{Hardware}
+\subsection{XAMPP}
+\subsection{PhpStorm}
+\subsection{GitHub Repository und Client}
 \end{appendix}
 \end{document}
