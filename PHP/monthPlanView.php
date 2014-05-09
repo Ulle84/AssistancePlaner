@@ -37,12 +37,14 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     echo '<br />';
     echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
+
+    echo '<br/>';
+
+    echo 'Antwort vom Server: <span id="httpResponse"></span>';
+} else {
+    echo 'Zugang nicht erlaubt!';
 }
 ?>
-
-<br/>
-
-Antwort vom Server: <span id="httpResponse"></span>
 
 
 </body>

@@ -1,50 +1,57 @@
 7
 Jonas
-
-
+Jonas
+Nachname
+u.belitz@gmx.de
 
 130
-
-
+3
+0;0;0;0;0;0;0
 Oliver
-
-
+Oliver
+Nachname
+u.belitz@icloud.com
 
 80
-
-
+4
+0;0;0;0;0;1;1
+Norman
 Norman
 
 
 
 50
-
-
+5
+0;0;0;0;0;0;0
+Rene
 Rene
 
 
 
 70
-
-
+6
+0;0;0;0;0;0;0
+Stefan
 Stefan
 
 
 
 50
-
-
+7
+0;0;0;0;0;0;0
+Jan
 Jan
 
 
 
 45
-
-
+1
+0;0;0;0;0;0;0
+Lars
 Lars
 
 
 
 30
-
-
+10
+0;0;0;0;0;1;1

@@ -19,16 +19,15 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
 
     $workingTimes = new WorkingTimes();
     $workingTimes->printTable();
+
+    echo '<br/>';
+    echo '<input type="button" value="Speichern" onclick="save()"/>';
+    echo '<br/>';
+    echo 'Antwort vom Server: <span id="httpResponse"></span>';
+} else {
+    echo 'Zugang nicht erlaubt!';
 }
 ?>
-
-<br/>
-
-<input type="button" value="Speichern" onclick="save()"/>
-
-<br/>
-
-Antwort vom Server: <span id="httpResponse"></span>
 
 
 </body>

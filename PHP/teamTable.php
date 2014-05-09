@@ -19,17 +19,20 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     $team = new Team();
     $team->setTableId("team");
     $team->printTable();
+
+
+    echo '<br/>';
+
+    echo '<input type="button" value="Neues Mitglied" onclick="newMember()"/>';
+    echo '<input type="button" value="Tabelle speichern" onclick="saveTable()"/>';
+
+    echo '<br/>';
+    echo 'Answer of Server: <span id="httpResponse"></span>';
+}
+else {
+    echo 'Zugang nicht erlaubt!';
 }
 ?>
-
-<br/>
-
-<input type="button" value="Neues Mitglied" onclick="newMember()"/>
-<input type="button" value="Tabelle speichern" onclick="saveTable()"/>
-
-<br/>
-Answer of Server: <span id="httpResponse"></span>
-
 </body>
 </html>
 
