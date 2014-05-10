@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <td>Neues Passwort:</td>
-            <td><input type="password" name="newPassword" id="newPassword"/></td>
+            <td><input onchange="validateString(this)" onblur="validateString(this)" type="password" name="newPassword" id="newPassword"/></td>
         </tr>
         <tr>
             <td>Wiederholung neues Passwort:</td>
-            <td><input onkeydown="if (event.keyCode == 13) changePassword()" type="password" name="newPasswordRepetition" id="newPasswordRepetition"/></td>
+            <td><input onchange="validateString(this)" onblur="validateString(this)" onkeydown="if (event.keyCode == 13) changePassword()" type="password" name="newPasswordRepetition" id="newPasswordRepetition"/></td>
         </tr>
         <tr>
             <td></td>

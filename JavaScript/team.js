@@ -1,22 +1,36 @@
-function edit(element) {
-    element.removeAttribute("onclick");
-
-    var input = window.document.createElement("input");
-    input.setAttribute("onchange", "save(this)");
-    input.setAttribute("onblur", "save(this)");
-    input.value = element.textContent;
-
-    element.textContent = "";
-    element.appendChild(input);
-    input.select();
+function validate(element, validationType) {
+    switch (validationType) {
+        case 0:
+            validateString(element);
+            break;
+        case 1:
+            validateInteger(element);
+            break;
+    }
 }
 
-function save(element) {
-    element.removeAttribute("onchange");
-    element.removeAttribute("onblur");
+function validateInteger(element) {
+    var integerValue = parseInt(element.value);
+    if (isNaN(integerValue)) {
+        element.value = 0;
+        alert("Die Eingabe '" + value + "' ist ungültig und wurde auf 0 gesetzt!");
+        return;
+    }
 
-    element.parentNode.setAttribute("onclick", "edit(this)");
-    element.parentNode.textContent = element.value;
+    if (integerValue < 0) {
+        element.value = 0;
+        alert("Negative Zahlen sind nicht zulässig.\nDer Wert wurde auf 0 gesetzt!");
+        return;
+    }
+
+    element.value = integerValue;
+}
+
+function validateString(element) {
+    if (element.value.contains("&")) {
+        element.value = element.value.replace(new RegExp("&", 'g'), "");
+        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+    }
 }
 
 function removeMember(element) {
@@ -50,10 +64,30 @@ function newMember() {
     var tr = window.document.createElement("tr");
     team.getElementsByTagName("tbody")[0].appendChild(tr);
 
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 8; i++) {
         var td = window.document.createElement("td");
+        var input = window.document.createElement("input");
+
+        var size = ["12", "12", "18", "15", "15", "18", "18", "11"];
+        var maxLength = "50";
+        var validationType = 0;
+
+        if (i > 5) {
+            validationType = 1;
+            maxLength = "3";
+        }
+
+        input.setAttribute("onchange", "validate(this, " + validationType + ")");
+        input.setAttribute("onblur", "validate(this, " + validationType + ")");
+        input.setAttribute("type", "text");
+        input.setAttribute("size", size[i]);
+        input.setAttribute("maxlength", maxLength);
+        input.setAttribute("value", "");
+        if (i > 5) {
+            input.setAttribute("style", "text-align: right");
+        }
         td.setAttribute("class", "left");
-        td.setAttribute("onclick", "edit(this)");
+        td.appendChild(input);
         tr.appendChild(td);
     }
 
@@ -92,7 +126,7 @@ function checkLoginNames() {
     var loginNames = [];
     for (var i = 1; i < rows.length; i++) {
         var data = rows[i].getElementsByTagName("td");
-        loginNames.push(data[0].textContent);
+        loginNames.push(data[0].firstChild.value);
     }
 
     var forbiddenNames = window.document.getElementsByClassName("forbiddenName");
@@ -134,10 +168,10 @@ function saveTable() {
     for (var i = 1; i < rows.length; i++) {
         var data = rows[i].getElementsByTagName("td");
         for (var j = 0; j < data.length; j++) {
-            if (j < 7) {
-                content += data[j].textContent + "\n";
+            if (j < 8) {
+                content += data[j].firstChild.value + "\n";
             }
-            if (j == 7) {
+            if (j == 8) {
                 var checkBoxes = data[j].getElementsByTagName("input");
                 var contentCheckBoxes = "";
                 for (var k = 0; k < checkBoxes.length; k++) {

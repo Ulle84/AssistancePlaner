@@ -52,3 +52,10 @@ function notifyTeam(year, month) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
 }
+
+function validateString(element) {
+    if (element.value.contains("&")) {
+        element.value = element.value.replace(new RegExp("&", 'g'), "");
+        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+    }
+}

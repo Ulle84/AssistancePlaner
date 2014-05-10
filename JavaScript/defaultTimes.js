@@ -28,5 +28,11 @@ function save() {
     xmlhttp.open("POST", "../PHP/defaultTimesSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("content=" + content);
+}
 
+function validateString(element) {
+    if (element.value.contains("&")) {
+        element.value = element.value.replace(new RegExp("&", 'g'), "");
+        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+    }
 }

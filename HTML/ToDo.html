@@ -18,21 +18,13 @@
 <ul>
  <li>Bemerkungen bei Eingabe der Daten - Möglichkeit für Assistenten noch mehr Informationen zu liefern</li>
  <li>htmlspecialchars konsequent verwenden</li>
- <li>alle input-Elemente auf '&' prüfen</li>
- <!--
-function checkContent(element) {
-   // string.replace(new RegExp("\"", 'g'), "&quot;");
-   if (element.value.contains("&")) {
-       element.value = element.value.replace(new RegExp("&", 'g'), "");
-       alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
-   }
-}
--->
- <li>Stundenkontigent nur Zahleneingaben erlauben</li>
  <li>Bedingte Formattierung bei Stundenübersicht</li>
- <li>Überstundenstatistik aus Vormonaten berücksichtigen</li>
  <li>Settings editierbar machen - z. B. Standardpasswort bei Account-Erstellung</li>
  <li>Assistenz-Eingabe: neben gut/schlecht auch ein okay bzw. notfalls</li>
+ <li>Bemerkungen beim Monatsplan - Möglichkeit für Patrick noch mehr Informationen zu liefern</li>
+ <li>Private Notizen analysieren nach Stichwörtern z. B. FCB, Julia, PR-Sitzung -> diese Stichwörter können in Team-Tabelle
+  angegeben werden und gehen in das Scoring des Dienstplan-Algorithmus ein
+ </li>
 </ul>
 
 
@@ -91,13 +83,11 @@ function checkContent(element) {
  <li>Feiertage importieren für Monatsplan</li>
  <li>ICS-Export</li>
  <li><a href="http://www.php-login.net">The PHP-Login Project</a></li>
- <li>Private Notizen analysieren nach Stichwörtern z. B. FCB, Julia -> diese Stichwörter können in Team-Tabelle
-  angegeben werden und gehen in das Scoring des Dienstplan-Algorithmus ein
- </li>
  <li>Dienstplan: Tabelle für Assistenten mit "meine Dienste"</li>
  <li>manuelle Vorgaben berücksichtigen -> Algorithmus macht Vorschlag, Patrick macht Eingaben - Algorithmus läuft
   nochmal
  </li>
+ <li>Überstundenstatistik aus Vormonaten berücksichtigen</li>
 </ul>
 </body>
 </html>

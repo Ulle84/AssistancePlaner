@@ -116,10 +116,10 @@ class MonthPlan
         echo '<tr class="data">';
 
         echo '<td class="date">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
-        echo '<td><input value="' . $day->serviceBegin . '" type="text" size="5" maxlength="5" /></td>';
-        echo '<td><input value="' . $day->serviceEnd . '" type="text" size="5" maxlength="5" /></td>';
-        echo '<td><input value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
-        echo '<td><input value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $day->serviceBegin . '" type="text" size="5" maxlength="5" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $day->serviceEnd . '" type="text" size="5" maxlength="5" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
 
         echo '</tr>';
     }

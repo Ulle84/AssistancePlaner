@@ -63,8 +63,8 @@ class WorkingTimes
         for ($i = 1; $i <= 7; $i++) {
             echo '<tr>';
             echo '<td>' . $weekdays[$i - 1] . '</td>';
-            echo '<td><input value="' . $this->begin[$i] . '" type="text" size="5" maxlength="5" /></td>';
-            echo '<td><input value="' . $this->end[$i] . '" type="text" size="5" maxlength="5" /></td>';
+            echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $this->begin[$i] . '" type="text" size="5" maxlength="5" /></td>';
+            echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $this->end[$i] . '" type="text" size="5" maxlength="5" /></td>';
             echo '</tr>';
 
         }
