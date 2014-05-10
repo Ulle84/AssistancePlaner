@@ -2,17 +2,38 @@
 
 require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 require_once 'Team.php';
+require_once 'Settings.php';
+require_once 'functions.php';
 
 $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
 
+$hostname = $_SERVER['HTTP_HOST'];
+$path = dirname($_SERVER['PHP_SELF']);
+
 $team = new Team();
 $mailAddresses = $team->getMailAddresses();
 
+$settings = new Settings();
+
+$message = 'Liebes Team,<br /><br />';
+$message .= 'bitte tragt bis <b>22.05.2014</b> Eure möglichen Termine für den '; //TODO Date Monatsende - 10 Tage?
+$message .= get_month_description($month) . ' ' . $year . ' im ';
+$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/calendarView.php?year=' . $year . '&month=' . $month . '">' ;
+$message .= 'Assistenzplaner</a> ein<br /><br />Vielen Dank!';
+
+if ($content != "") {
+    $message .= '<br /><br />Hier noch eine Nachricht von ' . $settings->adminName . ': <br /><hr />';
+    $message .= $content;
+}
+
+//echo $message;
+//exit;
+
 $mail = new PHPMailer;
 
-$mail->CharSet = "UTF-8";
+$mail->CharSet = "UTF - 8";
 $mail->isSMTP(); // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com'; // Specify main and backup server
 $mail->SMTPAuth = true; // Enable SMTP authentication
@@ -22,7 +43,7 @@ $mail->SMTPSecure = 'tls'; // Enable encryption, 'ssl' also accepted
 
 /*
  * $mail->IsSMTP();
-$mail->Host = "smtp.gmail.com";
+$mail->Host = "smtp . gmail . com";
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = "ssl";
 $mail->Username = "myEmail";
@@ -51,8 +72,11 @@ $mail->WordWrap = 50; // Set word wrap to 50 characters
 $mail->isHTML(true); // Set email format to HTML
 
 $mail->Subject = 'Bitte mögliche Termine eintragen.';
-$mail->Body = 'Liebes Team<br /><br />Bitte tragt bis <b>22.05.2014</b> Eure möglichen Termine im <a href="ToDo">Assistenzplaner</a> ein<br /><br />Vielen Dank!';
-$mail->AltBody = 'Liebes Team\n\nBitte tragt bis 22.05.2014 Eure möglichen Termien ein\n\nVielen Dank!';
+$mail->Body = $message;
+//$mail->AltBody = 'Liebes Team\n\nBitte tragt bis 22.05.2014 Eure möglichen Termien ein\n\nVielen Dank!';
+
+//TODO $mail->AltBody
+
 //$mail->SMTPDebug = 1;
 
 if (!$mail->send()) {

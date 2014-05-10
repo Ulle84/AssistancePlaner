@@ -12,6 +12,7 @@ class MonthPlan
     public $assistanceInput;
     public $calendarId = "calendar";
     public $days = array();
+    public $notes = array();
 
     private $daysPerMonth;
 
@@ -31,13 +32,13 @@ class MonthPlan
 
         $this->initWeekdays();
 
+        $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
+        if (file_exists($fileName)) {
+            $this->readFromFile($fileName);
+        }
+
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-
-            $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
-
-            if (file_exists($fileName)) {
-                $this->readFromFile($fileName);
-            } else {
+            if (!file_exists($fileName)) {
                 $this->days[$i]->serviceBegin = $defaultWorkingTimes->begin[$this->days[$i]->weekday];
                 $this->days[$i]->serviceEnd = $defaultWorkingTimes->end[$this->days[$i]->weekday];
             }
@@ -82,6 +83,11 @@ class MonthPlan
                 $this->days[$i] = $day;
             }
 
+            while (!feof($file)) {
+                $line = rtrim(fgets($file));
+                array_push($this->notes, $line);
+            }
+
             fclose($file);
         }
 
@@ -122,6 +128,14 @@ class MonthPlan
         echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
 
         echo '</tr>';
+    }
+
+    public function printNotes()
+    {
+        echo '<br />';
+        echo '<h1>Nachricht an das Team</h1>';
+        echo '<textarea id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        echo '<br />';
     }
 
     public function printTable()

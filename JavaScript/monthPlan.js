@@ -6,6 +6,7 @@ function save(year, month) {
 
     var content = "";
 
+    var notes = window.document.getElementById("notes");
     var data = window.document.getElementsByClassName("data");
 
     for (var i = 0; i < data.length; i++) {
@@ -19,6 +20,7 @@ function save(year, month) {
         content += dataContent[4].firstChild.value;
         content += "\n";
     }
+    content += notes.value;
 
     var xmlhttp = new XMLHttpRequest();
 
@@ -38,7 +40,7 @@ function notifyTeam(year, month) {
 
     httpResponse.innerHTML = "";
 
-    var content = "ToDo"; // ToDO additional text input
+    var content = window.document.getElementById("notes").value.replace(new RegExp("\n", 'g'), "<br />");
 
     var xmlhttp = new XMLHttpRequest();
 
