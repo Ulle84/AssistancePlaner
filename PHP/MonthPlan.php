@@ -180,7 +180,10 @@ class MonthPlan
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $className = "bad";
             if ($dataStored) {
-                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] > 0) {
+                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] == 1) {
+                    $className = "okay";
+                }
+                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] == 10) {
                     $className = "good";
                 }
             }

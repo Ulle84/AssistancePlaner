@@ -1,28 +1,39 @@
 function dateClicked(element) {
 
-    if (element.getAttribute("class") == "bad") {
-        element.setAttribute("class", "good");
-    }
-    else {
-        element.setAttribute("class", "bad");
+    switch (element.getAttribute("class")) {
+        case "bad":
+            element.setAttribute("class", "good");
+            break;
+        case "good":
+            element.setAttribute("class", "okay");
+            break;
+        case "okay":
+            element.setAttribute("class", "bad");
+            break;
     }
 }
 
 function markAllDates() {
+    markAllBadDates();
+    markAllOkayDates();
+}
+
+function markAllBadDates() {
     var notMarked = window.document.getElementsByClassName("bad");
 
     while (notMarked.length != 0) {
         notMarked[0].setAttribute("class", "good");
     }
-
-
-    //this code works not properly, because var notMarked is updated during cycles - so only every second element is touched
-    /*
-     for (var i = 0; i < notMarked.length; i++) {
-     notMarked[i].setAttribute("class", "good");
-     }
-     */
 }
+
+function markAllOkayDates() {
+    var notMarked = window.document.getElementsByClassName("okay");
+
+    while (notMarked.length != 0) {
+        notMarked[0].setAttribute("class", "good");
+    }
+}
+
 
 function save(userName, year, month, id) {
     var httpResponse = document.getElementById("httpResponse");
@@ -43,12 +54,16 @@ function save(userName, year, month, id) {
                 content += ";";
             }
 
-            if (cells[i].getAttribute("class") == "good") {
-                content += "1";
-            }
-            else
-            {
-                content += "0";
+            switch (cells[i].getAttribute("class")) {
+                case "bad":
+                    content += "0";
+                    break;
+                case "good":
+                    content += "10";
+                    break;
+                case "okay":
+                    content += "1";
+                    break;
             }
         }
     }

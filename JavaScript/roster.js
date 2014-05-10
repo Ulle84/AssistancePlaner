@@ -10,12 +10,16 @@ function entryClicked(element) {
             element.setAttribute("class", "service");
             element.textContent = serviceDescription;
             break;
+        case "okay":
+            element.setAttribute("class", "service");
+            element.textContent = serviceDescription;
+            break;
         case "service":
             element.setAttribute("class", "standby");
             element.textContent = standbyDescription;
             break;
         case "standby":
-            element.setAttribute("class", "good");
+            element.setAttribute("class", element.getAttribute("baseClass"));
             element.textContent = "";
             break;
     }
@@ -163,11 +167,12 @@ function checkAvailability() {
     var badDays = "";
 
     for (var i = 1; i < rows.length; i++) {
-        var available = rows[i].getElementsByClassName("good");
+        var availableGood = rows[i].getElementsByClassName("good");
+        var availableOkay = rows[i].getElementsByClassName("okay");
         var service = rows[i].getElementsByClassName("service");
         var standby = rows[i].getElementsByClassName("standby");
 
-        if (available.length + service.length + standby.length < 2) {
+        if (availableGood.length + availableOkay.length + service.length + standby.length < 2) {
             badDaysCount++;
             if (badDays != "") {
                 badDays += "   ";

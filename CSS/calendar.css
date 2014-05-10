@@ -1,13 +1,5 @@
-.bad {
-    background-color: #FFB2B2;
-}
-
 .date {
     text-align: right;
-}
-
-.good {
-    background-color: #99E699;
 }
 
 .service {
@@ -16,20 +8,4 @@
 
 .standby {
     background-color: #CEECF5;
-}
-
-#markedDates {
-    display: none;
-}
-
-#year {
-    display: none;
-}
-
-#month {
-    display: none;
-}
-
-#master {
-    display: none;
 }

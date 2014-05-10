@@ -116,9 +116,19 @@ class Roster
 
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             $className = "";
+            $baseClassName = "";
             $cellTextContent = "";
-            if ($dates[$day->dayNumber - 1] == 1) {
-                $className = "good";
+            if ($dates[$day->dayNumber - 1] > 0) {
+                if ($dates[$day->dayNumber - 1] == 1) {
+                    $className = "okay";
+                    $baseClassName = "okay";
+                }
+
+                if ($dates[$day->dayNumber - 1] == 10) {
+                    $className = "good";
+                    $baseClassName = "good";
+                }
+
                 if ($name == $this->standbyPerson[$day->dayNumber]) {
                     $className = "standby";
                     $cellTextContent = "Bereitschaft";
@@ -129,11 +139,13 @@ class Roster
                     $cellTextContent = "Dienst";
                 }
 
+
             } else {
                 $className = "bad";
+                $baseClassName = "bad";
             }
 
-            echo '<td onclick="entryClicked(this)" class="' . $className . '">' . $cellTextContent . '</td>';
+            echo '<td onclick="entryClicked(this)" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
         }
 
         echo '<td class="left">' . $day->publicNotes . '</td>';

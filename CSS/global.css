@@ -61,16 +61,16 @@ tr:last-child > td {
     border-bottom: 0px;
 }
 
-.button {
-    background-color: whitesmoke;
-    border: 1px solid red;
-    cursor: pointer;
-    padding: 5px;
-    margin: 5px;
+.bad {
+    background-color: #FFB2B2;
 }
 
 .forbiddenName {
     display: none;
+}
+
+.good {
+    background-color: #99E699;
 }
 
 .hidden {
@@ -84,6 +84,10 @@ tr:last-child > td {
 
 .left {
     text-align: left;
+}
+
+.okay {
+    background-color: #FFEB1B;
 }
 
 .right {
