@@ -182,6 +182,15 @@ class Team
         }
         return $weekdays;
     }
+
+    public function getKeyWords()
+    {
+        $keyWords = array();
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            $keyWords[$this->teamMembers[$i]->loginName] = $this->teamMembers[$i]->keyWords;
+        }
+        return $keyWords;
+    }
 }
 
 ?>
