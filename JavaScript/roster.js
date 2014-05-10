@@ -155,6 +155,14 @@ function calcHours() {
 
         element.nextSibling.nextSibling.textContent = diff;
         element.nextSibling.nextSibling.nextSibling.textContent = Math.round(percentage) + " %";
+        var abs = Math.abs(percentage);
+        if (0 <= abs && abs <= 5) {
+            element.parentNode.setAttribute("class", "good");
+        } else if (5 < abs && abs <= 10) {
+            element.parentNode.setAttribute("class", "okay");
+        } else {
+            element.parentNode.setAttribute("class", "bad");
+        }
     }
 }
 
