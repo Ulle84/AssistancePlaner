@@ -14,6 +14,7 @@ class MonthPlan
     public $calendarId = "calendar";
     public $days = array();
     public $notes = array();
+    private $settings;
 
     private $daysPerMonth;
 
@@ -22,6 +23,8 @@ class MonthPlan
         $this->year = $year;
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
+
+        $this->settings = new Settings();
 
         $defaultWorkingTimes = new WorkingTimes();
         $this->assistanceInput = new AssistanceInput($year, $month);
@@ -131,11 +134,19 @@ class MonthPlan
         echo '</tr>';
     }
 
-    public function printNotes()
+    public function printNotesInputForAdmin()
     {
         echo '<br />';
         echo '<h1>Nachricht an das Team</h1>';
-        echo '<textarea id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        echo '<br />';
+    }
+
+    public function printNotesInputForAssistant()
+    {
+        echo '<br />';
+        echo '<h1>Nachricht an ' . $this->settings->adminName . '</h1>';
+        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notesAssistant" name="notesAssistant" cols="100" rows="10">' . str_replace("<br />", "&#10;", $this->assistanceInput->assistanceNotes[$_SESSION['userName']]) . '</textarea>';
         echo '<br />';
     }
 
@@ -253,10 +264,10 @@ class MonthPlan
     {
         $notes = implode("<br />", $this->notes);
 
-        $settings = new Settings();
+
 
         if ($notes != "") {
-            echo '<h2>Allgemeine Bemerkungen von ' . $settings->adminName . '</h2>';
+            echo '<h2>Allgemeine Bemerkungen von ' . $this->settings->adminName . '</h2>';
             echo '<div class="wrapLongText">';
             echo $notes;
             echo '</div>';

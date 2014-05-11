@@ -4,6 +4,7 @@
 class AssistanceInput
 {
     public $assistanceInput = array();
+    public $assistanceNotes = array();
     public $dataExist = false;
     private $fileName;
 
@@ -23,9 +24,11 @@ class AssistanceInput
             while (!feof($file)) {
                 $name = rtrim(fgets($file));
                 $dates = rtrim(fgets($file));
+                $notes = rtrim(fgets($file));
 
                 if ($name != "") {
                     $this->assistanceInput[$name] = explode(";", $dates);
+                    $this->assistanceNotes[$name] = $notes;
                     $this->dataExist = true;
                 }
             }
@@ -40,9 +43,22 @@ class AssistanceInput
         foreach ($this->assistanceInput as $name => $dates) {
             fwrite($file, $name . "\n");
             fwrite($file, implode(";", $dates) . "\n");
+            fwrite($file, $this->assistanceNotes[$name] . "\n");
         }
 
         fclose($file);
+    }
+
+    public function hasNotes()
+    {
+        foreach ($this->assistanceNotes as $name => $note)
+        {
+            if ($note != "")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

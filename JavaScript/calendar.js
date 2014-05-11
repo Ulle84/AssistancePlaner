@@ -39,14 +39,15 @@ function save(userName, year, month, id) {
     var httpResponse = document.getElementById("httpResponse");
     httpResponse.innerHTML = "";
 
+    var notes = window.document.getElementById("notesAssistant");
+
     var content = "";
 
     var cells = window.document.getElementById(id).getElementsByTagName("td");
 
     var firstEntry = true;
     for (var i = 0; i < cells.length; i++) {
-        if (cells[i].textContent != "")
-        {
+        if (cells[i].textContent != "") {
             if (firstEntry) {
                 firstEntry = false;
             }
@@ -68,15 +69,6 @@ function save(userName, year, month, id) {
         }
     }
 
-    /*var goodDates = window.document.getElementsByClassName("good");
-
-    for (var i = 0; i < goodDates.length; i++) {
-        if (i > 0) {
-            content += ";";
-        }
-        content += goodDates[i].firstChild.textContent;
-    }*/
-
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
@@ -87,5 +79,12 @@ function save(userName, year, month, id) {
 
     xmlhttp.open("POST", "../PHP/calendarSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month + "&userName=" + userName + "&content=" + content);
+    xmlhttp.send("year=" + year + "&month=" + month + "&userName=" + userName + "&content=" + content + "&notes=" + notes.value);
+}
+
+function validateString(element) {
+    if (element.value.contains("&")) {
+        element.value = element.value.replace(new RegExp("&", 'g'), "");
+        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+    }
 }

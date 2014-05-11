@@ -97,6 +97,11 @@ tr:last-child > td {
     text-align: right;
 }
 
+.topLeft {
+    text-align: left;
+    vertical-align: top;
+}
+
 .wrapLongText {
     max-width: 600px;
 }

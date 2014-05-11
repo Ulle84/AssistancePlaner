@@ -179,6 +179,33 @@ class Roster
         echo '</table>';
     }
 
+    public function printNotesFromAssistants()
+    {
+        if (!$this->assistanceInput->hasNotes())
+        {
+            return;
+        }
+
+        echo '<h1>Bemerkungen der Assistenten</h1>';
+        echo '<table>';
+        echo '<tr>';
+        echo '<th>Name</th>';
+        echo '<th>Bemerkung</th>';
+        echo '</tr>';
+
+        foreach ($this->assistanceInput->assistanceNotes as $name => $notes) {
+            if ($notes != "") {
+            echo '<tr>';
+            echo '<td class="topLeft">' . $name . '</td>';
+            echo '<td class="topLeft">' . $notes . '</td>';
+            echo '</tr>';
+            }
+        }
+
+
+        echo '</table>';
+    }
+
     public function printTableAssistant()
     {
         if ($this->lastChange == "") {

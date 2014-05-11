@@ -33,7 +33,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
 
     $monthInstance = new MonthPlan($year, $month);
     $monthInstance->printTable();
-    $monthInstance->printNotes();
+    $monthInstance->printNotesInputForAdmin();
 
     echo '<input type="button" value="Speichern" onclick="save(' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
