@@ -4,6 +4,7 @@ require_once 'Day.php';
 require_once 'functions.php';
 require_once 'WorkingTimes.php';
 require_once 'AssistanceInput.php';
+require_once 'Settings.php';
 
 class MonthPlan
 {
@@ -228,7 +229,7 @@ class MonthPlan
     public function printPublicNotes()
     {
         if ($this->hasPublicNotes()) {
-            echo '<h2>Bemerkungen</h2>';
+            echo '<h2>Bemerkungen zu den Terminen</h2>';
             echo '<table>';
 
             echo "<tr>";
@@ -245,6 +246,21 @@ class MonthPlan
                 }
             }
             echo '</table>';
+        }
+    }
+
+    public function printNotesFromAdmin()
+    {
+        $notes = implode("<br />", $this->notes);
+
+        $settings = new Settings();
+
+        if ($notes != "") {
+            echo '<h2>Allgemeine Bemerkungen von ' . $settings->adminName . '</h2>';
+            echo '<div class="wrapLongText">';
+            echo $notes;
+            echo '</div>';
+
         }
     }
 }

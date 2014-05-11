@@ -35,6 +35,7 @@ $id = 'calendar';
 $calendar = new MonthPlan($year, $month);
 $calendar->calendarId = $id;
 $calendar->printHeader();
+$calendar->printNotesFromAdmin();
 $calendar->printPublicNotes();
 $calendar->printCalendar();
 
