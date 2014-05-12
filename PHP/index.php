@@ -12,6 +12,7 @@
 include('userInformation.php');
 echo '<h1>Anwendung Assistenz Planer</h1>';
 echo '<a target="_blank" href="rosterView.php">Dienst-Plan</a> <br/>';
+echo '<a target="_blank" href="toDoManagerView.php">Aufgaben</a> <br/>';
 
 if (!$_SESSION['admin']) {
     echo '<a target="_blank" href="calendarView.php">Kalender</a> <br/>';
