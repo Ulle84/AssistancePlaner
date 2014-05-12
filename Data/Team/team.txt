@@ -6,16 +6,16 @@ u.belitz@icloud.com
 
 FCB; Julia
 130
-3
+5
 0;0;0;0;0;0;0
 Oliver
 Oliver
 
 
 
-PR-Sitzung
+
 80
-4
+1
 0;0;0;0;0;1;1
 Norman
 Norman
@@ -31,7 +31,7 @@ Rene
 
 
 
-
+PR-Sitzung
 70
 6
 0;0;0;0;0;0;0
@@ -51,7 +51,7 @@ Jan
 
 
 45
-1
+5
 0;0;0;0;0;0;0
 Lars
 Lars

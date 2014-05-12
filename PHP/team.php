@@ -117,13 +117,13 @@ class Team
         $weekdays = get_weekdays();
         echo '<td>';
         for ($j = 0; $j < 7; $j++) {
-            echo '<input type="checkbox" value="' . $weekdays[$j] . '"';
+            echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
 
             if ($teamMember->preferredWeekdays[$j] == 1) {
                 echo ' checked="true"';
             }
 
-            echo '/><span>' . $weekdays[$j] . ' </span>';
+            echo '/>' . $weekdays[$j] . '&nbsp;</span>';
         }
         echo '</td>';
 
