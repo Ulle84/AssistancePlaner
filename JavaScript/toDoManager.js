@@ -1,17 +1,27 @@
-var unsortedSection;
-var doneSection;
-var overdueSection;
-var todaySection;
-var tomorrowSection;
-var dayAfterTomorrowSection;
-var futureSection;
-var noDueDateSection;
+//TODO generate 'class'
+
 var sections;
+var toDos;
+var today;
+var tomorrow;
+var dayAfterTomorrow;
+var toDoId;
 
 function init() {
+    toDoId = 0;
+    initDates();
     initSections();
-    sortToDos();
+    readData();
     checkSections();
+}
+
+function initDates() {
+    var date = new Date();
+    today = date.toStringSortable();
+    date.addDays(1);
+    tomorrow = date.toStringSortable();
+    date.addDays(1);
+    dayAfterTomorrow = date.toStringSortable();
 }
 
 function initSections() {
@@ -24,28 +34,26 @@ function initSections() {
     sections['dayAfterTomorrow'] = window.document.getElementById("dayAfterTomorrow");
     sections['future'] = window.document.getElementById("future");
     sections['noDueDate'] = window.document.getElementById("noDueDate");
-    //TODO
-    unsortedSection = window.document.getElementById("unsorted");
-    doneSection = window.document.getElementById("done");
-    overdueSection = window.document.getElementById("overdue");
-    todaySection = window.document.getElementById("today");
-    tomorrowSection = window.document.getElementById("tomorrow");
-    dayAfterTomorrowSection = window.document.getElementById("dayAfterTomorrow");
-    futureSection = window.document.getElementById("future");
-    noDueDateSection = window.document.getElementById("noDueDate");
 }
 
 function toDoItemChanged(item) {
+    var destination;
     if (item.checked) {
         item.nextSibling.setAttribute("style", "text-decoration: line-through");
-        item.setAttribute("origin", item.parentNode.parentNode.getAttribute("id"));
-        doneSection.appendChild(item.parentNode);
+        destination = sections['done'];
+
+        // create copy if repeated
+        /*var copy = item.parentNode.cloneNode(true);
+         copy.setAttribute("dueDate", "2014-05-14");
+         copy.firstChild.checked = false;
+         copy.firstChild.nextSibling.setAttribute("style", "text-decoration: none");
+         sections[getDueSectionName("2014-05-14")].appendChild(copy);*/
     }
     else {
         item.nextSibling.setAttribute("style", "text-decoration: none");
-        var destination = window.document.getElementById(item.getAttribute("origin"));
-        destination.appendChild(item.parentNode);
+        destination = sections[getDueSectionName(item.parentNode.getAttribute("dueDate"))];
     }
+    destination.appendChild(item.parentNode);
     checkSections();
 }
 
@@ -60,42 +68,89 @@ function checkSections() {
         else {
             toDoSections[i].setAttribute("style", "display: none;");
         }
-
     }
 }
 
-function sortToDos() {
-    var toDos = sections['unsorted'].getElementsByClassName("toDo");
+function getDueSectionName(dueDate) {
+    if (dueDate == "") {
+        return 'noDueDate';
+    }
+    else if (dueDate < today) {
+        return 'overdue';
+    }
+    else if (dueDate == today) {
+        return 'today';
+    }
+    else if (dueDate == tomorrow) {
+        return 'tomorrow';
+    }
+    else if (dueDate == dayAfterTomorrow) {
+        return 'dayAfterTomorrow';
+    }
+    else {
+        return 'future';
+    }
+}
 
-    var date = new Date();
+function readData() {
+    var toDoData = window.document.getElementById("toDoData");
 
-    var today = date.toStringSortable();
-    date.addDays(1);
-    var tomorrow = date.toStringSortable();
-    date.addDays(1);
-    var dayAfterTomorrow = date.toStringSortable();
+    toDos = new Array();
 
-    while (toDos.length > 0) {
-        var dueDate = toDos[0].getAttribute("dueDate");
-        if (dueDate == "") {
-            noDueDateSection.appendChild(toDos[0]);
-        }
-        else if (dueDate < today) {
-            overdueSection.appendChild(toDos[0]);
-        }
-        else if (dueDate == today) {
-            todaySection.appendChild(toDos[0]);
-        }
-        else if (dueDate == tomorrow) {
-            tomorrowSection.appendChild(toDos[0]);
-        }
-        else if (dueDate == dayAfterTomorrow) {
-            dayAfterTomorrowSection.appendChild(toDos[0]);
-        }
-        else {
-            futureSection.appendChild(toDos[0]);
-        }
+    var rows = toDoData.getElementsByTagName("tr");
+    for (var i = 1; i < rows.length; i++) {
+        var cells = rows[i].getElementsByTagName("td");
+        var toDo = new Array();
+        toDo['id'] = toDoId++;
+        toDo['description'] = cells[0].textContent;
+        toDo['dueDate'] = cells[1].textContent;
+        toDos.push(toDo);
     }
 
-
+    toDos.sort(sortfunction);
+    generateToDoItems();
 }
+
+function sortfunction(a, b) {
+
+    if (a['dueDate'] == b['dueDate']) {
+        if (a['description'] == b['description']) {
+            return 0;
+        }
+        return a['description'] < b['description'] ? -1 : +1;
+    }
+
+    if (a['dueDate'] == "") {
+        return +1;
+    }
+
+    if (b['dueDate'] == "") {
+        return -1;
+    }
+
+    return a['dueDate'] < b['dueDate'] ? -1 : +1;
+}
+
+function generateToDoItems() {
+    for (var i = 0; i < toDos.length; i++) {
+
+        var div = window.document.createElement("div");
+        var input = window.document.createElement("input");
+        var span = window.document.createElement("span");
+
+        sections[getDueSectionName(toDos[i]["dueDate"])].appendChild(div);
+
+        div.appendChild(input);
+        div.appendChild(span);
+
+        div.setAttribute("class", "toDo");
+        div.setAttribute("dueDate", toDos[i]['dueDate']);
+        div.setAttribute("toDoId", toDos[i]['id']);
+
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("onchange", "toDoItemChanged(this)");
+
+        span.textContent = toDos[i]['description'];
+    }
+}
+

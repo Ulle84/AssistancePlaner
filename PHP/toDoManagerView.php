@@ -17,6 +17,7 @@
 require_once('ToDoManager.php');
 
 $toDoManager = new ToDoManager();
+$toDoManager->printToDoTable();
 $toDoManager->printToDoSections();
 
 ?>
