@@ -52,6 +52,7 @@ class ToDoManager
                     $toDoItem = new ToDoItem();
                     $toDoItem->description = $description;
                     $toDoItem->dueDate = $dueDate;
+                    $toDoItem->dueDateDisplay = substr($dueDate, 8, 2) . '.' . substr($dueDate, 5, 2) . '.' . substr($dueDate, 0, 4);
                     array_push($this->toDos, $toDoItem);
 
                     $this->dataExist = true;
@@ -61,7 +62,28 @@ class ToDoManager
         }
     }
 
-    public function printToDos()
+    private function printToDo($counter, $printDueDate)
+    {
+        echo '<div class="toDo" dueDate="' . $this->toDos[$counter]->dueDate . '">';
+        echo '<input type="checkbox" onchange="toDoItemChanged(this)" />';
+        echo '<span>' . $this->toDos[$counter]->description . '</span>';
+        if ($printDueDate) {
+            echo '<span> - ' . $this->toDos[$counter]->dueDateDisplay . '</span>';
+        }
+        echo '</div>';
+    }
+
+    public function printToDos() {
+        foreach ($this->toDos as $toDo) {
+            echo '<div class="toDo" dueDate="' . $toDo->dueDate . '">';
+            echo '<input type="checkbox" onchange="toDoItemChanged(this)" />';
+            echo '<span>' . $toDo->description . '</span>';
+            echo '<span> - ' . $toDo->dueDateDisplay . '</span>';
+            echo '</div>';
+        }
+    }
+
+    public function printToDosInSections_Deprecated()
     {
         usort($this->toDos, 'compare');
 
@@ -106,7 +128,7 @@ class ToDoManager
 
         for (; $counter < $count; $counter++) {
             if ($this->toDos[$counter]->dueDate < $today) {
-                echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . ' (' . $this->toDos[$counter]->dueDate . ')</span></div>';
+                $this->printToDo($counter, true);
             } else {
                 break;
             }
@@ -117,7 +139,7 @@ class ToDoManager
         echo '<h1>Heute</h1>';
         for (; $counter < $count; $counter++) {
             if ($this->toDos[$counter]->dueDate == $today) {
-                echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . '</span></div>';
+                $this->printToDo($counter, false);
             } else {
                 break;
             }
@@ -128,7 +150,7 @@ class ToDoManager
         echo '<h1>Morgen</h1>';
         for (; $counter < $count; $counter++) {
             if ($this->toDos[$counter]->dueDate == $tomorrow) {
-                echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . '</span></div>';
+                $this->printToDo($counter, false);
             } else {
                 break;
             }
@@ -139,7 +161,7 @@ class ToDoManager
         echo '<h1>Übermorgen</h1>';
         for (; $counter < $count; $counter++) {
             if ($this->toDos[$counter]->dueDate == $dayAfterTomorrow) {
-                echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . '</span></div>';
+                $this->printToDo($counter, false);
             } else {
                 break;
             }
@@ -150,7 +172,7 @@ class ToDoManager
         echo '<h1>Zukünftig</h1>';
         for (; $counter < $count; $counter++) {
             if ($this->toDos[$counter]->dueDate > $dayAfterTomorrow) {
-                echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . ' (' . $this->toDos[$counter]->dueDate . ')</span></div>';
+                $this->printToDo($counter, true);
             } else {
                 break;
             }
@@ -160,8 +182,44 @@ class ToDoManager
         echo '<div class="toDoSection" id="noDueDate">';
         echo '<h1>Ohne Datum</h1>';
         for (; $counter < $count; $counter++) {
-            echo '<div class="toDo"><input type="checkbox" onchange="toDoItemChanged(this)" /><span>' . $this->toDos[$counter]->description . '</span></div>';
+            $this->printToDo($counter, false);
         }
+        echo '</div>';
+    }
+
+    public function printToDoSections()
+    {
+        echo '<div class="toDoSection" id="unsorted">';
+        echo '<h1>Unsortiert</h1>';
+        $this->printToDos();
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="done">';
+        echo '<h1>Erledigt</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="overdue">';
+        echo '<h1>Überfällig</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="today">';
+        echo '<h1>Heute</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="tomorrow">';
+        echo '<h1>Morgen</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="dayAfterTomorrow">';
+        echo '<h1>Übermorgen</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="future">';
+        echo '<h1>Zukünftig</h1>';
+        echo '</div>';
+
+        echo '<div class="toDoSection" id="noDueDate">';
+        echo '<h1>Ohne Datum</h1>';
         echo '</div>';
     }
 }
