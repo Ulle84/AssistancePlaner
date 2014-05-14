@@ -1,18 +1,27 @@
 Küchenregal aufhängen
 
+
 Terasse fegen
 
+
 Bettwäsche wechseln
-2014-05-12
+2014-05-13
+3;w;c
 Küche aufwischen
-2014-05-13
-Bad putzen
-2014-05-13
-Spülen
-2014-05-13
-Staub wischen
 2014-05-14
-Einkaufen
+1;w;c
+Bad putzen
+2014-05-14
+1;w;d
+Spülen
+2014-05-10
+1;d;c
+Staub wischen
 2014-05-15
+1;w;c
+Einkaufen
+2014-05-16
+3;d;c
 Fenster putzen
 2014-06-14
+6;m;c

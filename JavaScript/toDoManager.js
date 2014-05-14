@@ -1,4 +1,69 @@
-//TODO generate 'class'
+function ToDo(description, dueDate, repetition) {
+    this.id = toDoId++;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.repetition = repetition;
+    this.copiedFromId = 0;
+    this.dueDateDisplay = this.getDueDateDisplay(dueDate);
+
+    var repetitionDetails = repetition.split(";");
+    this.repeatIntervalNumber = repetitionDetails[0];
+    this.repeatIntervalType = repetitionDetails[1];
+    this.repeatFrom = repetitionDetails[2];
+}
+
+ToDo.prototype.createRepetition = function () {
+    var copy = new ToDo(this.description, this.dueDate, this.repetition);
+    copy.copiedFromId = this.id;
+
+    if (copy.repetition == "") {
+        return copy;
+    }
+
+    var date = new Date();
+    if (this.repeatFrom == "d") {
+        date.fromStringSortable(this.dueDate)
+    }
+
+    switch (this.repeatIntervalType) {
+        case 'd':
+            date.addDays(this.repeatIntervalNumber);
+            break;
+        case 'w':
+            date.addWeeks(this.repeatIntervalNumber);
+            break;
+        case 'm':
+            date.addMonth(this.repeatIntervalNumber);
+            break;
+        case 'y':
+            date.addYears(this.repeatIntervalNumber);
+            break;
+    }
+
+    copy.dueDate = date.toStringSortable();
+    copy.dueDateDisplay = copy.getDueDateDisplay(copy.dueDate);
+
+    return copy;
+};
+
+ToDo.prototype.getInfo = function () {
+    var info = "id: " + this.id;
+    info += "\ndescription: " + this.description;
+    info += "\ndueDate: " + this.dueDate;
+    info += "\ndueDateDisplay: " + this.dueDateDisplay;
+    info += "\nrepetition: " + this.repetition;
+    info += "\ncopiedFromId: " + this.copiedFromId;
+
+    return info;
+};
+
+ToDo.prototype.getDueDateDisplay = function (dueDate) {
+    var dueDateDisplay = dueDate.substr(8, 2) + '.';
+    dueDateDisplay += dueDate.substr(5, 2) + '.';
+    dueDateDisplay += dueDate.substr(0, 4);
+
+    return dueDateDisplay;
+};
 
 var sections;
 var toDos;
@@ -8,7 +73,7 @@ var dayAfterTomorrow;
 var toDoId;
 
 function init() {
-    toDoId = 0;
+    toDoId = 1;
     initDates();
     initSections();
     readData();
@@ -40,18 +105,26 @@ function toDoItemChanged(item) {
     var destination;
     if (item.checked) {
         item.nextSibling.setAttribute("style", "text-decoration: line-through");
+        item.nextSibling.nextSibling.setAttribute("style", "text-decoration: line-through");
         destination = sections['done'];
 
-        // create copy if repeated
-        /*var copy = item.parentNode.cloneNode(true);
-         copy.setAttribute("dueDate", "2014-05-14");
-         copy.firstChild.checked = false;
-         copy.firstChild.nextSibling.setAttribute("style", "text-decoration: none");
-         sections[getDueSectionName("2014-05-14")].appendChild(copy);*/
+        var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
+
+        if (toDo.repetition != "") {
+            var repetition = toDo.createRepetition();
+            toDos.push(repetition);
+            generateToDo(repetition);
+        }
     }
     else {
         item.nextSibling.setAttribute("style", "text-decoration: none");
-        destination = sections[getDueSectionName(item.parentNode.getAttribute("dueDate"))];
+        item.nextSibling.nextSibling.setAttribute("style", "text-decoration: none");
+        var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
+        destination = sections[getDueSectionName(toDo.dueDate)];
+
+        if (toDo.repetition != "") {
+            removeToDoCopiedFromId(toDo.id);
+        }
     }
     destination.appendChild(item.parentNode);
     checkSections();
@@ -100,18 +173,15 @@ function readData() {
     var rows = toDoData.getElementsByTagName("tr");
     for (var i = 1; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName("td");
-        var toDo = new Array();
-        toDo['id'] = toDoId++;
-        toDo['description'] = cells[0].textContent;
-        toDo['dueDate'] = cells[1].textContent;
+        var toDo = new ToDo(cells[0].textContent, cells[1].textContent, cells[2].textContent);
         toDos.push(toDo);
     }
 
-    toDos.sort(sortfunction);
-    generateToDoItems();
+    toDos.sort(sortFunction);
+    generateAllToDos();
 }
 
-function sortfunction(a, b) {
+function sortFunction(a, b) {
 
     if (a['dueDate'] == b['dueDate']) {
         if (a['description'] == b['description']) {
@@ -131,26 +201,80 @@ function sortfunction(a, b) {
     return a['dueDate'] < b['dueDate'] ? -1 : +1;
 }
 
-function generateToDoItems() {
+function generateAllToDos() {
     for (var i = 0; i < toDos.length; i++) {
-
-        var div = window.document.createElement("div");
-        var input = window.document.createElement("input");
-        var span = window.document.createElement("span");
-
-        sections[getDueSectionName(toDos[i]["dueDate"])].appendChild(div);
-
-        div.appendChild(input);
-        div.appendChild(span);
-
-        div.setAttribute("class", "toDo");
-        div.setAttribute("dueDate", toDos[i]['dueDate']);
-        div.setAttribute("toDoId", toDos[i]['id']);
-
-        input.setAttribute("type", "checkbox");
-        input.setAttribute("onchange", "toDoItemChanged(this)");
-
-        span.textContent = toDos[i]['description'];
+        generateToDo(toDos[i]);
     }
 }
 
+function generateToDo(toDo) {
+    var div = window.document.createElement("div");
+    var input = window.document.createElement("input");
+    var spanDescription = window.document.createElement("span");
+    var spanDueDate = window.document.createElement("span");
+
+    sections[getDueSectionName(toDo.dueDate)].appendChild(div);
+
+    div.appendChild(input);
+    div.appendChild(spanDescription);
+    div.appendChild(spanDueDate);
+
+    div.setAttribute("class", "toDo");
+    div.setAttribute("toDoId", toDo.id);
+
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("onchange", "toDoItemChanged(this)");
+
+    spanDescription.textContent = toDo.description;
+
+    spanDueDate.textContent = " - " + toDo.dueDateDisplay;
+    spanDueDate.setAttribute("class", "dueDate");
+}
+
+function getToDoById(id) {
+    for (var i = 0; i < toDos.length; i++) {
+        if (toDos[i].id == id) {
+            return toDos[i];
+        }
+    }
+}
+
+function removeToDoCopiedFromId(id) {
+    var idOfCopy = 0;
+    for (var i = 0; i < toDos.length; i++) {
+        if (toDos[i].copiedFromId == id) {
+            idOfCopy = toDos[i].id;
+            toDos.splice(i, 1);
+            break;
+        }
+    }
+    var toDoItems = window.document.getElementsByClassName("toDo");
+    for (var i = 0; i < toDos.length;i++) {
+        if (toDoItems[i].getAttribute("toDoId") == idOfCopy) {
+            toDoItems[i].parentNode.removeChild(toDoItems[i]);
+            break;
+        }
+    }
+    checkSections();
+}
+
+function test1() {
+    alert(getToDoById(9).createRepetition().getInfo());
+}
+
+function test2() {
+    var array = [2, 5, 9];
+    var index = array.indexOf(5);
+
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == 5) {
+            array.splice(i, 1);
+            break;
+        }
+    }
+
+    for (var i = 0; i < array.length; i++) {
+        alert(array[i]);
+    }
+
+}

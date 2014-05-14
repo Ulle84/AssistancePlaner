@@ -47,12 +47,14 @@ class ToDoManager
             while (!feof($file)) {
                 $description = rtrim(fgets($file));
                 $dueDate = rtrim(fgets($file));
+                $repetition = rtrim(fgets($file));
 
                 if ($description != "") {
                     $toDoItem = new ToDoItem();
                     $toDoItem->description = $description;
                     $toDoItem->dueDate = $dueDate;
                     $toDoItem->dueDateDisplay = substr($dueDate, 8, 2) . '.' . substr($dueDate, 5, 2) . '.' . substr($dueDate, 0, 4);
+                    $toDoItem->repetition = $repetition;
                     array_push($this->toDos, $toDoItem);
 
                     $this->dataExist = true;
@@ -100,12 +102,14 @@ class ToDoManager
         echo '<tr>';
         echo '<th>Description</th>';
         echo '<th>Due Date</th>';
+        echo '<th>Repetition</th>';
         echo '</tr>';
 
         foreach ($this->toDos as $toDo) {
             echo '<tr>';
             echo '<td class="left">' . $toDo->description . '</td>';
-            echo '<td>' . $toDo->dueDate . '</td>';
+            echo '<td class="left">' . $toDo->dueDate . '</td>';
+            echo '<td class="left">' . $toDo->repetition . '</td>';
             echo '</tr>';
         }
 

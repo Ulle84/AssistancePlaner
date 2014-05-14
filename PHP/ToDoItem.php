@@ -3,7 +3,8 @@
 class ToDoItem {
     public $description;
     public $dueDate;
-    public $dueDateDisplay;
+    public $dueDateDisplay; //TODO remove?
+    public $repetition;
 }
 
 ?>

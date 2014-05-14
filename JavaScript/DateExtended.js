@@ -5,7 +5,6 @@ Date.prototype.addDays = function (number) {
     var month = this.getMonthCorrected();
     var day = this.getDate();
 
-    //TODO improve performance
     for (var i = 0; i < number; i++) {
         day++;
         if (day > this.getNumberOfDays(year, month)) {
@@ -31,7 +30,6 @@ Date.prototype.addMonth = function (number) {
     var year = this.getFullYear();
     var month = this.getMonthCorrected();
 
-    //TODO improve performance
     for (var i = 0; i < number; i++) {
         month++;
         if (month == 13) {
@@ -69,6 +67,13 @@ Date.prototype.toStringSortable = function () {
     result += day;
 
     return result;
+}
+
+Date.prototype.fromStringSortable = function (string) {
+    var data = string.split('-');
+    this.setFullYear(data[0]);
+    this.setMonth(data[1] - 1);
+    this.setDate(data[2]);
 }
 
 Date.prototype.toStringDisplay = function () {
