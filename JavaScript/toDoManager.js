@@ -5,6 +5,8 @@ function ToDo(description, dueDate, repetition) {
     this.repetition = repetition;
     this.copiedFromId = 0;
     this.dueDateDisplay = this.getDueDateDisplay(dueDate);
+    this.doneOn = '';
+    this.doneBy = '';
 
     var repetitionDetails = repetition.split(";");
     this.repeatIntervalNumber = repetitionDetails[0];
@@ -109,6 +111,10 @@ function toDoItemChanged(item) {
         destination = sections['done'];
 
         var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
+
+        var date = new Date();
+        toDo.doneOn = date.toStringWithTime();
+        toDo.doneBy = window.document.getElementById("username").textContent;
 
         if (toDo.repetition != "") {
             var repetition = toDo.createRepetition();
@@ -249,7 +255,7 @@ function removeToDoCopiedFromId(id) {
         }
     }
     var toDoItems = window.document.getElementsByClassName("toDo");
-    for (var i = 0; i < toDos.length;i++) {
+    for (var i = 0; i < toDos.length; i++) {
         if (toDoItems[i].getAttribute("toDoId") == idOfCopy) {
             toDoItems[i].parentNode.removeChild(toDoItems[i]);
             break;
@@ -258,18 +264,73 @@ function removeToDoCopiedFromId(id) {
     checkSections();
 }
 
+function save(button) {
+    button.disabled = true;
+    var httpResponse = document.getElementById("httpResponse");
+
+    toDos.sort(sortFunction);
+
+    var toDo = "";
+    var done = "";
+
+    for (var i = 0; i < toDos.length; i++) {
+        if (toDos[i].doneOn == "") {
+            toDo += toDos[i].description + '\n';
+            toDo += toDos[i].dueDate + '\n';
+            toDo += toDos[i].repetition + '\n\n';
+        }
+        else {
+            done += toDos[i].description + '\n';
+            done += toDos[i].dueDate + '\n';
+            done += toDos[i].repetition + '\n';
+            done += toDos[i].doneOn + '\n';
+            done += toDos[i].doneBy + '\n\n';
+        }
+    }
+
+    httpResponse.innerHTML = "";
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            httpResponse.innerHTML = xmlhttp.responseText;
+
+            for (var i = 0; i < toDos.length; i++) {
+                if (toDos[i].doneOn != "") {
+                    toDos.splice(i, 1);
+                    i--;
+                }
+            }
+
+            var done = sections['done'].getElementsByClassName("toDo")
+            while (done.length > 0) {
+                sections['done'].removeChild(done[0]);
+            }
+
+            checkSections();
+
+            button.disabled = false;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/toDoSaver.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("toDo=" + toDo + "&done=" + done);
+}
+
 function test1() {
-    alert(getToDoById(9).createRepetition().getInfo());
+    var date = new Date();
+    alert(date.toStringWithTime());
 }
 
 function test2() {
-    var array = [2, 5, 9];
-    var index = array.indexOf(5);
+    var array = [2, 5, 9, 10, 11];
 
     for (var i = 0; i < array.length; i++) {
-        if (array[i] == 5) {
+        if (array[i] == 5 || array[i] == 9) {
             array.splice(i, 1);
-            break;
+            i--;
         }
     }
 

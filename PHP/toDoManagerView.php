@@ -13,19 +13,25 @@
 <body onload="init()">
 <?php include('userInformation.php'); ?>
 
-<input type="button" onclick="test1()" value="test1" />
-<input type="button" onclick="test2()" value="test2" />
-
-
 <?php
 
+if ($_SESSION['developer']) {
+    echo '<input type="button" onclick="test1()" value="test1" />';
+    echo '<input type="button" onclick="test2()" value="test2" />';
+}
+
 require_once('ToDoManager.php');
+
 
 $toDoManager = new ToDoManager();
 $toDoManager->printToDoTable();
 $toDoManager->printToDoSections();
 
 ?>
+<br />
+<input type="button" onclick="save(this)" value="Speichern" />
+<br />
+Antwort vom Server: <span id="httpResponse"></span>
 
 </body>
 </html>

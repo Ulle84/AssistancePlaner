@@ -2,29 +2,6 @@
 
 require_once('ToDoItem.php');
 
-function compare($value1, $value2)
-{
-    $a = $value1->dueDate;
-    $b = $value2->dueDate;
-
-    if ($a == $b) {
-        if ($value1->description == $value2->description) {
-            return 0;
-        }
-        return ($value1->description < $value2->description) ? -1 : +1;
-    }
-
-    if ($a == "") {
-        return +1;
-    }
-
-    if ($b == "") {
-        return -1;
-    }
-
-    return ($a < $b) ? -1 : +1;
-}
-
 class ToDoManager
 {
     private $fileName;
@@ -48,12 +25,12 @@ class ToDoManager
                 $description = rtrim(fgets($file));
                 $dueDate = rtrim(fgets($file));
                 $repetition = rtrim(fgets($file));
+                $emptyLine = fgets($file);
 
                 if ($description != "") {
                     $toDoItem = new ToDoItem();
                     $toDoItem->description = $description;
                     $toDoItem->dueDate = $dueDate;
-                    $toDoItem->dueDateDisplay = substr($dueDate, 8, 2) . '.' . substr($dueDate, 5, 2) . '.' . substr($dueDate, 0, 4);
                     $toDoItem->repetition = $repetition;
                     array_push($this->toDos, $toDoItem);
 
@@ -97,7 +74,11 @@ class ToDoManager
 
     public function printToDoTable()
     {
-        echo '<table id="toDoData">';
+        echo '<table id="toDoData"';
+        if (!$_SESSION['developer']) {
+            echo ' class="hidden"';
+        }
+        echo '>';
 
         echo '<tr>';
         echo '<th>Description</th>';

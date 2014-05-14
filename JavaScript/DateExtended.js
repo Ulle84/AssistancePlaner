@@ -56,15 +56,22 @@ Date.prototype.toStringSortable = function () {
     var result = "";
     result += year;
     result += "-";
-    if (month < 10) {
-        result += "0";
-    }
-    result += month;
+    result += month < 10 ? "0" + month : month;
     result += "-";
-    if (day < 10) {
-        result += "0";
-    }
-    result += day;
+    result += day < 10 ? "0" + day : day;
+
+    return result;
+}
+
+Date.prototype.toStringWithTime = function () {
+    var hour = this.getHours();
+    var minute = this.getMinutes();
+
+    var result = this.toStringSortable();
+    result += " ";
+    result += hour < 10 ? "0" + hour : hour;
+    result += ":";
+    result += minute < 10 ? "0" + minute : minute;
 
     return result;
 }
