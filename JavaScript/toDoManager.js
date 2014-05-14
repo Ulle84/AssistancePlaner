@@ -108,6 +108,7 @@ function toDoItemChanged(item) {
     if (item.checked) {
         item.nextSibling.setAttribute("style", "text-decoration: line-through");
         item.nextSibling.nextSibling.setAttribute("style", "text-decoration: line-through");
+        item.nextSibling.nextSibling.nextSibling.setAttribute("style", "text-decoration: line-through");
         destination = sections['done'];
 
         var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
@@ -125,6 +126,7 @@ function toDoItemChanged(item) {
     else {
         item.nextSibling.setAttribute("style", "text-decoration: none");
         item.nextSibling.nextSibling.setAttribute("style", "text-decoration: none");
+        item.nextSibling.nextSibling.nextSibling.setAttribute("style", "text-decoration: none");
         var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
         destination = sections[getDueSectionName(toDo.dueDate)];
 
@@ -218,12 +220,14 @@ function generateToDo(toDo) {
     var input = window.document.createElement("input");
     var spanDescription = window.document.createElement("span");
     var spanDueDate = window.document.createElement("span");
+    var spanRepetition = window.document.createElement("span");
 
     sections[getDueSectionName(toDo.dueDate)].appendChild(div);
 
     div.appendChild(input);
     div.appendChild(spanDescription);
     div.appendChild(spanDueDate);
+    div.appendChild(spanRepetition);
 
     div.setAttribute("class", "toDo");
     div.setAttribute("toDoId", toDo.id);
@@ -233,8 +237,57 @@ function generateToDo(toDo) {
 
     spanDescription.textContent = toDo.description;
 
-    spanDueDate.textContent = " - " + toDo.dueDateDisplay;
+    spanDueDate.textContent = " - fällig am " + toDo.dueDateDisplay;
     spanDueDate.setAttribute("class", "dueDate");
+
+    if (toDo.repetition != "") {
+        var repetitionText = " - wiederholt sich ";
+        if (toDo.repeatIntervalNumber == 1) {
+            switch (toDo.repeatIntervalType) {
+                case 'd':
+                    repetitionText += "jeden Tag ";
+                    break;
+                case 'w':
+                    repetitionText += "jede Woche ";
+                    break;
+                case 'm':
+                    repetitionText += "jeden Monat ";
+                    break;
+                case 'y':
+                    repetitionText += "jedes Jahr ";
+                    break;
+            }
+        }
+        else {
+            repetitionText += "alle " + toDo.repeatIntervalNumber;
+            switch (toDo.repeatIntervalType) {
+                case 'd':
+                    repetitionText += " Tage ";
+                    break;
+                case 'w':
+                    repetitionText += " Wochen ";
+                    break;
+                case 'm':
+                    repetitionText += " Monate ";
+                    break;
+                case 'y':
+                    repetitionText += " Jahre ";
+                    break;
+            }
+
+        }
+
+        switch (toDo.repeatFrom) {
+            case 'd':
+                repetitionText += "ab dem Fälligkeitsdatum";
+                break;
+            case 'c':
+                repetitionText += "ab dem Erledigungsdatum";
+                break;
+        }
+
+        spanRepetition.textContent = repetitionText;
+    }
 }
 
 function getToDoById(id) {

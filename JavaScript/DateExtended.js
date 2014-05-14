@@ -44,7 +44,7 @@ Date.prototype.addMonth = function (number) {
 
 Date.prototype.addYears = function (number) {
     var year = this.getFullYear();
-    year += number;
+    year += parseInt(number);
     this.setFullYear(year);
 }
 
