@@ -8,7 +8,7 @@ function ToDo(description, dueDate, repetition) {
     this.doneOn = '';
     this.doneBy = '';
 
-    var repetitionDetails = repetition.split(";");
+    var repetitionDetails = repetition.split(" ");
     this.repeatIntervalNumber = repetitionDetails[0];
     this.repeatIntervalType = repetitionDetails[1];
     this.repeatFrom = repetitionDetails[2];
@@ -371,6 +371,127 @@ function save(button) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("toDo=" + toDo + "&done=" + done);
 }
+
+function addToDo() {
+    var descriptionInput = window.document.getElementById("descriptionInput");
+    var dueDateInput = window.document.getElementById("dueDateInput");
+    var intervalNumberSelection = window.document.getElementById("intervalNumberSelection");
+    var intervalTypeSelection = window.document.getElementById("intervalTypeSelection");
+    var repeatFromSelection = window.document.getElementById("repeatFromSelection");
+
+    var intervalTypes = [" d", " w", " m", " y"];
+    var repeatFromTypes = [" c", " d"]
+
+    if (descriptionInput.value == "") {
+        return;
+    }
+
+    var repetition = "";
+    if (dueDateInput.value != "" && intervalNumberSelection.selectedIndex != 0) {
+        repetition += intervalNumberSelection.selectedIndex;
+        repetition += intervalTypes[intervalTypeSelection.selectedIndex];
+        repetition += repeatFromTypes[repeatFromSelection.selectedIndex];
+    }
+
+    var toDo = new ToDo(descriptionInput.value, dueDateInput.value, repetition);
+
+    toDos.push(toDo);
+    generateToDo(toDo);
+    checkSections();
+}
+
+function intervalNumberChanged() {
+    var intervalNumberSelection = window.document.getElementById("intervalNumberSelection");
+    var intervalTypeSelection = window.document.getElementById("intervalTypeSelection");
+    if (intervalNumberSelection.selectedIndex == 1) {
+        window.document.getElementById("day").textContent = "Tag";
+        window.document.getElementById("week").textContent = "Woche";
+        window.document.getElementById("month").textContent = "Monat";
+        window.document.getElementById("year").textContent = "Jahr";
+    }
+    else {
+        window.document.getElementById("day").textContent = "Tage";
+        window.document.getElementById("week").textContent = "Wochen";
+        window.document.getElementById("month").textContent = "Monate";
+        window.document.getElementById("year").textContent = "Jahre";
+    }
+
+    var intervalType = window.document.getElementById("intervalType");
+    var repeatFrom = window.document.getElementById("repeatFrom");
+
+    if (intervalNumberSelection.selectedIndex == 0) {
+        intervalType.setAttribute("class", "hidden");
+        repeatFrom.setAttribute("class", "hidden");
+    }
+    else {
+        intervalType.setAttribute("class", "");
+        repeatFrom.setAttribute("class", "");
+    }
+}
+
+function intervalTypeChanged() {
+    var intervalTypeSelection = window.document.getElementById("intervalTypeSelection");
+    var every = window.document.getElementById("every");
+
+    switch (intervalTypeSelection.selectedIndex) {
+        case 0:
+            every.textContent = "jeden";
+            break;
+        case 1:
+            every.textContent = "jede";
+            break;
+        case 2:
+            every.textContent = "jeden";
+            break;
+        case 3:
+            every.textContent = "jedes";
+            break;
+    }
+}
+
+function dueDateChanged() {
+    var dueDateInput = window.document.getElementById("dueDateInput");
+
+    var intervalNumber = window.document.getElementById("intervalNumber");
+    var intervalType = window.document.getElementById("intervalType");
+    var repeatFrom = window.document.getElementById("repeatFrom");
+
+    if (dueDateInput.value == "") {
+        intervalNumber.setAttribute("class", "hidden");
+        intervalType.setAttribute("class", "hidden");
+        repeatFrom.setAttribute("class", "hidden");
+    }
+    else {
+        intervalNumber.setAttribute("class", "");
+        intervalNumberChanged();
+    }
+}
+
+function descriptionChanged() {
+    var descriptionInput = window.document.getElementById("descriptionInput");
+
+    var dueDate = window.document.getElementById("dueDate");
+    var intervalNumber = window.document.getElementById("intervalNumber");
+    var intervalType = window.document.getElementById("intervalType");
+    var repeatFrom = window.document.getElementById("repeatFrom");
+
+    if (descriptionInput.value == "") {
+        dueDate.setAttribute("class", "hidden");
+        intervalNumber.setAttribute("class", "hidden");
+        intervalType.setAttribute("class", "hidden");
+        repeatFrom.setAttribute("class", "hidden");
+    }
+    else {
+        dueDate.setAttribute("class", "");
+        dueDateChanged();
+    }
+}
+
+
+function test() {
+    // empty stub
+}
+
 
 function test1() {
     var date = new Date();
