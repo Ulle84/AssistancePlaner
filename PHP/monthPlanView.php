@@ -6,7 +6,6 @@
     <title>Assistenz Planer - Monatsplan</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../CSS/calendar.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="../CSS/userInformation.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/monthPlan.js"></script>
 </head>
 <body>

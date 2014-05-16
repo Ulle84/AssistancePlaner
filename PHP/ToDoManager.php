@@ -74,6 +74,7 @@ class ToDoManager
 
     public function printToDoTable()
     {
+        echo '<div class="developerSection">';
         echo '<table id="toDoData"';
         if (!$_SESSION['developer']) {
             echo ' class="hidden"';
@@ -95,6 +96,7 @@ class ToDoManager
         }
 
         echo '</table>';
+        echo '</div>';
     }
 
     public function printToDoInput()
@@ -147,12 +149,9 @@ class ToDoManager
         echo '</select>';
         echo '</span>';
 
-        echo '</div>';
         echo '<br />';
-
         echo '<input type="button" value="Hinzufügen" onclick="addToDo()" />';
-
-
+        echo '</div>';
     }
 }
 

@@ -486,30 +486,3 @@ function descriptionChanged() {
         dueDateChanged();
     }
 }
-
-
-function test() {
-    // empty stub
-}
-
-
-function test1() {
-    var date = new Date();
-    alert(date.toStringWithTime());
-}
-
-function test2() {
-    var array = [2, 5, 9, 10, 11];
-
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] == 5 || array[i] == 9) {
-            array.splice(i, 1);
-            i--;
-        }
-    }
-
-    for (var i = 0; i < array.length; i++) {
-        alert(array[i]);
-    }
-
-}

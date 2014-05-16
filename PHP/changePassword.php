@@ -4,7 +4,6 @@
 <head>
     <title>Assistenz Planer - Passwort ändern</title>
     <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="../CSS/userInformation.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/changePassword.js"></script>
 </head>
 <body>

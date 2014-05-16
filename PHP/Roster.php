@@ -486,7 +486,9 @@ class Roster
             $scaleFactor = 1;
         }
         if ($_SESSION['developer']) {
+            echo '<div class="developerSection">';
             echo 'scale factor: ' . $scaleFactor . '<br />';
+            echo '</div>';
         }
 
         // calculate score table
@@ -591,9 +593,11 @@ class Roster
         }
         $time_taken = microtime(true) - $start;
         if ($_SESSION['developer']) {
+            echo '<div class="developerSection">';
             echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
             echo "total-run-counter: " . $completeRun . '<br />';
             echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
+            echo '</div>';
         }
 
         //$this->writeToFile();
@@ -641,7 +645,9 @@ class Roster
             $scaleFactor = 1;
         }
         if ($_SESSION['developer']) {
+            echo '<div class="developerSection">';
             echo 'scale factor: ' . $scaleFactor . '<br />';
+            echo '</div>';
         }
 
         // calculate score table
@@ -669,7 +675,9 @@ class Roster
         }
 
         if ($_SESSION['developer']) {
+            echo '<div class="developerSection">';
             $this->printScoreTable($scoreTable);
+            echo '</div>';
         }
 
         // convert data
@@ -758,9 +766,11 @@ class Roster
         }
         $time_taken = microtime(true) - $start;
         if ($_SESSION['developer']) {
+            echo '<div class="developerSection">';
             echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
             echo "total-run-counter: " . $completeRun . '<br />';
             echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
+            echo '</div>';
         }
 
         //$this->writeToFile();

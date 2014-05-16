@@ -68,6 +68,10 @@ tr:last-child > td {
     background-color: #FFB2B2;
 }
 
+.developerSection {
+    background-color: linen;
+}
+
 .forbiddenName {
     display: none;
 }
@@ -104,4 +108,11 @@ tr:last-child > td {
 
 .wrapLongText {
     max-width: 600px;
+}
+
+#userInformation {
+    text-align: right;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid slategray;
 }
