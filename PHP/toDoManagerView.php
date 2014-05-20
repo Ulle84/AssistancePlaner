@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/toDo.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/DateExtended.js"></script>
     <script language="JavaScript" src="../JavaScript/toDoManager.js"></script>
+    <script language="JavaScript" src="../JavaScript/datePicker.js"></script>
 </head>
 <body onload="init()">
 <?php include('userInformation.php'); ?>

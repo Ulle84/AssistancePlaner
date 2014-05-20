@@ -32,7 +32,11 @@ if ($_SESSION['developer']) {
     echo '<a href="../HTML/info.html">Informationen</a> <br/>';
     echo '<a href="../HTML/problems.html">Probleme und Lösungen</a> <br/>';
     echo '<a href="../HTML/algorithm.html">Algorithmus</a> <br/>';
-    echo '<a href="../HTML/newToDo.html">Test New ToDo</a> <br/>';
+
+
+    echo '<h1>Sonstiges</h1>';
+
+    echo '<a href="../PHP/phpInfo.php">PHP Information</a> <br/>';
 }
 
 ?>

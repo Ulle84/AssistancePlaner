@@ -123,3 +123,8 @@ Date.prototype.getNumberOfDaysInThisMonth = function () {
 Date.prototype.getNumberOfDays = function (year, month) {
     return /4|6|9|11/.test(month) ? 30 : month == 2 ? ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0) ? 29 : 28 : 31;
 }
+
+// some additional functions
+function convertDisplayDateToSortableDate(displayDate) {
+    return displayDate.substr(6, 4) + "-" + displayDate.substr(3, 2) + "-" + displayDate.substr(0, 2);
+}

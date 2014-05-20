@@ -24,5 +24,12 @@
  <li>sudo sendmailconfig</li>
 </ul>
 
+<h1>MySQL</h1>
+<div>
+$dbh = mysql_connect("rdbms.strato.de", "Benutzername", "Passwort");<br />
+$query = "use DBxxxx";<br />
+if (!mysql_query($query, $dbh)) die("Datenbank existiert nicht.n");
+</div>
+
 </body>
 </html>

@@ -108,8 +108,24 @@ class ToDoManager
 
         echo '<span id="dueDate" class="hidden">';
         echo '<span> fällig am </span>';
-        echo '<input id="dueDateInput" type="text" size="10" maxlength="10" onchange="dueDateChanged()" onblur="dueDateChanged()"/>';
+        //<input onfocus="showDatePicker()" type="text" value="Datum eingeben" id="dateDisplay" readonly="readonly"/>
+        echo '<input onfocus="showDatePicker()" id="dueDateInput" type="text" size="10" maxlength="10" onchange="dueDateChanged()" onblur="dueDateChanged()" readonly="readonly"/>';
         echo '</span>';
+
+        echo '<div id="myDatePicker">';
+        echo '<div>';
+        echo '<input id="buttonPreviousMonth" type="button" onclick="goToPreviousMonth()" value="<<"/>';
+        echo '<input id="buttonCurrentMonth" type="button" onclick="goToCurrentMonth()" value="Aktueller Monat"/>';
+        echo '<input id="buttonNextMonth" type="button" onclick="goToNextMonth()" value=">>"/>';
+        echo '</div>';
+        echo '<h1 id="monthDescription"></h1>';
+        echo '<div id="calendarInput"></div>';
+        echo '<br />';
+        echo '<div>';
+        echo '<input type="button" onclick="hideDatePicker()" value="Abbrechen"/>';
+        echo '<input type="button" onclick="removeDate()" value="Fälligkeitsdatum entfernen"/>';
+        echo '</div>';
+        echo '</div>';
 
         echo '<span id="intervalNumber" class="hidden">';
         echo '<span> wiederholt sich </span>';

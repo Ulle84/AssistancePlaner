@@ -80,6 +80,8 @@ function init() {
     initSections();
     readData();
     checkSections();
+
+    dp_init();
 }
 
 function initDates() {
@@ -144,10 +146,10 @@ function checkSections() {
     for (var i = 0; i < toDoSections.length; i++) {
         var toDos = toDoSections[i].getElementsByClassName("toDo");
         if (toDos.length > 0) {
-            toDoSections[i].setAttribute("style", "display: block;");
+            toDoSections[i].style.display = "block";
         }
         else {
-            toDoSections[i].setAttribute("style", "display: none;");
+            toDoSections[i].style.display = "none";
         }
     }
 }
@@ -393,11 +395,23 @@ function addToDo() {
         repetition += repeatFromTypes[repeatFromSelection.selectedIndex];
     }
 
-    var toDo = new ToDo(descriptionInput.value, dueDateInput.value, repetition);
+    var convertedDate = "";
+    if (dueDateInput.value != "") {
+        convertedDate = convertDisplayDateToSortableDate(dueDateInput.value);
+    }
+
+    var toDo = new ToDo(descriptionInput.value, convertedDate, repetition);
 
     toDos.push(toDo);
     generateToDo(toDo);
     checkSections();
+
+    descriptionInput.value = "";
+    dueDateInput.value = "";
+    intervalNumberSelection.selectedIndex = 0;
+    intervalTypeSelection.selectedIndex = 0;
+    repeatFromSelection.selectedIndex = 0;
+    descriptionChanged();
 }
 
 function intervalNumberChanged() {

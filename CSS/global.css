@@ -111,8 +111,8 @@ tr:last-child > td {
 }
 
 #userInformation {
-    text-align: right;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid slategray;
-}
+     text-align: right;
+     margin-bottom: 10px;
+     padding-bottom: 10px;
+     border-bottom: 1px solid slategray;
+ }

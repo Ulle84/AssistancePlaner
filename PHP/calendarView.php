@@ -37,9 +37,10 @@ $calendar->printHeader();
 $calendar->printNotesFromAdmin();
 $calendar->printPublicNotes();
 $calendar->printCalendar();
+echo '<br /><input type="button" value="Alle Daten markieren" onclick="markAllDates()" />';
+
 $calendar->printNotesInputForAssistant();
 
-echo '<br /><input type="button" value="Alle Daten markieren" onclick="markAllDates()" />';
 echo '<input type="button" value="Speichern" onclick="save(\'' . $_SESSION['userName'] . '\', ' . $year . ', ' . $month . ', \'' . $id . '\')" />';
 
 ?>
