@@ -36,3 +36,10 @@ th, td {
     top: 50%;
     margin: 40px 0 0 -250px;
 }
+
+#userInformation {
+    text-align: right;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid slategray;
+}

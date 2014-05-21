@@ -105,9 +105,9 @@ Neue Team-Mitglieder können nur von Patrick angelegt werden. Das Passwort ist
 Standardmäßig "Hallo123", wobei der Benutzer beim ersten Login sein Passwort ändern muss.
 
 <h1>ToDo Manager</h1>
-Codierung der Wiederholungen: 1 d c <br />
-erster + zweiter Parameter: Wiederholungsinterval 1 d = every day <br />
-d = day, w = week, m = month, y = year; <br />
+Codierung der Wiederholungen: 1 d c <br/>
+erster + zweiter Parameter: Wiederholungsinterval 1 d = every day <br/>
+d = day, w = week, m = month, y = year; <br/>
 dritter Paramter: d = repeat from due date, c = repeat from completion date
 
 
@@ -117,6 +117,24 @@ dritter Paramter: d = repeat from due date, c = repeat from completion date
  <li>Dienste sollten nach Möglichkeit "blockweise" (das heißt mehrere Tage hintereinander) sein.</li>
  <li>Die Vorlieben des Betreuten sollten vor der Ausschöpfung des Stundenkontigentes priorisiert werden.</li>
  <li>Eine Bereitschaftsstunde wird mit einer halben Stunde angerechnet.</li>
+</ul>
+
+<h1>Überlegungen mehr als ein zu Betreuender</h1>
+<ul>
+ <li>Ziel: beliebig viele zu Betreuende (inklusive ihrer Teams) können die Webapplikation nutzen</li>
+ <li>Ordner mit beliebig vielen SQLite Files wäre leicht zu realisieren</li>
+ <li>Über eine Master-SQLite Datenbank erreicht man alle anderen Datenbanken</li>
+ <li>Beim Login gibt man zusätzlich zum Usernamen und Passwort noch einen "Betreuter"-Namen ein - dieser wird als
+  Session-Variable gespeichert
+ </li>
+ <li>Der "Betreuter"-Name kann auch per GET-Parameter übergeben werden</li>
+ <li>Anforderungen:</li>
+ <ul>
+  <li>Eine Datenbank pro Betreuten</li>
+  <li>Masterdatenbank</li>
+  <li>Login erweitern</li>
+  <li>Möglichkeit schaffen neuen Betreuten-Account anzulegen</li>
+ </ul>
 </ul>
 </body>
 </html>

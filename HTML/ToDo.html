@@ -12,13 +12,16 @@
  <li>User-Stories für ToDo-Manager</li>
  <li>Icon (favicon.ico) für Browser-Tab</li>
  <li>Logo für Assistenz-Planer</li>
+ <li>Datenbank-Layout überlegen</li>
 </ul>
 
 
 <h1>Programmierung</h1>
 <ul>
+ <li>Bug: Team - Prio von 0 führt zur Endlosschleife</li>
  <li>htmlspecialchars konsequent verwenden</li>
  <li>Alle Buttons gegen versehentliches doppeltes Klicken verriegeln -> siehe toDoManager.js -> save()</li>
+ <li>Kalender und evt. andere Felder -> Cursor ändern!</li>
 </ul>
 
 
@@ -31,19 +34,18 @@
 
 <h1>ToDo Manager</h1>
 <ul>
- <li>Aufgaben editieren</li>
- <li>Heutigen Tag markieren</li>
- <li>Ausgewählten Tag markieren</li>
+ <li>DatePicker: Heutigen Tag markieren</li>
+ <li>DatePicker: Ausgewählten Tag markieren</li>
  <li>Aufgaben löschen</li>
  <li>Review der Aufgaben durch Patrick?</li>
  <li>Kategorien?</li>
+ <li>Aufgaben editieren</li>
 </ul>
 
 
 <h1>Recherche</h1>
 <ul>
  <li>Modellgetriebene Software-Entwicklung</li>
- <li>PHP in Zusammenarbeit mit MySQL oder SQLite</li>
  <li>Buch: Technisches Schreiben lesen</li>
  <li>Buch: UML Glasklar lesen</li>
 </ul>
@@ -58,21 +60,21 @@
 
 <h1>Server</h1>
 <ul>
- <li>Datenbank zum Laufen bekommen</li>
- <li>Datenbank mit PHP ansprechen</li>
  <li><a href="http://www.unixgeeks.org/security/newbie/unix/cron-1.html">Cron-Job</a> erzeugen
   <ul>
    <li>eMail Benachrichtigung bei fehlendem Input</li>
    <li>eMail Benachrichtigung bei erstelltem Dienstplan</li>
   </ul>
+  --> geht leider nicht auf Strato-Server
  </li>
- <li>User-Login: HTTPS</li>
 </ul>
 
 
 <h1>Ideen</h1>
 <ul>
- <li>Dienstbeginn und -ende schöner machen - mit Slider? mit <a href="http://jquery-jkit.com">jKit</a>?</li>
+ <li>Dienstbeginn und -ende schöner machen - mit Slider? mit <a href="http://jquery-jkit.com">jKit</a>? -> jQueryUI
+  bietet einen Slider
+ </li>
  <li>Dienstplan: Excel Export</li>
  <li>Feiertage importieren für Monatsplan</li>
  <li>ICS-Export</li>
@@ -89,6 +91,9 @@
  <li>Responsive Design -> gute Darstellung auf Smartphone</li>
  <li>Design komplett überarbeiten, besonders die Links anpassen! (keine andere Farbe bei visited)</li>
  <li>DatePicker von jQueryUI</li>
+ <li>Bedingte Formatierung in Stundenübersicht abhänig vom scale-factor, wenn es Monate gibt, in denen es nicht viele
+  Stunden gibt, dann sollte das berücksichtigt werden
+ </li>
 </ul>
 </body>
 </html>

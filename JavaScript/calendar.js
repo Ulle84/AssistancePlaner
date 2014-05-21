@@ -83,8 +83,8 @@ function save(userName, year, month, id) {
 }
 
 function validateString(element) {
-    if (element.value.contains("&")) {
-        element.value = element.value.replace(new RegExp("&", 'g'), "");
+    if (element.value.indexOf('&') > -1) {
+        element.value = element.value.replace(new RegExp('&', 'g'), "");
         alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
     }
 }
