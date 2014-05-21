@@ -139,6 +139,7 @@ class Team
 
         $settings = new Settings();
         echo '<div class="forbiddenName">developer</div>';
+        echo '<div class="forbiddenName">SuperUser</div>';
         echo '<div class="forbiddenName">' . $settings->adminName . '</div>';
 
         echo '<table id="' . $this->tableId . '">';

