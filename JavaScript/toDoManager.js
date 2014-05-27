@@ -130,6 +130,8 @@ function toDoItemChanged(item) {
         item.nextSibling.nextSibling.setAttribute("style", "text-decoration: none");
         item.nextSibling.nextSibling.nextSibling.setAttribute("style", "text-decoration: none");
         var toDo = getToDoById(item.parentNode.getAttribute("toDoId"));
+        toDo.doneBy = "";
+        toDo.doneOn = "";
         destination = sections[getDueSectionName(toDo.dueDate)];
 
         if (toDo.repetition != "") {
