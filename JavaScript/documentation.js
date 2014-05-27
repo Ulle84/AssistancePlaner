@@ -10,23 +10,24 @@ ToDo
 Done
 - Refactoring Chapter Counters -> Array
 - Author und Last Change aus CVS verwenden
-- Title über das Inhaltsverzeichnis
+- Title ï¿½ber das Inhaltsverzeichnis
 - Verlinkung von Kapiteln
 - set and link internal hrefs for contents
-- automatische Nummerierung der Überschriften
+- automatische Nummerierung der ï¿½berschriften
 - set tooltip for table data
 */
 
 // global variables
 var contents = null;
-var bodyChilds = null;
-var body = null;
+var documentationSectionChilds = null;
+var documentationSection = null;
 var counter = 0;
 var navigationLinkBaseName = "nav";
 var imageCounter = 1;
 var tableCounter = 1;
 var headerCounters = 0;
 var headerSeperator = ".";
+var documentationSection = null;
 
 function init() {
 	initVariables();
@@ -67,7 +68,7 @@ function prettyPrintCVSTagsById (id) {
 
 function createContents() {
 	contents = window.document.createElement("div");
-	body.insertBefore(contents, body.firstChild);
+    documentationSection.insertBefore(contents, documentationSection.firstChild);
 	
 	if (window.document.getElementsByTagName("h1").length == 0) {
 		return;
@@ -86,15 +87,15 @@ function createContents() {
 	contents.appendChild(contentsHeading);
 
 	var headerNumber = null;
-	for (var i = 0; i < bodyChilds.length; i++) {
-		switch(bodyChilds[i].nodeName.toUpperCase()) {
+	for (var i = 0; i < documentationSectionChilds.length; i++) {
+		switch(documentationSectionChilds[i].nodeName.toUpperCase()) {
 		case "H1":
 		case "H2":
 		case "H3":
 		case "H4":
 		case "H5":
 		case "H6":
-			createNewContentsEntry(bodyChilds[i].nodeName, bodyChilds[i]);
+			createNewContentsEntry(documentationSectionChilds[i].nodeName, documentationSectionChilds[i]);
 			break;
 		}
 	}
@@ -110,7 +111,7 @@ function createTitle() {
 	var title = titles[0];
 	
 	var div = window.document.createElement("div");
-	body.insertBefore(div, body.firstChild);
+	documentationSection.insertBefore(div, documentationSection.firstChild);
 	
 	div.setAttribute("class", "title");
 	div.textContent = title.textContent;
@@ -168,8 +169,8 @@ function createNewContentsEntry(tagname, node) {
 }
 
 function initVariables() {
-	body = window.document.getElementsByTagName("body")[0];
-	bodyChilds = body.childNodes;
+	documentationSection = window.document.getElementById("documentation");
+	documentationSectionChilds = documentationSection.childNodes;
 	headerCounters = new Array(0, 0, 0, 0, 0, 0);
 }
 
@@ -255,7 +256,7 @@ function createListOfFigures() {
 	
 	var listOfFigures = window.document.createElement("div");
 	listOfFigures.setAttribute("class", "contents");
-	body.insertBefore(listOfFigures, contents.nextSibling);
+	documentationSection.insertBefore(listOfFigures, contents.nextSibling);
 	
 	var contentsHeading = window.document.createElement("div");
 	contentsHeading.textContent = "Abbildungsverzeichnis";
@@ -340,7 +341,7 @@ function createListOfTables() {
 	
 	var listOfTables = window.document.createElement("div");
 	listOfTables.setAttribute("class", "contents");
-	body.insertBefore(listOfTables, contents.nextSibling);
+	documentationSection.insertBefore(listOfTables, contents.nextSibling);
 	
 	var contentsHeading = window.document.createElement("div");
 	contentsHeading.textContent = "Tabellenverzeichnis";

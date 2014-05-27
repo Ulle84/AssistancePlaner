@@ -1,10 +1,10 @@
 7
 Jonas
 Jonas
-Test
-u.belitz@icloud.com
 
-FCB Julia
+ pasie@t-online.de
+
+Julia PR
 130
 5
 0;0;0;0;0;0;0
@@ -13,37 +13,37 @@ Oliver
 
 
 
-
+Julia
 80
-1
-0;0;0;0;0;1;1
+5
+0;0;0;0;1;0;0
 Norman
 Norman
+
+
+
+ FCB
+50
+5
+1;1;1;1;1;0;0
+Rene
+Rene
+
+
+
+Onkelz
+90
+10
+0;0;0;0;1;1;1
+Stefan
+Stefan
 
 
 
 Julia
 50
 5
-0;0;0;0;0;0;0
-Rene
-Rene
-
-
-
-PR-Sitzung
-70
-6
-0;0;0;0;0;0;0
-Stefan
-Stefan
-
-
-
-
-50
-7
-0;0;0;0;0;0;0
+1;0;1;0;0;0;0
 Jan
 Jan
 
@@ -52,7 +52,7 @@ Jan
 
 45
 5
-0;0;0;0;0;0;0
+0;0;0;1;1;0;0
 Lars
 Lars
 
@@ -61,4 +61,4 @@ Lars
 
 30
 10
-0;0;0;0;0;1;1
+0;0;0;0;0;1;0
