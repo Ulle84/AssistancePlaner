@@ -25,11 +25,15 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
 $toDoManager->printToDoSections();
 $toDoManager->printToDoTable();
 
+if ($_SESSION['developer'] || $_SESSION['admin']) {
+    echo '<br />';
+    echo '<input type="button" onclick="save(this)" value="Speichern" />';
+    echo '<br />';
+    echo 'Antwort vom Server: <span id="httpResponse"></span>';
+}
+
 ?>
-<br />
-<input type="button" onclick="save(this)" value="Speichern" />
-<br />
-Antwort vom Server: <span id="httpResponse"></span>
+
 
 </body>
 </html>

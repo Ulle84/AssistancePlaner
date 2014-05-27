@@ -38,6 +38,12 @@ class AssistanceInput
 
     public function saveToFile()
     {
+        $filePath = substr($this->fileName, 0, strrpos($this->fileName, '/'));
+
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0777, true);
+        }
+
         $file = fopen($this->fileName, "w");
 
         foreach ($this->assistanceInput as $name => $dates) {

@@ -158,7 +158,7 @@ class Roster
     private function printTableBase()
     {
         echo '<h1>Dienstplan für ' . get_month_description($this->month) . ' ' . $this->year . '</h1>';
-        echo 'Letze Änderung: ' . $this->lastChange . '<br />';
+        echo '<div>Letze Änderung: <span id="lastChange">' . $this->lastChange . '</span></div><br />';
         echo '<table id="rosterTable">';
     }
 
@@ -671,7 +671,7 @@ class Roster
                 }
                 foreach ($keyWords[$name] as $keyWord) {
                     if ($keyWord != "") {
-                        if (strpos($this->monthPlan->days[$i]->privateNotes, $keyWord) !== false) {
+                        if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
                             $scoreTable[$name][$i - 1] *= 10;
                         }
 

@@ -18,6 +18,13 @@ require_once 'MonthNavigation.php';
 $month = date("n");
 $year = date("Y");
 
+// switch to next month
+$month++;
+if ($month == 13) {
+    $month = 1;
+    $year++;
+}
+
 if (isset($_GET['year'])) {
     $year = $_GET['year'];
 }

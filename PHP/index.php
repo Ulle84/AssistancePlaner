@@ -11,7 +11,7 @@
 include('userInformation.php');
 echo '<h1>Anwendung Assistenz Planer</h1>';
 echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
-echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';
+//echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';
 
 if (!$_SESSION['admin']) {
     echo '<a href="calendarView.php">Kalender</a> <br/>';
@@ -32,6 +32,7 @@ if ($_SESSION['developer']) {
     echo '<a href="../HTML/info.html">Informationen</a> <br/>';
     echo '<a href="../HTML/problems.html">Probleme und Lösungen</a> <br/>';
     echo '<a href="../HTML/algorithm.html">Algorithmus</a> <br/>';
+    echo '<a href="../HTML/databaseLayout.html">Datenbank Layout</a> <br/>';
 
 
     echo '<h1>Sonstiges</h1>';

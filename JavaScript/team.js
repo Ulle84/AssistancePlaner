@@ -1,15 +1,4 @@
-function validate(element, validationType) {
-    switch (validationType) {
-        case 0:
-            validateString(element);
-            break;
-        case 1:
-            validateInteger(element);
-            break;
-    }
-}
-
-function validateInteger(element) {
+function validateInteger(element, minValue, maxValue) {
     var integerValue = parseInt(element.value);
     if (isNaN(integerValue)) {
         element.value = 0;
@@ -17,9 +6,15 @@ function validateInteger(element) {
         return;
     }
 
-    if (integerValue < 0) {
-        element.value = 0;
-        alert("Negative Zahlen sind nicht zulässig.\nDer Wert wurde auf 0 gesetzt!");
+    if (integerValue < minValue) {
+        element.value = minValue;
+        alert("Werte kleiner als " + minValue + " sind nicht zulässig.\nDer Wert wurde auf " + minValue + " gesetzt!");
+        return;
+    }
+
+    if (integerValue > maxValue) {
+        element.value = maxValue;
+        alert("Werte größer als " + maxValue + " sind nicht zulässig.\nDer Wert wurde auf " + maxValue + " gesetzt!");
         return;
     }
 
@@ -70,15 +65,22 @@ function newMember() {
 
         var size = ["12", "12", "18", "15", "15", "18", "18", "11"];
         var maxLength = "50";
-        var validationType = 0;
 
         if (i > 5) {
-            validationType = 1;
             maxLength = "3";
         }
 
-        input.setAttribute("onchange", "validate(this, " + validationType + ")");
-        input.setAttribute("onblur", "validate(this, " + validationType + ")");
+        var functionCall = "validateString(this)";
+        if (i == 6) {
+            functionCall = "validateInteger(this, 0, 999)";
+        }
+
+        if (i == 7) {
+            functionCall = "validateInteger(this, 1, 999)";
+        }
+
+        input.setAttribute("onchange", functionCall);
+        input.setAttribute("onblur", functionCall);
         input.setAttribute("type", "text");
         input.setAttribute("size", size[i]);
         input.setAttribute("maxlength", maxLength);

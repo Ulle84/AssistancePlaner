@@ -6,6 +6,7 @@
     <title>Assistenz Planer - Dienstplan</title>
     <link rel="stylesheet" type="text/css" href="../CSS/calendar.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <script language="JavaScript" src="../JavaScript/DateExtended.js"></script>
     <script language="JavaScript" src="../JavaScript/roster.js"></script>
 </head>
 <body onload="init()">
@@ -20,6 +21,13 @@ require_once 'MonthNavigation.php';
 
 $month = date("n");
 $year = date("Y");
+
+// switch to next month
+$month++;
+if ($month == 13) {
+    $month = 1;
+    $year++;
+}
 
 if (isset($_GET['year'])) {
     $year = $_GET['year'];

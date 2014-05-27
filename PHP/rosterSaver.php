@@ -5,6 +5,13 @@ $year = $_POST['year'];
 $month = $_POST['month'];
 
 $fileName = "../Data/Roster/" . $year . "-" . $month . ".txt";
+
+$filePath = substr($fileName, 0, strrpos($fileName, '/'));
+
+if (!file_exists($filePath)) {
+    mkdir($filePath, 0777, true);
+}
+
 $fh = fopen($fileName, "w");
 fwrite($fh, date("d.m.Y H:i\n")); //date('Y-m-d H:i:s')
 fwrite($fh, $content);

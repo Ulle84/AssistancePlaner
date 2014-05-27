@@ -101,6 +101,11 @@ class Passwords
 
     private function saveToFile()
     {
+        $filePath = substr($this->fileName, 0, strrpos($this->fileName, '/'));
+
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0777, true);
+        }
 
         $fh = fopen($this->fileName, "w");
 

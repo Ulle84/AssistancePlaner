@@ -53,7 +53,7 @@ class Team
                 $teamMember->lastName = rtrim(fgets($file));
                 $teamMember->eMailAddress = rtrim(fgets($file));
                 $teamMember->phoneNumber = rtrim(fgets($file));
-                $teamMember->keyWords = explode("; ", rtrim(fgets($file)));
+                $teamMember->keyWords = explode(" ", rtrim(fgets($file)));
                 $teamMember->hoursPerMonth = (int)rtrim(fgets($file));
                 $teamMember->priority = (int)rtrim(fgets($file));
                 $teamMember->preferredWeekdays = explode(";", rtrim(fgets($file)));
@@ -67,6 +67,12 @@ class Team
 
     public function saveToFile($content)
     {
+        $filePath = substr($this->fileName, 0, strrpos($this->fileName, '/'));
+
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0777, true);
+        }
+
         $fh = fopen($this->fileName, "w");
         fwrite($fh, ($content));
         fclose($fh);
@@ -92,7 +98,7 @@ class Team
         echo '<th>Nachname</th>';
         echo '<th>E-Mail Adresse</th>';
         echo '<th>Telefonnummer</th>';
-        echo '<th>Stichwörter</th>';
+        echo '<th>Stichwörter (getrennt durch Leerzeichen)</th>';
         echo '<th>Stundenkontingent</th>';
         echo '<th>Priorisierung</th>';
         echo '<th>Bevorzugte Tage</th>';
@@ -105,14 +111,14 @@ class Team
     {
         echo '<tr>';
 
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="12" maxlength="50" value="' . $teamMember->loginName . '"/></td>';
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="12" maxlength="50" value="' . $teamMember->firstName . '"/></td>';
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="18" maxlength="50" value="' . $teamMember->lastName . '"/></td>';
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="15" maxlength="50" value="' . $teamMember->eMailAddress . '"/></td>';
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="15" maxlength="50" value="' . $teamMember->phoneNumber . '"/></td>';
-        echo '<td><input onchange="validate(this, 0)" onblur="validate(this, 0)" type="text" size="18" maxlength="50" value="' . implode("; ", $teamMember->keyWords) . '"/></td>';
-        echo '<td><input onchange="validate(this, 1)" onblur="validate(this, 0)" type="text" size="18" maxlength="3" style="text-align: right" value="' . $teamMember->hoursPerMonth . '"/></td>';
-        echo '<td><input onchange="validate(this, 1)" onblur="validate(this, 0)" type="text" size="11" maxlength="3" style="text-align: right" value="' . $teamMember->priority . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="12" maxlength="50" value="' . $teamMember->loginName . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="12" maxlength="50" value="' . $teamMember->firstName . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="18" maxlength="50" value="' . $teamMember->lastName . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="15" maxlength="50" value="' . $teamMember->eMailAddress . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="15" maxlength="50" value="' . $teamMember->phoneNumber . '"/></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" type="text" size="18" maxlength="50" value="' . implode(" ", $teamMember->keyWords) . '"/></td>';
+        echo '<td><input onchange="validateInteger(this, 0, 999)" onblur="validateInteger(this, 0, 999)" type="text" size="18" maxlength="3" style="text-align: right" value="' . $teamMember->hoursPerMonth . '"/></td>';
+        echo '<td><input onchange="validateInteger(this, 1, 999)" onblur="validateInteger(this, 1, 999)" type="text" size="11" maxlength="3" style="text-align: right" value="' . $teamMember->priority . '"/></td>';
 
         $weekdays = get_weekdays();
         echo '<td>';

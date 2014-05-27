@@ -7,6 +7,10 @@ class WorkingTimes
     public $begin = array();
     public $end = array();
 
+    public $startTimes = array("13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30");
+    public $endTimes = array("08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30");
+
+
     function __construct()
     {
         $fileName = "../Data/Organization/defaultTimes.txt";
@@ -60,11 +64,39 @@ class WorkingTimes
         echo '</tr>';
 
         $weekdays = get_weekdays();
+
         for ($i = 1; $i <= 7; $i++) {
             echo '<tr>';
             echo '<td>' . $weekdays[$i - 1] . '</td>';
-            echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $this->begin[$i] . '" type="text" size="5" maxlength="5" /></td>';
-            echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $this->end[$i] . '" type="text" size="5" maxlength="5" /></td>';
+            echo '<td>';
+
+            echo '<select size="1">';
+
+            foreach ($this->startTimes as $startTime) {
+                echo '<option';
+                if ($startTime == $this->begin[$i]) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $startTime . '</option>';
+            }
+
+            echo '</select>';
+
+            echo '</td>';
+            echo '<td>';
+            echo '<select size="1">';
+
+            foreach ($this->endTimes as $endTime) {
+                echo '<option';
+                if ($endTime == $this->end[$i]) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $endTime . '</option>';
+            }
+
+            echo '</select>';
+
+            echo '</td>';
             echo '</tr>';
 
         }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+ <title>Datenbank Layout</title>
+ <link rel="stylesheet" type="text/css" href="../CSS/documentation.css" media="all"/>
+ <script language="JavaScript" src="../JavaScript/documentation.js"></script>
+</head>
+<body onload="init()">
+
+<h1>Standard-Dienstzeiten</h1>
+<ul>
+ <li>ID</li>
+ <li>Wochentag</li>
+ <li>Dienstbeginn</li>
+ <li>Dienstende</li>
+</ul>
+
+<h1>Team</h1>
+<ul>
+ <li>ID</li>
+ <li>LoginName</li>
+ <li>FirstName</li>
+ <li>LastName</li>
+ <li>EMail</li>
+ <li>Phone</li>
+ <li>Keywords</li>
+ <li>Priority</li>
+ <li>PreferredDays</li>
+</ul>
+
+<h1>Dienstplan</h1>
+<ul>
+ <li>ID</li>
+ <li>Month</li>
+ <li>Service -> TeamMemberIDs (seperated by ';')</li>
+ <li>Standby -> TeamMemberIDs (seperated by ';')</li>
+</ul>
+
+<h1>Assistenten-Eingabe</h1>
+<ul>
+ <li>ID</li>
+ <li>Month</li>
+ <li>TeamMemberID</li>
+ <li>Input (seperated by ';')</li>
+</ul>
+
+<h1>Monatsplan-Eingaben</h1>
+<ul>
+ <li>ID</li>
+ <li>Month</li>
+ <li>PublicNotes (seperated by ?)</li>
+ <li>PrivateNotes (seperated by ?)</li>
+</ul>
+
+<h1>Aufgaben</h1>
+<ul>
+ <li>ID</li>
+ <li>Description</li>
+ <li>DueDate</li>
+ <li>Repetition</li>
+ <li>DoneDate</li>
+ <li>DoneBy</li>
+</ul>
+
+</body>
+</html>

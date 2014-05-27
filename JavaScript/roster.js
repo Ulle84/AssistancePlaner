@@ -56,7 +56,7 @@ function checkRoster(showSuccess) {
     }
 
     if (showSuccess) {
-        alert("Alles in Orndung!");
+        alert("Alles in Ordnung!");
     }
     return true;
 }
@@ -104,6 +104,10 @@ function save(year, month) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             httpResponse.innerHTML = xmlhttp.responseText;
+
+            var now = new Date();
+            var lastChange = window.document.getElementById("lastChange");
+            lastChange.textContent = now.toStringDisplayWithTime();
         }
     }
 

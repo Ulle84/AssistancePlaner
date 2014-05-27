@@ -76,6 +76,19 @@ Date.prototype.toStringWithTime = function () {
     return result;
 }
 
+Date.prototype.toStringDisplayWithTime = function () {
+    var hour = this.getHours();
+    var minute = this.getMinutes();
+
+    var result = this.toStringDisplay();
+    result += " ";
+    result += hour < 10 ? "0" + hour : hour;
+    result += ":";
+    result += minute < 10 ? "0" + minute : minute;
+
+    return result;
+}
+
 Date.prototype.fromStringSortable = function (string) {
     var data = string.split('-');
     this.setFullYear(data[0]);

@@ -14,6 +14,7 @@ class MonthPlan
     public $calendarId = "calendar";
     public $days = array();
     public $notes = array();
+    private $defaultWorkingTimes;
     private $settings;
 
     private $daysPerMonth;
@@ -26,7 +27,7 @@ class MonthPlan
 
         $this->settings = new Settings();
 
-        $defaultWorkingTimes = new WorkingTimes();
+        $this->defaultWorkingTimes = new WorkingTimes();
         $this->assistanceInput = new AssistanceInput($year, $month);
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -43,8 +44,8 @@ class MonthPlan
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             if (!file_exists($fileName)) {
-                $this->days[$i]->serviceBegin = $defaultWorkingTimes->begin[$this->days[$i]->weekday];
-                $this->days[$i]->serviceEnd = $defaultWorkingTimes->end[$this->days[$i]->weekday];
+                $this->days[$i]->serviceBegin = $this->defaultWorkingTimes->begin[$this->days[$i]->weekday];
+                $this->days[$i]->serviceEnd = $this->defaultWorkingTimes->end[$this->days[$i]->weekday];
             }
 
             $this->days[$i]->calculateWorkingHours();
@@ -126,8 +127,35 @@ class MonthPlan
         echo '<tr class="data">';
 
         echo '<td class="date">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
-        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $day->serviceBegin . '" type="text" size="5" maxlength="5" /></td>';
-        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . $day->serviceEnd . '" type="text" size="5" maxlength="5" /></td>';
+
+
+        echo '<td>';
+
+        echo '<select size="1">';
+
+        foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
+            echo '<option';
+            if ($startTime == $day->serviceBegin) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $startTime . '</option>';
+        }
+
+        echo '</select>';
+        echo '<td>';
+
+        echo '<select size="1">';
+
+        foreach ($this->defaultWorkingTimes->endTimes as $endTime) {
+            echo '<option';
+            if ($endTime == $day->serviceEnd) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $endTime . '</option>';
+        }
+
+        echo '</select>';
+
         echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
         echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
 
