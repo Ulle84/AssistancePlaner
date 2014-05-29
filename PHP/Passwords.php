@@ -8,11 +8,11 @@ class Passwords
     private $fileName;
     private $passwords = array();
 
-    function __construct()
+    function __construct($client)
     {
         $this->settings = new Settings();
 
-        $this->fileName = "../Data/Team/passwords.txt";
+        $this->fileName = "../Data/" . $client ."/Team/passwords.txt";
         if (file_exists($this->fileName)) {
             $this->readFromFile($this->fileName);
         }

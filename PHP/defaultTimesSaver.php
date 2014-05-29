@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 $content = $_POST['content'];
 
-$fileName = "../Data/Organization/defaultTimes.txt";
+$fileName = "../Data/" . $_SESSION['client'] . "/Organization/defaultTimes.txt";
 
 $filePath = substr($fileName, 0, strrpos($fileName, '/'));
 

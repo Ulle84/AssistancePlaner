@@ -2,6 +2,9 @@
 Ganz oben rechts ist immer die Navigation zu sehen.
 <img id="imgNavigation" title="Navigation" class="highResolution" src="../Images/Screenshots/Navigation.png"/>
 
+<h2>Klient</h2>
+Hier kann man den Namen des Klienten sehen.
+
 <h2>Angemeldeter Benutzer</h2>
 Hier kann man den aktuell am System angemeldeten Benutzer sehen. Will man mit einem anderen Benutzer-Account arbeiten,
 so kann man auf den Link "Abmelden" klicken und sich mit einem anderen Benutzer-Account am System anmelden.

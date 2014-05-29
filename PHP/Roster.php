@@ -45,7 +45,7 @@ class Roster
         $this->assistanceInput = new AssistanceInput($year, $month);
         $this->monthPlan = new MonthPlan($year, $month);
 
-        $this->readFromFile("../Data/Roster/" . $year . "-" . $month . ".txt");
+        $this->readFromFile("../Data/" . $_SESSION['client'] . "/Roster/" . $year . "-" . $month . ".txt");
 
         if (!$this->rosterExist) {
             $this->createRoster();
@@ -73,7 +73,7 @@ class Roster
 
     private function writeToFile()
     {
-        $fileName = "../Data/Roster/" . $this->year . "-" . $this->month . ".txt";
+        $fileName = "../Data/" . $_SESSION['client'] . "/Roster/" . $this->year . "-" . $this->month . ".txt";
         $fh = fopen($fileName, "w");
         fwrite($fh, date("d.m.Y H:i\n"));
 

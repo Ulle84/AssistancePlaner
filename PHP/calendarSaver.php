@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('AssistanceInput.php');
 
 $content = $_POST['content'];

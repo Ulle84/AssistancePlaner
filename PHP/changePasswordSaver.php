@@ -6,7 +6,7 @@ $userName = $_POST['userName'];
 $oldPassword = $_POST['oldPassword'];
 $newPassword = $_POST['newPassword'];
 
-$passwords = new Passwords();
+$passwords = new Passwords($_SESSION['client']);
 
 if (!$passwords->checkUser($userName, $oldPassword)) {
     echo 'Altes Passwort ist nicht korrekt!';

@@ -3,7 +3,7 @@
 $toDo = $_POST['toDo'];
 $done = $_POST['done'];
 
-$fileNameToDo = "../Data/ToDoManager/toDos.txt";
+$fileNameToDo = "../Data/" . $_SESSION['client'] . "/ToDoManager/toDos.txt";
 
 $filePath = substr($fileNameToDo, 0, strrpos($fileNameToDo, '/'));
 
@@ -15,7 +15,7 @@ $fileToDo = fopen($fileNameToDo, "w");
 fwrite($fileToDo, $toDo);
 fclose($fileToDo);
 
-$fileNameDone = "../Data/ToDoManager/done.txt";
+$fileNameDone = "../Data/" . $_SESSION['client'] . "/ToDoManager/done.txt";
 
 $filePath = substr($fileNameDone, 0, strrpos($fileNameDone, '/'));
 

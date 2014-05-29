@@ -1,10 +1,11 @@
 <?php
+session_start();
 
 $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
 
-$fileName = "../Data/Roster/" . $year . "-" . $month . ".txt";
+$fileName = "../Data/" . $_SESSION['client'] . "/Roster/" . $year . "-" . $month . ".txt";
 
 $filePath = substr($fileName, 0, strrpos($fileName, '/'));
 

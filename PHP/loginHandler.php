@@ -6,12 +6,14 @@ require_once('Settings.php');
 session_start();
 
 $username = $_POST['username'];
+$client = $_POST['client'];
 $password = $_POST['password'];
 
-$passwords = new Passwords();
+$passwords = new Passwords($client);
 if ($passwords->checkUser($username, $password)) {
     $_SESSION['loggedIn'] = true;
     $_SESSION['userName'] = $username;
+    $_SESSION['client'] = $client;
 
     if ($username == "developer") {
         $_SESSION['developer'] = true;

@@ -3,6 +3,7 @@ function login() {
     response.innerHTML = "";
 
     var username = window.document.getElementById("username").value;
+    var client = window.document.getElementById("client").value;
     var password = window.document.getElementById("password").value;
 
     var xmlhttp = new XMLHttpRequest();
@@ -26,5 +27,5 @@ function login() {
 
     xmlhttp.open("POST", "../PHP/loginHandler.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("username=" + username + "&password=" + password);
+    xmlhttp.send("username=" + username + "&password=" + password + "&client=" + client);
 }

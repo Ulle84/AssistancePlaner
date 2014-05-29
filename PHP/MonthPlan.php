@@ -37,7 +37,7 @@ class MonthPlan
 
         $this->initWeekdays();
 
-        $fileName = "../Data/MonthPlan/" . $year . "-" . $month . ".txt";
+        $fileName = "../Data/" . $_SESSION['client'] . "/MonthPlan/" . $year . "-" . $month . ".txt";
         if (file_exists($fileName)) {
             $this->readFromFile($fileName);
         }

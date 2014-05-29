@@ -9,6 +9,20 @@
 <div class="center">
     <table>
         <tr>
+            <td>Klient:</td>
+            <td>
+
+                <?php
+                echo '<input type="text" name="client" id="client"';
+                if (isset($_GET['client'])) {
+                    echo ' value = "' . $_GET['client'] . '"';
+                }
+                echo '/>';
+                ?>
+
+            </td>
+        </tr>
+        <tr>
             <td>Benutzername:</td>
             <td><input type="text" name="username" id="username"/></td>
         </tr>

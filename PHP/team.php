@@ -7,13 +7,14 @@ require_once 'Settings.php';
 class Team
 {
     private $tableId = "teamTable";
-    private $fileName = "../Data/Team/team.txt";
+    private $fileName;
 
     public $teamMembers = array();
     public $numberOfTeamMembers = 0;
 
     function __construct()
     {
+        $this->fileName = "../Data/" . $_SESSION['client'] . "/Team/team.txt";
         $this->readFromFile();
     }
 
