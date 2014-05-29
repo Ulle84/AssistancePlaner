@@ -26,7 +26,7 @@ class Day
             $this->serviceHours += 0.5;
         }
 
-        if ($this->serviceHours < 14) {
+        if ($this->serviceHours <= 13) {
             $this->standbyHours = 0.5;
         } else {
             $this->standbyHours = 1.0;

@@ -206,7 +206,7 @@ class Roster
         echo '</table>';
     }
 
-    public function printTableAssistant()
+    public function printTablesAssistant()
     {
         if ($this->lastChange == "") {
             echo '<br />Der Dienstplan für den Monat ' . get_month_description($this->month) . ' ' . $this->year . ' wurde noch nicht fertiggestellt.';
@@ -220,8 +220,7 @@ class Roster
         echo '<th>Dienst-Zeit</th>';
         echo '<th>Dienst</th>';
 
-        echo '<th>Bereitschafts-Zeit 1</th>';
-        echo '<th>Bereitschafts-Zeit 2</th>';
+        echo '<th>Bereitschafts-Zeit</th>';
         echo '<th>Bereitschaft</th>';
         echo '<th>Bemerkungen</th>';
         echo '</tr>';
@@ -236,13 +235,18 @@ class Roster
             echo '><td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
             echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
             echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
-            echo '<td class="left">' . 'ToDo' . '</td>';
-            echo '<td class="left">' . 'ToDo' . '</td>';
+            echo '<td class="left">10:00 - 11:00';
+            if ($this->monthPlan->days[$i]->serviceHours > 13) {
+                echo ' und 18:00 - 19:00';
+            }
+            echo '</td>';
             echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
             echo '<td class="left">' . $this->monthPlan->days[$i]->publicNotes . '</td>';
             echo '</tr>';
         }
         echo '</table>';
+
+
 
         echo '<h1>Meine Dienste und Bereitschaften</h1>';
         echo '<table>';
@@ -265,7 +269,11 @@ class Roster
             if ($this->standbyPerson[$i] == $_SESSION['userName']) {
                 echo '<tr>';
                 echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-                echo '<td class="left">' . 'ToDo' . '</td>';
+                echo '<td class="left">10:00 - 11:00';
+                if ($this->monthPlan->days[$i]->serviceHours > 13) {
+                    echo ' und 18:00 - 19:00';
+                }
+                echo '</td>';
                 echo '<td class="left">Bereitschaft</td>';
                 echo '</tr>';
             }

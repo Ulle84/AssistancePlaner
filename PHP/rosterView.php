@@ -55,7 +55,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     echo 'Antwort vom Server: <span id="httpResponse"></span>';
 }
 else {
-    $roster->printTableAssistant();
+    $roster->printTablesAssistant();
 }
 
 ?>
