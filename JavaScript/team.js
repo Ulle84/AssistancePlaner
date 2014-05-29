@@ -152,10 +152,11 @@ function checkLoginNames() {
 
 }
 
-function saveTable() {
+function saveTable(button) {
     if (!checkLoginNames()) {
         return;
     }
+    button.disabled = true;
 
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
@@ -199,6 +200,7 @@ function saveTable() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             response.innerHTML = xmlhttp.responseText;
+            button.disabled = false;
         }
     }
 

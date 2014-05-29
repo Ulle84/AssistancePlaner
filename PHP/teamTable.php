@@ -23,7 +23,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     echo '<br/>';
 
     echo '<input type="button" value="Neues Mitglied" onclick="newMember()"/>';
-    echo '<input type="button" value="Tabelle speichern" onclick="saveTable()"/>';
+    echo '<input type="button" value="Tabelle speichern" onclick="saveTable(this)"/>';
 
     echo '<br/>';
     echo 'Answer of Server: <span id="httpResponse"></span>';

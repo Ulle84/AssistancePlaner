@@ -61,10 +61,11 @@ function checkRoster(showSuccess) {
     return true;
 }
 
-function save(year, month) {
+function save(button, year, month) {
     if (!checkRoster(false)) {
         return;
     }
+    button.disabled = true;
 
     var httpResponse = document.getElementById("httpResponse");
 
@@ -108,6 +109,8 @@ function save(year, month) {
             var now = new Date();
             var lastChange = window.document.getElementById("lastChange");
             lastChange.textContent = now.toStringDisplayWithTime();
+
+            button.disabled = false;
         }
     }
 

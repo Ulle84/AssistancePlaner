@@ -20,7 +20,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     $workingTimes->printTable();
 
     echo '<br/>';
-    echo '<input type="button" value="Speichern" onclick="save()"/>';
+    echo '<input type="button" value="Speichern" onclick="save(this)"/>';
     echo '<br/>';
     echo 'Antwort vom Server: <span id="httpResponse"></span>';
 } else {

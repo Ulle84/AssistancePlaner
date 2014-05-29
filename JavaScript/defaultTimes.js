@@ -1,4 +1,6 @@
-function save() {
+function save(button) {
+    button.disabled = true;
+
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
 
@@ -22,6 +24,7 @@ function save() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             response.innerHTML = xmlhttp.responseText;
+            button.disabled = false;
         }
     }
 

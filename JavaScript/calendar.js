@@ -35,7 +35,8 @@ function markAllOkayDates() {
 }
 
 
-function save(userName, year, month, id) {
+function save(button, userName, year, month, id) {
+    button.disabled = true;
     var httpResponse = document.getElementById("httpResponse");
     httpResponse.innerHTML = "";
 
@@ -74,6 +75,7 @@ function save(userName, year, month, id) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             httpResponse.innerHTML = xmlhttp.responseText;
+            button.disabled = false;
         }
     }
 

@@ -1,4 +1,5 @@
-function save(year, month) {
+function save(button, year, month) {
+    button.disabled = true;
 
     var httpResponse = document.getElementById("httpResponse");
 
@@ -27,6 +28,7 @@ function save(year, month) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             httpResponse.innerHTML = xmlhttp.responseText;
+            button.disabled = false;
         }
     }
 
