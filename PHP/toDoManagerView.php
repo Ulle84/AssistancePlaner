@@ -11,7 +11,7 @@
     <script language="JavaScript" src="../JavaScript/datePicker.js"></script>
 </head>
 <body onload="init()">
-<?php include('userInformation.php'); ?>
+<?php include('navigation.php'); ?>
 
 <?php
 require_once('ToDoManager.php');

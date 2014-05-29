@@ -7,11 +7,11 @@
     <script language="JavaScript" src="../JavaScript/changePassword.js"></script>
 </head>
 <body>
-<?php include('userInformation.php'); ?>
+<?php include('navigation.php'); ?>
 <div class="center">
     <table>
         <tr>
-            <td>Username:</td>
+            <td>Benutzername:</td>
             <td id="userName"><?php echo $_SESSION['userName']; ?></td>
         </tr>
         <tr>

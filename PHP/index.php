@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-include('userInformation.php');
+include('navigation.php');
 echo '<h1>Anwendung Assistenz Planer</h1>';
 echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
 //echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';

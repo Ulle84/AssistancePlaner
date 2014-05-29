@@ -209,7 +209,7 @@ class Roster
     public function printTableAssistant()
     {
         if ($this->lastChange == "") {
-            echo 'Der Dienstplan für den Monat ' . get_month_description($this->month) . ' ' . $this->year . ' wurde noch nicht fertiggestellt.';
+            echo '<br />Der Dienstplan für den Monat ' . get_month_description($this->month) . ' ' . $this->year . ' wurde noch nicht fertiggestellt.';
             return;
         }
 
@@ -217,21 +217,61 @@ class Roster
 
         echo '<tr>';
         echo '<th>Datum</th>';
-        echo '<th>Zeit</th>';
+        echo '<th>Dienst-Zeit</th>';
         echo '<th>Dienst</th>';
+
+        echo '<th>Bereitschafts-Zeit 1</th>';
+        echo '<th>Bereitschafts-Zeit 2</th>';
         echo '<th>Bereitschaft</th>';
         echo '<th>Bemerkungen</th>';
         echo '</tr>';
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            echo '<tr>';
-            echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-            echo '<td>' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
+            echo '<tr';
+
+            if ($this->servicePerson[$i] == $_SESSION['userName'] || $this->standbyPerson[$i] == $_SESSION['userName']) {
+                echo ' class="highlighted"';
+            }
+
+            echo '><td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
+            echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
             echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
+            echo '<td class="left">' . 'ToDo' . '</td>';
+            echo '<td class="left">' . 'ToDo' . '</td>';
             echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
             echo '<td class="left">' . $this->monthPlan->days[$i]->publicNotes . '</td>';
             echo '</tr>';
         }
+        echo '</table>';
+
+        echo '<h1>Meine Dienste und Bereitschaften</h1>';
+        echo '<table>';
+
+        echo '<tr>';
+        echo '<th>Datum</th>';
+        echo '<th>Zeit</th>';
+        echo '<th>Typ</th>';
+        echo '</tr>';
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            if ($this->servicePerson[$i] == $_SESSION['userName']) {
+                echo '<tr>';
+                echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
+                echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
+                echo '<td class="left">Dienst</td>';
+                echo '</tr>';
+            }
+
+            if ($this->standbyPerson[$i] == $_SESSION['userName']) {
+                echo '<tr>';
+                echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
+                echo '<td class="left">' . 'ToDo' . '</td>';
+                echo '<td class="left">Bereitschaft</td>';
+                echo '</tr>';
+            }
+
+        }
+
         echo '</table>';
     }
 

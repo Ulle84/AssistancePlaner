@@ -11,12 +11,12 @@ function login() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if (xmlhttp.responseText == "changePassword") {
                 window.location.href = "../PHP/changePassword.php";
-                response.innerHTML = "Login erfolgreich - Bitte Passwort wechseln!"
+                response.innerHTML = "Anmeldung erfolgreich - Bitte Passwort wechseln!"
                 return;
             }
             if (xmlhttp.responseText == "OK") {
                 window.location.href = "../PHP/index.php";
-                response.innerHTML = "Login erfolgreich!"
+                response.innerHTML = "Anmeldung erfolgreich!"
                 return;
             }
 

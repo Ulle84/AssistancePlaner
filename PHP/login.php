@@ -9,7 +9,7 @@
 <div class="center">
     <table>
         <tr>
-            <td>Username:</td>
+            <td>Benutzername:</td>
             <td><input type="text" name="username" id="username"/></td>
         </tr>
         <tr>

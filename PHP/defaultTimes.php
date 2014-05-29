@@ -9,7 +9,7 @@
     <script language="JavaScript" src="../JavaScript/defaultTimes.js"></script>
 </head>
 <body>
-<?php include('userInformation.php'); ?>
+<?php include('navigation.php'); ?>
 
 <?php
 require_once 'WorkingTimes.php';
