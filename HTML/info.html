@@ -10,14 +10,14 @@
 <div id="documentation">
 <h1>Monatsablauf</h1>
 <ul>
- <li>Der Betreute legt die Dienstzeiten für jeden Tag fest.</li>
- <li>Der Betreute bestätigt seine Eingabe, daraufhin wird eine Mail an das Team geschickt mit der Bitte mögliche
+ <li>Der Klient legt die Dienstzeiten für jeden Tag fest.</li>
+ <li>Der Klient bestätigt seine Eingabe, daraufhin wird eine Mail an das Team geschickt mit der Bitte mögliche
   Termine
   einzutragen. Hier ist ein Link enthalten.
  </li>
  <li>Alle Assistenten tragen sich ein.</li>
- <li>Der Betreute bekommt einen Dienstplan-Vorschlag, den er noch editieren kann.</li>
- <li>Der Betreute “finalisiert” den Dienstplan - es wird eine Mail an alle mit dem Link auf den Dienstplan geschickt.
+ <li>Der Klient bekommt einen Dienstplan-Vorschlag, den er noch editieren kann.</li>
+ <li>Der Klient “finalisiert” den Dienstplan - es wird eine Mail an alle mit dem Link auf den Dienstplan geschickt.
  </li>
 </ul>
 
@@ -111,32 +111,52 @@ erster + zweiter Parameter: Wiederholungsinterval 1 d = every day <br/>
 d = day, w = week, m = month, y = year; <br/>
 dritter Paramter: d = repeat from due date, c = repeat from completion date
 
+<h1>Überlegungen mehr als einem Klienten</h1>
+<ul>
+ <li>Ziel: beliebig viele zu Betreuende (inklusive ihrer Teams) können die Webapplikation nutzen</li>
+ <li>Ordner mit beliebig vielen SQLite Files wäre leicht zu realisieren</li>
+ <li>Über eine Master-SQLite Datenbank erreicht man alle anderen Datenbanken</li>
+ <li>Beim Login gibt man zusätzlich zum Usernamen und Passwort noch einen "Klienten"-Namen ein - dieser wird als
+  Session-Variable gespeichert
+ </li>
+ <li>Der "Klienten"-Name kann auch per GET-Parameter übergeben werden</li>
+ <li>Anforderungen:</li>
+ <ul>
+  <li>Eine Datenbank pro Klienten</li>
+  <li>Masterdatenbank</li>
+  <li>Login erweitern</li>
+  <li>Möglichkeit schaffen neuen Klienten-Account anzulegen</li>
+ </ul>
+</ul>
+ </div>
+
+<h1>ICS-Export</h1>
+<div class="code">
+ BEGIN:VCALENDAR <br />
+ VERSION:2.0 <br />
+ PRODID:http://www.example.com/calendarapplication/ <br />
+ METHOD:PUBLISH <br />
+ BEGIN:VEVENT <br />
+ UID:461092315540@example.com <br />
+ ORGANIZER;CN="Alice Balder, Example Inc.":MAILTO:alice@example.com <br />
+ LOCATION:Somewhere <br />
+ SUMMARY:Eine Kurzinfo <br />
+ DESCRIPTION:Beschreibung des Termines <br />
+ CLASS:PUBLIC <br />
+ DTSTART:20060910T220000Z <br />
+ DTEND:20060919T215900Z <br />
+ DTSTAMP:20060812T125900Z <br />
+ END:VEVENT <br />
+ END:VCALENDAR
+</div>
+Subscription-Link Beispiel: webcal://www.calendarlabs.com/templates/ical/Sweden-Holidays.ics
 
 <h1>Gemischtes</h1>
 <ul>
  <li>Bei der Dienstplanerstellung auch auf die letzten Dienste des Vormonates achten.</li>
  <li>Dienste sollten nach Möglichkeit "blockweise" (das heißt mehrere Tage hintereinander) sein.</li>
- <li>Die Vorlieben des Betreuten sollten vor der Ausschöpfung des Stundenkontigentes priorisiert werden.</li>
+ <li>Die Vorlieben des Klienten sollten vor der Ausschöpfung des Stundenkontigentes priorisiert werden.</li>
  <li>Eine Bereitschaftsstunde wird mit einer halben Stunde angerechnet.</li>
 </ul>
-
-<h1>Überlegungen mehr als ein zu Betreuender</h1>
-<ul>
- <li>Ziel: beliebig viele zu Betreuende (inklusive ihrer Teams) können die Webapplikation nutzen</li>
- <li>Ordner mit beliebig vielen SQLite Files wäre leicht zu realisieren</li>
- <li>Über eine Master-SQLite Datenbank erreicht man alle anderen Datenbanken</li>
- <li>Beim Login gibt man zusätzlich zum Usernamen und Passwort noch einen "Betreuter"-Namen ein - dieser wird als
-  Session-Variable gespeichert
- </li>
- <li>Der "Betreuter"-Name kann auch per GET-Parameter übergeben werden</li>
- <li>Anforderungen:</li>
- <ul>
-  <li>Eine Datenbank pro Betreuten</li>
-  <li>Masterdatenbank</li>
-  <li>Login erweitern</li>
-  <li>Möglichkeit schaffen neuen Betreuten-Account anzulegen</li>
- </ul>
-</ul>
- </div>
 </body>
 </html>
