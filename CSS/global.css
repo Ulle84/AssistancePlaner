@@ -66,6 +66,7 @@ tr:last-child > td {
 
 .bad {
     background-color: #FFB2B2;
+    cursor: pointer;
 }
 
 .developerSection {
@@ -78,6 +79,7 @@ tr:last-child > td {
 
 .good {
     background-color: #99E699;
+    cursor: pointer;
 }
 
 .hidden {
@@ -99,6 +101,7 @@ tr:last-child > td {
 
 .okay {
     background-color: #FFEB1B;
+    cursor: pointer;
 }
 
 .right {

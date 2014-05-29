@@ -9,6 +9,13 @@ $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
 
+$monthReminder = $month - 1;
+$yearReminder = $year;
+if ($monthReminder == 0) {
+    $monthReminder = 12;
+    $yearReminder--;
+}
+
 $hostname = $_SERVER['HTTP_HOST'];
 $path = dirname($_SERVER['PHP_SELF']);
 
@@ -18,42 +25,28 @@ $mailAddresses = $team->getMailAddresses();
 $settings = new Settings();
 
 $message = 'Liebes Team,<br /><br />';
-$message .= 'bitte tragt bis <b>22.05.2014</b> Eure möglichen Termine für den '; //TODO Date Monatsende - 10 Tage?
+$message .= 'bitte tragt bis <b>15. ' . get_month_description($monthReminder) . ' ' . $yearReminder . '</b> Eure möglichen Termine für den ';
 $message .= get_month_description($month) . ' ' . $year . ' im ';
-$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/calendarView.php?year=' . $year . '&month=' . $month . '">' ;
-$message .= 'Assistenzplaner</a> ein<br /><br />Vielen Dank!';
+$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/calendarView.php?year=' . $year . '&month=' . $month . '">';
+$message .= 'Assistenzplaner</a> ein.<br /><br />Vielen Dank!';
 
 if ($content != "") {
     $message .= '<br /><br />Hier noch eine Nachricht von ' . $settings->adminName . ': <br /><hr />';
     $message .= $content;
 }
 
-//echo $message;
-//exit;
-
 $mail = new PHPMailer;
 
 $mail->CharSet = "UTF - 8";
 $mail->isSMTP(); // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com'; // Specify main and backup server
+$mail->Host = 'smtp.strato.de'; // Specify main and backup server
 $mail->SMTPAuth = true; // Enable SMTP authentication
-$mail->Username = 'AssistenzPlaner'; // SMTP username
-$mail->Password = 'l<\O.Oix0cApV<5!j^*VupN4N'; // SMTP password
-$mail->SMTPSecure = 'tls'; // Enable encryption, 'ssl' also accepted
-
-/*
- * $mail->IsSMTP();
-$mail->Host = "smtp . gmail . com";
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Username = "myEmail";
-$mail->Password = "myPassword";
+$mail->Username = 'info@assistenzplaner.de'; // SMTP username
+$mail->Password = '8XELhtUfgwFc'; // SMTP password
+$mail->SMTPSecure = 'ssl'; // Enable encryption, 'ssl' also accepted
 $mail->Port = "465";
- */
 
-//TODO username and reply to of administrator-settings?
-
-$mail->From = 'AssistenzPlaner@gmail.com';
+$mail->From = 'info@assistenzplaner.de';
 $mail->FromName = 'Assistenz Planer';
 
 foreach ($mailAddresses as $mailAddress => $name) {
@@ -71,11 +64,9 @@ $mail->WordWrap = 50; // Set word wrap to 50 characters
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true); // Set email format to HTML
 
-$mail->Subject = 'Bitte mögliche Termine eintragen.';
+$mail->Subject = 'Assistenzplaner - Bitte mögliche Termine eintragen';
 $mail->Body = $message;
-//$mail->AltBody = 'Liebes Team\n\nBitte tragt bis 22.05.2014 Eure möglichen Termien ein\n\nVielen Dank!';
 
-//TODO $mail->AltBody
 
 //$mail->SMTPDebug = 1;
 
@@ -86,7 +77,5 @@ if (!$mail->send()) {
 }
 
 echo 'Nachricht wurde geschickt.';
-
-
 
 ?>
