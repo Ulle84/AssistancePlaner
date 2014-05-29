@@ -16,7 +16,7 @@ function login() {
                 return;
             }
             if (xmlhttp.responseText == "OK") {
-                window.location.href = "../PHP/index.php";
+                window.location.href = "../PHP/overview.php";
                 response.innerHTML = "Anmeldung erfolgreich!"
                 return;
             }
