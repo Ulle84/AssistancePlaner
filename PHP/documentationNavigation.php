@@ -5,9 +5,9 @@ Ganz oben rechts ist immer die Navigation zu sehen.
 <h2>Klient</h2>
 Hier kann man den Namen des Klienten sehen.
 
-<h2>Angemeldeter Benutzer</h2>
-Hier kann man den aktuell am System angemeldeten Benutzer sehen. Will man mit einem anderen Benutzer-Account arbeiten,
-so kann man auf den Link "Abmelden" klicken und sich mit einem anderen Benutzer-Account am System anmelden.
+<h2>Assistent</h2>
+Hier kann man den aktuell am System angemeldeten Assistenten sehen. Will man mit einem anderen Assistenten-Account arbeiten,
+so kann man auf den Link "Abmelden" klicken und sich mit einem anderen Assistenten-Account am System anmelden.
 
 <h2>Übersicht</h2>
 Klickt man auf den Link Übersicht, so gelangt man zur Übersicht. Von dort aus kann man alle Seiten des Assistenz-Planers

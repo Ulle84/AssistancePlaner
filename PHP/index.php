@@ -10,7 +10,7 @@
 <?php include('navigation.php'); ?>
 
 <h1>Welcome</h1>
-ToDo add more content.
+ToDo: add more content.
 
 </body>
 </html>

@@ -8,12 +8,10 @@
 </head>
 <body>
 <?php include('navigation.php'); ?>
+<div class="hidden" id="userName"><?php echo $_SESSION['userName']; ?></div>
+
 <div class="center">
     <table>
-        <tr>
-            <td>Benutzername:</td>
-            <td id="userName"><?php echo $_SESSION['userName']; ?></td>
-        </tr>
         <tr>
             <td>Aktuelles Passwort:</td>
             <td><input type="password" name="oldPassword" id="oldPassword"/></td>

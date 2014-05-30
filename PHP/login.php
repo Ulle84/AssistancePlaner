@@ -6,6 +6,15 @@
     <script language="JavaScript" src="../JavaScript/login.js"></script>
 </head>
 <body>
+
+<?php
+$redirect = 'overview.php';
+if (isset($_GET['redirect'])) {
+    $redirect = $_GET['redirect'] . '.php';
+}
+echo '<div id="redirect" class="hidden">' . $redirect . '</div>';
+?>
+
 <div class="center">
     <table>
         <tr>
@@ -23,8 +32,15 @@
             </td>
         </tr>
         <tr>
-            <td>Benutzername:</td>
-            <td><input type="text" name="username" id="username"/></td>
+            <td>Assistent:</td>
+            <td>
+                <?php
+                echo '<input type="text" name="assistant" id="assistant"';
+                if (isset($_GET['assistant'])) {
+                    echo ' value = "' . $_GET['assistant'] . '"';
+                }
+                echo '/>';
+                ?>
         </tr>
         <tr>
             <td>Passwort:</td>
@@ -32,7 +48,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="button" value="Anmelden" onclick="login()"/></td>
+            <td><input type="button" value="Anmelden" onclick = "login()" /></td>
         </tr>
     </table>
     <br/>

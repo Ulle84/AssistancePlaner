@@ -30,6 +30,10 @@ th, td {
     margin: -100px 0 0 -250px;
 }
 
+.hidden {
+    display: none;
+}
+
 #loginResponse {
     position: absolute;
     left: 50%;

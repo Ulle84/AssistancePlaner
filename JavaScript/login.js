@@ -2,7 +2,7 @@ function login() {
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
 
-    var username = window.document.getElementById("username").value;
+    var assistant = window.document.getElementById("assistant").value;
     var client = window.document.getElementById("client").value;
     var password = window.document.getElementById("password").value;
 
@@ -11,12 +11,12 @@ function login() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if (xmlhttp.responseText == "changePassword") {
-                window.location.href = "../PHP/changePassword.php";
+                window.location.href = "changePassword.php";
                 response.innerHTML = "Anmeldung erfolgreich - Bitte Passwort wechseln!"
                 return;
             }
             if (xmlhttp.responseText == "OK") {
-                window.location.href = "../PHP/overview.php";
+                window.location.href = window.document.getElementById("redirect").textContent;
                 response.innerHTML = "Anmeldung erfolgreich!"
                 return;
             }
@@ -27,5 +27,5 @@ function login() {
 
     xmlhttp.open("POST", "../PHP/loginHandler.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("username=" + username + "&password=" + password + "&client=" + client);
+    xmlhttp.send("assistant=" + assistant + "&password=" + password + "&client=" + client);
 }

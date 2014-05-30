@@ -1,34 +1,28 @@
 <?php
+session_start();
 
 require_once('Passwords.php');
 require_once('Settings.php');
 
-session_start();
-
-$username = $_POST['username'];
+$assistant = $_POST['assistant'];
 $client = $_POST['client'];
 $password = $_POST['password'];
 
 $passwords = new Passwords($client);
-if ($passwords->checkUser($username, $password)) {
+if ($passwords->checkUser($assistant, $password)) {
     $_SESSION['loggedIn'] = true;
-    $_SESSION['userName'] = $username;
+    $_SESSION['userName'] = $assistant;
     $_SESSION['client'] = $client;
-
-    if ($username == "developer") {
-        $_SESSION['developer'] = true;
-    } else {
-        $_SESSION['developer'] = false;
-    }
+    $_SESSION['developer'] = false;
 
     $settings = new Settings();
-    if ($username == $settings->adminName) {
+    if ($assistant == "") {
         $_SESSION['admin'] = true;
     } else {
         $_SESSION['admin'] = false;
     }
 
-    if ($username == "SuperUser") {
+    if ($assistant == "SuperUser") {
         $_SESSION['admin'] = true;
         $_SESSION['developer'] = true;
     }
