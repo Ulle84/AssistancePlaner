@@ -9,8 +9,8 @@
 <body>
 <?php include('navigation.php'); ?>
 
-<h1>Welcome</h1>
-ToDo: add more content.
+<h1>Willkommen beim Assistenz Planer</h1>
+Bitte <a href="login.php">melden Sie sich an</a> oder <a href="createNewAccount.php">legen Sie einen neuen Klienten an</a>.
 
 </body>
 </html>

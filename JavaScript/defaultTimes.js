@@ -22,9 +22,9 @@ function save(button) {
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
+        button.disabled = false;
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             response.innerHTML = xmlhttp.responseText;
-            button.disabled = false;
         }
     }
 

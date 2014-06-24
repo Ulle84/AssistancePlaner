@@ -6,6 +6,7 @@
     <script language="JavaScript" src="../JavaScript/login.js"></script>
 </head>
 <body>
+<?php include('navigation.php'); ?>
 
 <?php
 $redirect = 'overview.php';

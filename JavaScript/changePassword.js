@@ -1,4 +1,5 @@
-function changePassword() {
+function changePassword(button) {
+    button.disabled = true;
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
 
@@ -24,6 +25,7 @@ function changePassword() {
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
+        button.disabled = false;
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             response.innerHTML = xmlhttp.responseText;
         }

@@ -17,9 +17,9 @@ if (isset($_SESSION['userName'])) {
 }
 else
 {
+    echo '<a href="index.php">Willkommen</a>';
+    echo '&nbsp;&nbsp;&nbsp;<a href="createNewAccount.php">Neuen Klienten einrichten</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="login.php">Anmelden</a>';
 }
 echo '</div>';
-
-
 ?>

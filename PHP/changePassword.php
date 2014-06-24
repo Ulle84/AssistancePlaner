@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input onclick="changePassword()" type="submit" value="Passwort ändern"/></td>
+            <td><input onclick="changePassword(this)" type="submit" value="Passwort ändern"/></td>
         </tr>
     </table>
     <span id="httpResponse"></span>

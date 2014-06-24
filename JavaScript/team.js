@@ -128,6 +128,10 @@ function checkLoginNames() {
     var loginNames = [];
     for (var i = 1; i < rows.length; i++) {
         var data = rows[i].getElementsByTagName("td");
+        if (data[0].firstChild.value == "") {
+            alert("Ein leerer Login-Name ist nicht erlaubt!");
+            return false;
+        }
         loginNames.push(data[0].firstChild.value);
     }
 
@@ -152,7 +156,7 @@ function checkLoginNames() {
 
 }
 
-function saveTable(button) {
+function saveTeam(button) {
     if (!checkLoginNames()) {
         return;
     }

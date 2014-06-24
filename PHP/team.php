@@ -122,7 +122,7 @@ class Team
         echo '<td><input onchange="validateInteger(this, 1, 999)" onblur="validateInteger(this, 1, 999)" type="text" size="11" maxlength="3" style="text-align: right" value="' . $teamMember->priority . '"/></td>';
 
         $weekdays = get_weekdays();
-        echo '<td>';
+        echo '<td style="min-width: 300px">';
         for ($j = 0; $j < 7; $j++) {
             echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
 
@@ -134,7 +134,7 @@ class Team
         }
         echo '</td>';
 
-        echo '<td class="left"><input type="button" value="Löschen" onclick="removeMember(this)" />';
+        echo '<td class="left" style="min-width: 250px"><input type="button" value="Löschen" onclick="removeMember(this)" />';
         echo '<input type="button" value="Passwort zurücksetzen" onclick="resetPassword(this)" /></td>';
 
         echo '</tr>';

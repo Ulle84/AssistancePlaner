@@ -40,6 +40,14 @@ class Passwords
         }
     }
 
+    public function addUser($userName, $password)
+    {
+        if (!array_key_exists($userName, $this->passwords)) {
+            $this->passwords[$userName] = $this->hashPassword($password);
+            $this->saveToFile();
+        }
+    }
+
     public function resetPassword($userName)
     {
         if (array_key_exists($userName, $this->passwords)) {
@@ -62,9 +70,8 @@ class Passwords
 
         // delete users if necessary
         foreach ($this->passwords as $loginName => $password) {
-            //TODO do not remove master or develop
             if (!in_array($loginName, $teamLoginNames)) {
-                if ($loginName != "developer" && $loginName != $this->settings->adminName) {
+                if ($loginName != "") {
                     unset($this->passwords[$loginName]);
                     $save = true;
                 }

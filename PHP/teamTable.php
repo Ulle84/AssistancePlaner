@@ -23,10 +23,10 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     echo '<br/>';
 
     echo '<input type="button" value="Neues Mitglied" onclick="newMember()"/>';
-    echo '<input type="button" value="Tabelle speichern" onclick="saveTable(this)"/>';
+    echo '<input type="button" value="Team speichern" onclick="saveTeam(this)"/>';
 
     echo '<br/>';
-    echo 'Answer of Server: <span id="httpResponse"></span>';
+    echo 'Antwort des Servers: <span id="httpResponse"></span>';
 }
 else {
     echo 'Zugang nicht erlaubt!';
