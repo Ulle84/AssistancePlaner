@@ -691,7 +691,12 @@ class Roster
             $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
         }
 
-        $scaleFactor = $totalOfServiceHours / ($totalOfServiceHours + $totalOfStandbyHours);
+        $scaleFactor = $totalQuotaOfHours / ($totalOfServiceHours + $totalOfStandbyHours);
+
+        /*echo '$totalQuotaOfHours: ' . $totalQuotaOfHours . '<br />';
+        echo '$totalOfServiceHours: ' . $totalOfServiceHours . '<br />';
+        echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
+        echo '$scaleFactor: ' . $scaleFactor . '<br />';*/
 
         if ($_SESSION['developer']) {
             echo '<div class="developerSection">';
@@ -753,6 +758,7 @@ class Roster
         //$this->printConvertedDataTable($convertedData);
 
 
+        // ToDo Wert wieder runtersetzen
         $serviceRunMax = 2;
         $standbyRunMax = 5;
 
