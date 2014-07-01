@@ -669,7 +669,9 @@ class Roster
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $sum = 0;
             foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-                $sum += $dates[$i - 1];
+                if ($dates[$i - 1] > 0) {
+                    $sum++;
+                }
             }
             if ($sum < 2) {
                 return;
