@@ -309,10 +309,11 @@ und die Vorlieben des Klienten berücksichtigt werden. %TODO weitere Erläuterun
 
 
 \subsubsection{Erste Version}
+\label{sec:algorithmVersion1}
 Die allererste Version des Algorithmus berücksichtigt nur die hunderprozentige Betreuungsabdeckung. Der Algorithmus geht über alle Tage des Monats und schaut, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht schon mal ein vollständiger Dienstplan, der Klient ist betreut, jedoch wurden weder die Stundenkontigente noch die Vorlieben des Klienten berücksichtigt.
 
 \subsubsection{Zweite Version - Berücksichtigung der allgemeinen Vorlieben}
-\label{sec:secondVersion}
+\label{sec:algorithmVersion2}
 
 In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient eine Priorisierungswert festlegen. 
 %TODO Verlinkung zur Erklärung der Team-Tabelle
@@ -376,12 +377,20 @@ Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\
 \end{table}
 
 \subsubsection{Dritte Version - Berücksichtigung der Wochentage}
+\label{sec:algorithmVersion3}
 Der Klient kann Assistenten an bestimmten Wochentagen priorisieren. %TODO verlinkung auf entspechendes kapitel
-Der Algorithmus geht genauso vor wie in Abschnitt \ref{sec:secondVersion} beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 1 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt. Somit steigt die Wahrscheinlichkeit um das doppelte, dass Assistent 1 an den Montagen den Dienst bekommt.
+Der Algorithmus geht genauso vor wie in Abschnitt \ref{sec:algorithmVersion2} beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 1 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt. Somit steigt die Wahrscheinlichkeit um das doppelte, dass Assistent 1 an den Montagen den Dienst bekommt.
 
 \subsubsection{Vierte Version - Berücksichtigung der Stundenkontigente}
+\label{sec:algorithmVersion4}
 In der nächsten Verfeinerung des Algoritmus werden die Stundengkontigente berücksichtigt. Bisher hat der Algorithmus einfach den erst und zweit-besten Assistenten genommen und für Dienst bwz. Bereitschaft eingeteilt. Das führt zwar zu einem lokalen Optimum, führt aber in der Regel dazu, dass die Stundenauslastung sehr ungleichmäßig ist. Um eine gleichmäßige Stundenauslastung zu erreichen reicht es nicht mehr, über alle Tage zu iterieren und jeden Tag isoliert zu betrachten, sondern der gesamte Monat muss betrachtet werden.
 Um dies zu erreichen wird die Punktetabelle in eine andere Tabelle konvertiert.
+%TODO weitere Beschreibung
+
+\subsubsection{Fünfte Version - Berücksichtigung der Stichwörter}
+\label{sec:algorithmVersion5}
+Der Algorithums arbeitet prinzipiell wie in Abschnitt \ref{sec:algorithmVersion4} beschrieben. Bei der Erstellung der Punktetabelle werden jedoch die Stichworte der Monats... berücksichtigt.
+%TODO näher beschreiben
 
 
 
@@ -416,6 +425,10 @@ else {
 - "denglische" Formulierungen wie ausgeloggt werden vermieden
 
 \section{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
+
+
+
+\subsection{Mögliche Erweiterungen}
 
 \bibliographystyle{babplain}
 \bibliography{../BibTeX/literatur}

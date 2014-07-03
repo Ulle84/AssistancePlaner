@@ -23,6 +23,7 @@ $month = date("n");
 $year = date("Y");
 
 // switch to next month
+//TODO switch only if not assistant
 $month++;
 if ($month == 13) {
     $month = 1;

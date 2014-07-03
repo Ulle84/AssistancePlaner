@@ -55,7 +55,7 @@ foreach ($mailAddresses as $mailAddress => $name) {
 }
 
 // also notify developer
-$mail->addAddress('u.belitz@gmx.de', 'Ulrich Belitz');  // Add a recipient
+$mail->addBCC('u.belitz@gmx.de', 'Ulrich Belitz');
 
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');

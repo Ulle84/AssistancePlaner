@@ -7,9 +7,14 @@ LaTeX/*.4ct
 LaTeX/*.4tc
 LaTeX/*.aux
 LaTeX/*.bbl
+LaTeX/*.dvi
+LaTeX/*.idx
 LaTeX/*.lof
+LaTeX/*.lol
 LaTeX/*.log
 LaTeX/*.lot
+LaTeX/*.lpr
+LaTeX/*.nlo
 LaTeX/*.out
 LaTeX/*.pdf
 LaTeX/*.synctex.gz
