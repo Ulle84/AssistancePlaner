@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 require_once 'Team.php';
@@ -53,7 +54,9 @@ foreach ($mailAddresses as $mailAddress => $name) {
     $mail->addAddress($mailAddress, $name);
 }
 
-//$mail->addAddress('u.belitz@gmx.de', 'Ulrich Belitz');  // Add a recipient
+// also notify developer
+$mail->addAddress('u.belitz@gmx.de', 'Ulrich Belitz');  // Add a recipient
+
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -71,11 +74,11 @@ $mail->Body = $message;
 //$mail->SMTPDebug = 1;
 
 if (!$mail->send()) {
-    echo 'Nachricht konnte nicht geschickt werden. ';
+    echo 'Nachricht konnte nicht gesendet werden. ';
     echo 'Fehlermeldung: ' . $mail->ErrorInfo;
     exit;
 }
 
-echo 'Nachricht wurde geschickt.';
+echo 'Nachricht wurde gesendert.';
 
 ?>
