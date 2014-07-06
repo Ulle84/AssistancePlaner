@@ -90,8 +90,279 @@
 %\clearpage
 %\include{Inhalt/Roadmap}
 
-INHALT
-%TODO Inhalt einfügen
+\chapter{Aufgabenstellung} % alternativ: Ziel der Arbeit
+
+
+\chapter{Motivation}
+-> den unbedarften Leser "abholen"
+warum überhapt den ganzen Aufwand treiben
+
+\chapter{Grundlagen}
+In diesem Kapitel ...
+\section{Webentwicklung}
+\subsection{PHP}
+\subsection{HTML}
+\subsection{CSS}
+Cascading Style Sheets ...
+\subsection{JavaScript}
+-> buch von Koch
+\subsection{AJAX}
+
+\section{Agile Softwareentwicklung}
+\subsection{User Stories}
+
+\section{Modellgetriebene Software-Entwicklung}
+\subsection{SysML}
+\section{Datenbanken} % natürlich nur, wenn verwendet ;-)
+
+\chapter{Anforderungsermittlung}
+\section{Begrifflichkeiten}
+
+\subsection{Klient}
+Der Klient ist ein körperlich behinderter Mensch, der an Muskelschwäche leidet. %TODO Genauer beschreiben?
+%TODO Verallgemeinern!!!
+Aus Respekt vor dem körperlich erkrankten Menschen wird in der vorliegenden Ausarbeitung nicht von dem \enquote{körperlich Behinderten} gesprochen, sondern stets von dem \enquote{Klienten}.
+
+\subsection{Assistent}
+Der Assistent ist ein Helfer, der dem Klienten zur Hand geht und ihn im alltäglichen Leben unterstützt. All das, was der Klient nicht selbst erledigen kann, wird durch einen Assistenten erledigt.
+
+\subsection{Team}
+Das Team besteht aus mehreren Assistenten (während der Entstehung dieser Ausarbeitung aus 7 Stück).
+
+\subsection{Monatsplan}
+Im Monatsplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. Während den Bereitschaftszeiten muss der Assistent telefonisch erreichbar sein und innerhalb kurzer Zeit zum Klienten zu kommen und um den Dienst zu übernehmen. Die Dienste gehen frühestens um 13 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages. 
+
+\subsection{Stundenkontigent}
+Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Jeder Assistent möchte sein Stundenkontigent möglichst gut ausgeschöpft bekommen. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen. %TODO die letzten zwei Sätze direkt hintereinadner hören sich doof an!
+
+\section{Ist-Prozess}
+Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient hat für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
+Die Assistenten haben auf diese E-Mail geantwortet und darin beschrieben wann sie Zeit für Dienste haben.
+Der Klient hat manuell mit Hilfe einer Excel-Tabelle den Dienstplan erstellt und musste dabei ständig zwischen Excel-Tabelle und allen Antworten des Teams (sieben an der Zahl) wechseln. Nach der Fertigstellung des Dienstplans hat der Klient eine E-Mail mit dem Dienstplan an sein Team geschickt.
+Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden im Monat) und Nerven gekostet.
+%TODO Ablaufdiagramm?
+
+\section{Soll-Prozess}
+Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
+Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommdenen Monat ein. Per Knopfdruck wird das Team per E-Mail informiert und darum gebeten die freien Tage auf einer Webseite (Link ist in der E-Mail enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben wird vom Sysmtem mittels eines Algorithmuses
+%TODO evt besser umschreiben
+ ein Dienstplan-Vorschlag erstellt und dem Klienten eine E-Mail geschickt mit einem Link auf den Dienstplan. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
+Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
+%TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
+
+\section{User Stories}
+Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind einige User-Stories abgeleitet worden:
+%TODO ggf noch den  ..., um ... Teil ergänzen
+
+\subsection{Klient}
+\begin{itemize}
+%TODO einheitliche Verwednung eines Begriffes für Notizen, Hinweise, etc.
+\item Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
+\item Als Klient möchte ich die Möglichkeit haben, den Dienstplan nach meinen Wünschen anzupassen.
+\item Als Klient möchte ich eine Möglichkeit haben mein Team zu verwalten.
+\item Als Klient möchte ich die Assistenten bewerten, um guten Assistenten bei der Einteilung Vorrang zu gewähren.
+\item Als Klient möchte ich bei den Assistenten Vorlieben für Wochentage eingeben können.
+\item Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stundenverteilung sehen können.
+\item Als Klient möchte ich Notizen zum Tag erstellen können, die für jeden sichtbar sind (öffentliche Notizen).
+\item Als Klient möchte ich Notizen zum Tag erstellen können, die nur für mich sichtbar sind (private Notizen).
+\item Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich anpassen kann.
+\item Als Klient möchte ich eine Mail an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
+\item Als Klient möchte ich monatsbezogene Hinweise zum Dienstplan eingeben können.
+\end{itemize}
+
+\subsection{Assistent}
+\begin{itemize}
+\item Als Assistent möchte ich angeben können, wann ich arbeiten kann.
+\item Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekommen.
+\item Als Assistent möchte ich meine Eingaben im Kalender ändern können.
+\item Als Assistent möchte ich sehen, wann ich meine Dienste habe.
+\item Als Assistent möchte ich sehen, wann ich Bereitschaft habe.
+\item Als Assistent möchte ich eine Möglichkeit haben Termine zu favorisieren.
+\item Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
+\end{itemize}
+
+\subsection{Allgemein}
+\begin{itemize}
+\item Als Anwender möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde.
+\item Als Anwender möchte ich mich mit einem eigenen Account beim System anmelden können, um nur die Dinge zu sehen, die mich interessieren und nicht aus Versehen ungewollte Änderungen zu machen.
+\end{itemize}
+
+
+\section{Abgeleitete Anforderungen}
+\subsection{Serverbasierte Anwendung}
+\subsection{User Management}
+
+
+\chapter{Software-Design} % oder einfach nur Design?
+Modellgetriebene Software-Entwicklung
+SysML Modell
+UML Ablaufdiagramme
+Datenbankmodell?
+
+\chapter{Implementierung}
+\section{Wahl der Programmiersprachen}
+
+\subsection{Backend}
+PHP + SQLite
+
+\subsection{Frontend}
+Das Frontend wurde mit HTML, CSS und JavaScript programmiert.
+
+\section{Verwaltung der Bediener}
+Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Bediener notwendig.
+Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
+
+
+
+\section{Team-Management}
+\section{Dienst-Plan}
+\section{Monats-Plan}
+\section{Standard Dienstzeiten}
+\section{Kalender}
+
+\section{Entwicklung des Algorithmus zur Dienstplanerstellung}
+Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
+
+\subsection{Anforderungen}
+Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, der eine hunderprozentige Betreuungsabdeckung erreicht. Für jeden Tag muss ein Assistent für den Dienst und ein Assistent für die Bereitschaft im Dienstplan eingetragen sein.
+
+Nebenbedingungen sind, dass die Stundenkontigente %TODO link auf Erklärung
+der Assistenen gleichmäßig ausgeschöpft werden %TODO weitere Erklärungen - was bedeutet "gleichmäßig"
+und die Vorlieben des Klienten berücksichtigt werden. %TODO weitere Erläuterungen
+%TODO Begriff Vorlieben wirklich lassen?
+
+\subsection{Ein- und Ausgabe}
+%TODO Bild?
+
+
+\subsection{Erste Version}
+\label{sec:algorithmVersion1}
+Die allererste Version des Algorithmus berücksichtigt nur die hunderprozentige Betreuungsabdeckung. Der Algorithmus geht über alle Tage des Monats und schaut, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht schon mal ein vollständiger Dienstplan, der Klient ist betreut, jedoch wurden weder die Stundenkontigente noch die Vorlieben des Klienten berücksichtigt.
+
+\subsection{Zweite Version - Berücksichtigung der allgemeinen Vorlieben}
+\label{sec:algorithmVersion2}
+
+In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient eine Priorisierungswert festlegen. 
+%TODO Verlinkung zur Erklärung der Team-Tabelle
+Es wird eine Punktetabelle erstellt. Die erste Spalte ist der Tag des Monats, jede weitere Spalte repräsentiert die Verfügbarkeit eines Assistenten. Ist der Assistent nicht verfügbar, so wird eine Null eingetragen. Ist der Assistent zur Not verfügbar, so wird eine Eins eingetragen. Ist der Assistent voll verfügbar, so wird eine Zehn eingetragen. Als Beispiel dienen die Zahlen in Tabelle \ref{tab:scoreTable}. Nun wird jeder Verfügbarkeitswert mit dem Priorisierungswert multipliziert. Mit den Prioriserungswerten  aus Tabelle \ref{tab:teamMemberPriorities} verändert sich die Punktetabelle. Das Ergebnis ist in Tabelle \ref{tab:scoreTable2} zu sehen. \\
+Nach der Erstellung der Punktetabelle iteriert der Algorithmus über alle Tage und gibt dem Assistenten mit der höchsten Punktzahl den Dienst und dem Assistenten mit der zweithöchsten Punktzahl die Bereitschaft.
+Eine sinnvolle Auslastung der Stundenkontigente findet in dieser Version des Algorithmus nicht statt.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\ 
+\hline 
+1 & 0 & 10 & 10 \\ 
+\hline 
+2 & 1 & 10 & 0 \\ 
+\hline 
+3 & 10 & 1 & 10 \\ 
+\hline 
+... & ... & ... & ... \\ 
+\hline 
+\end{tabular} 
+\caption{Punktetabelle}
+\label{tab:scoreTable}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+Assitent & Priorisierungwert \\ 
+\hline 
+Assitent 1 & 1 \\ 
+\hline 
+Assitent 2 & 2 \\ 
+\hline 
+Assitent 3 & 3 \\ 
+\hline 
+\end{tabular} 
+\caption{Priorisierungswerte}
+\label{tab:teamMemberPriorities}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\ 
+\hline 
+1 & 0 & 20 & 30 \\ 
+\hline 
+2 & 1 & 20 & 0 \\ 
+\hline 
+3 & 10 & 2 & 30 \\ 
+\hline 
+... & ... & ... & ... \\ 
+\hline 
+\end{tabular}
+\caption{Punktetabelle nach Multiplikation mit Priorisierungswert}
+\label{tab:scoreTable2}
+\end{table}
+
+\subsection{Dritte Version - Berücksichtigung der Wochentage}
+\label{sec:algorithmVersion3}
+Der Klient kann Assistenten an bestimmten Wochentagen priorisieren. %TODO verlinkung auf entspechendes kapitel
+Der Algorithmus geht genauso vor wie im vorherigen Abschnitt beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 1 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt. Somit steigt die Wahrscheinlichkeit um das doppelte, dass Assistent 1 an den Montagen den Dienst bekommt.
+
+\subsection{Vierte Version - Berücksichtigung der Stundenkontigente}
+\label{sec:algorithmVersion4}
+In der nächsten Verfeinerung des Algoritmus werden die Stundengkontigente berücksichtigt. Bisher hat der Algorithmus einfach den erst und zweit-besten Assistenten genommen und für Dienst bwz. Bereitschaft eingeteilt. Das führt zwar zu einem lokalen Optimum, führt aber in der Regel dazu, dass die Stundenauslastung sehr ungleichmäßig ist. Um eine gleichmäßige Stundenauslastung zu erreichen reicht es nicht mehr, über alle Tage zu iterieren und jeden Tag isoliert zu betrachten, sondern der gesamte Monat muss betrachtet werden.
+Um dies zu erreichen wird die Punktetabelle in eine andere Tabelle konvertiert.
+%TODO weitere Beschreibung
+
+\subsection{Fünfte Version - Berücksichtigung der Stichwörter}
+\label{sec:algorithmVersion5}
+Der Algorithums arbeitet prinzipiell wie im vorherigen Abschnitt beschrieben. Bei der Erstellung der Punktetabelle werden jedoch die Stichworte der Monats... berücksichtigt.
+%TODO näher beschreiben
+
+
+%TODO weitere Versionen des Algorithmus?
+
+
+%TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild beschreiben
+
+
+
+\section{Code-Listing-Test}
+\begin{lstlisting}
+<?php
+/* this is a stupid example */
+$username = $_POST["username"];
+$passwort = $_POST["passwort"];
+
+$pass = md5($passwort);
+
+// another comment
+if($username=="Andavos" and
+$pass=="fd0d9cdefd5d42dfa36c74a449aa8214") {
+   echo "Herzlich Willkommen";
+}
+else {
+   echo "Login Fehlgeschlagen";
+}
+?>
+\end{lstlisting}
+
+\clearpage
+\newpage
+
+\chapter{Irgendwo...}
+- "denglische" Formulierungen wie ausgeloggt werden vermieden
+
+\chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
+
+
+
+\section{Mögliche Erweiterungen}
+\subsection{Cron-Jobs}
+braucht weitere Funktionalität des Servers
+
+\subsection{Ideen aus ToDo.html übernehmen}
+%TODO Ideen aus ToDo.html übernehmen
 
 
 \listoftables % Tabellenverzeichnis
@@ -107,7 +378,7 @@ INHALT
 \let\chapter\stdchapter % zurück zur alten Definition
 
 % Literaturverzeichnis ---------------------------------------------------------
-%   Das Literaturverzeichnis wird aus der BibTeX-Datenbank "Bibliographie.bib"
+%   Das Literaturverzeichnis wird aus der BibTeX-Datenbank
 %   erstellt.
 % ------------------------------------------------------------------------------
 
@@ -119,15 +390,13 @@ INHALT
 %   Dies geschieht in der Datei "Anhang.tex".
 % ------------------------------------------------------------------------------
 \begin{appendix}
-    \clearpage
-    \chapter{Anhang}
-    \label{sec:Anhang}
-    % Rand der Aufzählungen in Tabellen anpassen
-    \setdefaultleftmargin{1em}{}{}{}{}{}
-
+\clearpage
+\chapter{Anhang}
+\label{sec:Anhang}
+% Rand der Aufzählungen in Tabellen anpassen
+\setdefaultleftmargin{1em}{}{}{}{}{}
     
-    
-%    \input{Quellcode}
+% \input{Quellcode}
 \end{appendix}
 
 % Index ------------------------------------------------------------------------
