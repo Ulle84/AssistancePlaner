@@ -5,6 +5,15 @@ body {
     line-height: 150%;
 }
 
+a {
+    color: #2895f1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 input {
     font-family: Verdana;
     font-size: 10pt;
