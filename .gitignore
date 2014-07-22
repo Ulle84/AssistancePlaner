@@ -3,6 +3,8 @@
 .idea/.name
 .idea/scopes/*.xml
 
+Data
+
 LaTeX/*.4ct
 LaTeX/*.4tc
 LaTeX/*.aux
