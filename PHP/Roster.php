@@ -673,6 +673,7 @@ class Roster
                     $sum++;
                 }
             }
+            //echo 'day: ' . $i . ' sum: ' . $sum . '<br />';
             if ($sum < 2) {
                 return;
             }
