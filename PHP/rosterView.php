@@ -50,6 +50,7 @@ if ($_SESSION['developer'] || $_SESSION['admin']) {
     echo '<br/>';
     echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(1)"/>';
     echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
+    echo '<input type="button" value="Dienstplan als PDF anzeigen" onclick="createPdf(this, ' . $year . ', ' . $month . ')"/>';
 
     echo '<br/>';
 

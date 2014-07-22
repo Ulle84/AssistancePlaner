@@ -35,6 +35,17 @@ class Team
         return $mailAddresses;
     }
 
+    public function getFullNameFromId($id)
+    {
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            if ($this->teamMembers[$i]->loginName == $id) {
+                $completeName = $this->teamMembers[$i]->firstName . ' ' . $this->teamMembers[$i]->lastName;
+                return $completeName;
+            }
+        }
+        return "";
+    }
+
     public function readFromFile()
     {
         $this->numberOfTeamMembers = 0;

@@ -4,6 +4,8 @@ require_once 'AssistanceInput.php';
 require_once 'Team.php';
 require_once 'MonthPlan.php';
 
+require_once '../ExternalResources/FreePDF_v1_7/fpdf.php';
+
 function compare($value1, $value2)
 {
     $a = $value1[0];
@@ -181,8 +183,7 @@ class Roster
 
     public function printNotesFromAssistants()
     {
-        if (!$this->assistanceInput->hasNotes())
-        {
+        if (!$this->assistanceInput->hasNotes()) {
             return;
         }
 
@@ -195,10 +196,10 @@ class Roster
 
         foreach ($this->assistanceInput->assistanceNotes as $name => $notes) {
             if ($notes != "") {
-            echo '<tr>';
-            echo '<td class="topLeft">' . $name . '</td>';
-            echo '<td class="topLeft">' . $notes . '</td>';
-            echo '</tr>';
+                echo '<tr>';
+                echo '<td class="topLeft">' . $name . '</td>';
+                echo '<td class="topLeft">' . $notes . '</td>';
+                echo '</tr>';
             }
         }
 
@@ -245,7 +246,6 @@ class Roster
             echo '</tr>';
         }
         echo '</table>';
-
 
 
         echo '<h1>Meine Dienste und Bereitschaften</h1>';
@@ -317,6 +317,53 @@ class Roster
 
 
         echo '</table>';
+    }
+
+    public function printPdf()
+    {
+        $pdf = new FPDF('L');
+        $pdf->SetTitle("Dienstplan", true);
+        $header = array('Datum', 'Dienst-Zeit', 'Dienst', 'Bereitschafts-Zeit', 'Bereitschaft');
+        $w = array(25, 30, 70, 65, 70);
+
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->AddPage();
+
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->SetTextColor(0);
+        $pdf->SetDrawColor(0, 0, 0);
+        $pdf->SetLineWidth(.3);
+
+        $pdf->SetFont('', 'B');
+
+        $pdf->Cell(200, 10, utf8_decode('Team Patrick Sieben - Dienstplan ' . get_month_description($this->month) . ' ' . $this->year . ' - Letzte Änderung: ' . $this->lastChange));
+        $pdf->Ln();
+
+        $cellHeight = 5.3;
+
+        for ($j = 0; $j < count($header); $j++) {
+            $pdf->Cell($w[$j], $cellHeight, $header[$j], 1, 0, 'C', true);
+        }
+        $pdf->SetFont('');
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $pdf->Ln();
+
+
+            $pdf->Cell($w[0], $cellHeight, get_short_date($this->year, $this->month, $i), 1, 0, 'R', false);
+            $pdf->Cell($w[1], $cellHeight, $this->monthPlan->days[$i]->getWorkingHours(), 1, 0, 'C', false);
+            $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
+
+            $standbyTime = "10:00 - 11:00";
+            if ($this->monthPlan->days[$i]->serviceHours > 13) {
+                $standbyTime .= " und 18:00 - 19:00";
+            }
+
+            $pdf->Cell($w[3], $cellHeight, $standbyTime, 1, 0, 'L', false);
+            $pdf->Cell($w[4], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->standbyPerson[$i])), 1, 0, 'L', false);
+        }
+
+        $pdf->Output();
     }
 
     private function createRoster()

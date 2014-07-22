@@ -119,6 +119,15 @@ function save(button, year, month) {
     xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
 }
 
+function createPdf(button, year, month) {
+
+    if (!checkRoster(false)) {
+        return;
+    }
+
+    window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month);
+}
+
 function calcHours() {
     var rosterTable = window.document.getElementById("rosterTable");
     var hourTable = window.document.getElementById("hourTable");
