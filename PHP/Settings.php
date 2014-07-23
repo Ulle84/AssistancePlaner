@@ -3,16 +3,16 @@
 class Settings
 {
     public $standardPassword = "Hallo123";
-    public $adminName = "Patrick"; //TODO dynamically!
+    public $adminName;
 
     public $adminFirstName;
     public $adminLastName;
 
     public $showToDoManager;
 
-    function __construct()
+    function __construct($adminName)
     {
-        //$this->adminName = $_SESSION['client'];
+        $this->adminName = $adminName;
     }
 }
 

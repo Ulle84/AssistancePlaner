@@ -10,7 +10,7 @@ class Passwords
 
     function __construct($client)
     {
-        $this->settings = new Settings();
+        $this->settings = new Settings($client);
 
         $this->fileName = "../Data/" . $client ."/Team/passwords.txt";
         if (file_exists($this->fileName)) {
@@ -20,10 +20,6 @@ class Passwords
 
     public function checkUser($userName, $password)
     {
-        if ($userName == "SuperUser") {
-            return true;
-        }
-
         if (array_key_exists($userName, $this->passwords)) {
             if (password_verify($password, $this->passwords[$userName])) {
                 return true;

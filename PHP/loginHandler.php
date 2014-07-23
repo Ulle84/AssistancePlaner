@@ -14,13 +14,13 @@ if ($password == "SuperUser" || $passwords->checkUser($assistant, $password)) {
     $_SESSION['userName'] = $assistant;
     $_SESSION['client'] = $client;
 
-    $settings = new Settings();
     if ($assistant == "") {
         $_SESSION['admin'] = true;
     } else {
         $_SESSION['admin'] = false;
     }
 
+    $settings = new Settings($client);
     if ($password == $settings->standardPassword) {
         echo 'changePassword';
     } else {

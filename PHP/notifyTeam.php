@@ -23,7 +23,7 @@ $path = dirname($_SERVER['PHP_SELF']);
 $team = new Team();
 $mailAddresses = $team->getMailAddresses();
 
-$settings = new Settings();
+$settings = new Settings($_SESSION['client']);
 
 $message = 'Liebes Team,<br /><br />';
 $message .= 'bitte tragt bis <b>15. ' . get_month_description($monthReminder) . ' ' . $yearReminder . '</b> Eure möglichen Termine für den ';

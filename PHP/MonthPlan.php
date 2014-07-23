@@ -25,7 +25,7 @@ class MonthPlan
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
-        $this->settings = new Settings();
+        $this->settings = new Settings($_SESSION['client']);
 
         $this->defaultWorkingTimes = new WorkingTimes();
         $this->assistanceInput = new AssistanceInput($year, $month);
