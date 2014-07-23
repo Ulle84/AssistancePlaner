@@ -336,7 +336,8 @@ class Roster
 
         $pdf->SetFont('', 'B');
 
-        $pdf->Cell(200, 10, utf8_decode('Team Patrick Sieben - Dienstplan ' . get_month_description($this->month) . ' ' . $this->year . ' - Letzte Änderung: ' . $this->lastChange));
+        $settings = new Settings($_SESSION['client']);
+        $pdf->Cell(200, 10, utf8_decode('Team ' . $settings->adminFirstName . ' ' . $settings->adminLastName . ' - Dienstplan ' . get_month_description($this->month) . ' ' . $this->year . ' - Letzte Änderung: ' . $this->lastChange));
         $pdf->Ln();
 
         $cellHeight = 5.3;

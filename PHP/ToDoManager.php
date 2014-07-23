@@ -75,12 +75,7 @@ class ToDoManager
     public function printToDoTable()
     {
         echo '<div class="developerSection">';
-        echo '<table id="toDoData"';
-        if (!$_SESSION['developer']) {
-            echo ' class="hidden"';
-        }
-        echo '>';
-
+        echo '<table id="toDoData" class="hidden">';
         echo '<tr>';
         echo '<th>Description</th>';
         echo '<th>Due Date</th>';

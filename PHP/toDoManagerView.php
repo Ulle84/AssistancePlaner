@@ -18,14 +18,14 @@ require_once('ToDoManager.php');
 
 $toDoManager = new ToDoManager();
 
-if ($_SESSION['developer'] || $_SESSION['admin']) {
+if ($_SESSION['admin']) {
     $toDoManager->printToDoInput();
 }
 
 $toDoManager->printToDoSections();
 $toDoManager->printToDoTable();
 
-if ($_SESSION['developer'] || $_SESSION['admin']) {
+if ($_SESSION['admin']) {
     echo '<br />';
     echo '<input type="button" onclick="save(this)" value="Speichern" />';
     echo '<br />';

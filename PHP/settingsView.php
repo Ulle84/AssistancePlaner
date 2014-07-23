@@ -14,21 +14,29 @@
 
 require_once 'Settings.php';
 
-if ($_SESSION['developer'] || $_SESSION['admin']) {
-    $team = new Team();
-    $team->setTableId("team");
-    $team->printTable();
+if ($_SESSION['admin']) {
+    $settings = new Settings($_SESSION['client']);
+    echo '<table>';
 
+    echo '<tr><th>Beschreibung</th><th>Wert</th></tr>';
+    echo '<tr><td class="left">Vorname</td><td><input id="firstName" type="text" size="30" maxlength="50" value="' . $settings->adminFirstName . '"/></td></tr>';
+    echo '<tr><td class="left">Nachname</td><td><input id="lastName"  type="text" size="30" maxlength="50" value="' . $settings->adminLastName . '"/></td></tr>';
+
+    echo '<tr><td class="left">ToDo-Manager nutzen</td><td class="left"><input id="showToDoManager" type="checkbox" value=""';
+    if ($settings->showToDoManager == 1) {
+        echo ' checked="true"';
+    }
+    echo '"/></td></tr>';
+
+    echo '</table>';
 
     echo '<br/>';
 
-    echo '<input type="button" value="Neues Mitglied" onclick="newMember()"/>';
-    echo '<input type="button" value="Team speichern" onclick="saveTeam(this)"/>';
+    echo '<input type="button" value="Einstellungen speichern" onclick="saveSettings(this)"/>';
 
     echo '<br/>';
     echo 'Antwort des Servers: <span id="httpResponse"></span>';
-}
-else {
+} else {
     echo 'Zugang nicht erlaubt!';
 }
 ?>
