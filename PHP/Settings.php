@@ -3,10 +3,17 @@
 class Settings
 {
     public $standardPassword = "Hallo123";
-    public $adminName = "Patrick";
+    public $adminName = "Patrick"; //TODO dynamically!
 
-    //TODO if adminName changes -> passwords.txt needs to be updated
-    //TODO new user -> forbidde names
+    public $adminFirstName;
+    public $adminLastName;
+
+    public $showToDoManager;
+
+    function __construct()
+    {
+        //$this->adminName = $_SESSION['client'];
+    }
 }
 
 ?>

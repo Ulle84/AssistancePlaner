@@ -33,7 +33,7 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
-if ($_SESSION['developer'] || $_SESSION['admin']) {
+if ($_SESSION['admin']) {
 
     $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 

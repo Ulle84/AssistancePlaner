@@ -3,18 +3,18 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Team</title>
+    <title>Assistenz Planer - Einstellungen</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
-    <script language="JavaScript" src="../JavaScript/team.js"></script>
+    <script language="JavaScript" src="../JavaScript/settings.js"></script>
 </head>
 <body>
 <?php include('navigation.php'); ?>
 
 <?php
 
-require_once 'Team.php';
+require_once 'Settings.php';
 
-if ($_SESSION['admin']) {
+if ($_SESSION['developer'] || $_SESSION['admin']) {
     $team = new Team();
     $team->setTableId("team");
     $team->printTable();

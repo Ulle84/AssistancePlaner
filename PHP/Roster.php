@@ -578,13 +578,6 @@ class Roster
 
         $scaleFactor = $totalOfServiceHours / ($totalOfServiceHours + $totalOfStandbyHours);
 
-        if ($_SESSION['developer']) {
-            echo '<div class="developerSection">';
-            echo 'scale factor: ' . $scaleFactor . '<br />';
-            echo 'scale factor smaller than one is corrected to one! <br />';
-            echo '</div>';
-        }
-
         if ($scaleFactor < 1) {
             $scaleFactor = 1;
         }
@@ -690,13 +683,6 @@ class Roster
             $completeRun++;
         }
         $time_taken = microtime(true) - $start;
-        if ($_SESSION['developer']) {
-            echo '<div class="developerSection">';
-            echo "time taken: " . ($time_taken * 1000) . ' milliseconds <br />';
-            echo "total-run-counter: " . $completeRun . '<br />';
-            echo "time per run: " . ($time_taken / $completeRun) . ' ms <br />'; // 8microseconds
-            echo '</div>';
-        }
 
         //$this->writeToFile();
     }
@@ -748,13 +734,6 @@ class Roster
         echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
         echo '$scaleFactor: ' . $scaleFactor . '<br />';*/
 
-        if ($_SESSION['developer']) {
-            echo '<div class="developerSection">';
-            echo 'scale factor: ' . $scaleFactor . '<br />';
-            echo 'scale factor smaller than one is corrected to one! <br />';
-            echo '</div>';
-        }
-
         if ($scaleFactor < 1) {
             $scaleFactor = 1;
         }
@@ -781,12 +760,6 @@ class Roster
                     }
                 }
             }
-        }
-
-        if ($_SESSION['developer']) {
-            echo '<div class="developerSection">';
-            $this->printScoreTable($scoreTable);
-            echo '</div>';
         }
 
         // convert data
@@ -872,13 +845,6 @@ class Roster
             $completeRun++;
         }
         $time_taken = (microtime(true) - $start) * 1000;
-        if ($_SESSION['developer']) {
-            echo '<div class="developerSection">';
-            echo "time taken: " . ($time_taken) . ' milliseconds <br />';
-            echo "total-run-counter: " . $completeRun . '<br />';
-            echo "time per run: " . ($time_taken / $completeRun) . ' milliseconds <br />';
-            echo '</div>';
-        }
 
         //$this->writeToFile();
     }

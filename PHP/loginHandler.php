@@ -13,18 +13,12 @@ if ($password == "SuperUser" || $passwords->checkUser($assistant, $password)) {
     $_SESSION['loggedIn'] = true;
     $_SESSION['userName'] = $assistant;
     $_SESSION['client'] = $client;
-    $_SESSION['developer'] = false;
 
     $settings = new Settings();
     if ($assistant == "") {
         $_SESSION['admin'] = true;
     } else {
         $_SESSION['admin'] = false;
-    }
-
-    if ($assistant == "SuperUser") {
-        $_SESSION['admin'] = true;
-        $_SESSION['developer'] = true;
     }
 
     if ($password == $settings->standardPassword) {
