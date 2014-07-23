@@ -155,10 +155,6 @@ class Team
     {
         echo '<h1>Team Übersicht</h1>';
 
-        $settings = new Settings();
-        echo '<div class="forbiddenName"></div>';
-        echo '<div class="forbiddenName">SuperUser</div>';
-
         echo '<table id="' . $this->tableId . '">';
         $this->printHeader();
 

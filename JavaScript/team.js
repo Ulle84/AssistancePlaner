@@ -135,14 +135,6 @@ function checkLoginNames() {
         loginNames.push(data[0].firstChild.value);
     }
 
-    var forbiddenNames = window.document.getElementsByClassName("forbiddenName");
-    for (var i = 0; i < forbiddenNames.length; i++) {
-        if (loginNames.indexOf(forbiddenNames[i].textContent) > 1) {
-            alert(forbiddenNames[i].textContent + " ist kein erlaubter Login-Name!\nBitte neuen Namen vergeben!");
-            return false;
-        }
-    }
-
     loginNames.sort();
     var last = loginNames[0];
     for (var i = 1; i < loginNames.length; i++) {
