@@ -10,6 +10,9 @@ if (isset($_SESSION['userName'])) {
     if ($_SESSION['userName'] != "") {
         echo 'Assistent: <span id="username">' . $_SESSION['userName'] . '</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     }
+    else {
+        echo '<span class="hidden" id="username">' . $_SESSION['client'] . '</span>';
+    }
     echo '&nbsp;&nbsp;&nbsp;<a href="overview.php">Übersicht</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="documentation.php">Dokumentation</a>';
