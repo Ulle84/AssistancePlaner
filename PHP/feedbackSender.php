@@ -2,8 +2,10 @@
 session_start();
 
 require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
+require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 
 $feedback = $_POST['feedback'];
+$mailAddress = $_POST['mailAddress'];
 
 if ($feedback == "") {
     echo 'Es wurde kein Feedback eingegeben!';
@@ -30,7 +32,7 @@ $mail->FromName = 'Assistenz Planer';
 $mail->addAddress('u.belitz@gmx.de', 'Ulrich Belitz');
 
 //$mail->addAddress('ellen@example.com');               // Name is optional
-//$mail->addReplyTo('info@example.com', 'Information');
+$mail->addReplyTo($mailAddress);
 //$mail->addCC('cc@example.com');
 //$mail->addBCC('bcc@example.com');
 

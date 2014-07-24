@@ -5,6 +5,8 @@ function sendFeedback(button) {
 
     var feedback = window.document.getElementById("feedback").value;
 
+    var mailAddress = window.document.getElementById("mailAddress").value;
+
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
@@ -16,7 +18,7 @@ function sendFeedback(button) {
 
     xmlhttp.open("POST", "../PHP/feedbackSender.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("feedback=" + feedback);
+    xmlhttp.send("mailAddress=" + mailAddress + "&feedback=" + feedback);
 }
 
 function validateString(element) {

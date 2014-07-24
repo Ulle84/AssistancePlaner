@@ -35,6 +35,17 @@ class Team
         return $mailAddresses;
     }
 
+    public function getMailAddressFromId($id)
+    {
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            if ($this->teamMembers[$i]->loginName == $id) {
+                return $this->teamMembers[$i]->eMailAddress;
+            }
+        }
+
+        return "";
+    }
+
     public function getFullNameFromId($id)
     {
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
