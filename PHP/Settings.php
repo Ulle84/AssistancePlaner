@@ -8,6 +8,8 @@ class Settings
     public $adminFirstName;
     public $adminLastName;
 
+    public $mailAddress;
+
     public $showToDoManager;
 
     private $fileName;
@@ -28,6 +30,7 @@ class Settings
             $this->adminFirstName = rtrim(fgets($file));
             $this->adminLastName = rtrim(fgets($file));
             $this->showToDoManager = rtrim(fgets($file));
+            $this->mailAddress = rtrim(fgets($file));
         }
     }
 }
