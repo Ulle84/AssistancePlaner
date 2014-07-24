@@ -51,6 +51,6 @@ if (!$mail->send()) {
     exit;
 }
 
-echo 'Nachricht wurde gesendert.';
+echo 'Nachricht wurde gesendet.';
 
 ?>

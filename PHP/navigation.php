@@ -13,6 +13,7 @@ if (isset($_SESSION['userName'])) {
     echo '&nbsp;&nbsp;&nbsp;<a href="overview.php">Übersicht</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="documentation.php">Dokumentation</a>';
+    echo '&nbsp;&nbsp;&nbsp;<a href="feedbackView.php">Feedback</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="logout.php">Abmelden</a>';
 }
 else
