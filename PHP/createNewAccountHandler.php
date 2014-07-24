@@ -19,6 +19,6 @@ else {
     $passwords = new Passwords($clientName);
     $passwords->addUser("", $password);
 
-    echo 'Der Klient ' . $clientName . ' wurde gerade neu angelegt. <br /> Bitte <a href="login.php">anmelden!';
+    echo 'Der Klient ' . $clientName . ' wurde gerade neu angelegt. <br /> Bitte <a href="login.php?client=' . $clientName . '">anmelden!';
 }
 ?>

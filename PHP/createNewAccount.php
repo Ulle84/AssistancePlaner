@@ -13,7 +13,7 @@
     <table>
         <tr>
             <td>Name des Klienten:</td>
-            <td><input type="text" name="clientName" id="clientName"/></td>
+            <td><input onchange="validateClientName(this)" onblur="validateClientName(this)" type="text" name="clientName" id="clientName"/></td>
         </tr>
         <tr>
             <td>Passwort:</td>

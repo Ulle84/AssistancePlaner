@@ -6,6 +6,16 @@ function createNewAccount() {
     var password = window.document.getElementById("password");
     var passwordRepetition = window.document.getElementById("passwordRepetition");
 
+    if (clientName == "") {
+        alert("Name des Klienten darf nicht leer sein!");
+        return;
+    }
+
+    if (!(/^[a-zA-Z0-9]+$/.test(clientName))) {
+        alert("Klientenname ist ungültig!\nBitte nur Buchstaben und Zahlen verwenden.");
+        return;
+    }
+
     if (password.value == "") {
         alert("Passwort darf nicht leer sein!");
         return;
@@ -34,6 +44,13 @@ function createNewAccount() {
 }
 
 function validateString(element) {
+    if (element.value.indexOf('&') > -1) {
+        element.value = element.value.replace(new RegExp('&', 'g'), "");
+        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
+    }
+}
+
+function validateClientName(element) {
     if (element.value.indexOf('&') > -1) {
         element.value = element.value.replace(new RegExp('&', 'g'), "");
         alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");

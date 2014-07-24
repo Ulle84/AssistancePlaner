@@ -34,6 +34,8 @@
     <p>Quelle: <em>Erstellt durch den <a rel="nofollow" href="http://www.e-recht24.de">Impressum-Generator</a> von
             e-recht24.de für Privatpersonen.</em></p>
 
+    <hr />
+
     <h1>Haftungsausschluss (Disclaimer)</h1>
 
     <p><strong>Haftung für Inhalte</strong></p>
