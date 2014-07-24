@@ -22,6 +22,8 @@ class Settings
 
     public function readFromFile()
     {
+        $defaultPassword = "Hallo123";
+
         if (file_exists($this->fileName)) {
             $file = fopen($this->fileName, "r");
 
@@ -32,8 +34,11 @@ class Settings
             $this->standardPassword = rtrim(fgets($file));
 
             if ($this->standardPassword == "") {
-                $this->standardPassword = "Hallo123";
+                $this->standardPassword = $defaultPassword;
             }
+        }
+        else {
+            $this->standardPassword = $defaultPassword;
         }
     }
 }
