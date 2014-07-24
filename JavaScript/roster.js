@@ -125,6 +125,11 @@ function createPdf(button, year, month) {
         return;
     }
 
+    if (window.document.getElementById("lastChange").textContent == "") {
+        alert("Bitte erst den Dienstplan speichern!");
+        return;
+    }
+
     window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month);
 }
 
