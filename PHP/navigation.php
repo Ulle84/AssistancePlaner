@@ -17,12 +17,14 @@ if (isset($_SESSION['userName'])) {
     echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="documentation.php">Dokumentation</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="feedbackView.php">Feedback</a>';
+    echo '&nbsp;&nbsp;&nbsp;<a href="impressum.php">Impressum</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="logout.php">Abmelden</a>';
 }
 else
 {
     echo '<a href="index.php">Willkommen</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="createNewAccount.php">Neuen Klienten einrichten</a>';
+    echo '&nbsp;&nbsp;&nbsp;<a href="impressum.php">Impressum</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="login.php">Anmelden</a>';
 }
 echo '</div>';
