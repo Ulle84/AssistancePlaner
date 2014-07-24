@@ -38,7 +38,7 @@ function resetPassword(element) {
     var response = document.getElementById("httpResponse");
     response.innerHTML = "";
 
-    var userName = element.parentNode.parentNode.firstChild.textContent;
+    var userName = element.parentNode.parentNode.firstChild.firstChild.value;
 
     var xmlhttp = new XMLHttpRequest();
 
