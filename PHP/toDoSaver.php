@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $toDo = $_POST['toDo'];
 $done = $_POST['done'];

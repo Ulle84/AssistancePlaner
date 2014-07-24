@@ -206,7 +206,7 @@ function checkAvailability() {
     }
 
     if (badDaysCount == 1) {
-        alert("Es gibt einen Tag, an dem nicht genug Assistenten Zeit haben:\n" + badDays);
+        alert("Am " + badDays + " haben nicht genug Assistenten Zeit!");
     }
     if (badDaysCount > 1) {
         alert("Es gibt Tage, an denen nicht genug Assistenten Zeit haben:\n" + badDays);
