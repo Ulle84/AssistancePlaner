@@ -25,6 +25,7 @@ if ($_SESSION['admin']) {
     echo '<tr><td class="left">Vorname</td><td><input id="firstName" type="text" size="30" maxlength="50" value="' . $settings->adminFirstName . '"/></td></tr>';
     echo '<tr><td class="left">Nachname</td><td><input id="lastName"  type="text" size="30" maxlength="50" value="' . $settings->adminLastName . '"/></td></tr>';
     echo '<tr><td class="left">E-Mail Adresse</td><td><input id="mailAddress"  type="text" size="30" maxlength="50" value="' . $settings->mailAddress . '"/></td></tr>';
+    echo '<tr><td class="left">Standard-Passwort</td><td><input id="standardPassword"  type="text" size="30" maxlength="50" value="' . $settings->standardPassword . '"/></td></tr>';
 
     echo '<tr><td class="left">ToDo-Manager nutzen</td><td class="left"><input id="showToDoManager" type="checkbox" value=""';
     if ($settings->showToDoManager == 1) {

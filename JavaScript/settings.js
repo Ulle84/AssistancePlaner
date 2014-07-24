@@ -16,6 +16,7 @@ function saveSettings(button) {
     }
 
     content += "\n" + window.document.getElementById("mailAddress").value;
+    content += "\n" + window.document.getElementById("standardPassword").value;
 
     var xmlhttp = new XMLHttpRequest();
 
