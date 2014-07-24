@@ -15,6 +15,8 @@ function saveSettings(button) {
         content += "\n0";
     }
 
+    content += "\n" + window.document.getElementById("mailAddress").value;
+
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
