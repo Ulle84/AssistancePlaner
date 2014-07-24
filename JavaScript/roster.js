@@ -128,6 +128,38 @@ function createPdf(button, year, month) {
     window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month);
 }
 
+function deleteRoster(button, year, month) {
+
+    if (!confirm("Dienstplan wirklich löschen?")) {
+        return;
+    }
+
+    button.disabled = true;
+
+    var httpResponse = document.getElementById("httpResponse");
+
+    httpResponse.innerHTML = "";
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            httpResponse.innerHTML = xmlhttp.responseText;
+
+            var lastChange = window.document.getElementById("lastChange");
+            lastChange.textContent = "";
+
+            button.disabled = false;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/rosterEraser.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month);
+
+
+}
+
 function calcHours() {
     var rosterTable = window.document.getElementById("rosterTable");
     var hourTable = window.document.getElementById("hourTable");
@@ -172,9 +204,9 @@ function calcHours() {
         element.nextSibling.nextSibling.textContent = diff;
         element.nextSibling.nextSibling.nextSibling.textContent = Math.round(percentage) + " %";
         var abs = Math.abs(percentage);
-        if (0 <= abs && abs <= 5) {
+        if (0 <= abs && abs <= 10) {
             element.parentNode.setAttribute("class", "good");
-        } else if (5 < abs && abs <= 10) {
+        } else if (10 < abs && abs <= 20) {
             element.parentNode.setAttribute("class", "okay");
         } else {
             element.parentNode.setAttribute("class", "bad");

@@ -12,7 +12,7 @@
 require_once 'Settings.php';
 
 include('navigation.php');
-echo '<h1>Anwendung Assistenz Planer</h1>';
+echo '<h1>Übersicht Assistenz Planer</h1>';
 echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
 
 $settings = new Settings($_SESSION['client']);

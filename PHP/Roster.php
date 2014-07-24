@@ -891,12 +891,12 @@ class Roster
             $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
         }
 
-        $scaleFactor = $totalQuotaOfHours / ($totalOfServiceHours + $totalOfStandbyHours);
+        $scaleFactor = ($totalOfServiceHours + $totalOfStandbyHours) / $totalQuotaOfHours;
 
         /*echo '$totalQuotaOfHours: ' . $totalQuotaOfHours . '<br />';
         echo '$totalOfServiceHours: ' . $totalOfServiceHours . '<br />';
         echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
-        echo '$scaleFactor: ' . $scaleFactor . '<br />';*/
+        echo '$scaleFactor: ' . $scaleFactor . '<hr />';*/
 
         if ($scaleFactor < 1) {
             $scaleFactor = 1;
