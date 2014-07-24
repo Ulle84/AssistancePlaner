@@ -2,7 +2,6 @@
 session_start();
 
 require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
-require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 
 $feedback = $_POST['feedback'];
 $mailAddress = $_POST['mailAddress'];
