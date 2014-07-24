@@ -2,7 +2,7 @@
 
 class Settings
 {
-    public $standardPassword = "Hallo123";
+    public $standardPassword;
     public $adminName;
 
     public $adminFirstName;
@@ -30,6 +30,10 @@ class Settings
             $this->showToDoManager = rtrim(fgets($file));
             $this->mailAddress = rtrim(fgets($file));
             $this->standardPassword = rtrim(fgets($file));
+
+            if ($this->standardPassword == "") {
+                $this->standardPassword = "Hallo123";
+            }
         }
     }
 }
