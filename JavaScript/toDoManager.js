@@ -312,7 +312,7 @@ function removeToDoCopiedFromId(id) {
         }
     }
     var toDoItems = window.document.getElementsByClassName("toDo");
-    for (var i = 0; i < toDos.length; i++) {
+    for (var i = 0; i < toDoItems.length; i++) {
         if (toDoItems[i].getAttribute("toDoId") == idOfCopy) {
             toDoItems[i].parentNode.removeChild(toDoItems[i]);
             break;
