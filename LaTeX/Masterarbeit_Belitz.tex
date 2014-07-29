@@ -94,11 +94,23 @@
 - "denglische" Formulierungen wie ausgeloggt werden vermieden
 
 \chapter{Aufgabenstellung} % alternativ: Ziel der Arbeit
+%TODO gab es überhaupt eine Aufgabenstellung
+* manuellen Prozess der Dienstplanerstellung automatisieren
+* Zusammenarbeit mit Assistenten über Web-Anwendung realisieren
+* 
 
 \chapter{Motivation}
+%TODO überdeckt sich das nicht mit der Aufgabenstellung?
 -> den unbedarften Leser "abholen"
 warum überhapt den ganzen Aufwand treiben
 %TODO am Ende schreiben
+
+\chapter{Fragen die geklärt werden sollten}
+%TODO alle Fragen klären
+* Masterarbeit ganz allgemein halten, oder an dem Beispiel von Patricks Team das Ganze aufziehen?
+* ??? Ein Team wird betrachtet, es wurden aber Gespräche geführt um zu schauen, wie man die Lösung verallgemeinern kann
+* 
+
 
 \chapter{Grundlagen}
 In diesem Kapitel ...
@@ -111,29 +123,41 @@ Cascading Style Sheets ...
 -> buch von Koch
 \subsection{AJAX}
 
-\section{Agile Softwareentwicklung}
+%\section{Agile Softwareentwicklung}
 \subsection{User Stories}
 
 \section{Modellgetriebene Software-Entwicklung}
-\subsection{SysML}
-\section{Datenbanken} % natürlich nur, wenn verwendet ;-)
+\section{SysML}
+\section{UML}
+
 
 \chapter{Anforderungsermittlung}
+\section{Domäne}
+...
+
+
 \section{Begrifflichkeiten}
+In der Anforderungsermittlung ist die 
+Klare Begrifflichkeiten sind für eine Systematisierung der Anforderungen unablässig
+
 
 \subsection{Klient}
-Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben auf permanente Hilfe angewiesen ist.
+Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist. Mit Hilfe seiner Assistenten kann er ein selbstbestimmtes Leben führen.
 
 \subsection{Assistent}
-Der Assistent ist ein Helfer, der dem Klienten zur Hand geht und ihn im alltäglichen Leben unterstützt. All das, was der Klient nicht selbst erledigen kann, wird durch einen Assistenten erledigt.
+Der Assistent ist ein Helfer, der den Klienten pflegt und ihn im alltäglichen Leben unterstützt. 
 
 \subsection{Team}
-Das Team eines Klienten besteht aus mehreren Assistenten. % (während der Entstehung dieser Ausarbeitung aus 7 Stück).
+Der Klient muss rund um die Uhr durch Assistenz unterstützt werden. Dafür bedarf es eines Teams.
+Das Team eines Klienten besteht aus mehreren Assistenten. 
+%TODO konkretes Beispiel nennen? (während der Entstehung dieser Ausarbeitung aus 7 Stück).
 
-\subsection{Monatsplan}
-Im Monatsplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. Während den Bereitschaftszeiten muss der Assistent telefonisch erreichbar sein und innerhalb kurzer Zeit zum Klienten zu kommen und um den Dienst zu übernehmen. Die Dienste gehen frühestens um 13 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages. 
+\subsection{Dienstplan}
+Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. Während den Bereitschaftszeiten muss der Assistent telefonisch erreichbar sein und innerhalb kurzer Zeit zum Klienten zu kommen, um den Dienst zu übernehmen. Die Dienste gehen frühestens um 13 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages.
+
 
 \subsection{Stundenkontigent}
+%TODO verallgemeinern?
 Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Jeder Assistent möchte sein Stundenkontigent möglichst gut ausgeschöpft bekommen. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen. %TODO die letzten zwei Sätze direkt hintereinadner hören sich doof an!
 
 \section{Ist-Prozess}
@@ -150,6 +174,7 @@ Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommd
  ein Dienstplan-Vorschlag erstellt und dem Klienten eine E-Mail geschickt mit einem Link auf den Dienstplan. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
+%UML Aktivitätsdiagramm
 
 \section{User Stories}
 Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind einige User-Stories abgeleitet worden:
@@ -190,21 +215,36 @@ Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind
 
 
 \section{Abgeleitete Anforderungen}
+Aus den User-Stories ergeben sich einige Anforderungen.
+-> SysML Diagramm
+
+
 \subsection{Serverbasierte Anwendung}
+Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online und die Assistenten haben die Möglichkeit die freigegeben Daten zu sehen und eigene Eingaben zu machen. %TODO der vorhergehende Satz ist holprig
+
+
+
 \subsection{User Management}
 
 
+
 \chapter{Software-Design} % oder einfach nur Design?
-Modellgetriebene Software-Entwicklung
 SysML Modell
 UML Ablaufdiagramme
 Datenbankmodell?
 
+* Vom Modell zur Software
+
 \chapter{Implementierung}
+Bis hierher völlig frei von Programmierspachen und sonstigen Programmierparadigmen.
+
 \section{Wahl der Programmiersprachen}
 
 \subsection{Backend}
-Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen.
+Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Gründe hierfür waren: die hohe Verbreitung:
+%http://w3techs.com/technologies/history_overview/programming_language
+%TODO Link gescheit einbinden
+und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 %TODO PHP weiter vorstellen
 
 
@@ -238,6 +278,13 @@ und die Vorlieben des Klienten berücksichtigt werden. %TODO weitere Erläuterunge
 
 \subsection{Ein- und Ausgabe}
 %TODO Bild?
+
+
+%TODO abwägen zwischen 
+% * Darstellung der Entwicklung des Algorithmus
+% * einmal den gesamten Algorithmus ohne Zwischenschritte vorstellen
+
+
 
 
 \subsection{Erste Version}
@@ -363,10 +410,17 @@ else {
 \newpage
 
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
+* wenn nicht schon in Arbeit eingeflossen, dann hier die Gespräche mit Commit und Matthias Rösch verarbeiten
 
+\section{Mehr Teams}
+* Wie kann man noch mehr Menschen bzw. Teams erreichen
 
 
 \section{Mögliche Erweiterungen}
+* Was kann man noch alles am Assistenz-Planer erweitern?
+* 
+
+
 \subsection{Cron-Jobs}
 braucht weitere Funktionalität des Servers
 
@@ -404,6 +458,17 @@ braucht weitere Funktionalität des Servers
 \label{sec:Anhang}
 % Rand der Aufzählungen in Tabellen anpassen
 \setdefaultleftmargin{1em}{}{}{}{}{}
+
+\section{Verwendete Software}
+* PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
+   * PhpMailer
+   * FPDF
+
+* PhpStorm
+* Enterprise Architect
+* GitHub
+* Cyberduck (FTP-Client)
+    
     
 % \input{Quellcode}
 \end{appendix}
