@@ -72,6 +72,9 @@
 \label{sec:Zusammenfassung}
 %TODO Zusammenfassung am Ende schreiben
 
+\addchap{Danksagung}
+%TODO Danksagung formulieren?
+
 %\ofoot{\pagemark}
 
 % Seitennummerierung -----------------------------------------------------------
@@ -168,10 +171,9 @@ Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden i
 %TODO Ablaufdiagramm?
 
 \section{Soll-Prozess}
+%TODO E-Mail wird nicht garantiert für immer das Mittel der Wahl sein!
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
-Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommdenen Monat ein. Per Knopfdruck wird das Team per E-Mail informiert und darum gebeten die freien Tage auf einer Webseite (Link ist in der E-Mail enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben wird vom Sysmtem mittels eines Algorithmuses
-%TODO evt besser umschreiben
- ein Dienstplan-Vorschlag erstellt und dem Klienten eine E-Mail geschickt mit einem Link auf den Dienstplan. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
+Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mittels eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
@@ -194,6 +196,7 @@ Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind
 \item Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich anpassen kann.
 \item Als Klient möchte ich eine Mail an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
 \item Als Klient möchte ich monatsbezogene Hinweise zum Dienstplan eingeben können.
+\item Als Klient möchte ich Standard-Dienstzeiten angeben können.
 \end{itemize}
 
 \subsection{Assistent}
@@ -211,6 +214,7 @@ Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind
 \begin{itemize}
 \item Als Anwender möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde.
 \item Als Anwender möchte ich mich mit einem eigenen Account beim System anmelden können, um nur die Dinge zu sehen, die mich interessieren und nicht aus Versehen ungewollte Änderungen zu machen.
+\item Als Anwender möchte ich eine Dokumentation des Systems zur Verfügung haben, um mich gut in das System einarbeiten zu können.
 \end{itemize}
 
 
@@ -220,11 +224,14 @@ Aus den User-Stories ergeben sich einige Anforderungen.
 
 
 \subsection{Serverbasierte Anwendung}
-Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online und die Assistenten haben die Möglichkeit die freigegeben Daten zu sehen und eigene Eingaben zu machen. %TODO der vorhergehende Satz ist holprig
+Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
 
 
-
-\subsection{User Management}
+\subsection{Benutzer-Verwaltung}
+* Klient und Assistent haben unterschiedliche Interessen am Assistenzplaner
+* ungewollte versehentliche Änderungen vermeiden -> Passwort
+* unterschiedliche Sichten bzw. Freigabestufen
+* 
 
 
 
@@ -247,23 +254,40 @@ Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefal
 und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 %TODO PHP weiter vorstellen
 
-
-PHP + SQLite
-
 \subsection{Frontend}
-Das Frontend wurde mit HTML, CSS und JavaScript programmiert.
+* von PHP wird HTML generiert
+* CSS hübscht die HTML Seiten auf
+* JavaScript erweitert client-seitig die Funktionalität
 
 \section{Verwaltung der Bediener}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Bediener notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
-
-
+* keine Überschneidung mit Benutzer-Verwaltung - genaue gegenseitige Abtrennung nötig
 
 \section{Team-Management}
+* siehe Benutzer-Verwaltung
+* Klassen: TeamMember, Team
+* teamTable, teamSaver
+
 \section{Dienst-Plan}
 \section{Monats-Plan}
 \section{Standard Dienstzeiten}
+\section{Aufgaben-Werkzeug}
+\section{Einstellungen}
+
+
 \section{Kalender}
+
+\section{Dokumentation}
+
+\section{Willkommensseite}
+
+\section{Anlegen eines neuen Klienten}
+
+\section{Impressum}
+
+%TODO evt. einige der vorherigen sections zusammenfassen
+
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
