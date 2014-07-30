@@ -13,12 +13,22 @@
 
 <div id="documentation">
     <?php
+
+    //TODO Reihenfolge definieren
+
+
     include('documentationNavigation.php');
     include('documentationMonthNavigation.php');
     if (!$_SESSION['admin']) {
         include('documentationCalendar.php');
     }
     include('documentationRoster.php');
+    include('documentationToDoManager.php');
+    include('documentationMonthPlan.php');
+    include('documentationTeam.php');
+    include('documentationStandardWorkingTimes.php');
+    include('documentationSettings.php');
+
     ?>
 </div>
 
