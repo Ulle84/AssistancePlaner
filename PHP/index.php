@@ -20,7 +20,7 @@
         <li>Aufgaben der Assistenten zu verwalten</li>
     </ul>
 
-    Bitte <a href="login.php">melden Sie sich an</a> oder <a href="createNewAccount.php">legen Sie einen neuen Klienten
+    Bitte <a href="login.php">melden Sie sich an</a> oder <a href="createNewAccount.php">legen Sie einen neuen Klienten-Zugang
         an</a>.
 </div>
 </body>
