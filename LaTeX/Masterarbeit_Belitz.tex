@@ -117,6 +117,8 @@ warum überhapt den ganzen Aufwand treiben
 
 \chapter{Grundlagen}
 In diesem Kapitel ...
+
+\section{Server und Client}
 \section{Webentwicklung}
 \subsection{PHP}
 \subsection{HTML}
@@ -136,7 +138,7 @@ Cascading Style Sheets ...
 
 \chapter{Anforderungsermittlung}
 \section{Domäne}
-...
+* Individuelle Schwerstbehindertenbetreuung (ISB) / Assistenz %http://www.commit-cbf.de/assistenz_isb_24.html
 
 
 \section{Begrifflichkeiten}
@@ -243,26 +245,45 @@ Datenbankmodell?
 * Vom Modell zur Software
 
 \chapter{Implementierung}
+%TODO beschreiben, das den Leser in diesm Kapitel erwartet
 Bis hierher völlig frei von Programmierspachen und sonstigen Programmierparadigmen.
 
 \section{Wahl der Programmiersprachen}
 
 \subsection{Backend}
+%TODO Verweis auf Grundlagen-Kapitel
 Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Gründe hierfür waren: die hohe Verbreitung:
 %http://w3techs.com/technologies/history_overview/programming_language
 %TODO Link gescheit einbinden
 und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
-%TODO PHP weiter vorstellen
+
+
 
 \subsection{Frontend}
-* von PHP wird HTML generiert
-* CSS hübscht die HTML Seiten auf
-* JavaScript erweitert client-seitig die Funktionalität
+%TODO Verweise auf Grundlagen-Kapitel
+
+Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
+Um die Funktionalität client-seitig zu erweitern, kommt JavaScript zum Einsatz.
+
+\section{Persistenz der Daten}
+Alles was peristent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Vorteile hiervon sind, dass
+\begin{itemize}
+\item Daten zwischen Live-System und Test-System leicht ausgetauscht werden können
+\item Datenbank-Verwaltung entfällt
+\item Keine Datenbank-Anforderungen an den Server gestellt werden müssen
+\end{itemize}
+
+Der Umstand, dass keine Datenbank zum Einsatz kommt ist auch unter Gesichtspunkten des gleichzeitigen Zugriffs vertretbar. Es gibt nur eine Datei (Data\textbackslash KlientenName \textbackslash AssistanceInput \textbackslash YYYY-m.txt), bei der theoretisch mehrere Benutzer auf einmal schreiben können. Dies wurde verhindert, in dem eine Art Semaphore eingesetzt wurde. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen.
+%TODO Konzept der Lock-Datei erleutern
+%(Data\textbackslash KlientenName \textbackslash AssistanceInput \textbackslash YYYY-m_lock.txt)
+
 
 \section{Verwaltung der Bediener}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Bediener notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
 * keine Überschneidung mit Benutzer-Verwaltung - genaue gegenseitige Abtrennung nötig
+* Session Management (wie erkenne ich meinen Nutzer wieder)?
+* Passwort Vergabe
 
 \section{Team-Management}
 * siehe Benutzer-Verwaltung
@@ -270,23 +291,76 @@ Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
 * teamTable, teamSaver
 
 \section{Dienst-Plan}
+* aus Sicht des Klienten
+* aus Sicht des Assistenten
+* auf Dienstplan-Erstellungs-Kapitel (Algorithmus) verweisen
+
+
 \section{Monats-Plan}
+* pro Tag
+   * Dienstzeiten
+   * private Notizen
+   * öffentliche Notizen
+* pro Monat: Nachricht an Team
+* Team benachrichtigen
+
 \section{Standard Dienstzeiten}
+* Möglichkeit anzugeben, wie normalerweise die Arbeistzeiten sind
+
+
 \section{Aufgaben-Werkzeug}
+* Aufgaben erstellen
+* Wiederholungen erläutern
+* DatePicker erläutern
+* Extension of Date-Object erläutern
+* Erledigen der Aufgaben
+* Undo Funktion beim Erledigen erläutern
+
 \section{Einstellungen}
+* Individualisierung > Vorname, Nachname, eMail Adresse, 
+* hervorheben: Aufgaben-Manager ja/nein
+* 
+
 
 
 \section{Kalender}
+%TODO Screenshot einfügen
+Mit Hilfe des Kalenders kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
+Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
+
 
 \section{Dokumentation}
+Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
+Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
+%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
 
-\section{Willkommensseite}
+\section{Willkommens-Seite}
+Auf der Willkommens-Seite 
+%TODO Link einfügen
+ wird die Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
 
 \section{Anlegen eines neuen Klienten}
+%TODO Screenshot vom Anlegen eines neuen Klienten
+Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
+
+Bedingungen an einen neuen Klientennamen sind:
+\begin{itemize}
+\item darf nicht leer sein
+\item darf noch nicht vergeben sein
+\item darf nur aus Buchstaben und Zahlen bestehen
+\end{itemize}
+
+Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
+Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
 
 \section{Impressum}
+Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
+
+\section{Navigation und Monatsnavigation}
 
 %TODO evt. einige der vorherigen sections zusammenfassen
+
+
 
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
@@ -433,6 +507,8 @@ else {
 \clearpage
 \newpage
 
+\chapter{Ergebnis}
+
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
 * wenn nicht schon in Arbeit eingeflossen, dann hier die Gespräche mit Commit und Matthias Rösch verarbeiten
 
@@ -482,6 +558,14 @@ braucht weitere Funktionalität des Servers
 \label{sec:Anhang}
 % Rand der Aufzählungen in Tabellen anpassen
 \setdefaultleftmargin{1em}{}{}{}{}{}
+
+\section{Verzeichnisstruktur auf Server}
+*PHP
+*HTML
+*JavaScript
+* Data
+...
+
 
 \section{Verwendete Software}
 * PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
