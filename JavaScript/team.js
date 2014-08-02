@@ -88,6 +88,9 @@ function newMember() {
         if (i > 5) {
             input.setAttribute("style", "text-align: right");
         }
+        if (i ==  7) {
+            input.value = 1;
+        }
         td.setAttribute("class", "left");
         td.appendChild(input);
         tr.appendChild(td);
