@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-    <title>Assistenz Planer - Neuen Klienten anlegen</title>
+    <title>Assistenzplaner - Neuen Klienten anlegen</title>
     <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/createNewAccount.js"></script>
 </head>

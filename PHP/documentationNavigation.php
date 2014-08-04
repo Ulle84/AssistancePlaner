@@ -10,7 +10,7 @@ Hier kann man den aktuell am System angemeldeten Assistenten sehen. Will man mit
 so kann man auf den Link "Abmelden" klicken und sich mit einem anderen Assistenten-Account am System anmelden.
 
 <h2>Übersicht</h2>
-Klickt man auf den Link Übersicht, so gelangt man zur Übersicht. Von dort aus kann man alle Seiten des Assistenz-Planers
+Klickt man auf den Link Übersicht, so gelangt man zur Übersicht. Von dort aus kann man alle Seiten des Assistenzplaners
 erreichen.
 
 <h2>Passwort ändern</h2>
@@ -22,5 +22,5 @@ die Aktion abzuschließen drückt man auf den Button <input type="button" value=
 Wenn man auf den Link "Dokumentation" klickt, dann gelangt man auf diese Dokumentations-Seite.
 
 <h2>Abmelden</h2>
-Wenn man seine Arbeiten abgeschlossen hat und den Assistenz Planer verlassen möchte, so sollte man auf den Link
+Wenn man seine Arbeiten abgeschlossen hat und den Assistenzplaner verlassen möchte, so sollte man auf den Link
 "Abmelden" klicken. Man wird vom System abgemeldet und landet auf der Seite, wo man sich erneut am System anmelden kann.

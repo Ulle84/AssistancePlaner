@@ -26,7 +26,7 @@ $mail->SMTPSecure = 'ssl'; // Enable encryption, 'ssl' also accepted
 $mail->Port = "465";
 
 $mail->From = 'info@assistenzplaner.de';
-$mail->FromName = 'Assistenz Planer';
+$mail->FromName = 'Assistenzplaner';
 
 $mail->addAddress('u.belitz@gmx.de', 'Ulrich Belitz');
 

@@ -95,6 +95,7 @@
 %TODO ausformulieren
 - Geschlecht -> männlich beinhaltet auch weiblich
 - "denglische" Formulierungen wie ausgeloggt werden vermieden
+- wo finde ich das ganze -> Assistenzplaner.de/master
 
 \chapter{Aufgabenstellung} % alternativ: Ziel der Arbeit
 %TODO gab es überhaupt eine Aufgabenstellung
@@ -113,6 +114,11 @@ warum überhapt den ganzen Aufwand treiben
 * Masterarbeit ganz allgemein halten, oder an dem Beispiel von Patricks Team das Ganze aufziehen?
 * ??? Ein Team wird betrachtet, es wurden aber Gespräche geführt um zu schauen, wie man die Lösung verallgemeinern kann
 * 
+
+%TODO Verwendung kontrollieren
+%Einheitliche Begriffe
+%Seite (der Anwendung)
+%Benutzer
 
 
 \chapter{Grundlagen}
@@ -270,16 +276,16 @@ Alles was peristent gespeichert werden muss, wird in textbasierten Dateien (*.tx
 \begin{itemize}
 \item Daten zwischen Live-System und Test-System leicht ausgetauscht werden können
 \item Datenbank-Verwaltung entfällt
-\item Keine Datenbank-Anforderungen an den Server gestellt werden müssen
+\item Keine Datenbank-Anforderungen an den Server gestellt werden
 \end{itemize}
 
-Der Umstand, dass keine Datenbank zum Einsatz kommt ist auch unter Gesichtspunkten des gleichzeitigen Zugriffs vertretbar. Es gibt nur eine Datei (Data\textbackslash KlientenName \textbackslash AssistanceInput \textbackslash YYYY-m.txt), bei der theoretisch mehrere Benutzer auf einmal schreiben können. Dies wurde verhindert, in dem eine Art Semaphore eingesetzt wurde. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen.
+Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen.
 %TODO Konzept der Lock-Datei erleutern
-%(Data\textbackslash KlientenName \textbackslash AssistanceInput \textbackslash YYYY-m_lock.txt)
+
 
 \section{Übersicht}
-* alle verfügbaren Funktionen werden nutzerabhängig dargestellt
-* 
+Auf der Übersichts-Seite werden dem Benutzer alle verfügbaren Seiten aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
+%TODO Screenshot einfügen
 
 
 \section{Verwaltung der Bediener}
@@ -318,10 +324,6 @@ Eigenschaften der Aufgaben:
 * Fälligkeitsdatum
 * Wiederholungstyp (nie, ab Erledigungsdatum, ab Fälligkeitsdatum)
 * Wiederholungsintervall
-
-
-
-
 
 
 * Aufgaben erstellen

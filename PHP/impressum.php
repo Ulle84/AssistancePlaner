@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Impressum</title>
+    <title>Assistenzplaner - Impressum</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
 </head>
 <body>

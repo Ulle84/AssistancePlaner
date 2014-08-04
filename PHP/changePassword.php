@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-    <title>Assistenz Planer - Passwort ändern</title>
+    <title>Assistenzplaner - Passwort ändern</title>
     <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/changePassword.js"></script>
 </head>

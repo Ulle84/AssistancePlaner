@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Arbeitszeiten</title>
+    <title>Assistenzplaner - Arbeitszeiten</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/defaultTimes.js"></script>
 </head>

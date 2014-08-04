@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Übersicht</title>
+    <title>Assistenzplaner - Übersicht</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
 </head>
 <body>
@@ -12,7 +12,7 @@
 require_once 'Settings.php';
 
 include('navigation.php');
-echo '<h1>Übersicht Assistenz Planer</h1>';
+echo '<h1>Übersicht Assistenzplaner</h1>';
 echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
 
 $settings = new Settings($_SESSION['client']);

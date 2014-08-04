@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Dokumentation</title>
+    <title>Assistenzplaner - Dokumentation</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../CSS/documentation.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/documentation.js"></script>

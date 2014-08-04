@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <title>Assistenz Planer - Aufgaben</title>
+    <title>Assistenzplaner - Aufgaben</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../CSS/toDo.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/DateExtended.js"></script>
