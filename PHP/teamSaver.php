@@ -9,7 +9,7 @@ $content = $_POST['content'];
 $team = new Team();
 $team->saveToFile($content);
 
-$passwords = new Passwords($_SESSION['client']);
+$passwords = new Passwords($_SESSION['clientName']);
 $passwords->checkTeam($team->getLoginNames());
 
 echo "Team wurde gespeichert";

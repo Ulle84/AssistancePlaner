@@ -21,11 +21,11 @@ require_once 'Team.php';
 require_once 'Settings.php';
 
 
-$assistant = $_SESSION['userName'];
+$assistant = $_SESSION['assistantName'];
 $mailAddress = "";
 
 if ($assistant == "") {
-    $settings = new Settings($_SESSION['client']);
+    $settings = new Settings($_SESSION['clientName']);
     $mailAddress = $settings->mailAddress;
 }
 else {

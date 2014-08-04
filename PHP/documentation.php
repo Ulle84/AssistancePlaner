@@ -19,7 +19,7 @@
 
     include('documentationNavigation.php');
     include('documentationMonthNavigation.php');
-    if (!$_SESSION['admin']) {
+    if (!$_SESSION['isAdmin']) {
         include('documentationCalendar.php');
     }
     include('documentationRoster.php');

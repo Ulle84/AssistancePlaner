@@ -10,7 +10,7 @@ class ToDoManager
 
     function __construct()
     {
-        $this->fileName = "../Data/" . $_SESSION['client'] . "/ToDoManager/toDos.txt";
+        $this->fileName = "../Data/" . $_SESSION['clientName'] . "/ToDoManager/toDos.txt";
         $this->readFromFile();
     }
 

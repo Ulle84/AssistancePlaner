@@ -2,7 +2,7 @@
 
 <?php
 
-$db = new SQLite3('../Data/' . $_SESSION['client'] . '/Database.sqlite3');
+$db = new SQLite3('../Data/' . $_SESSION['clientName'] . '/Database.sqlite3');
 $db->exec("CREATE TABLE IF NOT EXISTS Team(
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    FirstName TEXT NOT NULL DEFAULT '0',

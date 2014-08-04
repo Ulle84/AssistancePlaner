@@ -5,7 +5,7 @@ $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
 
-$fileName = "../Data/" . $_SESSION['client'] . "/MonthPlan/" . $year . "-" . $month . ".txt";
+$fileName = "../Data/" . $_SESSION['clientName'] . "/MonthPlan/" . $year . "-" . $month . ".txt";
 
 $filePath = substr($fileName, 0, strrpos($fileName, '/'));
 

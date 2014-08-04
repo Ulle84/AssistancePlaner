@@ -10,7 +10,7 @@ class AssistanceInput
 
     function __construct($year, $month)
     {
-        $this->fileName = "../Data/" . $_SESSION['client'] . "/AssistanceInput/" . $year . "-" . $month . ".txt";
+        $this->fileName = "../Data/" . $_SESSION['clientName'] . "/AssistanceInput/" . $year . "-" . $month . ".txt";
         $this->readFromFile();
     }
 

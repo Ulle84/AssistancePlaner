@@ -14,7 +14,7 @@ class Team
 
     function __construct()
     {
-        $this->fileName = "../Data/" . $_SESSION['client'] . "/Team/team.txt";
+        $this->fileName = "../Data/" . $_SESSION['clientName'] . "/Team/team.txt";
         $this->readFromFile();
     }
 

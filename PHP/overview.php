@@ -15,12 +15,12 @@ include('navigation.php');
 echo '<h1>Übersicht Assistenzplaner</h1>';
 echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
 
-$settings = new Settings($_SESSION['client']);
+$settings = new Settings($_SESSION['clientName']);
 if ($settings->showToDoManager == 1) {
     echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';
 }
 
-if ($_SESSION['admin']) {
+if ($_SESSION['isAdmin']) {
     echo '<a href="monthPlanView.php">Monats-Plan</a> <br/>';
     echo '<a href="teamTable.php">Team</a> <br/>';
     echo '<a href="defaultTimes.php">Standard Dienst-Zeiten</a> <br/>';

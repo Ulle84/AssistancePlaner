@@ -1,17 +1,17 @@
 <?php
 $client = "";
-if (isset($_SESSION['client'])) {
-    $client = $_SESSION['client'];
+if (isset($_SESSION['clientName'])) {
+    $client = $_SESSION['clientName'];
 }
 
 echo '<div id="navigation">';
-if (isset($_SESSION['userName'])) {
+if (isset($_SESSION['assistantName'])) {
     echo 'Klient: ' . $client . '&nbsp;&nbsp;&nbsp;&nbsp;';
-    if ($_SESSION['userName'] != "") {
-        echo 'Assistent: <span id="username">' . $_SESSION['userName'] . '</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    if ($_SESSION['assistantName'] != "") {
+        echo 'Assistent: <span id="username">' . $_SESSION['assistantName'] . '</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     }
     else {
-        echo '<span class="hidden" id="username">' . $_SESSION['client'] . '</span>';
+        echo '<span class="hidden" id="username">' . $_SESSION['clientName'] . '</span>';
     }
     echo '&nbsp;&nbsp;&nbsp;<a href="overview.php">Übersicht</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';

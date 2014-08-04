@@ -47,7 +47,7 @@ class Roster
         $this->assistanceInput = new AssistanceInput($year, $month);
         $this->monthPlan = new MonthPlan($year, $month);
 
-        $this->readFromFile("../Data/" . $_SESSION['client'] . "/Roster/" . $year . "-" . $month . ".txt");
+        $this->readFromFile("../Data/" . $_SESSION['clientName'] . "/Roster/" . $year . "-" . $month . ".txt");
 
         if (!$this->rosterExist) {
             $this->createRoster();
@@ -75,7 +75,7 @@ class Roster
 
     private function writeToFile()
     {
-        $fileName = "../Data/" . $_SESSION['client'] . "/Roster/" . $this->year . "-" . $this->month . ".txt";
+        $fileName = "../Data/" . $_SESSION['clientName'] . "/Roster/" . $this->year . "-" . $this->month . ".txt";
         $fh = fopen($fileName, "w");
         fwrite($fh, date("d.m.Y H:i\n"));
 
@@ -229,7 +229,7 @@ class Roster
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             echo '<tr';
 
-            if ($this->servicePerson[$i] == $_SESSION['userName'] || $this->standbyPerson[$i] == $_SESSION['userName']) {
+            if ($this->servicePerson[$i] == $_SESSION['assistantName'] || $this->standbyPerson[$i] == $_SESSION['assistantName']) {
                 echo ' class="highlighted"';
             }
 
@@ -258,7 +258,7 @@ class Roster
         echo '</tr>';
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            if ($this->servicePerson[$i] == $_SESSION['userName']) {
+            if ($this->servicePerson[$i] == $_SESSION['assistantName']) {
                 echo '<tr>';
                 echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
                 echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
@@ -266,7 +266,7 @@ class Roster
                 echo '</tr>';
             }
 
-            if ($this->standbyPerson[$i] == $_SESSION['userName']) {
+            if ($this->standbyPerson[$i] == $_SESSION['assistantName']) {
                 echo '<tr>';
                 echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
                 echo '<td class="left">10:00 - 11:00';
@@ -336,7 +336,7 @@ class Roster
 
         $pdf->SetFont('', 'B');
 
-        $settings = new Settings($_SESSION['client']);
+        $settings = new Settings($_SESSION['clientName']);
         $pdf->Cell(200, 10, utf8_decode('Team ' . $settings->adminFirstName . ' ' . $settings->adminLastName . ' - Dienstplan ' . get_month_description($this->month) . ' ' . $this->year . ' - Letzte Änderung: ' . $this->lastChange));
         $pdf->Ln();
 

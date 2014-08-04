@@ -23,12 +23,12 @@ $path = dirname($_SERVER['PHP_SELF']);
 $team = new Team();
 $mailAddresses = $team->getMailAddresses();
 
-$settings = new Settings($_SESSION['client']);
+$settings = new Settings($_SESSION['clientName']);
 
 $message = 'Liebes Team,<br /><br />';
 $message .= 'bitte tragt bis <b>15. ' . get_month_description($monthReminder) . ' ' . $yearReminder . '</b> Eure möglichen Termine für den ';
 $message .= get_month_description($month) . ' ' . $year . ' im ';
-$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/login.php?client=' . $_SESSION['client'] . '&redirect=calendarView">';
+$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/login.php?client=' . $_SESSION['clientName'] . '&redirect=calendarView">';
 $message .= 'Assistenzplaner</a> ein.<br /><br />Vielen Dank!';
 
 if ($content != "") {

@@ -25,7 +25,7 @@ class MonthPlan
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
-        $this->settings = new Settings($_SESSION['client']);
+        $this->settings = new Settings($_SESSION['clientName']);
 
         $this->defaultWorkingTimes = new WorkingTimes();
         $this->assistanceInput = new AssistanceInput($year, $month);
@@ -37,7 +37,7 @@ class MonthPlan
 
         $this->initWeekdays();
 
-        $fileName = "../Data/" . $_SESSION['client'] . "/MonthPlan/" . $year . "-" . $month . ".txt";
+        $fileName = "../Data/" . $_SESSION['clientName'] . "/MonthPlan/" . $year . "-" . $month . ".txt";
         if (file_exists($fileName)) {
             $this->readFromFile($fileName);
         }
@@ -174,7 +174,7 @@ class MonthPlan
     {
         echo '<br />';
         echo '<h1>Nachricht an ' . $this->settings->adminName . '</h1>';
-        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notesAssistant" name="notesAssistant" cols="100" rows="10">' . str_replace("<br />", "&#10;", $this->assistanceInput->assistanceNotes[$_SESSION['userName']]) . '</textarea>';
+        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notesAssistant" name="notesAssistant" cols="100" rows="10">' . str_replace("<br />", "&#10;", $this->assistanceInput->assistanceNotes[$_SESSION['assistantName']]) . '</textarea>';
         echo '<br />';
     }
 
@@ -226,7 +226,7 @@ class MonthPlan
         }
 
         $dataStored = false;
-        if (array_key_exists($_SESSION['userName'], $this->assistanceInput->assistanceInput)) {
+        if (array_key_exists($_SESSION['assistantName'], $this->assistanceInput->assistanceInput)) {
             $dataStored = true;
         }
 
@@ -234,10 +234,10 @@ class MonthPlan
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $className = "bad";
             if ($dataStored) {
-                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] == 1) {
+                if ($this->assistanceInput->assistanceInput[$_SESSION['assistantName']][$i - 1] == 1) {
                     $className = "okay";
                 }
-                if ($this->assistanceInput->assistanceInput[$_SESSION['userName']][$i - 1] == 10) {
+                if ($this->assistanceInput->assistanceInput[$_SESSION['assistantName']][$i - 1] == 10) {
                     $className = "good";
                 }
             }

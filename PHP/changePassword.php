@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php include('navigation.php'); ?>
-<div class="hidden" id="userName"><?php echo $_SESSION['userName']; ?></div>
+<div class="hidden" id="userName"><?php echo $_SESSION['assistantName']; ?></div>
 
 <div class="center">
     <table>

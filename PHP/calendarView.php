@@ -48,7 +48,7 @@ echo '<br /><input type="button" value="Alle Daten markieren" onclick="markAllDa
 
 $calendar->printNotesInputForAssistant();
 
-echo '<input type="button" value="Speichern" onclick="save(this, \'' . $_SESSION['userName'] . '\', ' . $year . ', ' . $month . ', \'' . $id . '\')" />';
+echo '<input type="button" value="Speichern" onclick="save(this, \'' . $_SESSION['assistantName'] . '\', ' . $year . ', ' . $month . ', \'' . $id . '\')" />';
 
 ?>
 

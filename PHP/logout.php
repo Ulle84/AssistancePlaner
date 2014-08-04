@@ -1,6 +1,6 @@
 <?php
 session_start();
-$client = $_SESSION['client'];
+$client = $_SESSION['clientName'];
 session_destroy();
 
 $hostname = $_SERVER['HTTP_HOST'];

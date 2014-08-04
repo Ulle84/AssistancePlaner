@@ -11,7 +11,7 @@ if ($feedback == "") {
     exit;
 }
 
-$mailContent = "Klient: " . $_SESSION['client'] . "<br /> Assistent: " . $_SESSION['userName'] . "<br /><br />" . str_replace("\n", "<br />", $feedback);
+$mailContent = "Klient: " . $_SESSION['clientName'] . "<br /> Assistent: " . $_SESSION['assistantName'] . "<br /><br />" . str_replace("\n", "<br />", $feedback);
 
 
 $mail = new PHPMailer;

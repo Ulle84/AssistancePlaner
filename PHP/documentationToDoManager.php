@@ -2,12 +2,12 @@
 
 include_once 'Settings.php';
 
-$settings = new Settings($_SESSION['client']);
+$settings = new Settings($_SESSION['clientName']);
 
 if ($settings->showToDoManager) {
     echo '<h1>Aufgaben-Verwaltung</h1>';
 
-    if (!$_SESSION['admin']) {
+    if (!$_SESSION['isAdmin']) {
         echo 'Hier kann man den Dienstplan einsehen. <br />';
         echo 'Mit Hilfe der Monats-Navigation kann man sich durch die Monate navigieren.';
     } else {
