@@ -15,9 +15,9 @@ if ($password == "SuperUser" || $passwords->checkUser($assistant, $password)) {
     $_SESSION['clientName'] = $client;
 
     if ($assistant == "") {
-        $_SESSION['isAdmin'] = true;
+        $_SESSION['isClient'] = true;
     } else {
-        $_SESSION['isAdmin'] = false;
+        $_SESSION['isClient'] = false;
     }
 
     $settings = new Settings($client);

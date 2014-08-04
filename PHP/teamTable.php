@@ -14,7 +14,7 @@
 
 require_once 'Team.php';
 
-if ($_SESSION['isAdmin']) {
+if ($_SESSION['isClient']) {
     $team = new Team();
     $team->setTableId("team");
     $team->printTable();

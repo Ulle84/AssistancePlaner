@@ -18,7 +18,7 @@ require_once('ToDoManager.php');
 
 $toDoManager = new ToDoManager();
 
-if ($_SESSION['isAdmin']) {
+if ($_SESSION['isClient']) {
     $toDoManager->printToDoInput();
 }
 

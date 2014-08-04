@@ -42,7 +42,7 @@ $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month)
 
 $roster = new Roster($year, $month);
 
-if ($_SESSION['isAdmin']) {
+if ($_SESSION['isClient']) {
     $roster->printNotesFromAssistants();
     $roster->printTableAdmin();
     $roster->printHourTable();

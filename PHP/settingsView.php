@@ -14,7 +14,7 @@
 
 require_once 'Settings.php';
 
-if ($_SESSION['isAdmin']) {
+if ($_SESSION['isClient']) {
     $settings = new Settings($_SESSION['clientName']);
 
     echo '<h1>Einstellungen</h1>';
