@@ -116,7 +116,7 @@ class Team
     {
         echo '<tr>';
 
-        echo '<th>Login Name</th>';
+        echo '<th>Kennung</th>';
         echo '<th>Vorname</th>';
         echo '<th>Nachname</th>';
         echo '<th>E-Mail Adresse</th>';

@@ -132,7 +132,7 @@ function checkLoginNames() {
     for (var i = 1; i < rows.length; i++) {
         var data = rows[i].getElementsByTagName("td");
         if (data[0].firstChild.value == "") {
-            alert("Ein leerer Login-Name ist nicht erlaubt!");
+            alert("Eine leere Kennung ist nicht erlaubt!");
             return false;
         }
         loginNames.push(data[0].firstChild.value);
@@ -142,7 +142,7 @@ function checkLoginNames() {
     var last = loginNames[0];
     for (var i = 1; i < loginNames.length; i++) {
         if (loginNames[i] == last) {
-            alert("Die Tabelle kann nicht gespeichert werden!\nDer Login-Name " + last + " ist doppelt enthalten.");
+            alert("Die Tabelle kann nicht gespeichert werden!\nDie Kennung " + last + " ist doppelt enthalten.");
             return false;
         }
         last = loginNames[i];
