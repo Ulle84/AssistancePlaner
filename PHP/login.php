@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-    <title>Assistenzplaner - Login</title>
+    <title>Assistenzplaner - Anmeldung</title>
     <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/login.js"></script>
 </head>
