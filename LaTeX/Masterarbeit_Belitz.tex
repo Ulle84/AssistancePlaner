@@ -610,39 +610,50 @@ else {
 
 
 \section{Mögliche Erweiterungen}
-* Was kann man noch alles am Assistenz-Planer erweitern?
-* 
-
-
-%\subsection{Cron-Jobs}
-%braucht weitere Funktionalität des Servers
+In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
 
 \subsection{Übersetzung in andere Sprachen}
+Derzeit ist der Assistenzplaner komplett in Deutsch. Es ist eine Unterstützung für andere Sprachen angedacht aber noch nicht umgesetzt. Alle Stellen, an denen Text in deutscher Sprache ausgegeben wird, müssten angepasst werden. Denkbar wäre eine Klasse Translator in der alle zu übersetzenden Strings enthalten sind. Jede Sprache müsste von Translator ableiten und die Strings überschreiben.
+%TODO noch näher beschreiben?
 
 \subsection{Feiertage importieren}
-* für den Monatsplan wäre es gut
+
 
 \subsection{ICS Export}
+%TODO Erklärung und Link ICS
+Für die Assistenten wäre es interessant den Dienstplan im ICS Format abbonieren zu können. So hätten die Assistenten jederzeit die aktuelleste Version und ihre Dienst- und Bereitschaftszeiten im Online-Kalender.
+% -> auch auf dem SmartPhone etc.
 
 \subsection{Logging}
-* wer hat wann was am Assistenzplaner gemacht? inklusive Viewer
+Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
 
-\subsection{Responsive Design}
-* gute Darstellung auf allen Gerätekategorien (Desktop, Tablet, Smartphone)
+\subsection{Responsive Webdesign}
+Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig.
+Mit Hilfe von Responsive Webdesign könnten unterschiedliche Geräte-Kategegorien unterstützt werden.
+%TODO Link setzen: http://de.wikipedia.org/wiki/Responsive_Webdesign
+
 
 \subsection{Team Übersicht überarbeiten}
-* Anstelle von Tabelle -> Visitenkarten
+Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Die Tabelle ist mit der Zeit immer breiter geworden und unübersichtlich geworden. Eine Möglichkeit die Daten der Assistenten anders grafisch aufzubereiten wären Visitenkarten.
 
 \subsection{Inline-Dokumentation}
+Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer Seite dokumentiert.
+Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugägnlich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann in einem Pop-Up kontextbezogene Hilfe angezeigt bekommt.
 
 \subsection{Aufgaben-Manager erweitern}
-\subsubsection{Heutigen Tag markieren}
-\subsubsection{Ausgewählten Tag markieren}
+Der Aufgaben-Manager wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden den Aufgaben-Manager nicht für sein Team einzusetzen. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt.
+
+\subsubsection{Hervorhebungen bi  Datum-Auswahl}
+In der Datum-Auswahl sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
+
 \subsubsection{Aufgaben editieren}
+Aufgaben lassen sich derzeit nur anlegen, nicht im Nachhinein verändern. Eine Editierfunktion wäre von großem Nutzen.
+
 \subsubsection{Aufgabe löschen}
-\subsubsection{Kategorien}
+Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
+
 \subsubsection{Übersicht über erledigte Aufgaben}
-Wer hat wann was erledigt?
+Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man nachvollziehen kann, welcher Assistent wann was erledigt hat.
 
 \listoftables % Tabellenverzeichnis
 \listoffigures
