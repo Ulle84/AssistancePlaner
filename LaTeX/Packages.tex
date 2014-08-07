@@ -92,6 +92,9 @@
 % wichtig für korrekte Zitierweise ---------------------------------------------
 \usepackage[square]{natbib}
 
+% Farbe für URLs
+\definecolor{mylinkcolor}{rgb}{1.0,0.0,0.0}
+
 % PDF-Optionen -----------------------------------------------------------------
 \usepackage[
     bookmarks,
@@ -124,6 +127,7 @@
     pdfcreator={\autor},
     pdfsubject={\titel \untertitel},
     pdfkeywords={\titel \untertitel},
+    urlcolor = {mylinkcolor},
 }
 
 % fortlaufendes Durchnummerieren der Fußnoten ----------------------------------

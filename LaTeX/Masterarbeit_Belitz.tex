@@ -285,13 +285,11 @@ Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn
 
 \section{Übersicht}
 Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
-%TODO Screenshot einfügen -> overview.png
 
 \begin{figure}[htb]
 	\centering
-	%\includegraphics[scale=0.2]{../Images/Screenshots/overview.png}
 	\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}
-	\caption[Overview]{Übersicht Assistenzplaner - von hier aus erreicht man per Link alle Verfügbaren Seiten}
+	\caption[Overview]{Übersicht Assistenzplaner für Klienten - von hier aus erreicht man per Link alle Verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
 
@@ -304,9 +302,37 @@ Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
 * Passwort Vergabe
 
 \section{Team-Management}
-* siehe Benutzer-Verwaltung
-* Klassen: TeamMember, Team
-* teamTable, teamSaver
+%TODO neuer Begriff für den Abschnitt?
+%TODO Referenzen auf Requirement-Abschnitt?
+Der Klient braucht eine Möglichkeit um sein Assistenz-Team zu verwalten. Der Klient möchte Team-Mitglieder hinzufügen, editieren und löschen. Weiterhin möchte er das Passwort eines Assistenten zurücksetzen können.
+
+Jeder Assitent hat folgende Eigenschaften
+\begin{itemize}
+\item Kennung - eindeutige ID, mit der sich der Klient am System anmeldet
+\item Vorname
+\item Nachname
+\item Telefonnummer
+\item Stichwörter - siehe %TODO Verlinkung zum Abschnitt Algorithmus
+\item Stundenkontigent - Anzahl der Stunden in einem Monat, die der Assistent zur Verfügung hat
+\item Priorisierung - ein Wert um den Assistenten bei der Dienstplanerstellung zu priorisieren (je höher der Wert, desto höher die Wahrscheinlichkeit, dass der Assistent viele Dienste bekommt) %TODO Verlinkumg zum Abschnitt Algorithmus
+\item Bevorzugte Wochentage
+\end{itemize}
+
+Die Eigenschaften werden in tabellarischer Form dargestellt (siehe Abbildung \ref{fig:TeamTable}) und sind editierbar.
+
+\begin{figure}[htb]
+	\centering
+	%TODO Screenshot aktualisieren
+	\includegraphics[scale=0.35]{../Images/Screenshots/teamTable.png}
+	\caption[TeamTable]{Verwaltung der Assistentz-Team-Mitglieder}
+	\label{fig:TeamTable}
+\end{figure}
+
+Neue Teammitglieder können mit Hilfe des Buttons "Neues Mitglied" hinzugefügt werden. Das neue Teammitglied hat inital  das Passwort was in den Einstellungen hinterlegt wurde.
+
+Sollte ein Assistent sein Passwort vergessen haben, hat der Klient die Möglichkeit mit Hilfe des Buttons "Paswort zurücksetzen" (in der Spalte Aktionen) die Möglichkeit das Passwort des Assistenten auf den Wert des Standardpasswortes (was in den Einstellungen hinterlegt ist) zu setzen.
+
+Sollte ein Assitent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons "Löschen" (in der Spalte Aktionen) den Assistenten aus der Team-Übersicht zu entfernen.
 
 \section{Dienst-Plan}
 * aus Sicht des Klienten
@@ -350,10 +376,20 @@ Eigenschaften der Aufgaben:
 
 
 \section{Kalender}
-%TODO Screenshot einfügen
-Mit Hilfe des Kalenders kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
+%TODO Notizen zum Monat
+%TODO Tagesnotizen vom Klienten
+
+Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
 Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/CalendarInput.png}
+	\caption[CalendarInput]{Kalender für die Eingabe der möglichen Termine}
+	\label{fig:CalendarInput}
+\end{figure}
+
+Mit Hilfe des Buttons "Alle Daten markieren" kann man auf einen Rutsch alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
 
 \section{Dokumentation}
 Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
@@ -366,8 +402,14 @@ Auf der Willkommens-Seite
  wird die Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
 
 \section{Anlegen eines neuen Klienten}
-%TODO Screenshot vom Anlegen eines neuen Klienten
 Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}
+	\caption[NewClient]{Anlegen eines neuen Klienten mit Name und Passwort}
+	\label{fig:NewClient}
+\end{figure}
 
 Bedingungen an einen neuen Klientennamen sind:
 \begin{itemize}
@@ -376,15 +418,31 @@ Bedingungen an einen neuen Klientennamen sind:
 \item darf nur aus Buchstaben und Zahlen bestehen
 \end{itemize}
 
+Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. Der Inhalt der Textfelder bleibt erhalten, so dass der Benutzer dass Passwort und die Wiederholung dessen nicht nochmal eingeben muss.
+
 Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
 Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
+Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich am System anzumelden.
 
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
 
-\section{Navigation und Monatsnavigation}
-* Navgiation immer gut sichtbar oben links
+\section{Navigation}
+Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davon, ob jemand am System angmeldet ist (siehe Abbildung \ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung \ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}
+	\caption[NavigationLoggedIn]{Navigation bei angemeldetem Assistenten}
+	\label{fig:NavigationLoggedIn}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
+	\caption[NavigationLoggedOut]{Navigation ohne Anmmeldung}
+	\label{fig:NavigationLoggedOut}
+\end{figure}
 
 %TODO evt. einige der vorherigen sections zusammenfassen
 

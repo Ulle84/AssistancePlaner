@@ -124,7 +124,7 @@ class Team
         echo '<th>Stichwörter (getrennt durch Leerzeichen)</th>';
         echo '<th>Stundenkontingent</th>';
         echo '<th>Priorisierung</th>';
-        echo '<th>Bevorzugte Tage</th>';
+        echo '<th>Bevorzugte Wochentage</th>';
         echo '<th>Aktionen</th>';
 
         echo '</tr>';
