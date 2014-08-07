@@ -27,7 +27,7 @@ if ($_SESSION['isClient']) {
     echo '<tr><td class="left">E-Mail Adresse</td><td><input id="mailAddress"  type="text" size="30" maxlength="50" value="' . $settings->mailAddress . '"/></td></tr>';
     echo '<tr><td class="left">Standard-Passwort für Assistenten</td><td><input id="standardPassword"  type="text" size="30" maxlength="50" value="' . $settings->standardPassword . '"/></td></tr>';
 
-    echo '<tr><td class="left">ToDo-Manager nutzen</td><td class="left"><input id="showToDoManager" type="checkbox" value=""';
+    echo '<tr><td class="left">Aufgaben-Verwaltung nutzen</td><td class="left"><input id="showToDoManager" type="checkbox" value=""';
     if ($settings->showToDoManager == 1) {
         echo ' checked="true"';
     }

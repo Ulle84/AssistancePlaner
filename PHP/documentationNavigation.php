@@ -1,6 +1,7 @@
 <h1>Navigation</h1>
 Ganz oben rechts ist immer die Navigation zu sehen.
-<img id="imgNavigation" title="Navigation" class="highResolution" src="../Images/Screenshots/Navigation.png"/>
+<img id="imgNavigation" title="Navigation" class="highResolution" src="../Images/Screenshots/NavigationLoggedIn.png"/>
+Der Inhalt verändert sich, wenn man sich am System an- bzw. abmeldet.
 
 <h2>Klient</h2>
 Hier kann man den Namen des Klienten sehen.
@@ -20,6 +21,12 @@ die Aktion abzuschließen drückt man auf den Button <input type="button" value=
 
 <h2>Dokumentation</h2>
 Wenn man auf den Link "Dokumentation" klickt, dann gelangt man auf diese Dokumentations-Seite.
+
+<h2>Feedback</h2>
+Hier gelangt man zu einer Seite, auf der man sein Feedback formulieren und an den Entwickler des Assistenzplaners schicken kann.
+
+<h2>Impressum</h2>
+Hier gelangt man zu Impressum, Haftungsausschluss und Datenschutzerklärung.
 
 <h2>Abmelden</h2>
 Wenn man seine Arbeiten abgeschlossen hat und den Assistenzplaner verlassen möchte, so sollte man auf den Link

@@ -5,6 +5,6 @@ if (!$_SESSION['isClient']) {
     echo 'Mit Hilfe der Monats-Navigation kann man sich durch die Monate navigieren.';
 }
 else {
-    //TODO Docuementation for Client/Admin
+    include('documentationRosterClient.php');
 }
 ?>

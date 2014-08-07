@@ -8,25 +8,7 @@ Im <a href="calendarView.php">Kalender</a> können die Assistenten für einen Mo
 Im Kalender sind die Dienstzeiten eingetragen, so wie sie vom Klienten hingterlegt wurde. Steht hier z. B. 13:00 - 08:00,
 dann geht der Dienst von 13:00 Uhr des Tages bis um 08:00 Uhr des Folgetages.
 
-Farblich codiert ist folgendes:
-<table id="tabCalendarColors" title="Bedeutung der Farben im Kalender">
-    <tr>
-        <th>Farbe</th>
-        <th>Bedeutung</th>
-    </tr>
-    <tr>
-        <td class="good">Grün</td>
-        <td class="left">An diesem Termin ist ein Dienst auf jeden Fall möglich.</td>
-    </tr>
-    <tr>
-        <td class="okay">Gelb</td>
-        <td class="left">An diesem Termin ist ein Dienst zur Not möglich.</td>
-    </tr>
-    <tr>
-        <td class="bad">Rot</td>
-        <td class="left">An diesem Termin ist kein Dienst möglich.</td>
-    </tr>
-</table>
+<?php include("documentationCalendarColor.php") ?>
 
 Durch einen Klick auf ein Datum kann der Zustand geändert werden. Standardmäßig ist ein Termin rot (kein Dienst möglich)
 markiert. Durch einen Klick wird der Termin grün (Dienst möglich) markiert. Durch einen zweiten Klick wird das Datum als
