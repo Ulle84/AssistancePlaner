@@ -44,7 +44,7 @@ $roster = new Roster($year, $month);
 
 if ($_SESSION['isClient']) {
     $roster->printNotesFromAssistants();
-    $roster->printTableAdmin();
+    $roster->printTableClient();
     $roster->printHourTable();
 
     echo '<br/>';

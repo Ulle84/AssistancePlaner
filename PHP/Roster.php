@@ -262,7 +262,7 @@ class Roster
         echo '<table id="rosterTable">';
     }
 
-    public function printTableAdmin()
+    public function printTableClient()
     {
         $this->printTableBase();
 
