@@ -22,12 +22,13 @@ require_once 'MonthNavigation.php';
 $month = date("n");
 $year = date("Y");
 
-// switch to next month
-//TODO switch only if not assistant
-$month++;
-if ($month == 13) {
-    $month = 1;
-    $year++;
+// switch to next month if client
+if ($_SESSION['isClient']) {
+    $month++;
+    if ($month == 13) {
+        $month = 1;
+        $year++;
+    }
 }
 
 if (isset($_GET['year'])) {
