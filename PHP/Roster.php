@@ -86,6 +86,104 @@ class Roster
         fclose($fh);
     }
 
+    //TODO put compareTimes, getLatterTime, addOneHour in a helper class
+
+    private function compareTimes($time1, $time2)
+    {
+        // returns 0 if equal
+        // returns 1 if $time1 is before $time2
+        // returns -1 if $time1 is after $time2
+
+        if ($time1 == $time2) {
+            return 0;
+        }
+
+        $hours1 = substr($time1, 0, 2);
+        $minutes1 = substr($time1, 3, 2);
+
+        $hours2 = substr($time2, 0, 2);
+        $minutes2 = substr($time2, 3, 2);
+
+        if ($hours1 < $hours2) {
+            return 1;
+        }
+
+        if ($hours1 > $hours2) {
+            return -1;
+        }
+
+        // here $hours1 should be equal $hours2
+        if ($minutes1 < $minutes2) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    private function getLatterTime($time1, $time2)
+    {
+        if ($this->compareTimes($time1, $time2) == 1) {
+            return $time2;
+        } else {
+            return $time1;
+        }
+    }
+
+    private function addOneHour($time)
+    {
+        $hours = (int)substr($time, 0, 2);
+
+        $hours++;
+        if ($hours == 24) {
+            $hours = 0;
+        }
+
+        $returnTime = "";
+        if ($hours < 10) {
+            $returnTime = "0";
+        }
+        $returnTime .= $hours . substr($time, 2, 3);
+
+        return $returnTime;
+    }
+
+    private function getServiceHours($day)
+    {
+        //substr($this->serviceBegin, 3, 2)
+        //$hourOfServiceBeg$this->monthPlan->days[$day]->serviceBegin
+
+        $serviceHours = "10:00 - 11:00";
+
+        if ($day != 1) {
+            if ($this->standbyPerson[$day] == $this->servicePerson[$day - 1]) {
+                $latterTime = $this->getLatterTime("10:00", $this->monthPlan->days[$day - 1]->serviceEnd);
+                $serviceHours = $latterTime . " - " . $this->addOneHour($latterTime);
+            }
+        } else {
+            $previousMonth = $this->month - 1;
+            $year = $this->year;
+            if ($previousMonth == 0) {
+                $previousMonth = 12;
+                $year--;
+            }
+
+            $rosterPreviousMonth = new Roster($year, $previousMonth);
+            if ($rosterPreviousMonth->rosterExist) {
+                $lastDayOfMonth = date("t", mktime(0, 0, 0, $previousMonth, 1, $year));
+                if ($this->standbyPerson[$day] == $rosterPreviousMonth->servicePerson[$lastDayOfMonth]) {
+                    $latterTime = $this->getLatterTime("10:00", $rosterPreviousMonth->monthPlan->days[$lastDayOfMonth]->serviceEnd);
+                    $serviceHours = $latterTime . " - " . $this->addOneHour($latterTime);
+                }
+            }
+        }
+
+        if ($this->monthPlan->days[$day]->serviceHours > 13) {
+            $serviceHours .= " und 18:00 - 19:00";
+        }
+
+        return $serviceHours;
+    }
+
     private function printTableHeader($first)
     {
         echo '<tr';
@@ -236,11 +334,8 @@ class Roster
             echo '><td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
             echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
             echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
-            echo '<td class="left">10:00 - 11:00';
-            if ($this->monthPlan->days[$i]->serviceHours > 13) {
-                echo ' und 18:00 - 19:00';
-            }
-            echo '</td>';
+
+            echo '<td class="left">' . $this->getServiceHours($i) . '</td>';
             echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
             echo '<td class="left">' . $this->monthPlan->days[$i]->publicNotes . '</td>';
             echo '</tr>';
@@ -269,11 +364,9 @@ class Roster
             if ($this->standbyPerson[$i] == $_SESSION['assistantName']) {
                 echo '<tr>';
                 echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-                echo '<td class="left">10:00 - 11:00';
-                if ($this->monthPlan->days[$i]->serviceHours > 13) {
-                    echo ' und 18:00 - 19:00';
-                }
-                echo '</td>';
+
+                echo '<td class="left">' . $this->getServiceHours($i) . '</td>';
+
                 echo '<td class="left">Bereitschaft</td>';
                 echo '</tr>';
             }
@@ -355,12 +448,7 @@ class Roster
             $pdf->Cell($w[1], $cellHeight, $this->monthPlan->days[$i]->getWorkingHours(), 1, 0, 'C', false);
             $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
 
-            $standbyTime = "10:00 - 11:00";
-            if ($this->monthPlan->days[$i]->serviceHours > 13) {
-                $standbyTime .= " und 18:00 - 19:00";
-            }
-
-            $pdf->Cell($w[3], $cellHeight, $standbyTime, 1, 0, 'L', false);
+            $pdf->Cell($w[3], $cellHeight, $this->getServiceHours($i), 1, 0, 'L', false);
             $pdf->Cell($w[4], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->standbyPerson[$i])), 1, 0, 'L', false);
         }
 
