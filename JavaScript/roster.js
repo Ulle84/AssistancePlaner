@@ -14,6 +14,12 @@ function entryClicked(element) {
             element.setAttribute("class", "service");
             element.textContent = serviceDescription;
             break;
+        case "bad":
+            if (confirm("Der Assistent hat angegeben keine Zeit zu haben. \nMöchten Sie dennoch fortfahren?")) {
+                element.setAttribute("class", "service");
+                element.textContent = serviceDescription;
+            }
+            break;
         case "service":
             element.setAttribute("class", "standby");
             element.textContent = standbyDescription;

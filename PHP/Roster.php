@@ -229,20 +229,19 @@ class Roster
                     $baseClassName = "good";
                 }
 
-                if ($name == $this->standbyPerson[$day->dayNumber]) {
-                    $className = "standby";
-                    $cellTextContent = "Bereitschaft";
-                }
-
-                if ($name == $this->servicePerson[$day->dayNumber]) {
-                    $className = "service";
-                    $cellTextContent = "Dienst";
-                }
-
-
             } else {
                 $className = "bad";
                 $baseClassName = "bad";
+            }
+
+            if ($name == $this->standbyPerson[$day->dayNumber]) {
+                $className = "standby";
+                $cellTextContent = "Bereitschaft";
+            }
+
+            if ($name == $this->servicePerson[$day->dayNumber]) {
+                $className = "service";
+                $cellTextContent = "Dienst";
             }
 
             echo '<td onclick="entryClicked(this)" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
