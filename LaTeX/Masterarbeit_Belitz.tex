@@ -303,9 +303,13 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 \end{figure}
 
 
-\section{Verwaltung der Bediener}
-Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Bediener notwendig.
-Jeder Benutzer des Assistenzplaners kann sich mit einem eigenen Konto anmelden.
+\section{Verwaltung der Benutzer}
+Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Benutzer notwendig.
+Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden.
+
+
+
+
 * keine Überschneidung mit Benutzer-Verwaltung - genaue gegenseitige Abtrennung nötig
 * Session Management (wie erkenne ich meinen Nutzer wieder)?
 * Passwort Vergabe
@@ -516,19 +520,8 @@ nutzen möchte oder nicht.
 	\label{fig:Settings}
 \end{figure}
 
-%TODO Screenshot einfügen
-
-
-
-* Individualisierung > Vorname, Nachname, eMail Adresse, 
-* hervorheben: Aufgaben-Manager ja/nein
-* 
-
-
-
 \section{Kalender}
-%TODO Notizen zum Monat
-%TODO Tagesnotizen vom Klienten
+%TODO Wo kommen die Dienstzeiten her und wie sind diese zu interprätieren?
 
 Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
 Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
@@ -542,15 +535,32 @@ Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet,
 
 Mit Hilfe des Buttons "Alle Daten markieren" kann man auf einen Rutsch alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
 
+Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:CalendarNotesFromClient}), die dem Assitenten helfen können. Das sind zum einen die öffentlichen Notizen, die der Klient zum Monat erstellt hat, zum anderen die optionale Nachricht die der Klient an das Team verfasst hat.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/CalendarNotesFromClient.png}
+	\caption[ToDo]{Informationen vom Klienten für seine Assistenten}
+	\label{fig:CalendarNotesFromClient}
+\end{figure}
+
 \section{Dokumentation}
 Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
 Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
-%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
 
-\section{Willkommens-Seite}
-Auf der Willkommens-Seite 
-%TODO Link einfügen
- wird die Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
+Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt.
+%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
+%TODO Fußnote?
+
+\section{Willkommen-Seite}
+Auf der \href{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite} (siehe Abbildung \ref{fig:Welcome})wird den Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Welcome.png}
+	\caption[ToDo]{Willkommen-Seite}
+	\label{fig:Welcome}
+\end{figure}
 
 \section{Anlegen eines neuen Klienten}
 Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
@@ -745,6 +755,12 @@ else {
 \newpage
 
 \chapter{Ergebnis}
+Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage
+\begin{itemize}
+\item Assistenz-Teams zu verwalten
+\item Dienstpläne zu erstellen
+\item Aufgaben für die Assistenz-Teams zu verwalten
+\end{itemize}
 
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
 * wenn nicht schon in Arbeit eingeflossen, dann hier die Gespräche mit Commit und Matthias Rösch verarbeiten
