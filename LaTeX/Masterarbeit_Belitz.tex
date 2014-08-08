@@ -131,7 +131,7 @@ warum überhapt den ganzen Aufwand treiben
 
 
 \chapter{Grundlagen}
-In diesem Kapitel ...
+In diesem Kapitel werden die Grundlagen für das Verständnis der Arbeit gelegt.
 
 \section{Server und Client}
 \section{Webentwicklung}
@@ -381,9 +381,9 @@ Unterhalb der Dienstplantabelle ist eine weitere Tabelle (siehe Abbildung \ref{f
 In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden + Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden. %TODO Link auf entsprechenden Abschnitt
 In der vierten Spalte wird die Differenz zwischen Spalte 2 und 3 berechnet. In der fünften Spalte ist die Differenz (Spalte 4) ins Verhältnis der benötigten Arbeitsstunden (Spalte 3) gesetzt und prozentual ausgedrückt. Die Zeilen werden farblich hinterlegt:
 \begin{itemize}
-\item Grün: Die prozentuale Abweichung (Spalte 5) ist kleiner 10\% 
-\item Gelb: Die prozentuale Abweichung (Spalte 5) ist zwischen 10\% und 20\%
-\item Rot: Die prozentuale Abweichung (Spalte 5) ist größer als 20\% 
+\item Grün: Der Betrag der prozentualen Abweichung (Spalte 5) ist kleiner 10\% 
+\item Gelb: Der Betrag der prozentualen Abweichung (Spalte 5) ist zwischen 10\% und 20\%
+\item Rot: Der Betrag der prozentualen Abweichung (Spalte 5) ist größer als 20\% 
 \end{itemize}
 Die Stundenübersicht wird jedes Mal aktualisiert, wenn der Klient in der Dienstplan-Tabelle etwas ändert. Dadurch hat der Klient ein direktes Feedback, wie sich eine Dienstplanänderung auf die Stundenausschöpfung der Assistenten auswirkt.
 
@@ -447,22 +447,79 @@ Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der K
 
 
 \section{Aufgaben-Verwaltung}
-Eigenschaften der Aufgaben:
-* Beschreibung
-* Fälligkeitsdatum
-* Wiederholungstyp (nie, ab Erledigungsdatum, ab Fälligkeitsdatum)
-* Wiederholungsintervall
+Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung \ref{fig:ToDoManager}) zur Verfügung.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManager.png}
+	\caption[Todo]{Aufgaben-Verwaltung mit einigen Test-Aufgaben}
+	\label{fig:ToDoManager}
+\end{figure}
 
+\subsection{Eigenschaften der Aufgaben}
+Die Aufgaben haben folgende Eigenschaften:
+\begin{itemize}
+\item Beschreibung
+\item Fälligkeitsdatum
+\item Wiederholungstyp (nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
+\item Wiederholungsintervall (z. B. alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
+\end{itemize}
 
-* Aufgaben erstellen
-* Wiederholungen erläutern
-* DatePicker erläutern
-* Extension of Date-Object erläutern
-* Erledigen der Aufgaben
-* Undo Funktion beim Erledigen erläutern
-* Speichern
+\subsection{Gruppierung der Aufgaben}
+Die Aufgaben werden mit Hilfe ihres Fälligkeitsdatums in folgende Gruppen sortiert:
+\begin{itemize}
+\item Erledigt
+\item Heute
+\item Morgen
+\item Übermorgen
+\item Zukünftig
+\item Ohne Datum
+\end{itemize}
+
+\subsection{Neue Aufgaben erstellen}
+Der Klient ist als Einziger in der Lage neue Aufgaben zu erstellen. Hierfür hat er eine Eingabemaske, wie sie in Abbildung \ref{fig:ToDoManagerNewToDo} zu sehen ist.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.45]{../Images/Screenshots/ToDoManagerNewToDo.png}
+	\caption[Todo]{Aufgaben-Verwaltung: Erstellung einer neuen Aufgabe}
+	\label{fig:ToDoManagerNewToDo}
+\end{figure}
+
+Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildung \ref{fig:CalendarInput}) unterstützt. Dieser öffent sich automatisch, sobald das Eingabefeld für das Datum den Fokus bekommt und schließt sich wieder, sobald der Klient ein Datum gewählt hat oder auf "Abbrechen" klickt.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManagerDatePicker.png}
+	\caption[Todo]{Aufgaben-Verwaltung: Wahl des Datums}
+	\label{fig:ToDoManagerDatePicker}
+\end{figure}
+
+%TODO Extension of Date-Object erläutern?
+
+\subsection{Aufgaben als erledigt markieren}
+Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie "Erledigt" sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
+
+Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängig machen, in dem man wieder die Checkbox links von der Aufgabenbeschreibung anklickt. Die Aufgabe ist nicht mehr durchgestrichen, wird in die richtige Kategorie (Heute, Morgen, ...) zurücksortiert und die gegebenenfalls erstellte Kopie der Aufgabe (mit neu berechnetem Fälligkeitsdatum) wird gelöscht.
+
+\subsection{Speichern}
+Um Änderungen an den Aufgaben (neu Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf "Speichern" drücken.
 
 \section{Einstellungen}
+Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung \ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
+Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung  %TODO Verweis auf Kapitel
+nutzen möchte oder nicht.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Settings.png}
+	\caption[ToDo]{Einstellungsmöglichkeiten des Assistenzplaners}
+	\label{fig:Settings}
+\end{figure}
+
+%TODO Screenshot einfügen
+
+
+
 * Individualisierung > Vorname, Nachname, eMail Adresse, 
 * hervorheben: Aufgaben-Manager ja/nein
 * 
@@ -730,10 +787,10 @@ Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Die Tabelle ist mit der
 Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer Seite dokumentiert.
 Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugägnlich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann in einem Pop-Up kontextbezogene Hilfe angezeigt bekommt.
 
-\subsection{Aufgaben-Manager erweitern}
-Der Aufgaben-Manager wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden den Aufgaben-Manager nicht für sein Team einzusetzen. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt.
+\subsection{Aufgaben-Verwaltung erweitern}
+Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden die Aufgaben-Verwaltung nicht für sein Team einzusetzen, da der Tooling-Overhead zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt. Für anders organisierte Teams wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
 
-\subsubsection{Hervorhebungen bi  Datum-Auswahl}
+\subsubsection{Hervorhebungen bei  Datum-Auswahl}
 In der Datum-Auswahl sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
 
 \subsubsection{Aufgaben editieren}
