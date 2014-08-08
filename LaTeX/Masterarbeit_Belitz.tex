@@ -64,6 +64,9 @@
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
+%TODO alle Todos erledigen ;-)
+%TODO Captions (Bildunterschriften) überprüfen
+
 \addchap{Abstract}
 \label{sec:Abstract}
 %TODO Abstract am Ende schreiben
@@ -295,7 +298,7 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}
-	\caption[Overview]{Übersicht Assistenzplaner für Klienten - von hier aus erreicht man per Link alle Verfügbaren Seiten}
+	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht Assistenzplaner für Klienten - von hier aus erreicht man per Link alle Verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
 
@@ -329,7 +332,7 @@ Die Eigenschaften werden in tabellarischer Form dargestellt (siehe Abbildung \re
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.35]{../Images/Screenshots/teamTable.png}
-	\caption[TeamTable]{Verwaltung der Assistentz-Team-Mitglieder}
+	\caption[Verwaltung Assistenz-Team]{Verwaltung der Assistentz-Team-Mitglieder}
 	\label{fig:TeamTable}
 \end{figure}
 
@@ -341,7 +344,56 @@ Sollte ein Assitent das Team verlassen, so hat der Klient die Möglichkeit mit Hi
 
 \section{Dienst-Plan}
 \subsection{Aus Sicht des Klienten}
+Wenn die Assistenten ihre Termine eingetragen haben, ist der Klient in der Lage den Dienstplan zu erstellen. Falls es Tage gibt, an denen nicht mindestens 2 Assistenten (einer für Dienst und einer für Bereitschaft) Zeit haben, so bekommt er eine Warnung, da dann eine vollständige Dienstplanerstellung nicht möglich ist.
 
+Der Assistenzplaner erstellt eine Tabelle (siehe Abbildung \ref{fig:RosterClient1}), in der tageweise die Dienstzeiten, die Verfügbarkeiten der Assistenten und die Bemerkungen (öffentliche wie private) aufgeführt werden. Die Verfügbarkeiten der Assistenten werden farblich markiert. 
+\begin{itemize}
+\item Grün: Assistent ist voll verfügbar
+\item Gelb: Assistent ist zur Not verfügbar
+\item Rot: Assistent ist nicht verfügbar
+\end{itemize}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/RosterClient1.png}
+	\caption[ToDo]{Editierbarer Dienstplan für den Klienten}
+	\label{fig:RosterClient1}
+\end{figure}
+
+Der Klient bekommt vom Assistenzplaner mit Hilfe des Algorithmus einen Dienstplan erstellt %TODO Verweis auf Abschnitt mit Algorithmus
+den er nach seinen Belieben anpassen kann. Dazu klickt er einfach in die Zellen der Dienstplantabelle und kann zwischen den Zuständen
+\begin{itemize}
+\item Assistent hat Dienst
+\item Assistent hat Bereitschaft
+\item Assistent hat weder Dienst noch Bereitschaft
+\end{itemize}
+wechseln.
+
+Unterhalb der Dienstplantabelle ist eine weitere Tabelle (siehe Abbildung \ref{fig:RosterClient2}), in der man die Stundenverteilung der Assistenten sehen kann.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/RosterClient2.png}
+	\caption[ToDo]{Stundenübersicht der Assistenten}
+	\label{fig:RosterClient2}
+\end{figure}
+
+In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden + Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden. %TODO Link auf entsprechenden Abschnitt
+In der vierten Spalte wird die Differenz zwischen Spalte 2 und 3 berechnet. In der fünften Spalte ist die Differenz (Spalte 4) ins Verhältnis der benötigten Arbeitsstunden (Spalte 3) gesetzt und prozentual ausgedrückt. Die Zeilen werden farblich hinterlegt:
+\begin{itemize}
+\item Grün: Die prozentuale Abweichung (Spalte 5) ist kleiner 10\% 
+\item Gelb: Die prozentuale Abweichung (Spalte 5) ist zwischen 10\% und 20\%
+\item Rot: Die prozentuale Abweichung (Spalte 5) ist größer als 20\% 
+\end{itemize}
+Die Stundenübersicht wird jedes Mal aktualisiert, wenn der Klient in der Dienstplan-Tabelle etwas ändert. Dadurch hat der Klient ein direktes Feedback, wie sich eine Dienstplanänderung auf die Stundenausschöpfung der Assistenten auswirkt.
+
+Per Knopfdruck kann der Klient einige Funktionen ausführen:
+\begin{itemize}
+\item Dienstplan prüfen: Es wird geprüft, dass für jeden Tag genau ein Assistent Dienst und genau ein Assistent Bereitschaft hat
+\item Dienstplan speichern: Der Dienstplan wird gespeichert. Gleichzeitig wird das Datum der letzten Änderung aktualisiert.
+\item Dienstplan löschen: Der Dienstplan wird nach Rückversicherung gelöscht. Durch ein Neuladen der Dienstplanseite wird vom Assistenzplaner wieder ein neuer Dienstplanvorschlag erstellt.
+\item Dienstplan als PDF anzeigen: Der Dienstplan wird im PDF-Format exportiert. Als PDF kann der Dienstplan leicht per E-Mail verschickt und ausgedruckt werden.% Der Dienstplan als PDF dient letztendlich als Leistungsnachweis.
+\end{itemize}
 
 \subsection{Aus Sicht des Assistenten}
 Der Assistent hat keine Möglichkeit den Dienstplan zu verändern. Er kann lediglich den fertigen Dienstplan einsehen. In einer Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus1}) werden tagesweise die Dienstzeiten und Bereitschafszeiten dargestellt. Weiterhin kann man sehen welcher Assistent Dienst bzw. Bereitschaft hat. Die Dienste und Bereitschaften des angemeldeten Assistenen werden farblich hervorgehoben.
@@ -349,26 +401,18 @@ Der Assistent hat keine Möglichkeit den Dienstplan zu verändern. Er kann ledigli
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/RosterAssistantMarkus1.png}
-	\caption[RosterAssistantMarkus1]{Gesamter Dienstplan aus Sicht des Assistenten - farbig hervorgehoben sind die Dienste bzw. Bereitschaften des angemeldten Assistenten}
+	\caption[Gesamter Dienstplan aus Sicht des Assistenten]{Gesamter Dienstplan aus Sicht des Assistenten - farbig hervorgehoben sind die Dienste bzw. Bereitschaften des angemeldten Assistenten}
 	\label{fig:RosterAssistantMarkus1}
 \end{figure}
-
 
 Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus2}) in der der angemeldete Assistent seine Dienste und Bereitschaften kompakt einsehen kann.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/RosterAssistantMarkus2.png}
-	\caption[RosterAssistantMarkus2]{Dienste und Bereitschaften des angemeldeten Assistenten}
+	\caption[Dienste und Bereitschaften des angemeldeten Assistenten]{Dienste und Bereitschaften des angemeldeten Assistenten}
 	\label{fig:RosterAssistantMarkus2}
 \end{figure}
-
-
-
-* aus Sicht des Klienten
-* aus Sicht des Assistenten
-* auf Dienstplan-Erstellungs-Kapitel (Algorithmus) verweisen
-
 
 \section{Monatsplan}
 Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
@@ -376,7 +420,7 @@ Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/MonthPlan3.png}
-	\caption[MonthPlan3]{Monatsplan mit der Möglichkeit tagesweise Dienstbeginn und Dienstende festzulegen und Bemerkungen zu hinterlegen}
+	\caption[Monatsplan]{Monatsplan mit der Möglichkeit tagesweise Dienstbeginn und Dienstende festzulegen und Bemerkungen zu hinterlegen}
 	\label{fig:MonthPlan3}
 \end{figure}
 
@@ -387,7 +431,7 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/Mail.png}
-	\caption[Mail]{Beispielhafte Benachrichtigung der Assistenten, mit der Bitte des Klienten die Termine für den nächsten Monat einzutragen.}
+	\caption[Benachrichtigung der Assistenten]{Beispielhafte Benachrichtigung der Assistenten, mit der Bitte des Klienten die Termine für den nächsten Monat einzutragen.}
 	\label{fig:Mail}
 \end{figure}
 
@@ -397,7 +441,7 @@ Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der K
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.6]{../Images/Screenshots/DefaultTimes.png}
-	\caption[DefaultTimes]{Verwaltung der Standard-Dienstzeiten}
+	\caption[Standard-Dienstzeiten]{Verwaltung der Standard-Dienstzeiten}
 	\label{fig:DefaultTimes}
 \end{figure}
 
@@ -435,7 +479,7 @@ Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet,
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/CalendarInput.png}
-	\caption[CalendarInput]{Kalender für die Eingabe der möglichen Termine}
+	\caption[Kalender für die Eingabe möglicher Termine]{Kalender für die Eingabe der möglichen Termine}
 	\label{fig:CalendarInput}
 \end{figure}
 
@@ -457,7 +501,7 @@ Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwo
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}
-	\caption[NewClient]{Anlegen eines neuen Klienten mit Name und Passwort}
+	\caption[Anlegen eines neuen Klienten]{Anlegen eines neuen Klienten mit Name und Passwort}
 	\label{fig:NewClient}
 \end{figure}
 
@@ -483,14 +527,14 @@ Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davo
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}
-	\caption[NavigationLoggedIn]{Navigation bei angemeldetem Assistenten}
+	\caption[Navigation bei angemeldetem Assistenten]{Navigation bei angemeldetem Assistenten}
 	\label{fig:NavigationLoggedIn}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
-	\caption[NavigationLoggedOut]{Navigation ohne Anmmeldung}
+	\caption[Navigation ohne Anmmeldung]{Navigation ohne Anmmeldung}
 	\label{fig:NavigationLoggedOut}
 \end{figure}
 
