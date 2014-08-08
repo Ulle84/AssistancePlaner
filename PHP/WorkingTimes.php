@@ -54,7 +54,7 @@ class WorkingTimes
 
     public function printTable()
     {
-        echo '<h1>Standard Dienst-Zeiten</h1>';
+        echo '<h1>Standard-Dienstzeiten</h1>';
 
         echo '<table id="defaultTimes">';
         echo '<tr>';

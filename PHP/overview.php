@@ -23,7 +23,7 @@ if ($settings->showToDoManager == 1) {
 if ($_SESSION['isClient']) {
     echo '<a href="monthPlanView.php">Monats-Plan</a> <br/>';
     echo '<a href="teamTable.php">Team</a> <br/>';
-    echo '<a href="defaultTimes.php">Standard Dienst-Zeiten</a> <br/>';
+    echo '<a href="defaultTimes.php">Standard-Dienstzeiten</a> <br/>';
     echo '<a href="settingsView.php">Einstellungen</a> <br/>';
 }
 else {
