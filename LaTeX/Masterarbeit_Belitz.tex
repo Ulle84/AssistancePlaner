@@ -146,6 +146,9 @@ Cascading Style Sheets ...
 %\section{Agile Softwareentwicklung}
 \subsection{User Stories}
 
+\section{Einführung Algorithmen?}
+
+
 \section{Modellgetriebene Software-Entwicklung}
 \section{SysML}
 \section{UML}
@@ -177,8 +180,13 @@ Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehal
 
 
 \subsection{Stundenkontigent}
+\label{sec:Stundenkontigent}
 %TODO verallgemeinern?
 Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Jeder Assistent möchte sein Stundenkontigent möglichst gut ausgeschöpft bekommen. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen. %TODO die letzten zwei Sätze direkt hintereinadner hören sich doof an!
+
+%TODO weitere Begriffe erläutern
+* Dienstzeiten - wie werden die ersetllt - das muss man beachten, wie wird die Nacht verrechnet, ....
+*  Bereitschafszeiten - wie werden die berechent?
 
 \section{Ist-Prozess}
 Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient hat für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
@@ -607,9 +615,6 @@ Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davo
 
 %TODO evt. einige der vorherigen sections zusammenfassen
 
-
-
-
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
 
@@ -618,8 +623,9 @@ Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, de
 
 Nebenbedingungen sind, dass
 \begin{itemize}
-\item die Stundenkontigente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt ) %TODO Referenz
 \item die Vorlieben des Klienten berücksichtig werden (Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußball-Spielen)
+\item die Stundenkontigente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt \ref{sec:Stundenkontigent})
+
 \end{itemize}
 
 \subsection{Eingabe}
@@ -651,11 +657,8 @@ Stundenkontingent & \xmark & \xmark & \xmark & \xmark & \cmark \\
 \label{tab:inputAlgorithm}
 \end{table}
 
-
-
-
-%TODO Bild?
-
+\subsection{Ausgabe}
+Der Algorithmus gibt für jeden Tag des Monats einen Assistenten für den Dienst und einen Assistenten für die Bereitschaft aus.
 
 \subsection{Erste Version - Hundertprozentige Betreuungsabdeckung}
 \label{sec:algorithmVersion1}
@@ -778,10 +781,6 @@ Tag des Monats & Private Bemerkungen & Assistent 1 & Assistent 2 & Assistent 3 \
 \label{sec:algorithmVersion5}
 In der letzten Verfeinerung des Algoritmus werden die Stundenkontingente berücksichtigt. Bisher hat der Algorithmus über alle Tage iteriert und jeden Tag isoliert betrachtet. Für jeden Tag wurde ein lokales Optimum gefunden. In der Regel führt dieses Vorgehen allerdings zu einer sehr unausgewogenen Stundenverteilung unterhalb der Assistenten. Um die Stundenkontigente der Assitenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. 
 
-Als erstes werden alle Stundenkontingent der Assistenten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung} hinterlegt sind zusammen addiert.
-
-Dann werden alle Dienststunden und Bereitschaftsstunden zusammen addiert. 
-
 Dazu werden die Daten in ein anderes Tabellenformat (siehe Tabelle \ref{tab:scoreTableConverted}) konvertiert. In die erste Spalte werden die Punkte (wenn sie größer Null sind) eingetragen, in der zweiten Spalte steht der Assitent und in der dritten Spalte der Tag.
 \begin{table}[htb]
 \centering
@@ -837,13 +836,29 @@ Punkte & Name & Tag \\
 \label{tab:scoreTableConvertedAndSorted}
 \end{table}
 
+Weiterhin werden alle Stundenkontingent der Assistenten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung} hinterlegt sind, zusammen addiert.
 
+Dann werden alle Dienst- und Bereitschaftsstunden zusammen addiert.
+Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontigente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontigente) ermittelt und die Stundenkontigente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontigenten aller Assistenten werden um einen Prozentsatz x erhöht.
+%TODO noch weiter beim Beschreiben ausholen?
 
-* Zusammenrechnen der Dienst- und Bereitschaftsstunden
-* Skalierungsfaktor erläutern
+%Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. In einer Schleife mit 1000 Durchläufen werden Dienstpläne erstellt und 
 
-1000 Dienstpläne erstellen und den Besten aussuchen -> Randomisierter Algorithmus -> Bester Dienstplan gewinnt
---> Erklären, was "bester Dienstplan" ist!
+Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle \ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden entsprechend verringert.
+
+Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontigente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent bestimmt werden können.
+Zur Erläuterung ein Beispiel: Angenommen der Monat hätte nur 2 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden und die Bereitschafszeiten betragen jeweils 1 Stunde am Tag. Es gibt 2 Assistenten mit Stundenkontigenten von 27 und 24 Stunden, so wäre der Skalierfaktor genau 1 und die Stundenkontigente der Assistenten würden nicht angepasst werden.
+Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontigent passen.
+
+Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmuses eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine Stunde inkrementiert. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontigent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
+
+Angwendet auf das oben genannte Beispiel würde der die Schleife im sechsten Durchlauf (Toleranz = 5 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 9 Stunden (27 Stunden aus dem Stundenkontigent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontigentes mit der Toleranz von 5 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
+
+Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaften vergeben.
+
+%TODO nachfolgender Absatz versteht außer mir wohl keiner ;-)
+Durch das Randomisieren der Liste %TODO Verweis setzen
+können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu erstellen, der die Stundenkontingente möglichst gleichmäßig ausschöpft wird am Ende "gemessen" wie gut der Dienstplan ist. Die Summe der beiden Toleranzwerte (Dienst und Bereitschaft) wird gebildet. Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe wird dem Benutzer angezeigt.
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
 
