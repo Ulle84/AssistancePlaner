@@ -456,7 +456,7 @@ class Roster
 
     private function createRoster()
     {
-        $this->createRosterAlgorithm6();
+        $this->createRosterAlgorithm5();
     }
 
     private function createRosterAlgorithm1()
@@ -471,8 +471,11 @@ class Roster
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $sum = 0;
             foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-                $sum += $dates[$i - 1];
+                if ($dates[$i - 1] > 0) {
+                    $sum++;
+                }
             }
+            //echo 'day: ' . $i . ' sum: ' . $sum . '<br />';
             if ($sum < 2) {
                 return;
             }
@@ -483,7 +486,7 @@ class Roster
             $serviceTaken = false;
             $standbyTaken = false;
             foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-                if ($dates[$i - 1] == 1) {
+                if ($dates[$i - 1] > 0) {
                     if (!$serviceTaken) {
                         $this->servicePerson[$i] = $name;
                         $serviceTaken = true;
@@ -504,6 +507,7 @@ class Roster
     private function createRosterAlgorithm2()
     {
         // strategy give the best rated the service and the second best rated the standby
+        // take priority into account
 
         if (!$this->assistanceInput->dataExist) {
             return;
@@ -513,8 +517,11 @@ class Roster
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $sum = 0;
             foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-                $sum += $dates[$i - 1];
+                if ($dates[$i - 1] > 0) {
+                    $sum++;
+                }
             }
+            //echo 'day: ' . $i . ' sum: ' . $sum . '<br />';
             if ($sum < 2) {
                 return;
             }
@@ -565,7 +572,8 @@ class Roster
     private function createRosterAlgorithm3()
     {
         // strategy give the best rated the service and the second best rated the standby
-        // look also for preferred weekdays
+        // take priority into account
+        // take preferred weekdays into account
 
         if (!$this->assistanceInput->dataExist) {
             return;
@@ -631,8 +639,9 @@ class Roster
     private function createRosterAlgorithm4()
     {
         // strategy give the best rated the service and the second best rated the standby
-        // look also for preferred weekdays
-        // look also for the quota of hours
+        // take priority into account
+        // take preferred weekdays into account
+        // take keywords (in the month plan) into account
 
         if (!$this->assistanceInput->dataExist) {
             return;
@@ -649,183 +658,6 @@ class Roster
             }
         }
 
-        // calculate complete quota of hours
-        $totalQuotaOfHours = 0;
-        $quotaOfHours = $this->team->getHours();
-        foreach ($quotaOfHours as $name => $value) {
-            $totalQuotaOfHours += $value;
-        }
-
-        // calculate service and standby hours
-        $totalOfServiceHours = 0;
-        $totalOfStandbyHours = 0;
-        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
-            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
-        }
-
-        $scaleFactor = $totalOfServiceHours / ($totalOfServiceHours + $totalOfStandbyHours);
-
-        if ($scaleFactor < 1) {
-            $scaleFactor = 1;
-        }
-
-        // calculate score table
-        $priorities = $this->team->getPriorities();
-        $scoreTable = $this->assistanceInput->assistanceInput;
-        $preferredWeekdays = $this->team->getPreferredWeekdays();
-
-        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                $scoreTable[$name][$i - 1] *= $priorities[$name];
-                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
-                    $scoreTable[$name][$i - 1] *= 2;
-                }
-            }
-        }
-
-        //$this->printScoreTable($scoreTable);
-
-        // convert data
-        $convertedData = array();
-        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                if ($scoreTable[$name][$i - 1] == 0) {
-                    continue;
-                }
-                $entry = array();
-                array_push($entry, $scoreTable[$name][$i - 1]);
-                array_push($entry, $name);
-                array_push($entry, $i);
-
-                array_push($convertedData, $entry);
-            }
-        }
-
-        $this->printConvertedDataTable($convertedData);
-
-
-        $serviceRunMax = 2;
-        $standbyRunMax = 5;
-
-        $serviceRun = $serviceRunMax + 1;
-        $standbyRun = $standbyRunMax + 1;
-
-        $completeRun = 0;
-
-        $start = microtime(true);
-        while ($serviceRun > $serviceRunMax || $standbyRun > $standbyRunMax) {
-
-            shuffle($convertedData); // shuffle, so not all services are in a row
-            usort($convertedData, 'compare');
-
-            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                $this->servicePerson[$i] = "";
-                $this->standbyPerson[$i] = "";
-            }
-
-            $quotaOfHours = $this->team->getHours($scaleFactor);
-
-            // set service
-            $serviceTolerance = 2;
-            $serviceRun = 0;
-            while (!$this->isServiceComplete()) {
-                for ($i = 0; $i < count($convertedData); $i++) {
-                    /*$maxServicesOnPiece = 2;
-                    if ($this->daysPerMonth - $convertedData[$i][2] > $maxServicesOnPiece) {
-                        if ($this->servicePerson[$convertedData[$i][2] + 1] == $convertedData[$i][1]) {
-                            if ($this->servicePerson[$convertedData[$i][2] + 2] == $convertedData[$i][1]) {
-                                continue;
-                            }
-                        }
-                    }*/
-
-                    if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
-                            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
-                        }
-                    }
-                }
-                $serviceRun++;
-            }
-
-            // set standby
-            $standbyTolerance = 0.5;
-            $standbyRun = 0;
-            while (!$this->isStandbyComplete()) {
-                for ($i = 0; $i < count($convertedData); $i++) {
-                    if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
-                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
-                        }
-                    }
-
-                }
-                $standbyRun++;
-            }
-
-            /*echo "service-run-counter: " . $serviceRun . '<br />';
-            echo "standby-run-counter: " . $standbyRun . '<br />';*/
-            $completeRun++;
-        }
-        $time_taken = microtime(true) - $start;
-
-        //$this->writeToFile();
-    }
-
-    private function createRosterAlgorithm5()
-    {
-        // strategy give the best rated the service and the second best rated the standby
-        // look also for preferred weekdays
-        // look also for the quota of hours
-        // look also for the keywords in the month-plan
-
-        if (!$this->assistanceInput->dataExist) {
-            return;
-        }
-
-        // check that there is enough availability
-        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $sum = 0;
-            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-                if ($dates[$i - 1] > 0) {
-                    $sum++;
-                }
-            }
-            //echo 'day: ' . $i . ' sum: ' . $sum . '<br />';
-            if ($sum < 2) {
-                return;
-            }
-        }
-
-        // calculate complete quota of hours
-        $totalQuotaOfHours = 0;
-        $quotaOfHours = $this->team->getHours();
-        foreach ($quotaOfHours as $name => $value) {
-            $totalQuotaOfHours += $value;
-        }
-
-        // calculate service and standby hours
-        $totalOfServiceHours = 0;
-        $totalOfStandbyHours = 0;
-        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
-            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
-        }
-
-        $scaleFactor = $totalQuotaOfHours / ($totalOfServiceHours + $totalOfStandbyHours);
-
-        /*echo '$totalQuotaOfHours: ' . $totalQuotaOfHours . '<br />';
-        echo '$totalOfServiceHours: ' . $totalOfServiceHours . '<br />';
-        echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
-        echo '$scaleFactor: ' . $scaleFactor . '<br />';*/
-
-        if ($scaleFactor < 1) {
-            $scaleFactor = 1;
-        }
-
         // calculate score table
         $priorities = $this->team->getPriorities();
         $scoreTable = $this->assistanceInput->assistanceInput;
@@ -833,7 +665,6 @@ class Roster
         $keyWords = $this->team->getKeyWords();
 
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $scoreTable[$name][$i - 1] *= $priorities[$name];
                 if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
@@ -844,105 +675,50 @@ class Roster
                         if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
                             $scoreTable[$name][$i - 1] *= 10;
                         }
-
                     }
                 }
             }
         }
 
-        // convert data
-        $convertedData = array();
-        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
-            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                if ($scoreTable[$name][$i - 1] == 0) {
+        $this->printScoreTable($scoreTable);
+
+        // set service and standby
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $scores = array();
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] > 0) {
+                    array_push($scores, $dates[$i - 1]);
+                }
+            }
+            rsort($scores);
+
+            $serviceTaken = false;
+            $standbyTaken = false;
+            foreach ($scoreTable as $name => $dates) {
+                if ($dates[$i - 1] == $scores[0] && !$serviceTaken) {
+                    $serviceTaken = true;
+                    $this->servicePerson[$i] = $name;
                     continue;
                 }
-                $entry = array();
-                array_push($entry, $scoreTable[$name][$i - 1]);
-                array_push($entry, $name);
-                array_push($entry, $i);
 
-                array_push($convertedData, $entry);
+                if ($dates[$i - 1] == $scores[1] && !$standbyTaken) {
+                    $standbyTaken = true;
+                    $this->standbyPerson[$i] = $name;
+                    continue;
+                }
             }
         }
-
-        //$this->printConvertedDataTable($convertedData);
-
-
-        // ToDo Werte weiter testen
-        $serviceRunMax = 7; //2
-        $standbyRunMax = 10; //4
-
-        $serviceRun = $serviceRunMax + 1;
-        $standbyRun = $standbyRunMax + 1;
-
-        $completeRun = 0;
-
-        $start = microtime(true);
-        while ($serviceRun > $serviceRunMax || $standbyRun > $standbyRunMax) {
-
-            shuffle($convertedData); // shuffle, so not all services are in a row
-            usort($convertedData, 'compare');
-
-            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                $this->servicePerson[$i] = "";
-                $this->standbyPerson[$i] = "";
-            }
-
-            $quotaOfHours = $this->team->getHours($scaleFactor);
-
-            // set service
-            $serviceTolerance = 2;
-            $serviceRun = 0;
-            while (!$this->isServiceComplete()) {
-                for ($i = 0; $i < count($convertedData); $i++) {
-                    /*$maxServicesOnPiece = 2;
-                    if ($this->daysPerMonth - $convertedData[$i][2] > $maxServicesOnPiece) {
-                        if ($this->servicePerson[$convertedData[$i][2] + 1] == $convertedData[$i][1]) {
-                            if ($this->servicePerson[$convertedData[$i][2] + 2] == $convertedData[$i][1]) {
-                                continue;
-                            }
-                        }
-                    }*/
-
-                    if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
-                            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
-                        }
-                    }
-                }
-                $serviceRun++;
-            }
-
-            // set standby
-            $standbyTolerance = 0.5;
-            $standbyRun = 0;
-            while (!$this->isStandbyComplete()) {
-                for ($i = 0; $i < count($convertedData); $i++) {
-                    if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
-                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
-                        }
-                    }
-
-                }
-                $standbyRun++;
-            }
-            $completeRun++;
-        }
-        $time_taken = (microtime(true) - $start) * 1000;
 
         //$this->writeToFile();
     }
 
-    private function createRosterAlgorithm6()
+    private function createRosterAlgorithm5()
     {
-        // strategy give the best rated the service and the second best rated the standby
-        // look also for preferred weekdays
-        // look also for the quota of hours
-        // look also for the keywords in the month-plan
+        // take priority into account
+        // take preferred weekdays into account
+        // take keywords (in the month plan) into account
+        // take working hours into account
+        // generate score table and sort
         // generate a lot of rosters and take the best in the end
 
         if (!$this->assistanceInput->dataExist) {
@@ -1029,7 +805,7 @@ class Roster
             }
         }
 
-        $this->printConvertedDataTable($convertedData);
+        //$this->printConvertedDataTable($convertedData);
 
         $countOfRuns = 1000;
         $smallestDifference = PHP_INT_MAX;
