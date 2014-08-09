@@ -1,0 +1,22 @@
+\section{Code-Listing-Test}
+\begin{lstlisting}
+<?php
+/* this is a stupid example */
+$username = $_POST["username"];
+$passwort = $_POST["passwort"];
+
+$pass = md5($passwort);
+
+// another comment
+if($username=="Andavos" and
+$pass=="fd0d9cdefd5d42dfa36c74a449aa8214") {
+   echo "Herzlich Willkommen";
+}
+else {
+   echo "Login Fehlgeschlagen";
+}
+?>
+\end{lstlisting}
+
+\clearpage
+\newpage
