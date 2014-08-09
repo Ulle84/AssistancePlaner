@@ -286,7 +286,7 @@ und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 %TODO Verweise auf Grundlagen-Kapitel
 
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
-Um die Funktionalität client-seitig zu erweitern, kommt JavaScript zum Einsatz.
+Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 
 \section{Persistenz der Daten}
 Alles was peristent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Vorteile hiervon sind, dass
@@ -311,16 +311,12 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 \end{figure}
 
 
-\section{Verwaltung der Benutzer}
-Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist ein Verwaltung der Benutzer notwendig.
-Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden.
-
-
-
-
-* keine Überschneidung mit Benutzer-Verwaltung - genaue gegenseitige Abtrennung nötig
-* Session Management (wie erkenne ich meinen Nutzer wieder)?
-* Passwort Vergabe
+\section{Benutzer-Verwaltung}
+Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
+Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt \ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
+Bei der Anmeldung wird eine Session gestartet. %TODO genauer erklären und auf eine Quelle verweisen
+Weiterhin werden Session-Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind.
+%TODO ist die Beschreibung oben zu vage oder kann ich das so lassen?
 
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
@@ -571,6 +567,7 @@ Auf der \href{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 \end{figure}
 
 \section{Anlegen eines neuen Klienten}
+\label{sec:AnlegenKlient}
 Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
 
 \begin{figure}[htb]
