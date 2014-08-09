@@ -702,7 +702,7 @@ class Roster
             }
         }
 
-        //$this->printConvertedDataTable($convertedData);
+        $this->printConvertedDataTable($convertedData);
 
 
         $serviceRunMax = 2;
@@ -1029,7 +1029,7 @@ class Roster
             }
         }
 
-        //$this->printConvertedDataTable($convertedData);
+        $this->printConvertedDataTable($convertedData);
 
         $countOfRuns = 1000;
         $smallestDifference = PHP_INT_MAX;

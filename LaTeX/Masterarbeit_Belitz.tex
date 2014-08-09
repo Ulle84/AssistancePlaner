@@ -314,8 +314,8 @@ Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort a
 * Session Management (wie erkenne ich meinen Nutzer wieder)?
 * Passwort Vergabe
 
-\section{Team-Management}
-%TODO neuer Begriff für den Abschnitt?
+\section{Team-Verwaltung}
+\label{sec:TeamVerwaltung}
 %TODO Referenzen auf Requirement-Abschnitt?
 Der Klient braucht eine Möglichkeit um sein Assistenz-Team zu verwalten. Der Klient möchte Team-Mitglieder hinzufügen, editieren und löschen. Weiterhin möchte er das Passwort eines Assistenten zurücksetzen können.
 
@@ -616,46 +616,66 @@ Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus 
 \subsection{Anforderungen}
 Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, der eine hunderprozentige Betreuungsabdeckung erreicht. Für jeden Tag muss ein Assistent für den Dienst und ein Assistent für die Bereitschaft im Dienstplan eingetragen sein.
 
-Nebenbedingungen sind, dass die Stundenkontigente %TODO link auf Erklärung
-der Assistenen gleichmäßig ausgeschöpft werden %TODO weitere Erklärungen - was bedeutet "gleichmäßig"
-und die Vorlieben des Klienten berücksichtigt werden. %TODO weitere Erläuterungen
-%TODO Begriff Vorlieben wirklich lassen?
+Nebenbedingungen sind, dass
+\begin{itemize}
+\item die Stundenkontigente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt ) %TODO Referenz
+\item die Vorlieben des Klienten berücksichtig werden (Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußball-Spielen)
+\end{itemize}
 
-\subsection{Ein- und Ausgabe}
+\subsection{Eingabe}
+Der Algorithmus bekommt als Eingabe die Verfügbarkeiten der Assitenten (pro Tag). Diese sind folgendermaßen codiert:
+\begin{itemize}
+\item 0: Assistent ist nicht verfügbar
+\item 1: Assistent ist zur Not verfügbar
+\item 10: Assistent ist voll verfügbar
+\end{itemize}
+
+Weiterhin hat der Algorithmus Zugriff auf alle Daten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung}) hinterlegt sind. Welche Version des Algorithmus auf welche Daten zugreift lässt sich Tabelle \ref{tab:inputAlgorithm} entnehmen.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline 
+\multicolumn{1}{|r|}{Version} & 1 & 2 & 3 & 4 & 5 & 6 \\ 
+\hline 
+Stichwörter & \xmark & \xmark & \xmark & \xmark & \cmark & \cmark \\ 
+\hline 
+Stundenkontingent & \xmark & \xmark & \xmark & \cmark & \cmark & \cmark \\ 
+\hline 
+Priorisierung & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark \\ 
+\hline 
+Bevorzugte Wochentage & \xmark & \xmark & \cmark & \cmark & \cmark & \cmark \\ 
+\hline 
+\end{tabular}  
+\caption{ToDo} %TODO Beschreibung - Übersicht der Eingabe...
+\label{tab:inputAlgorithm}
+\end{table}
+
+
+
+
 %TODO Bild?
-
-
-%TODO abwägen zwischen 
-% * Darstellung der Entwicklung des Algorithmus
-% * einmal den gesamten Algorithmus ohne Zwischenschritte vorstellen
-
-
 
 
 \subsection{Erste Version}
 \label{sec:algorithmVersion1}
-Die allererste Version des Algorithmus berücksichtigt nur die hunderprozentige Betreuungsabdeckung. Der Algorithmus geht über alle Tage des Monats und schaut, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht schon mal ein vollständiger Dienstplan, der Klient ist betreut, jedoch wurden weder die Stundenkontigente noch die Vorlieben des Klienten berücksichtigt.
+Die erste Version des Algorithmus berücksichtigt nur die Mindestanforderung (hunderprozentige Betreuungsabdeckung). Der Algorithmus iteriert über alle Tage des Monats und prüft, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht ein vollständiger Dienstplan. Der Klient ist den ganzen Monat betreut, jedoch wurden weder die Stundenkontigente noch die Vorlieben des Klienten berücksichtigt.
 
 \subsection{Zweite Version - Berücksichtigung der allgemeinen Vorlieben}
 \label{sec:algorithmVersion2}
-
-In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient eine Priorisierungswert festlegen. 
-%TODO Verlinkung zur Erklärung der Team-Tabelle
-Es wird eine Punktetabelle erstellt. Die erste Spalte ist der Tag des Monats, jede weitere Spalte repräsentiert die Verfügbarkeit eines Assistenten. Ist der Assistent nicht verfügbar, so wird eine Null eingetragen. Ist der Assistent zur Not verfügbar, so wird eine Eins eingetragen. Ist der Assistent voll verfügbar, so wird eine Zehn eingetragen. Als Beispiel dienen die Zahlen in Tabelle \ref{tab:scoreTable}. Nun wird jeder Verfügbarkeitswert mit dem Priorisierungswert multipliziert. Mit den Prioriserungswerten  aus Tabelle \ref{tab:teamMemberPriorities} verändert sich die Punktetabelle. Das Ergebnis ist in Tabelle \ref{tab:scoreTable2} zu sehen. \\
-Nach der Erstellung der Punktetabelle iteriert der Algorithmus über alle Tage und gibt dem Assistenten mit der höchsten Punktzahl den Dienst und dem Assistenten mit der zweithöchsten Punktzahl die Bereitschaft.
-Eine sinnvolle Auslastung der Stundenkontigente findet in dieser Version des Algorithmus nicht statt.
-
+In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient eine Priorisierungswert festlegen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
+Es wird eine Punktetabelle erstellt. Die erste Spalte ist der Tag des Monats, jede weitere Spalte repräsentiert die Verfügbarkeit eines Assistenten. Ist der Assistent nicht verfügbar, so wird eine Null eingetragen. Ist der Assistent zur Not verfügbar, so wird eine Eins eingetragen. Ist der Assistent voll verfügbar, so wird eine Zehn eingetragen. Als Beispiel dienen die Zahlen in Tabelle \ref{tab:scoreTable}.
 \begin{table}[htb]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline 
 Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\ 
 \hline 
-1 & 0 & 10 & 10 \\ 
+1 (Montag) & 0 & 10 & 10 \\ 
 \hline 
-2 & 1 & 10 & 0 \\ 
+2 (Dienstag) & 1 & 10 & 0 \\ 
 \hline 
-3 & 10 & 1 & 10 \\ 
+3 (Mittwoch) & 10 & 1 & 10 \\ 
 \hline 
 ... & ... & ... & ... \\ 
 \hline 
@@ -664,6 +684,7 @@ Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\
 \label{tab:scoreTable}
 \end{table}
 
+Nun wird jeder Verfügbarkeitswert mit dem Priorisierungswert multipliziert. Mit den Prioriserungswerten  aus Tabelle \ref{tab:teamMemberPriorities} verändert sich die Punktetabelle.
 \begin{table}[htb]
 \centering
 \begin{tabular}{|c|c|}
@@ -677,9 +698,38 @@ Assitent 2 & 2 \\
 Assitent 3 & 3 \\ 
 \hline 
 \end{tabular} 
-\caption{Priorisierungswerte}
+\caption{Priorisierungswerte aus der Team-Verwaltung}
 \label{tab:teamMemberPriorities}
 \end{table}
+
+Das Ergebnis ist in Tabelle \ref{tab:scoreTable2} zu sehen.
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\ 
+\hline 
+1 (Montag) & 0 & 20 & 30 \\ 
+\hline 
+2 (Dienstag) & 1 & 20 & 0 \\ 
+\hline 
+3 (Mittwoch) & 10 & 2 & 30 \\ 
+\hline 
+... & ... & ... & ... \\ 
+\hline 
+\end{tabular}
+\caption{Punktetabelle nach Multiplikation mit Priorisierungswerten}
+\label{tab:scoreTable2}
+\end{table}
+
+Nach der Erstellung der Punktetabelle iteriert der Algorithmus über alle Tage und gibt dem Assistenten mit der höchsten Punktzahl den Dienst und dem Assistenten mit der zweithöchsten Punktzahl die Bereitschaft.
+Eine sinnvolle Auslastung der Stundenkontigente findet in dieser Version des Algorithmus nicht statt.
+
+\subsection{Dritte Version - Berücksichtigung der Wochentage}
+\label{sec:algorithmVersion3}
+In der dritten Version des Algorithmus werden die Wochentage (Montag, Dienstag, ...) berücksichtigt.
+Der Klient kann Assistenten an bestimmten Wochentagen priorisieren (vgl. Abschnitt \ref{sec:TeamVerwaltung}).
+Der Algorithmus geht genauso vor wie im vorherigen Abschnitt beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 2 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt (siehe ToDo). Somit steigt die Wahrscheinlichkeit, dass Assistent 2 an einem Montag für den Dienst eingeteilt wird. In dem konkreten Beispiel wird Assistent 2 am Montag den Dienst bekommen, obwohl Assistent 3 eine generell höhere Priorisierung hat.
 
 \begin{table}[htb]
 \centering
@@ -687,32 +737,62 @@ Assitent 3 & 3 \\
 \hline 
 Tag des Monats & Assistent 1 & Assistent 2 & Assistent 3 \\ 
 \hline 
-1 & 0 & 20 & 30 \\ 
+1 (Montag) & 0 & 40 & 30 \\ 
 \hline 
-2 & 1 & 20 & 0 \\ 
+2 (Dienstag) & 1 & 20 & 0 \\ 
 \hline 
-3 & 10 & 2 & 30 \\ 
+3 (Mittwoch) & 10 & 2 & 30 \\ 
 \hline 
 ... & ... & ... & ... \\ 
 \hline 
 \end{tabular}
-\caption{Punktetabelle nach Multiplikation mit Priorisierungswert}
-\label{tab:scoreTable2}
+\caption{Punktetabelle nach Berücksichtigung der Wochentage}
+\label{tab:scoreTable3}
 \end{table}
 
-\subsection{Dritte Version - Berücksichtigung der Wochentage}
-\label{sec:algorithmVersion3}
-Der Klient kann Assistenten an bestimmten Wochentagen priorisieren. %TODO verlinkung auf entspechendes kapitel
-Der Algorithmus geht genauso vor wie im vorherigen Abschnitt beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 1 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt. Somit steigt die Wahrscheinlichkeit um das doppelte, dass Assistent 1 an den Montagen den Dienst bekommt.
 
 \subsection{Vierte Version - Berücksichtigung der Stundenkontigente}
 \label{sec:algorithmVersion4}
-In der nächsten Verfeinerung des Algoritmus werden die Stundengkontigente berücksichtigt. Bisher hat der Algorithmus einfach den erst und zweit-besten Assistenten genommen und für Dienst bwz. Bereitschaft eingeteilt. Das führt zwar zu einem lokalen Optimum, führt aber in der Regel dazu, dass die Stundenauslastung sehr ungleichmäßig ist. Um eine gleichmäßige Stundenauslastung zu erreichen reicht es nicht mehr, über alle Tage zu iterieren und jeden Tag isoliert zu betrachten, sondern der gesamte Monat muss betrachtet werden.
-Um dies zu erreichen wird die Punktetabelle in eine andere Tabelle konvertiert.
+In der nächsten Verfeinerung des Algoritmus werden die Stundengkontigente berücksichtigt. Bisher hat der Algorithmus jeden Tag isoliert betrachtet und ein lokales Optimum für jeden Tag gesucht. Um die Stundenkontigente der Assitenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. Um dies zu erreichen wird nicht mehr über jeden Tag itereriert. Die Daten werden in ein anderes Tabellenformat konvertiert.
+
+\begin{tabular}{|l|l|l|}
+\hline 
+Punkte & Name & Tag \\ 
+\hline 
+40 & Assistent 2 & 1 \\ 
+\hline 
+30 & Assistent 3 & 1 \\ 
+\hline 
+30 & Assistent 3 & 3 \\ 
+\hline
+20 & Assistent 2 & 2 \\ 
+\hline 
+10 & Assistent 1 & 3 \\ 
+\hline 
+2 & Assistent 2 & 3 \\ 
+\hline 
+1 & Assistent 1 & 2 \\ 
+\hline 
+0 & Assistent 1 & 1 \\ 
+\hline 
+0 & Assistent 3 & 2 \\ 
+\hline 
+\end{tabular}
+
+%Bisher hat der Algorithmus einfach den erst und zweit-besten Assistenten genommen und für Dienst bwz. Bereitschaft eingeteilt. Das führt zwar zu einem lokalen Optimum, führt aber in der Regel dazu, dass die Stundenauslastung sehr ungleichmäßig ist. Um eine gleichmäßige Stundenauslastung zu erreichen reicht es nicht mehr, über alle Tage zu iterieren und jeden Tag isoliert zu betrachten, sondern der gesamte Monat muss betrachtet werden.
+%Um dies zu erreichen wird die Punktetabelle in eine andere Tabelle konvertiert.
 %TODO weitere Beschreibung
+
+* Umwandlung in andere Tabelle
+* Randomisierung
+* Zusammenrechnen der Dienst- und Bereitschaftsstunden
+* Skalierungsfaktor erläutern
 
 \subsection{Fünfte Version - Berücksichtigung der Stichwörter}
 \label{sec:algorithmVersion5}
+%Erklären warum dieser Aspekt erst so spät einfließt
+
+
 Der Algorithums arbeitet prinzipiell wie im vorherigen Abschnitt beschrieben. Bei der Erstellung der Punktetabelle werden jedoch die Stichworte der Monats... berücksichtigt.
 %TODO näher beschreiben
 
