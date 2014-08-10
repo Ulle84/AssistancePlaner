@@ -69,7 +69,7 @@
 
 \addchap{Abstract}
 \label{sec:Abstract}
-%TODO Abstract am Ende schreiben
+%TODO Abstract am Ende auf Englisch schreiben
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
@@ -100,40 +100,27 @@
 %\clearpage
 %\include{Inhalt/Roadmap}
 
-\addchap{Vorbemerkungen}
+
+%\addchap{Vorbemerkungen}
 %TODO ausformulieren
 - Geschlecht -> männlich beinhaltet auch weiblich
 - "denglische" Formulierungen wie ausgeloggt werden vermieden
 - wo finde ich das ganze -> Assistenzplaner.de/master
 
-Testlink: \href{https://www.spiegel.de}{Spiegel}
-
-\chapter{Aufgabenstellung} % alternativ: Ziel der Arbeit
-%TODO gab es überhaupt eine Aufgabenstellung
-* manuellen Prozess der Dienstplanerstellung automatisieren
-* Zusammenarbeit mit Assistenten über Web-Anwendung realisieren
-* 
 
 \chapter{Motivation}
-%TODO überdeckt sich das nicht mit der Aufgabenstellung?
--> den unbedarften Leser "abholen"
-warum überhapt den ganzen Aufwand treiben
-%TODO am Ende schreiben
+%TODO falls Abgrenzung zu Zusammenfassung/Abstract zu unscharf, dann Kapitel streichen
+Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat er den Dienstplan jeden Monat manuell mit Hilfe von Excel erstellt. Es galt gleichzeitig die sieben E-Mails seiner Assistenten zu überblicken (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan zu erstellen, der die Verfügbarkeiten und die Stundenkontigente der Assistenten berücksichtigt. Das Ganze hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-%Fragen die geklärt werden sollten
-%TODO alle Fragen klären
-% * Masterarbeit ganz allgemein halten, oder an dem Beispiel von Patricks Team das Ganze aufziehen? -> am Beispiel aufziehen und im Ausblick Verallgemeinerungen betrachten
-
-%TODO Verwendung kontrollieren
-%Einheitliche Begriffe
-%Seite (der Anwendung)
-%Benutzer
-
+Um den Klienten zu entlasten und technisch besser zu unterstützen wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die Grundlagen für das Verständnis der Arbeit gelegt.
 
 \section{Server und Client}
+
+
+
 \section{Webentwicklung}
 \subsection{PHP}
 \subsection{HTML}
@@ -153,40 +140,42 @@ Cascading Style Sheets ...
 \section{SysML}
 \section{UML}
 
+\section{Software zur Dienstplanerstellung}
+
+%TODO Kapitel zur Bestandsanalyse schreiben?
+%\chapter{Bestandsanalyse}
+%Was gibt es schon an bestehender Software? Woran könnte man sich evt. dran hängen?
+
 
 \chapter{Anforderungsermittlung}
-\section{Domäne}
-* Individuelle Schwerstbehindertenbetreuung (ISB) / Assistenz %http://www.commit-cbf.de/assistenz_isb_24.html
-
 
 \section{Begrifflichkeiten}
-In der Anforderungsermittlung ist die 
-Klare Begrifflichkeiten sind für eine Systematisierung der Anforderungen unablässig
-
+%Zur Anforderungsermittlung gehört dazu sich mit der Domäne vertraut zu machen.
+In diesem Abschnitt werden einige Begriffe erläutert, die im Folgenden häufig verwendet werden.
 
 \subsection{Klient}
-Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist. Mit Hilfe seiner Assistenten kann er ein selbstbestimmtes Leben führen.
+Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist. Im Rahmen der  individuellen Schwerstbehindertenbetreuung bekommt er Assistenten an die Seite gestellt. Mit Hilfe seiner Assistenten kann er ein selbstbestimmtes Leben führen.
 
 \subsection{Assistent}
 Der Assistent ist ein Helfer, der den Klienten pflegt und ihn im alltäglichen Leben unterstützt. 
 
 \subsection{Team}
-Der Klient muss rund um die Uhr durch Assistenz unterstützt werden. Dafür bedarf es eines Teams.
-Das Team eines Klienten besteht aus mehreren Assistenten. 
-%TODO konkretes Beispiel nennen? (während der Entstehung dieser Ausarbeitung aus 7 Stück).
+Der Klient muss rund um die Uhr mit Assistenz unterstützt werden. Dafür bedarf es eines Teams.
+Das Team eines Klienten besteht aus mehreren Assistenten. In dem kronketen Fall sind es sieben Assistenten.
+
+\subsection{Dienst}
+%TODO nachfolgenden Absatz überarbeiten - ist zusammenstrickt und hört sich holprig an
+Wenn ein Assistent Dienst macht, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. Wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet. Die Dienste gehen frühestens um 12 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages.
+
+\subsection{Bereitschaft}
+Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschafsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
 
 \subsection{Dienstplan}
-Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. Während den Bereitschaftszeiten muss der Assistent telefonisch erreichbar sein und innerhalb kurzer Zeit zum Klienten zu kommen, um den Dienst zu übernehmen. Die Dienste gehen frühestens um 13 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages.
-
+Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. 
 
 \subsection{Stundenkontigent}
 \label{sec:Stundenkontigent}
-%TODO verallgemeinern?
-Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Jeder Assistent möchte sein Stundenkontigent möglichst gut ausgeschöpft bekommen. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen. %TODO die letzten zwei Sätze direkt hintereinadner hören sich doof an!
-
-%TODO weitere Begriffe erläutern
-* Dienstzeiten - wie werden die ersetllt - das muss man beachten, wie wird die Nacht verrechnet, ....
-*  Bereitschafszeiten - wie werden die berechent?
+Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen.
 
 \section{Ist-Prozess}
 Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient hat für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
@@ -196,9 +185,8 @@ Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden i
 %TODO Ablaufdiagramm?
 
 \section{Soll-Prozess}
-%TODO E-Mail wird nicht garantiert für immer das Mittel der Wahl sein!
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
-Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mittels eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und das Team wird automatisch per E-Mail darüber benachrichtig, dass der Dienstplan verfügbar ist.
+Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
