@@ -232,61 +232,53 @@ Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind
 
 
 \section{Abgeleitete Anforderungen}
-Aus den User-Stories ergeben sich einige Anforderungen.
--> SysML Diagramm
+Aus den User-Stories ergeben sich einige abgeleitete Anforderungen, die zwar nicht explizit erwähnt wurden, aber für eine technische Umsetzung zwingend notwendig sind.
+%-> SysML Diagramm
 
 
 \subsection{Serverbasierte Anwendung}
 Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
 
-
 \subsection{Benutzer-Verwaltung}
-* Klient und Assistent haben unterschiedliche Interessen am Assistenzplaner
-* ungewollte versehentliche Änderungen vermeiden -> Passwort
-* unterschiedliche Sichten bzw. Freigabestufen
-* 
+Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
 
-
+Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird regsistriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
 
 \chapter{Software-Design} % oder einfach nur Design?
 SysML Modell
 UML Ablaufdiagramme
-Datenbankmodell?
 
 * Vom Modell zur Software
 
 \chapter{Implementierung}
-%TODO beschreiben, das den Leser in diesm Kapitel erwartet
-Bis hierher völlig frei von Programmierspachen und sonstigen Programmierparadigmen.
+%TODO nachfolgenden Satz am Ende nochmal prüfen
+In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden.
+Die Programmiersprachen werden gewählt...
 
 \section{Wahl der Programmiersprachen}
+Für die Implementierung ist es notwendig sich auf die Programmiersprachen festzulegen.
 
 \subsection{Backend}
 %TODO Verweis auf Grundlagen-Kapitel
-Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Gründe hierfür waren: die hohe Verbreitung:
-%http://w3techs.com/technologies/history_overview/programming_language
-%TODO Link gescheit einbinden
-und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
+Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \href{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung} und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 
 
 
 \subsection{Frontend}
 %TODO Verweise auf Grundlagen-Kapitel
 
-Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
+Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 
 \section{Persistenz der Daten}
-Alles was peristent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Vorteile hiervon sind, dass
+Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
 \begin{itemize}
-\item Daten zwischen Live-System und Test-System leicht ausgetauscht werden können
-\item Datenbank-Verwaltung entfällt
-\item Keine Datenbank-Anforderungen an den Server gestellt werden
+\item Daten können leicht zwischen Live-System und Test-System ausgetauscht werden.
+\item Datenbank-Verwaltung entfällt.
+\item Es werden keine Datenbank-Anforderungen an den Server gestellt.
 \end{itemize}
 
-Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen.
-%TODO Konzept der Lock-Datei erleutern
-
+Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt \ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
 \section{Übersicht}
 Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
@@ -317,9 +309,9 @@ Jeder Assitent hat folgende Eigenschaften
 \item Vorname
 \item Nachname
 \item Telefonnummer
-\item Stichwörter - siehe %TODO Verlinkung zum Abschnitt Algorithmus
+\item Stichwörter - werden bei der Dienstplanerstellung berücksichtigt
 \item Stundenkontigent - Anzahl der Stunden in einem Monat, die der Assistent zur Verfügung hat
-\item Priorisierung - ein Wert um den Assistenten bei der Dienstplanerstellung zu priorisieren (je höher der Wert, desto höher die Wahrscheinlichkeit, dass der Assistent viele Dienste bekommt) %TODO Verlinkumg zum Abschnitt Algorithmus
+\item Priorisierung - ein Wert um den Assistenten bei der Dienstplanerstellung zu priorisieren (je höher der Wert, desto höher die Wahrscheinlichkeit, dass der Assistent viele Dienste bekommt)
 \item Bevorzugte Wochentage
 \end{itemize}
 
@@ -513,6 +505,7 @@ nutzen möchte oder nicht.
 \end{figure}
 
 \section{Kalender}
+\label{sec:calendar}
 %TODO Wo kommen die Dienstzeiten her und wie sind diese zu interprätieren?
 
 Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
