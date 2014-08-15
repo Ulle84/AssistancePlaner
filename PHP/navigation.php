@@ -24,7 +24,6 @@ else
 {
     echo '<a href="index.php">Willkommen</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="createNewAccount.php">Neuen Klienten-Zugang einrichten</a>';
-    echo '&nbsp;&nbsp;&nbsp;<a href="impressum.php">Impressum</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="login.php">Anmelden</a>';
 }
 echo '</div>';

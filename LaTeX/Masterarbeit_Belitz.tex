@@ -117,34 +117,160 @@ Um den Klienten zu entlasten und technisch besser zu unterstützen wurde die Idee
 \chapter{Grundlagen}
 In diesem Kapitel werden die Grundlagen für das Verständnis der Arbeit gelegt.
 
-\section{Server und Client}
+\section{Netzwerke und Internet} %TODO umbenennen?
+
+\subsection{Client/Server-Modell}
+Abstrakt kann man das Client/Server Paradigma formulieren %TODO Verweis/Zitat
+Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigman nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.
+
+\subsection{Clientsoftware}
+%TODO Zitat
+Die Clientsoftware ist ein Anwendungsprogramm, das vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt. Die Clientsoftware läuft lokal auf dem Personalcomputer eines Benutzers und leitet den Kontakt mit dem Server aktiv ein. Die Clientsoftware benötigt keine spezielle Hardware oder ein besonderes Betriebssystem.
+
+
+Beim Client/Server-Modell gibt es einen zentralen Server. Viele Clients kommunizieren über das Internet mit dem Server. Es herrscht eine 1 zu n Beziehung. Beim Internet findet die Kommunikation über das Protokoll HTTP statt. Darunter liegen nach dem OSI-Modell noch mehrere Schichten %TODO überarbeiten!
+
+Client/Server Paradigma
+Das Programm, dass auf eine Kontaktaufnahme wartet, bezeichnet man als Server und dasjenige, das den Kontakt aufnimmt, ist der Client.
+
+Comer 406 26.6 Merkmale von Clients und Servern
+
+Comer 406 26.7
+* Abgrenzung Server (Hardware) und Funktion
+
+
+
+
+
+
+
+* Server: zentrale Instanz
+* Client: mehrere möglich
+* Kommunikation über HTTP
+
+Der Client schickt eine Anforderung über das Internet mit Hilfe von HTTP. Der Server antwortet daraufhin. Die Antwort wird im Client dargestellt.
+
+\subsection{Serversoftware}
+Comer 406
+%TODO Zitat
+%TODO auch Aufzählung verwenden wie Comer
+Die Serversoftware 
+ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber gleichzeitig meherer entfernte Clients bedienen. Die Serversoftware läuft auf einem gemeinsam genutzten Computer und wartet passiv auf die Verbindungsaufnahme durch einen entfernten Client. Die Serversoftware nimmt den Kommunikationswunsch von belibigen Clients entgegen.
+
+\begin{itemize}
+\item setzte leistungsstarke Hardware und ein gehobenes Betriebssystem voraus
+\end{itemize}
+
+\subsection{HTTP}
+%TODO Abkürzungsverzeichnis
+Comer 497
+Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das HyperText Transport Protocol (HTTP). HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jdedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.
+...
+HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
+%TODO  verifizieren, dass ich alles richtig übernommen habe
+\begin{itemize}
+\item GET verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
+\item HEAD verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
+\item POST sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
+\item PUT sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
+\end{itemize}
+Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.
+
+\subsection{Webdokumente}
+Comer 508
+\begin{itemize}
+%HTML
+\item Statisch: Ein statisches Dokument residiert in einer Datei, die mit einem Webserver verbunden ist. Bei dieser Dokumentart bestimmt der Autor den Inhalt zu dem Zeitpunkt, zu dem er das Dokument schreibt. Da sich der Inhalt nicht ändert, führt jede Anfrage an ein statisches Dokument zu einer identischen Ausgabe.
+%PHP
+\item Dynamisch: Ein dynamisches Webdokument liegt nicht in vordefinierter Form vor. Vielmehr wird es von einem Webserver zusammengestellt, wenn ein Browser das Dokument anfordert. Kommt eine Anfrage an, führt der Webserver ein Anwendungsprogramm aus, von dem das dynamische Dokuement erstellt wird. Der Server gibt die Ausgabe des Programms dem anfragenden Browser zurück. Da bei jeder Anfrage ein "frisches" Dokuemnt erstellt wird, kann sich der Inhalt des dynamischen Dokuments bei jeder Anfrage ändern.
+%JavaScript
+\item Aktiv: Ein aktives Dokument wird nicht vollständig vom Server spezifiziert. Es besteht vielmehr aus einem Computerprogramm, das weiß, wie die Werte zu berechnen und anzuzeigen sind. Fordert ein Browser ein aktives Dokument an, gibt der Server eine Kopie des Programms aus, das der Browser lokal ausführen muss. Dabei kann das Programm mit dem Benutzer interagieren und die Anzeige laufend ändern. Der Inhalt des aktiven Dokuments ist also nie fest, sondern variiert, während der Benutzer das Programm ausführt.
+\end{itemize}
+
+\subsection{Statusinformationen und Cookies}
+Comer 
+
+\subsection{URL}
+
+\subsection{Link}
+
+\subsection{TCP/IP}
+* soll ich wirklich so tief runtergehen?
+
+\subsection{Browser}
+Comer 489
+Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.
 
 
 
 \section{Webentwicklung}
 \subsection{PHP}
+
+Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
+* von UML zum PHP Code mittels Codegenerirung
+
+
 \subsection{HTML}
+Münz 21
+HTML bedeutet Hypertext Markup Language. Als Auszeichnungssprache (Markup Language) hat HTML die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. HTML geht aus der Familie der SGML-basierten Sprachen (SGML steht für Standard Generalized Markup Language) hervor.
+...
+HTML ist eine Sprache zur Strukturierung von Texten, wobei auch die Möglichkeit beseteht, Grafiken udn multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren.
+Mit HTML können Sie Webseiten in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel unterteilen. Weiter können Sie Überschriften, Textabsätze, Listen und Tabellen erzeugen. Sie können anklickbare Verweise auf beliebige andere Webseiten oder Datenquellen im Internet erzugen. Nicht-textuelle Inhalte können Sie referenzieren. Sie können Formulare in den Text integrieren. ... HTML bietet Schnittstellen für Erweiterungssprachen wie CSS oder JavaScript an, mit derern Hilfe Sie HTML-Elemente nach Wunsch gestalten oder Ineraktionen mit dem Anwender realisieren können.
+
+
 \subsection{CSS}
-Cascading Style Sheets ...
+Münz 23ff
+CSS bedeutet Cascading Stylesheets. Es handelt sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.
+...
+S, 24
+CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschriften erster Ordnung oder aüf alle Textabsätze mit einem bestimmten Klassennamen oder für hervorgehobenen Text, der innerhalb einer Tabellenzelle vorkommt. Die zentralen Formate können in einer extrenen Syle-Datei ausgelagert werden, die Sie dann in beliebig vielen HTML-Dokumenten einbinden können. So ermöglicht CSS seitenübergreifend einheitliche Layouts und Formatierungen.
+
+
 \subsection{JavaScript}
 -> buch von Koch
+
+\subsection{HTML, CSS und JavaScript}
+Teague 8
+Die drei grundlegenen Webtechnologien HTML, CSS und JavaScript arbeiten auf eine Weise zusammen, die ähnlich zu Teilen der Sprache ist: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu.
+%TODO noch ein bisschem mehr umschreiben
+
+\subsection{XML}
+
 \subsection{AJAX}
+%TODO Bessere Quelle suchen
+%TODO Verbindung zu aktiver Anwednung (NETZWERK) hersetellen
+Koch 309
+Ajax steht für Asynchronous JavaScript and XML. Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund.
+
+%TODO nachfolgendes wirklich im Grundlagen-Teil erklären, oder evt. an die passende Stelle (wo es verwendet wird) im Kapitel Implementierung packen? Derzeit bin ich für Verschieben!
+Koch 321
+Im Mittelpunkt der meisten AJAX-Applikationen steht das XMLHttpRequest-Objekt. 
+
+
+
+\subsection{DOM}
+%TODO gute Quelle suchen und zitieren
 
 %\section{Agile Softwareentwicklung}
 \subsection{User Stories}
+% Verweis auf Scrum-Buch von Pichler
 
 \section{Einführung Algorithmen?}
 
 
 \section{Modellgetriebene Software-Entwicklung}
+% Literatur habe ich zu Hause
 \section{SysML}
 \section{UML}
 
+\section{Code-Generierung}
+
 \section{Software zur Dienstplanerstellung}
+%Was gibt es schon an bestehender Software? Woran hätte man sich evt. dran hängen können?
 
 %TODO Kapitel zur Bestandsanalyse schreiben?
 %\chapter{Bestandsanalyse}
-%Was gibt es schon an bestehender Software? Woran könnte man sich evt. dran hängen?
+
 
 
 \chapter{Anforderungsermittlung}
@@ -236,8 +362,14 @@ Aus den User-Stories ergeben sich einige abgeleitete Anforderungen, die zwar nic
 %-> SysML Diagramm
 
 
+
+
 \subsection{Serverbasierte Anwendung}
 Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
+%TODO Verweis auf entsprechendes Grundlagen-Kapitel
+
+\subsection{Plattformunabhägigkeit}
+* Bedienbarkeit mit unterschiedlichsten Browsern, Geräten und Betriebssystemen
 
 \subsection{Benutzer-Verwaltung}
 Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
@@ -861,6 +993,24 @@ Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem 
 \section{Mögliche Erweiterungen}
 In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
 
+\subsection{Barrierefreiheit}
+Bremus 28
+Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.
+
+Bremus 30
+Die Säulen der Barrierefreiheit sind Accessibility und Usability.
+
+Bremus 30
+Unter Accessibilty ist die Zugägnlichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugägnlich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.
+
+Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.
+
+\subsection{AJAX tiefer verwurzeln}
+* bisher AJAX nur vereinzelt eingesetzt
+* prinzipiell könnte man vielmehr mit AJAX realisieren
+* Vorwärts-/Rückwärts Funktionalität des Browsers nicht aus den Augen verlieren
+
+
 \subsection{Übersetzung in andere Sprachen}
 Derzeit ist der Assistenzplaner komplett in Deutsch. Es ist eine Unterstützung für andere Sprachen angedacht aber noch nicht umgesetzt. Alle Stellen, an denen Text in deutscher Sprache ausgegeben wird, müssten angepasst werden. Denkbar wäre eine Klasse Translator in der alle zu übersetzenden Strings enthalten sind. Jede Sprache müsste von Translator ableiten und die Strings überschreiben.
 %TODO noch näher beschreiben?
@@ -876,10 +1026,26 @@ Für die Assistenten wäre es interessant den Dienstplan im ICS Format abbonieren 
 \subsection{Logging}
 Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
 
+\subsection{Verwendung von Frameworks}
+%TODO überarbeiten
+
+
 \subsection{Responsive Webdesign}
+Zillgens 8
+* Webseiten flexibel und raktionsfähig zu gestalten
+* steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren
+%TODO noch mehr aus dem Buch zitieren?
+
 Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig.
 Mit Hilfe von Responsive Webdesign könnten unterschiedliche Geräte-Kategegorien unterstützt werden.
 %TODO Link setzen: http://de.wikipedia.org/wiki/Responsive_Webdesign
+
+\subsection{Mobiles Webdesign}
+%Abgrenzung zu Responsive Webdesign?
+Bieh 67
+Horizontal umdenken - hin zur Linearisierung
+
+* Touch kein hover
 
 \subsection{Monatsplan und Dienstplan zu einer Einheit verschmelzen}
 %TODO nochmal darüber nachdenken, wie man das umsetzen könnte und dann hier beschreiben
@@ -954,6 +1120,18 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 * Enterprise Architect
 * GitHub
 * Cyberduck (FTP-Client)
+
+\section{Verwendete Hardware}
+\subsection{Entwickler-Laptop}
+%TODO diesen Abschnitt wirklich schreiben?
+MacBook Pro
+
+\subsection{Server}
+%phpInfo ausführen und informationen abschreiben
+
+\subsection{Webseiten}
+% wichtige verwendete Webseiten-Zitate als PDF abspeichern und einbinden - kann man sich damit das "zuletzt abgerufen am" sparen?
+
     
     
 % \input{Quellcode}
