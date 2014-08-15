@@ -9,6 +9,8 @@ LaTeX/*.4ct
 LaTeX/*.4tc
 LaTeX/*.aux
 LaTeX/*.bbl
+LaTeX/*.blg
+LaTeX/*.brf
 LaTeX/*.dvi
 LaTeX/*.idx
 LaTeX/*.lof
