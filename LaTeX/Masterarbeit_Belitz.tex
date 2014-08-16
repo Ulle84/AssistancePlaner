@@ -106,6 +106,7 @@
 - Geschlecht -> männlich beinhaltet auch weiblich
 - "denglische" Formulierungen wie ausgeloggt werden vermieden
 - wo finde ich das ganze -> Assistenzplaner.de/master
+- ??? Verweis auf Buch technisches Schreiben Prezanos
 
 
 \chapter{Motivation}
@@ -145,49 +146,48 @@ Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter ande
 
 %Comer 406 26.7
 %* Abgrenzung Server (Hardware) und Funktion
-
-Test: \NeuerBegriff{UML}
-
 \subsection{HTTP}
-%TODO Abkürzungsverzeichnis
-Comer 497
-Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das HyperText Transport Protocol (HTTP). HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jdedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.
-...
-HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
-%TODO  verifizieren, dass ich alles richtig übernommen habe
+\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \Fachbegriff{HyperText Transport Protocol} \NeuerBegriff{HTTP}.
+HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
+
+\enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
 \begin{itemize}
-\item GET verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
-\item HEAD verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
-\item POST sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
-\item PUT sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
+\item \Fachbegriff{GET} verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
+\item \Fachbegriff{HEAD} verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
+\item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
+\item \Fachbegriff{PUT} sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
 \end{itemize}
-Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.
+Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S. 497]{comer2002computernetzwerke}
 
 \subsection{Webdokumente}
-Comer 508
+%TODO überdenken, ob ich den Abschnitt wirklich drin lasse
+%TODO Verlinkungen zu anderen Kapiteln
+Es gibt nach \cite[S. 508]{comer2002computernetzwerke} drei verschiedene Typen von Webdokumenten:
 \begin{itemize}
-%HTML
-\item Statisch: Ein statisches Dokument residiert in einer Datei, die mit einem Webserver verbunden ist. Bei dieser Dokumentart bestimmt der Autor den Inhalt zu dem Zeitpunkt, zu dem er das Dokument schreibt. Da sich der Inhalt nicht ändert, führt jede Anfrage an ein statisches Dokument zu einer identischen Ausgabe.
-%PHP
-\item Dynamisch: Ein dynamisches Webdokument liegt nicht in vordefinierter Form vor. Vielmehr wird es von einem Webserver zusammengestellt, wenn ein Browser das Dokument anfordert. Kommt eine Anfrage an, führt der Webserver ein Anwendungsprogramm aus, von dem das dynamische Dokuement erstellt wird. Der Server gibt die Ausgabe des Programms dem anfragenden Browser zurück. Da bei jeder Anfrage ein "frisches" Dokuemnt erstellt wird, kann sich der Inhalt des dynamischen Dokuments bei jeder Anfrage ändern.
-%JavaScript
-\item Aktiv: Ein aktives Dokument wird nicht vollständig vom Server spezifiziert. Es besteht vielmehr aus einem Computerprogramm, das weiß, wie die Werte zu berechnen und anzuzeigen sind. Fordert ein Browser ein aktives Dokument an, gibt der Server eine Kopie des Programms aus, das der Browser lokal ausführen muss. Dabei kann das Programm mit dem Benutzer interagieren und die Anzeige laufend ändern. Der Inhalt des aktiven Dokuments ist also nie fest, sondern variiert, während der Benutzer das Programm ausführt.
+\item Statisch: Das Dokument ist fest in einer Datei definiert. Der Autor bestimmt einmalig bei Erstellung den Inhalt. Jede Anfrage an das statische Dokument führt zeitlich unabhänig zur identischen Ausgabe. Das statische Verhalten kann technisch mit starren HTML-Seiten realisiert werden.
+\item Dynamisch: Das Dokument ist nicht fest definiert. Sobald eine Anfrage an den Webserver gestellt wird, wird das dynamische Webdokument zusammengestellt. Der Inhalt des dynamischen Dokumentes kann sich von Anfrage zu Anfrage ändern. Das dynamische Verhalten kann mit Server-Script-Sprachen wie z. B. PHP realisiert werden. 
+\item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Sript-Sprachen wie z. B. JavaScript realisiert werden.
 \end{itemize}
 
-\subsection{Statusinformationen und Cookies}
-Comer 
+\subsection{Cookie}
+\enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S. 514f]{comer2002computernetzwerke}
 
 \subsection{URL}
+\Fachbegriff{Uniform Resource Locator} \NeuerBegriff{URL} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
 
-\subsection{Link}
+\qquad protokoll://domainNameComputer:port/dokumentName
 
-\subsection{TCP/IP}
-* soll ich wirklich so tief runtergehen?
+Die Angabe eines Ports ist optional.
+
+Ein Beispiel für eine URL ist die Startseite des Assitenzplaners: 
+
+\qquad http://assistenzplaner.de/index.html
 
 \subsection{Browser}
-Comer 489
-Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.
+\enquote{Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.} \cite[S. 489]{comer2002computernetzwerke} 
 
+\subsection{Link}
+Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S. 496]{comer2002computernetzwerke} 
 
 
 \section{Webentwicklung}
@@ -216,12 +216,11 @@ CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschr
 \subsection{JavaScript}
 -> buch von Koch
 
-\subsection{HTML, CSS und JavaScript}
-Teague 8
-Die drei grundlegenen Webtechnologien HTML, CSS und JavaScript arbeiten auf eine Weise zusammen, die ähnlich zu Teilen der Sprache ist: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu.
-%TODO noch ein bisschem mehr umschreiben
+\subsection{Zusammenarbeit HTML, CSS und JavaScript}
+HTML, CSS und JavaScript arbeiten sehr gut miteinander und ergänzen sich gegenseitig. Wenn man der Idee von \cite[S. 8]{teague2011css3} folgt, dann ergeben die Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
 
 \subsection{XML}
+
 
 \subsection{AJAX}
 %TODO Bessere Quelle suchen
@@ -247,9 +246,8 @@ Im Mittelpunkt der meisten AJAX-Applikationen steht das XMLHttpRequest-Objekt.
 \enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
 %\end{quote}
 
-% Verweis auf Scrum-Buch von Pichler
-
-\section{Einführung Algorithmen?}
+\section{Algorithmus}
+%TODO Definition Algorithmus aus Buch holen
 
 
 \section{Modellgetriebene Software-Entwicklung}
@@ -270,6 +268,7 @@ Im Mittelpunkt der meisten AJAX-Applikationen steht das XMLHttpRequest-Objekt.
 \chapter{Anforderungsermittlung}
 
 \section{Begrifflichkeiten}
+%TODO Begrifflicheiten in Grundlagen-Kapitel verschieben?
 %Zur Anforderungsermittlung gehört dazu sich mit der Domäne vertraut zu machen.
 In diesem Abschnitt werden einige Begriffe erläutert, die im Folgenden häufig verwendet werden.
 
@@ -434,6 +433,10 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 
 
 \section{Benutzer-Verwaltung}
+%TODO session id erläutern - wie merkt sich der server wer aktuller Benutzer ist?
+%TODO screenshot einfügen Images/Screenshots/CookiePhpSessionId.png
+
+
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt \ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
 Bei der Anmeldung wird eine Session gestartet. %TODO genauer erklären und auf eine Quelle verweisen
