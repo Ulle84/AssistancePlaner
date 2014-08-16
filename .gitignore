@@ -13,6 +13,8 @@ LaTeX/*.blg
 LaTeX/*.brf
 LaTeX/*.dvi
 LaTeX/*.idx
+LaTeX/*.ilg
+LaTeX/*.ind
 LaTeX/*.lof
 LaTeX/*.lol
 LaTeX/*.log

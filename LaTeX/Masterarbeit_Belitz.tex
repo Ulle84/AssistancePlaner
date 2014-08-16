@@ -119,47 +119,34 @@ In diesem Kapitel werden die Grundlagen für das Verständnis der Arbeit gelegt.
 
 \section{Netzwerke und Internet} %TODO umbenennen?
 
-\subsection{Client/Server-Modell}
-Abstrakt kann man das Client/Server Paradigma formulieren %TODO Verweis/Zitat
-Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigman nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.
+\subsection{Client/Server-Paradigma}
+\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigman nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S. 405]{comer2002computernetzwerke}
 
 \subsection{Clientsoftware}
 %TODO Zitat
-Die Clientsoftware ist ein Anwendungsprogramm, das vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt. Die Clientsoftware läuft lokal auf dem Personalcomputer eines Benutzers und leitet den Kontakt mit dem Server aktiv ein. Die Clientsoftware benötigt keine spezielle Hardware oder ein besonderes Betriebssystem.
+Nach \cite[S. 406]{comer2002computernetzwerke} hat die Clientsoftware unter anderem folgende Merkmale:
+\begin{itemize}
+\item Sie \enquote{ist ein Anwendungsprogramm, die vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt.}
+\item Sie \enquote{läuft lokal auf dem Personalcomputer eines Benutzers}
+\item Sie \enquote{leitet den Kontakt mit einem Server aktiv ein.}
+\item Sie \enquote{benötigt keine spezielle Hardware oder ein besonderes Betriebssystem.}
+\end{itemize}
 
-
-Beim Client/Server-Modell gibt es einen zentralen Server. Viele Clients kommunizieren über das Internet mit dem Server. Es herrscht eine 1 zu n Beziehung. Beim Internet findet die Kommunikation über das Protokoll HTTP statt. Darunter liegen nach dem OSI-Modell noch mehrere Schichten %TODO überarbeiten!
-
-Client/Server Paradigma
-Das Programm, dass auf eine Kontaktaufnahme wartet, bezeichnet man als Server und dasjenige, das den Kontakt aufnimmt, ist der Client.
-
-Comer 406 26.6 Merkmale von Clients und Servern
-
-Comer 406 26.7
-* Abgrenzung Server (Hardware) und Funktion
-
-
-
-
-
-
-
-* Server: zentrale Instanz
-* Client: mehrere möglich
-* Kommunikation über HTTP
-
-Der Client schickt eine Anforderung über das Internet mit Hilfe von HTTP. Der Server antwortet daraufhin. Die Antwort wird im Client dargestellt.
 
 \subsection{Serversoftware}
-Comer 406
-%TODO Zitat
-%TODO auch Aufzählung verwenden wie Comer
-Die Serversoftware 
-ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber gleichzeitig meherer entfernte Clients bedienen. Die Serversoftware läuft auf einem gemeinsam genutzten Computer und wartet passiv auf die Verbindungsaufnahme durch einen entfernten Client. Die Serversoftware nimmt den Kommunikationswunsch von belibigen Clients entgegen.
-
+Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter anderem folgende Merkmale:
 \begin{itemize}
-\item setzte leistungsstarke Hardware und ein gehobenes Betriebssystem voraus
+\item Sie \enquote{ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber auch gleichzeitig mehrere entfernte Clients bedienen}.
+\item Sie \enquote{läuft auf einem gemeinsam genutzten Computer.}
+\item Sie \enquote{wartet passiv auf deie Verbindungsaufnahme durch einen entfernten Client.}
+\item Sie \enquote{nimmt den Kommunikationswunsch von beliebigen Clients entgegen, bietet aber nur einen Dienst.}
+\item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
 \end{itemize}
+
+%Comer 406 26.7
+%* Abgrenzung Server (Hardware) und Funktion
+
+Test: \NeuerBegriff{UML}
 
 \subsection{HTTP}
 %TODO Abkürzungsverzeichnis
@@ -254,11 +241,11 @@ Im Mittelpunkt der meisten AJAX-Applikationen steht das XMLHttpRequest-Objekt.
 %\section{Agile Softwareentwicklung}
 
 
-\subsection{Benutzergeschichten}
-\begin{quote}
-\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
 
-\end{quote}
+\section{Benutzergeschichten} %TODO wirklich als Section?
+%\begin{quote}
+\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
+%\end{quote}
 
 % Verweis auf Scrum-Buch von Pichler
 
