@@ -743,7 +743,10 @@ class Roster
         $totalQuotaOfHours = 0;
         $quotaOfHours = $this->team->getHours();
         foreach ($quotaOfHours as $name => $value) {
-            $totalQuotaOfHours += $value;
+            if (array_key_exists($name, $this->assistanceInput->assistanceInput)) {
+                // only add value, if assistant has provided information for this month
+                $totalQuotaOfHours += $value;
+            }
         }
 
         // calculate service and standby hours
