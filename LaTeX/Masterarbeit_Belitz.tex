@@ -116,7 +116,7 @@ Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur
 Um den Klienten zu entlasten und technisch besser zu unterstützen wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
 
 \chapter{Grundlagen}
-In diesem Kapitel werden die Grundlagen für das Verständnis der Arbeit gelegt.
+In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
 
 \section{Netzwerke und Internet} %TODO umbenennen?
 
@@ -160,6 +160,7 @@ HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server 
 Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S. 497]{comer2002computernetzwerke}
 
 \subsection{Webdokumente}
+\label{sec:webdokumente}
 %TODO überdenken, ob ich den Abschnitt wirklich drin lasse
 %TODO Verlinkungen zu anderen Kapiteln
 Es gibt nach \cite[S. 508]{comer2002computernetzwerke} drei verschiedene Typen von Webdokumenten:
@@ -191,7 +192,7 @@ Ein Beispiel für eine URL ist die Startseite des Assitenzplaners:
 Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S. 496]{comer2002computernetzwerke} 
 
 
-\section{Webentwicklung} %TODO Begriff überdenken Web-Technologien
+\section{Web-Technologien}
 \subsection{PHP}
 \label{sec:PHP}
 
@@ -200,7 +201,6 @@ Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Ob
 
 \subsection{XML}
 \label{sec:XML}
-%TODO ??? Code-Beispiel
 \Fachbegriff{Extensible Markup Language} \NeuerBegriff{XML} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
 %TODO Ankündigung und Verweis auf Beispiel
 %TODO Verknüfung zu HMTL herstellen: XML bildet die Grundlage für HTML
@@ -210,10 +210,9 @@ Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Ob
 
 \subsection{HTML}
 \label{sec:HTML}
-%TODO ??? Code-Beispiel
 \Fachbegriff{HyperText Markup Language} \NeuerBegriff{HTML} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. ... HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S. 21]{muenz2012html5}.
 
-Nach \cite{muenz2012html5} ist es unter anderem möglich:
+Nach \cite[S. 21]{muenz2012html5} ist es unter anderem möglich:
 \begin{itemize}
 \item das Dokument in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel einzuteilen
 \item dem Dokument Überschriften, Textabsätze, Listen und Tabellen hinzuzufügen
@@ -230,7 +229,6 @@ Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}.
 
 \subsection{CSS}
 \label{sec:CSS}
-%TODO ??? Code-Beispiel
 Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es] sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.} \cite[S. 23]{muenz2012html5} 
 
 \enquote{CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschriften erster Ordnung oder für alle Textabsätze mit einem bestimmten Klassennamen oder für hervorgehobenen Text, der innerhalb einer Tabellenzelle vorkommt. Die zentralen Formate können in eine externe Syle-Datei ausgelagert werden[.] ... So ermöglicht CSS seitenübergreifend einheitliche Layouts und Formatierungen.} \cite[S. 24]{muenz2012html5}
@@ -240,13 +238,21 @@ Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es]
 
 \subsection{JavaScript}
 \label{sec:JavaScript}
--> buch von Koch
+\Fachbegriff{JavaScript} ist eine Script-Sprache, die meistens im Browser (also clientseitig) ausgeführt wird. 
+%Sinnvolle Einsatzgebiete\footnote{Die Unterteilung in sinnvolle und weniger sinnvolle Einsatzgebeite wurde eigenmächtig vom Autor durgeführt. Weniger sinnvolle Einsatzgebiete sind unter anderem: Laufschriften, Popup-Werbung, Nervige Animation von Objekten .}
+Mögliche Einsatzgebiete von JavaScript sind unter anderem:
+\begin{itemize}
+\item Plausibilitätsprüfung (Validierung) von Formulareingaben vor dem Absenden
+\item Dynamische Manipulation von Webseiten mit Hilfe von DOM %TODO Referenz auf Kapitel %TODO Verlinkung auf Beispiel
+\item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss (AJAX)
+\end{itemize}
+Ein Beispiel für ein JavaScript-Dokument findet sich in Listing \ref{lst:exampleJavaScript}.
 
 \lstset{language=Java, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleJavaScript,caption=Beispiel für ein JavaScript-Dokument.]{../JavaScript/example.js}
 
 \subsection{Zusammenarbeit HTML, CSS und JavaScript}
-HTML, CSS und JavaScript arbeiten sehr gut miteinander und ergänzen sich gegenseitig. Wenn man der Idee von \cite[S. 8]{teague2011css3} folgt, dann ergeben die drei Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
+HTML, CSS und JavaScript arbeiten ergänzen sich gegenseitig. Wenn man der Idee von \cite[S. 8]{teague2011css3} folgt, dann ergeben die drei Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
 
 Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschaut (siehe Abbildung \ref{fig:ExampleHtmlCssJavaScript}), dann ist zu erkennen, wie die Zusammenarbeit der drei Webtechnologien sich in der Praxis auswirkt. Im HTML wird die Struktur des Dokumentes definiert, mit dem verwendeten CSS-Dokument (Listing \ref{lst:exampleCSS}) wird das Aussehen angepasst und mit JavaScript (Listing \ref{lst:exampleJavaScript}) wird dynamisch Inhalt erzeugt.
 
@@ -257,49 +263,31 @@ Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschau
 	\label{fig:ExampleHtmlCssJavaScript}
 \end{figure}
 
-
-
 \subsection{DOM}
-%TODO ??? Abschnitt schreiben
-
+\Fachbegriff{Document Object Model} \NeuerBegriff{DOM} ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente. DOM nutzt den baumartigen Aufbau eines Dokumentes und liefert einen Satz von Methoden, der es möglich macht auf Elemente eines Dokuments zuzugreifen und deren Eigenschaften zu verändern. Auch die komplette Umstrukturierung eines Dokuments mittels DOM ist möglich.
 
 \subsection{AJAX}
-%TODO Bessere Quelle suchen
-%TODO Verbindung zu aktiver Anwednung (NETZWERK) hersetellen
-Koch 309
-Ajax steht für Asynchronous JavaScript and XML. Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund.
+Bei \Fachbegriff{Asynchronous JavaScript and XML} \NeuerBegriff{AJAX} handelt es sich nicht direkt um eine Webtechnologie, eher  um eine spezielle Denkweise die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzten.
 
-%TODO nachfolgendes wirklich im Grundlagen-Teil erklären, oder evt. an die passende Stelle (wo es verwendet wird) im Kapitel Implementierung packen? Derzeit bin ich für Verschieben!
-Koch 321
-Im Mittelpunkt der meisten AJAX-Applikationen steht das XMLHttpRequest-Objekt. 
+\enquote{Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund. Ajax-Applikationen ermöglichen so eine Bedienung, die eher an eine Desktop-Anwendung als an eine Webapplikation erinnert.} \cite[S. 309]{koch2011javascript} 
 
+Ein spezielles JavaScript-Objekt names \texttt{XMLHttpRequest} ermöglicht die asynchrone Kommunikation mit dem Server. Durch den asynchronen Aufruf kann der Benutzer direkt weiterarbeiten und wird nicht durch die Kommunikation mit dem Server blockiert. Ist die Antwort des Servers beim Client angekommen, wird sie sofort verarbeitet und gegebenenfalls dem Nutzer dargestellt.
+
+Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:webdokumente}) zu erstellen.
 
 
-\subsection{DOM}
-%TODO gute Quelle suchen und zitieren
+\section{Modellierungssprachen}
+\subsection{UML}
+Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstütz insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
+%TODO ??? verwendete Diagrammtypen beschreiben
+%TODO ??? Beispiel-Diagramm 
 
-%\section{Agile Softwareentwicklung}
-
-
-
-\section{Benutzergeschichten} %TODO wirklich als Section?
-%\begin{quote}
-\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
-%\end{quote}
-
-\section{Algorithmus}
-%TODO Definition Algorithmus aus Buch holen
+\subsection{SysML}
+\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine Sprache die sich zur Modellierung von Systemen einsetzten lässt. Systeme könne aus Hard- und Software bestehen.
 
 
-\section{Modellgetriebene Software-Entwicklung}
-% Literatur habe ich zu Hause
-\section{SysML}
-\section{UML}
 
-\section{Code-Generierung}
 
-\section{Software zur Dienstplanerstellung}
-%Was gibt es schon an bestehender Software? Woran hätte man sich evt. dran hängen können?
 
 %TODO Kapitel zur Bestandsanalyse schreiben?
 %\chapter{Bestandsanalyse}
@@ -352,6 +340,8 @@ Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den 
 %UML Aktivitätsdiagramm
 
 \section{Benutzergeschichten}
+\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
+
 %TODO aufbohren -> Überschrift und Akzeptanzkriterien für alle Benutzergeschichten festlegen
 %TODO LaTeX Template für Benutzergeschichten?
 Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind einige Benutzergeschichten abgeleitet worden:
