@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssitanceTeam>
+    <Assistant isAvailable="true">
+        <Name>Max Mustermann</Name>
+        <eMailAddress>max@mustermann.de</eMailAddress>
+    </Assistant>
+    <Assistant isAvailable="false">
+        <Name>Markus Mustermann</Name>
+        <eMailAddress>markus@mustermann.de</eMailAddress>
+    </Assistant>
+</AssitanceTeam>

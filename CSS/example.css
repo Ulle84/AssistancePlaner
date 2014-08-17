@@ -1,0 +1,15 @@
+/* set global font for all elements */
+html * {
+    font-family: Verdana;
+}
+
+/* change font color of all headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #0000ff;
+}
+
+/* define attributes of all elements with class "time" */
+.time {
+    border: 1px solid black;
+    padding: 10px;
+}
