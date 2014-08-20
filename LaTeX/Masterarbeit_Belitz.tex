@@ -278,11 +278,7 @@ Weiterhin stellt DOM Methoden zur Verfügung um Inahlte des Dokument-Baums zu ver
 
 \qquad \texttt{captions[0].setAttribute("id", "firstCaption");} 
 
-%TODO wird die ID ...
-
-
-
-%DOM nutzt den baumartigen Aufbau eines Dokumentes und liefert einen Satz von Methoden, der es möglich macht auf Elemente eines Dokuments zuzugreifen und deren Eigenschaften zu verändern. Auch die komplette Umstrukturierung eines Dokuments mittels DOM ist möglich.
+wird der \Fachbegriff{Identifikator} \NeuerBegriff{ID} der ersten Überschrift (erster Ordnung) gesetzt.
 
 \subsection{AJAX}
 \label{sec:AJAX}
@@ -302,11 +298,7 @@ Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zu
 %TODO ??? Beispiel-Diagramm 
 
 \subsection{SysML}
-\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine Sprache die sich zur Modellierung von Systemen einsetzen lässt. %Sie basiert auf UML. Die modellierten Systeme könne aus Hard- und Software bestehen.
-
-%SysML erweitert UML um einige Diagrammtypen. 
-
-Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt.
+\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt.
 
 
 
@@ -443,6 +435,45 @@ Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet 
 Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
 
 Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird regsistriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
+
+\chapter{Stand der Technik}
+Ausführliche Recherche haben ergeben, dass es keine Lösung für das Problem gibt.
+
+Dennoch gibt es ein paar Ansätze:
+
+Offline
+* Dienstplan in Excel erstellen
+* QTime http://www.qtime.de/kostenlos/dienstplan-erstellung.html -> zentral/dezentrale Dienstplanerstellung
+
+Online
+* Papershift http://www.papershift.com/tour
+
+Vorlagen
+- Einzelhandel
+- Restaurant
+- Club
+
+Mitarbeiter können sich für eine Schicht bewerben.
+
+
+
+* EasyPep https://easypep.de -> dienstplanerstellung manuell (kein Algorithmus, keine Stundenplanung)
+
+
+* schichtplaner http://schichtplaner-online.de/index.php/de/
+
+Rollen: Mitarbeiter, Manager, Administrator
+Plan sichtbar für Mitarbeiter
+Mitarbeiter scheint keine Einfluss zu haben -> Verfügbarkeiten können nicht angegeben werden
+keine automatische Erstellung
+
+* ShiftJuggler https://www.shiftjuggler.com/de/
+
+
+--> alle unterstüzten nicht Dienst/Bereitschaftskonzept -> Stundenverrechnung geht schon gar nicht -> absoluter Spezialfall
+
+-> Kombination mit ToDo Manager nicht auffindbar
+
 
 \chapter{Software-Design} % oder einfach nur Design?
 SysML Modell
@@ -752,6 +783,8 @@ Auf der \href{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 
 \section{Anlegen eines neuen Klienten}
 \label{sec:AnlegenKlient}
+Das Anlegen eines neuen Klienten soll keine Hürde darstellen. Es sollen keine persönlichen Daten erhoben, so dass kein potentieller Nutzer abgeschreckt wird.
+
 Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
 
 \begin{figure}[htb]
@@ -772,7 +805,9 @@ Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. D
 
 Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
 Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
-Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich am System anzumelden.
+Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich mit dem neuen Zugang am System anzumelden.
+
+Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen eine E-Mail Adresse angeben, was aber nicht für die Benutzung des Assistenzplaners notwendig ist.
 
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
