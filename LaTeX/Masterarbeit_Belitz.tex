@@ -243,8 +243,8 @@ Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es]
 Mögliche Einsatzgebiete von JavaScript sind unter anderem:
 \begin{itemize}
 \item Plausibilitätsprüfung (Validierung) von Formulareingaben vor dem Absenden
-\item Dynamische Manipulation von Webseiten mit Hilfe von DOM %TODO Referenz auf Kapitel %TODO Verlinkung auf Beispiel
-\item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss (AJAX)
+\item Dynamische Manipulation von Webseiten mit Hilfe von DOM (siehe Abschnitt \label{sec:DOM})
+\item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss mit AJAX (siehe Abschnitt \label{sec:AJAX})
 \end{itemize}
 Ein Beispiel für ein JavaScript-Dokument findet sich in Listing \ref{lst:exampleJavaScript}.
 
@@ -263,10 +263,29 @@ Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschau
 	\label{fig:ExampleHtmlCssJavaScript}
 \end{figure}
 
+
 \subsection{DOM}
-\Fachbegriff{Document Object Model} \NeuerBegriff{DOM} ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente. DOM nutzt den baumartigen Aufbau eines Dokumentes und liefert einen Satz von Methoden, der es möglich macht auf Elemente eines Dokuments zuzugreifen und deren Eigenschaften zu verändern. Auch die komplette Umstrukturierung eines Dokuments mittels DOM ist möglich.
+\label{sec:DOM}
+\Fachbegriff{Document Object Model} \NeuerBegriff{DOM} ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente.
+\enquote{HTML-Dokumente besitzen eine hierarchische Struktur, die im DOM als Baumstruktur repräsentiert wird. Die Knoten des Baums stellen die verschiedenen Arten von Inhalt in einem Dokument dar.} \cite[S. 310]{flanagan2002javascript}.
+DOM stellt unter anderem einen Satz von Methoden zur Verfügung der es möglich macht Elemente des Dokumentes aufzufinden. Z. B. kann man mit Hilfe von
+
+\qquad \texttt{var captions = window.document.getElementsByTagName("h1");} 
+
+alle Überschriften erster Ordnung finden.
+
+Weiterhin stellt DOM Methoden zur Verfügung um Inahlte des Dokument-Baums zu verändern. Mit dem Code 
+
+\qquad \texttt{captions[0].setAttribute("id", "firstCaption");} 
+
+%TODO wird die ID ...
+
+
+
+%DOM nutzt den baumartigen Aufbau eines Dokumentes und liefert einen Satz von Methoden, der es möglich macht auf Elemente eines Dokuments zuzugreifen und deren Eigenschaften zu verändern. Auch die komplette Umstrukturierung eines Dokuments mittels DOM ist möglich.
 
 \subsection{AJAX}
+\label{sec:AJAX}
 Bei \Fachbegriff{Asynchronous JavaScript and XML} \NeuerBegriff{AJAX} handelt es sich nicht direkt um eine Webtechnologie, eher  um eine spezielle Denkweise die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzten.
 
 \enquote{Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund. Ajax-Applikationen ermöglichen so eine Bedienung, die eher an eine Desktop-Anwendung als an eine Webapplikation erinnert.} \cite[S. 309]{koch2011javascript} 
@@ -278,14 +297,16 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 
 \section{Modellierungssprachen}
 \subsection{UML}
-Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstütz insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
+Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
 
 \subsection{SysML}
-\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie basiert auf UML. Die modellierten Systeme könne aus Hard- und Software bestehen.
+\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine Sprache die sich zur Modellierung von Systemen einsetzen lässt. %Sie basiert auf UML. Die modellierten Systeme könne aus Hard- und Software bestehen.
 
-SysML erweitert UML um einige Diagrammtypen. 
+%SysML erweitert UML um einige Diagrammtypen. 
+
+Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt.
 
 
 
@@ -346,9 +367,9 @@ Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den 
 
 Wichtig ist, dass die Anforderung einen \enquote{konkreten und sichtbaren Mehrwert für den Kunden} besitzt. \cite[S. 52]{wirdemann2011scrum}
 
-Benutzergeschichten haben ein Muster. Nach \cite[S. 59]{wirdemann2011scrum} hat sich für die Beschreibung folgends Muster bewährt:
+Benutzergeschichten haben ein festes Muster. Nach \cite[S. 59]{wirdemann2011scrum} hat sich für die Beschreibung folgends Muster bewährt:
 
-\qquad Als <Benutzerrolle> will ich <das Ziel>[,so dass <Grund für das Ziel>]
+\qquad Als <Benutzerrolle> will ich <das Ziel> [,so dass <Grund für das Ziel>]
 
 %TODO aufbohren -> Überschrift und Akzeptanzkriterien für alle Benutzergeschichten festlegen
 %TODO LaTeX Template für Benutzergeschichten?
@@ -411,13 +432,12 @@ Aus den Benutzergeschichten ergeben sich einige abgeleitete Anforderungen, die z
 
 
 
+\subsection{Plattformunabhägigkeit}
+Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Handy, Tablet, Dektop) bedienen lassen können. Weiterhin sollen die größten Betriebssysteme (Windows, Linux, MacOS X, Android, iOS) unterstützt werden.
 
 \subsection{Serverbasierte Anwendung}
 Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
 %TODO Verweis auf entsprechendes Grundlagen-Kapitel
-
-\subsection{Plattformunabhägigkeit}
-* Bedienbarkeit mit unterschiedlichsten Browsern, Geräten und Betriebssystemen
 
 \subsection{Benutzer-Verwaltung}
 Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
@@ -441,7 +461,6 @@ Für die Implementierung ist es notwendig sich auf die Programmiersprachen festzu
 \subsection{Backend}
 %TODO Verweis auf Grundlagen-Kapitel
 Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \href{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung} und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
-
 
 
 \subsection{Frontend}
@@ -1108,8 +1127,8 @@ Horizontal umdenken - hin zur Linearisierung
 Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Die Tabelle ist mit der Zeit immer breiter geworden und unübersichtlich geworden. Eine Möglichkeit die Daten der Assistenten anders grafisch aufzubereiten wären Visitenkarten.
 
 \subsection{Inline-Dokumentation}
-Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer Seite dokumentiert.
-Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugägnlich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann in einem Pop-Up kontextbezogene Hilfe angezeigt bekommt.
+Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite dokumentiert.
+Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann in einem Pop-Up kontextbezogene Hilfe angezeigt bekommt.
 
 \subsection{Aufgaben-Verwaltung erweitern}
 Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden die Aufgaben-Verwaltung nicht für sein Team einzusetzen, da der Tooling-Overhead zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt. Für anders organisierte Teams wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
@@ -1157,6 +1176,9 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 % Rand der Aufzählungen in Tabellen anpassen
 \setdefaultleftmargin{1em}{}{}{}{}{}
 
+\section{Inhalt der beiligenden CD}
+* Ordnerstruktur erklären
+
 \section{Verzeichnisstruktur auf Server}
 *PHP
 *HTML
@@ -1174,6 +1196,8 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 * Enterprise Architect
 * GitHub
 * Cyberduck (FTP-Client)
+
+* Firefox, Safari, FireBug
 
 \section{Verwendete Hardware}
 \subsection{Entwickler-Laptop}
