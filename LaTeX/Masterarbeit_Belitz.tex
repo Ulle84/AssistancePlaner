@@ -111,9 +111,9 @@
 
 \chapter{Motivation}
 %TODO falls Abgrenzung zu Zusammenfassung/Abstract zu unscharf, dann Kapitel streichen
-Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat er den Dienstplan jeden Monat manuell mit Hilfe von Excel erstellt. Es galt gleichzeitig die sieben E-Mails seiner Assistenten zu überblicken (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan zu erstellen, der die Verfügbarkeiten und die Stundenkontigente der Assistenten berücksichtigt. Das Ganze hat den Klienten ca. vier Stunden pro Monat gekostet.
+Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell mit Hilfe von Excel erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontigente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
@@ -243,8 +243,8 @@ Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es]
 Mögliche Einsatzgebiete von JavaScript sind unter anderem:
 \begin{itemize}
 \item Plausibilitätsprüfung (Validierung) von Formulareingaben vor dem Absenden
-\item Dynamische Manipulation von Webseiten mit Hilfe von DOM (siehe Abschnitt \label{sec:DOM})
-\item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss mit AJAX (siehe Abschnitt \label{sec:AJAX})
+\item Dynamische Manipulation von Webseiten mit Hilfe von DOM (siehe Abschnitt \ref{sec:DOM})
+\item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss mit AJAX (siehe Abschnitt \ref{sec:AJAX})
 \end{itemize}
 Ein Beispiel für ein JavaScript-Dokument findet sich in Listing \ref{lst:exampleJavaScript}.
 
@@ -1099,34 +1099,37 @@ Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem 
 \section{Mögliche Erweiterungen}
 In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
 
+\subsection{Speicherung in Datenbank}
+Derzeit werden die Daten persistent in Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht weden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine SQLite Datei anzulegen. Die zweite Möglichkeit hat den Vorteil, dass die Daten leichter zwischen Entwickler-System und Produktiv-System ausgetauscht werden können.
+
 \subsection{Barrierefreiheit}
-Test: \cite[Seite 28]{bremus2013barrierefreiheit}
+\enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S. 28]{bremus2013barrierefreiheit}
 
-Bremus 28
-Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.
+\enquote{Barrierefreiheit als Thema für Webentwickler und -designer wird auch deshalb immer wichtiger und interessanter, weil die Menschen eine immer höhere Lebenserwartung haben, und gerade Menschen mit Behinderungen immer besser medizinisch versorgt werden können.}  \cite[S. 29]{bremus2013barrierefreiheit} 
 
-Bremus 30
-Die Säulen der Barrierefreiheit sind Accessibility und Usability.
+\enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability} \cite[S. 30]{bremus2013barrierefreiheit}
 
-Bremus 30
-Unter Accessibilty ist die Zugägnlichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugägnlich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.
+\enquote{Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.}  \cite[S. 31]{bremus2013barrierefreiheit} 
 
-Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.
+\enquote{Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S. 31]{bremus2013barrierefreiheit}
+
+Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S. 29]{bremus2013barrierefreiheit} } ist.
 
 \subsection{AJAX tiefer verwurzeln}
-* bisher AJAX nur vereinzelt eingesetzt
-* prinzipiell könnte man vielmehr mit AJAX realisieren
-* Vorwärts-/Rückwärts Funktionalität des Browsers nicht aus den Augen verlieren
+Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich und kann schon als benutzerunfreundlich bezeichnet werden. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt direkt per AJAX an den Server geschickt werden und der Server die Daten direkt persistent ablegt.
 
-
-\subsection{Übersetzung in andere Sprachen}
-Derzeit ist der Assistenzplaner komplett in Deutsch. Es ist eine Unterstützung für andere Sprachen angedacht aber noch nicht umgesetzt. Alle Stellen, an denen Text in deutscher Sprache ausgegeben wird, müssten angepasst werden. Denkbar wäre eine Klasse Translator in der alle zu übersetzenden Strings enthalten sind. Jede Sprache müsste von Translator ableiten und die Strings überschreiben.
-%TODO noch näher beschreiben?
+\subsection{Internationalisierung}
+Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu unterstützen wäre ein grundlegender Umbau notwendig. Weiterführende Informationen finden sich in der offiziellen \href{http://php.net/manual/en/book.intl.php}{PHP-Dokumentation}\footnote{http://php.net/manual/en/book.intl.php - zuletzt abgerufen am 21.08.2014}
 
 \subsection{Feiertage importieren}
+Für die Erstellung des Monatsplans wäre es für den Klienten hilfreich, wenn man Feiertage importieren könnte. Im Idealfall würde sogar das Bundesland, in dem der Klient lebt, berücksichtigt werden.
+Zum Beispiel könnte man auf der Webseite \href{http://www.ifeiertage.de}{iFeiertage}\footnote{http://www.ifeiertage.de - zuletzt abgerufen am 21.08.2014} einen Feiertage-Kalender abonnieren. Dieser wäre als iCalendar verfügbar:
 
+\qquad \texttt{webcal://ifeiertage.de/rp-.ics}
 
-\subsection{ICS Export}
+Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage importieren} zur Verfügung gestellt bekommt. Betätigt der Klient diesen Knopf, so werden alle Feiertage für diesen Monat in den öffentlichen Notizen eingetragen. Weiterhin werden die Dienstzeiten auf 24-stündige Dienste angepasst, da der Klient an Feiertagen rund um die Uhr Assistenz hat.
+
+\subsection{iCalendar Export}
 %TODO Erklärung und Link ICS
 Für die Assistenten wäre es interessant den Dienstplan im ICS Format abbonieren zu können. So hätten die Assistenten jederzeit die aktuelleste Version und ihre Dienst- und Bereitschaftszeiten im Online-Kalender.
 % -> auch auf dem SmartPhone etc.
