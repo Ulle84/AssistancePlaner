@@ -1100,7 +1100,7 @@ Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem 
 In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
 
 \subsection{Speicherung in Datenbank}
-Derzeit werden die Daten persistent in Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht weden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine SQLite Datei anzulegen. Die zweite Möglichkeit hat den Vorteil, dass die Daten leichter zwischen Entwickler-System und Produktiv-System ausgetauscht werden können.
+Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht weden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System ausgetauscht lassen.
 
 \subsection{Barrierefreiheit}
 \enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S. 28]{bremus2013barrierefreiheit}
@@ -1121,6 +1121,16 @@ Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benu
 \subsection{Internationalisierung}
 Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu unterstützen wäre ein grundlegender Umbau notwendig. Weiterführende Informationen finden sich in der offiziellen \href{http://php.net/manual/en/book.intl.php}{PHP-Dokumentation}\footnote{http://php.net/manual/en/book.intl.php - zuletzt abgerufen am 21.08.2014}
 
+\subsection{iCalendar Export}
+Im iCalendar-Format können Termine ausgetauscht werden. Ein Beispiel für ein Ereignis im iCalendar Format:
+
+\lstset{language=, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:exampleJavaScript,caption=Beispiel für ein iCalendar-Termin.]{../iCalendar/example.ics}
+
+In dem Ereignis ist der Dienst vom 22.08.2014 14:00 Uhr bis 23.08.2014 9:00 Uhr beschrieben.
+
+Für die Assistenten wäre es interessant seine Dienst- und Bereitschaftszeiten im iCalendar-Format abbonieren zu können. So hätten die Assistenten jederzeit aktuell ihre Arbeitszeiten, ohne ständig online auf dem Assistenzplaner nachschauen zu müssen. Ein iCalendar lässt sich leicht in den eigenen Online-Kalender integrieren, so dass sich die Dienst- und Bereitschaftszeiten jederzeit von unterwegs auf dem Smart-Phone einsehen lassen.
+
 \subsection{Feiertage importieren}
 Für die Erstellung des Monatsplans wäre es für den Klienten hilfreich, wenn man Feiertage importieren könnte. Im Idealfall würde sogar das Bundesland, in dem der Klient lebt, berücksichtigt werden.
 Zum Beispiel könnte man auf der Webseite \href{http://www.ifeiertage.de}{iFeiertage}\footnote{http://www.ifeiertage.de - zuletzt abgerufen am 21.08.2014} einen Feiertage-Kalender abonnieren. Dieser wäre als iCalendar verfügbar:
@@ -1129,40 +1139,32 @@ Zum Beispiel könnte man auf der Webseite \href{http://www.ifeiertage.de}{iFeiert
 
 Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage importieren} zur Verfügung gestellt bekommt. Betätigt der Klient diesen Knopf, so werden alle Feiertage für diesen Monat in den öffentlichen Notizen eingetragen. Weiterhin werden die Dienstzeiten auf 24-stündige Dienste angepasst, da der Klient an Feiertagen rund um die Uhr Assistenz hat.
 
-\subsection{iCalendar Export}
-%TODO Erklärung und Link ICS
-Für die Assistenten wäre es interessant den Dienstplan im ICS Format abbonieren zu können. So hätten die Assistenten jederzeit die aktuelleste Version und ihre Dienst- und Bereitschaftszeiten im Online-Kalender.
-% -> auch auf dem SmartPhone etc.
-
 \subsection{Logging}
 Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
 
 \subsection{Verwendung von Frameworks}
 %TODO überarbeiten
+%Überschrit ist unpassend - eigentlich ist die Verwendung von Frameworks nur Mittel zum Zweck sein
+* noch mehr Plattformen abdecken durch den Einatz von jQuery
 
 
 \subsection{Responsive Webdesign}
-Zillgens 8
-* Webseiten flexibel und raktionsfähig zu gestalten
-* steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren
-%TODO noch mehr aus dem Buch zitieren?
+Responsive (reaktionsfähiges) Webdesign bedeutet flexibel auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S. 8]{zillgens2013responsive}.
 
-Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig.
-Mit Hilfe von Responsive Webdesign könnten unterschiedliche Geräte-Kategegorien unterstützt werden.
-%TODO Link setzen: http://de.wikipedia.org/wiki/Responsive_Webdesign
+Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig (siehe Abbildung \ref{fig:AssistancePlannerOniPhone})
 
-\subsection{Mobiles Webdesign}
-%Abgrenzung zu Responsive Webdesign?
-Bieh 67
-Horizontal umdenken - hin zur Linearisierung
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.3]{../Images/Screenshots/AssistancePlannerOniPhone.png}
+	\caption[ToDo]{Schlechte Darstellung des Assistenzplaner auf einem Smart-Phone. Die Eingabefelder sind zu klein und die Display-Größe ist schlecht ausgenutzt.}
+	\label{fig:AssistancePlannerOniPhone}
+\end{figure}
 
-* Touch kein hover
-
-\subsection{Monatsplan und Dienstplan zu einer Einheit verschmelzen}
-%TODO nochmal darüber nachdenken, wie man das umsetzen könnte und dann hier beschreiben
+Bei der Optimierung des Assistenzplaners für Handys muss umgedacht werden. Man muss wegkommen von dem horizontal-basierten Layout mit Spalten hin zu einem linear-vertikalen Layout. \cite[S. 67]{bieh2008mobiles}. 
 
 \subsection{Team Übersicht überarbeiten}
-Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Die Tabelle ist mit der Zeit immer breiter geworden und unübersichtlich geworden. Eine Möglichkeit die Daten der Assistenten anders grafisch aufzubereiten wären Visitenkarten.
+Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter geworden und unübersichtlich geworden. Mit Visitenkarten könnte man die Daten der Assistenten übersichtlich grafisch aufbereiten. 
+%TODO businessCard.html fertig implementieren und Screenshot einfügen
 
 \subsection{Inline-Dokumentation}
 Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite dokumentiert.
