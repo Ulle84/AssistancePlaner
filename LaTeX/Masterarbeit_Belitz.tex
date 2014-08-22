@@ -73,6 +73,7 @@
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
+-> Assistenzplaner.de/master
 %TODO Zusammenfassung am Ende schreiben
 
 \addchap{Danksagung}
@@ -84,33 +85,9 @@
 %Freddy
 %Korrektoren (Melanie)
 
-%\ofoot{\pagemark}
-
-% Seitennummerierung -----------------------------------------------------------
-%   Vor dem Hauptteil werden die Seiten in großen römischen Ziffern 
-%   nummeriert.
-% ------------------------------------------------------------------------------
 \tableofcontents % Inhaltsverzeichnis
 
-% Abkürzungsverzeichnis --------------------------------------------------------
-
-%\listoffigures % Abbildungsverzeichnis
-
-% arabische Seitenzahlen im Hauptteil ------------------------------------------
-%\clearpage
-%\include{Inhalt/Roadmap}
-
-
-%\addchap{Vorbemerkungen}
-%TODO ausformulieren
-- Geschlecht -> männlich beinhaltet auch weiblich
-- "denglische" Formulierungen wie ausgeloggt werden vermieden
-- wo finde ich das ganze -> Assistenzplaner.de/master
-- ??? Verweis auf Buch technisches Schreiben Prezanos
-
-
 \chapter{Motivation}
-%TODO falls Abgrenzung zu Zusammenfassung/Abstract zu unscharf, dann Kapitel streichen
 Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell mit Hilfe von Excel erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontigente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
 Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
@@ -118,13 +95,12 @@ Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Ide
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
 
-\section{Netzwerke und Internet} %TODO umbenennen?
+\section{Netzwerke und Internet}
 
 \subsection{Client/Server-Paradigma}
 \enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigman nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S. 405]{comer2002computernetzwerke}
 
 \subsection{Clientsoftware}
-%TODO Zitat
 Nach \cite[S. 406]{comer2002computernetzwerke} hat die Clientsoftware unter anderem folgende Merkmale:
 \begin{itemize}
 \item Sie \enquote{ist ein Anwendungsprogramm, die vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt.}
@@ -144,8 +120,6 @@ Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter ande
 \item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
 \end{itemize}
 
-%Comer 406 26.7
-%* Abgrenzung Server (Hardware) und Funktion
 \subsection{HTTP}
 \enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \Fachbegriff{HyperText Transport Protocol} \NeuerBegriff{HTTP}.
 HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
@@ -161,8 +135,6 @@ Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder ei
 
 \subsection{Webdokumente}
 \label{sec:webdokumente}
-%TODO überdenken, ob ich den Abschnitt wirklich drin lasse
-%TODO Verlinkungen zu anderen Kapiteln
 Es gibt nach \cite[S. 508]{comer2002computernetzwerke} drei verschiedene Typen von Webdokumenten:
 \begin{itemize}
 \item Statisch: Das Dokument ist fest in einer Datei definiert. Der Autor bestimmt einmalig bei Erstellung den Inhalt. Jede Anfrage an das statische Dokument führt zeitlich unabhänig zur identischen Ausgabe. Das statische Verhalten kann technisch mit starren HTML-Seiten realisiert werden.
@@ -195,15 +167,13 @@ Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im
 \section{Web-Technologien}
 \subsection{PHP}
 \label{sec:PHP}
-
+%TODO Beschreibung PHP
 Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
 * von UML zum PHP Code mittels Codegenerirung
 
 \subsection{XML}
 \label{sec:XML}
 \Fachbegriff{Extensible Markup Language} \NeuerBegriff{XML} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
-%TODO Ankündigung und Verweis auf Beispiel
-%TODO Verknüfung zu HMTL herstellen: XML bildet die Grundlage für HTML
 
 \lstset{language=Xml, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleXML,caption=Beispiel für ein XML Dokument.]{../XML/example.xml}
@@ -239,7 +209,6 @@ Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es]
 \subsection{JavaScript}
 \label{sec:JavaScript}
 \Fachbegriff{JavaScript} ist eine Script-Sprache, die meistens im Browser (also clientseitig) ausgeführt wird. 
-%Sinnvolle Einsatzgebiete\footnote{Die Unterteilung in sinnvolle und weniger sinnvolle Einsatzgebeite wurde eigenmächtig vom Autor durgeführt. Weniger sinnvolle Einsatzgebiete sind unter anderem: Laufschriften, Popup-Werbung, Nervige Animation von Objekten .}
 Mögliche Einsatzgebiete von JavaScript sind unter anderem:
 \begin{itemize}
 \item Plausibilitätsprüfung (Validierung) von Formulareingaben vor dem Absenden
@@ -299,21 +268,12 @@ Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zu
 
 \subsection{SysML}
 \Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt.
-
-
-
-
-
-%TODO Kapitel zur Bestandsanalyse schreiben?
-%\chapter{Bestandsanalyse}
-
+%TODO noch mehr zu SysML schreiben
 
 
 \chapter{Anforderungsermittlung}
 
 \section{Begrifflichkeiten}
-%TODO Begrifflicheiten in Grundlagen-Kapitel verschieben?
-%Zur Anforderungsermittlung gehört dazu sich mit der Domäne vertraut zu machen.
 In diesem Abschnitt werden einige Begriffe erläutert, die im Folgenden häufig verwendet werden.
 
 \subsection{Klient}
@@ -327,8 +287,8 @@ Der Klient muss rund um die Uhr mit Assistenz unterstützt werden. Dafür bedarf e
 Das Team eines Klienten besteht aus mehreren Assistenten. In dem kronketen Fall sind es sieben Assistenten.
 
 \subsection{Dienst}
-%TODO nachfolgenden Absatz überarbeiten - ist zusammenstrickt und hört sich holprig an
-Wenn ein Assistent Dienst macht, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. Wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet. Die Dienste gehen frühestens um 12 Uhr, spätestens um 17 Uhr los und enden um 8 Uhr, bzw. 13 Uhr des Folgetages.
+Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. 
+Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig: wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet.
 
 \subsection{Bereitschaft}
 Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschafsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
@@ -429,14 +389,16 @@ Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Han
 
 \subsection{Serverbasierte Anwendung}
 Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
-%TODO Verweis auf entsprechendes Grundlagen-Kapitel
 
 \subsection{Benutzer-Verwaltung}
 Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
 
 Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird regsistriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
 
-\chapter{Stand der Technik}
+
+
+\chapter{Stand der Technik} %TODO alternativ Bestandsanalyse?
+%TODO Kapitel schreiben
 Ausführliche Recherche haben ergeben, dass es keine Lösung für das Problem gibt.
 
 Dennoch gibt es ein paar Ansätze:
@@ -490,13 +452,9 @@ Die Programmiersprachen werden gewählt...
 Für die Implementierung ist es notwendig sich auf die Programmiersprachen festzulegen.
 
 \subsection{Backend}
-%TODO Verweis auf Grundlagen-Kapitel
 Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \href{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung} und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 
-
 \subsection{Frontend}
-%TODO Verweise auf Grundlagen-Kapitel
-
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 
@@ -669,6 +627,7 @@ Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der K
 
 
 \section{Aufgaben-Verwaltung}
+\label{sec:AufgabenVerwaltung}
 Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung \ref{fig:ToDoManager}) zur Verfügung.
 \begin{figure}[htb]
 	\centering
@@ -728,8 +687,7 @@ Um Änderungen an den Aufgaben (neu Aufgaben erstellt oder Aufgaben erledigt) zu 
 
 \section{Einstellungen}
 Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung \ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
-Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung  %TODO Verweis auf Kapitel
-nutzen möchte oder nicht.
+Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt \ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
 
 \begin{figure}[htb]
 	\centering
@@ -1079,40 +1037,6 @@ können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstpl
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
 
-\chapter{Test}
-Während der Entwicklung hat der Autor permanent getestet. Alle gefunden Bugs wurden sofort beseitigt.
-
-Getestet wurden folgende Kombinationen:
-
-\begin{table}[htb]
-\centering
-\begin{tabular}{|l|l|l|}
-\hline 
-Gerätekategorie & Betriebssystem & Browser \\ 
-\hline 
-Laptop & Mac OS & Safari 7.0.3\\ 
-\hline 
-Laptop & Mac OS & Mozilla Firefox 31.0 \\ 
-\hline 
-Laptop & Mac OS & Google Chrome 36.0.1985.143 \\ 
-\hline
-Tablet & iOS & Safari \\ 
-\hline
-Smartphone & iOS & Safari \\ 
-\hline
-Desktop & Windows & Mozilla Firefox 31.0 \\ 
-\hline
-
-\end{tabular}
-\caption{Assistenzplaner wurde auf verschiedenen Gerätekategorien, Betriebssystemen und Browsern erfolgreich getestet}
-\label{tab:scoreTableConvertedAndSorted}
-\end{table}
-
-Bei keiner der Kombinationen traten Probleme auf.
-
-
-
-
 \chapter{Überführung in Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
 
@@ -1161,7 +1085,7 @@ Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sol
 
 \enquote{Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S. 31]{bremus2013barrierefreiheit}
 
-Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S. 29]{bremus2013barrierefreiheit} } ist.
+Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S. 29]{bremus2013barrierefreiheit}} ist.
 
 \subsection{AJAX tiefer verwurzeln}
 Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich und kann schon als benutzerunfreundlich bezeichnet werden. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt direkt per AJAX an den Server geschickt werden und der Server die Daten direkt persistent ablegt.
@@ -1173,7 +1097,7 @@ Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu 
 Im iCalendar-Format können Termine ausgetauscht werden. Ein Beispiel für ein Ereignis im iCalendar Format:
 
 \lstset{language=, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
-\lstinputlisting[label=lst:exampleJavaScript,caption=Beispiel für ein iCalendar-Termin.]{../iCalendar/example.ics}
+\lstinputlisting[label=lst:exampleCalendar,caption=Beispiel für ein iCalendar-Termin.]{../iCalendar/example.ics}
 
 In dem Ereignis ist der Dienst vom 22.08.2014 14:00 Uhr bis 23.08.2014 9:00 Uhr beschrieben.
 
@@ -1189,12 +1113,6 @@ Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage im
 
 \subsection{Logging}
 Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
-
-\subsection{Verwendung von Frameworks}
-%TODO überarbeiten
-%Überschrit ist unpassend - eigentlich ist die Verwendung von Frameworks nur Mittel zum Zweck sein
-* noch mehr Plattformen abdecken durch den Einatz von jQuery
-
 
 \subsection{Responsive Webdesign}
 Responsive (reaktionsfähiges) Webdesign bedeutet flexibel auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S. 8]{zillgens2013responsive}.
