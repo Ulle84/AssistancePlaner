@@ -50,8 +50,7 @@
 \include{Befehle}
 
 % Das eigentliche Dokument -----------------------------------------------------
-%   Der eigentliche Inhalt des Dokuments beginnt hier. Die einzelnen Seiten
-%   und Kapitel werden in eigene Dateien ausgelagert und hier nur inkludiert.
+%   Der eigentliche Inhalt des Dokuments beginnt hier. 
 % ------------------------------------------------------------------------------
 \begin{document}
 \pagenumbering{arabic}
@@ -319,64 +318,194 @@ Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den 
 
 Wichtig ist, dass die Anforderung einen \enquote{konkreten und sichtbaren Mehrwert für den Kunden} besitzt. \cite[S. 52]{wirdemann2011scrum}
 
-Benutzergeschichten haben ein festes Muster. Nach \cite[S. 59]{wirdemann2011scrum} hat sich für die Beschreibung folgends Muster bewährt:
+Benutzergeschichten haben ein festes Muster. Nach \cite[S. 59]{wirdemann2011scrum} hat sich für die Beschreibung folgendes Muster bewährt:
 
 \qquad Als <Benutzerrolle> will ich <das Ziel> [,so dass <Grund für das Ziel>]
 
-%TODO aufbohren -> Überschrift und Akzeptanzkriterien für alle Benutzergeschichten festlegen
-%TODO LaTeX Template für Benutzergeschichten?
 Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind einige Benutzergeschichten abgeleitet worden:
 
-
-%TODO ??? Einteilung in Klient, Assistent und Allgemein evt. weglassen, einfach die in der richtigen Reihenfolge Benutzergeschichten runterschreiben
-\subsection{Klient}
-
-
-\subsubsection{Dienstzeiten für nächsten Monat}
-Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
-\begin{itemize}
-\item test1 
-\item test2
-\end{itemize}
-
-
----***---
-
-\begin{itemize}
 %TODO ggf noch den  ..., um ... Teil ergänzen
 %TODO einheitliche Verwednung eines Begriffes für Notizen, Hinweise, etc.
-\item Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
-\item Als Klient möchte ich die Möglichkeit haben, den Dienstplan nach meinen Wünschen anzupassen.
-\item Als Klient möchte ich eine Möglichkeit haben mein Team zu verwalten.
-\item Als Klient möchte ich die Assistenten bewerten, um guten Assistenten bei der Einteilung Vorrang zu gewähren.
-\item Als Klient möchte ich bei den Assistenten Vorlieben für Wochentage eingeben können.
-\item Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stundenverteilung sehen können.
-\item Als Klient möchte ich Notizen zum Tag erstellen können, die für jeden sichtbar sind (öffentliche Notizen).
-\item Als Klient möchte ich Notizen zum Tag erstellen können, die nur für mich sichtbar sind (private Notizen).
-\item Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich anpassen kann.
-\item Als Klient möchte ich eine Mail an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
-\item Als Klient möchte ich monatsbezogene Hinweise zum Dienstplan eingeben können.
-\item Als Klient möchte ich Standard-Dienstzeiten angeben können.
-\end{itemize}
 
-\subsection{Assistent}
+\subsection{Angabe Dienstzeiten}
+Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
+
+Akzeptanzkriterien:
 \begin{itemize}
-\item Als Assistent möchte ich angeben können, wann ich arbeiten kann.
-\item Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekommen.
-\item Als Assistent möchte ich meine Eingaben im Kalender ändern können.
-\item Als Assistent möchte ich sehen, wann ich meine Dienste habe.
-\item Als Assistent möchte ich sehen, wann ich Bereitschaft habe.
-\item Als Assistent möchte ich eine Möglichkeit haben Termine zu favorisieren.
-\item Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
+\item Es ist möglich einen Monat auszuwählen.
+\item Es ist möglich die Dienstzeiten für den nächsten Monat festlegen zu können.
+\item Die Dienstzeiten für den nächsten Monat können gespeichert und wieder geladen werden.
 \end{itemize}
 
-\subsection{Allgemein}
+\subsection{Manuelle Anpassung des Dientplans}
+Als Klient möchte ich die Möglichkeit haben, den Dienstplan nach meinen Wünschen anzupassen.
+
+Akzeptanzkriterium: Es ist möglich den vom Algorithmus erstellten Dienstplan manuell zu verändern.
+
+\subsection{Verwaltung des Teams}
+Als Klient möchte ich mein Team verwalten.
+
+Akzeptanzkriterien:
 \begin{itemize}
-\item Als Anwender möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde.
-\item Als Anwender möchte ich mich mit einem eigenen Account beim System anmelden können, um nur die Dinge zu sehen, die mich interessieren und nicht aus Versehen ungewollte Änderungen zu machen.
-\item Als Anwender möchte ich eine Dokumentation des Systems zur Verfügung haben, um mich gut in das System einarbeiten zu können.
+\item Es gibt eine Übersicht der Team-Mitglieder.
+\item Es ist möglich Team-Mitglieder hinzuzufügen.
+\item Es ist möglich die Eigenschaften der Team-Mitglieder zu editieren.
+\item Es ist möglich Team-Mitgleider aus dem Team zu entfernen.
+\item Es ist möglich das Team abzuspeichern und zu einem späteren Zeitpunkt wieder zu laden.
 \end{itemize}
 
+\subsection{Bewertung der Assistenten}
+Als Klient möchte ich die Assistenten bewerten, um guten Assistenten bei der Einteilung Vorrang zu gewähren.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Es ist möglich jedem Assistenten einen Priorisierungswert zuzuweisen.
+\item Der Algorithmus für die Dienstplanerstellung greift auf den Priorisierungswert zu und passt berücksichtigt diesen bei der Dienstplanerstellung.
+\end{itemize}
+
+\subsection{Berücksichtigung der Wochentage}
+Als Klient möchte ich bei den Assistenten Vorlieben für Wochentage eingeben können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Es ist möglich jedem Assistenten einen Priorisierungswert zuzuweisen.
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stundenverteilung sehen können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich Notizen zum Tag erstellen können, die für jeden sichtbar sind (öffentliche Notizen).
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich Notizen zum Tag erstellen können, die nur für mich sichtbar sind (private Notizen).
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich anpassen kann.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich eine Mail an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich monatsbezogene Hinweise zum Dienstplan eingeben können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Klient möchte ich Standard-Dienstzeiten angeben können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich angeben können, wann ich arbeiten kann.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekommen.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich meine Eingaben im Kalender ändern können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich sehen, wann ich meine Dienste habe.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich sehen, wann ich Bereitschaft habe.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich eine Möglichkeit haben Termine zu favorisieren.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Anwender möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Anwender möchte ich mich mit einem eigenen Account beim System anmelden können, um nur die Dinge zu sehen, die mich interessieren und nicht aus Versehen ungewollte Änderungen zu machen.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
+
+\subsection{ToDo}
+Als Anwender möchte ich eine Dokumentation des Systems zur Verfügung haben, um mich gut in das System einarbeiten zu können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item ToDo
+\end{itemize}
 
 \section{Abgeleitete Anforderungen}
 Aus den Benutzergeschichten ergeben sich einige abgeleitete Anforderungen, die zwar nicht explizit erwähnt wurden, aber für eine technische Umsetzung zwingend notwendig sind.
@@ -385,7 +514,7 @@ Aus den Benutzergeschichten ergeben sich einige abgeleitete Anforderungen, die z
 
 
 \subsection{Plattformunabhägigkeit}
-Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Handy, Tablet, Dektop) bedienen lassen können. Weiterhin sollen die größten Betriebssysteme (Windows, Linux, MacOS X, Android, iOS) unterstützt werden.
+Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Handy, Tablet, Desktop) bedienen lassen können. Weiterhin sollen die größten Betriebssysteme (Windows, Linux, MacOS X, Android, iOS) unterstützt werden.
 
 \subsection{Serverbasierte Anwendung}
 Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
@@ -1049,6 +1178,8 @@ Bei der Dienstplanerstellung für Juni 2014 hat schon ein Algorithmus im Hintergr
 Bei der Dienstplanerstellung für Juli 2014 waren alle nötigen Kompenten vorhanden. Zur Sicherheit haben der Klient und der Autor nochmal gemeinsam den Dienstplan erstellt und verifiziert, dass alle Kompontenten ordungsgemäß funktionieren.
 
 Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen ihre Eingaben selbstständig getätigt. Es war kein Zutun des Autors mehr notwendig. Der Algorithmus zur Dienstplanerstellung hat einen ausgewogenen Dienstplan erstellt, der vom Klienten angenommen wurde.
+
+Durch die iterative Vorgehensweise hat sich der Klient sehr gut eingebunden gefühlt. Er konnte in regelmäßigen Intervallen den aktuellen Stand der Software sehen und sein Feedback äußern, was direkt in die weitere Entwicklung eingeflossen ist.
 
 \chapter{Ergebnis}
 Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage
