@@ -764,6 +764,7 @@ Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:
 \end{figure}
 
 \section{Dokumentation}
+\label{sec:Dokumentation}
 Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
 Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
 
@@ -1078,6 +1079,53 @@ können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstpl
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
 
+\chapter{Test}
+Während der Entwicklung hat der Autor permanent getestet. Alle gefunden Bugs wurden sofort beseitigt.
+
+Getestet wurden folgende Kombinationen:
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline 
+Gerätekategorie & Betriebssystem & Browser \\ 
+\hline 
+Laptop & Mac OS & Safari 7.0.3\\ 
+\hline 
+Laptop & Mac OS & Mozilla Firefox 31.0 \\ 
+\hline 
+Laptop & Mac OS & Google Chrome 36.0.1985.143 \\ 
+\hline
+Tablet & iOS & Safari \\ 
+\hline
+Smartphone & iOS & Safari \\ 
+\hline
+Desktop & Windows & Mozilla Firefox 31.0 \\ 
+\hline
+
+\end{tabular}
+\caption{Assistenzplaner wurde auf verschiedenen Gerätekategorien, Betriebssystemen und Browsern erfolgreich getestet}
+\label{tab:scoreTableConvertedAndSorted}
+\end{table}
+
+Bei keiner der Kombinationen traten Probleme auf.
+
+
+
+
+\chapter{Überführung in Produktiv-Betrieb}
+Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
+
+Den Dienstplan für den Monat April 2014 hat der Klient noch komplett manuell erstellt.
+
+Schon bei der Dienstplanerstellung für den Mai 2014 wurde der Klient technisch unterstützt. Es war möglich die Termin-Antworten der Assistenten übersichtlich in einer Tabelle darzustellen. Somit musste der Klient nicht mehr sieben E-Mail Antworten gleichzeitig überblicken. Es war möglich Dienste und Bereitschaften manuell einzutragen und den Dienstplan zu speichern. Der Autor war dabei und hat dabei viel über die Dienstplanerstellung gelernt und erfahren worauf es dem Klienten ankommt.
+
+Bei der Dienstplanerstellung für Juni 2014 hat schon ein Algorithmus im Hintergrund gearbeitet und Dienstplanvorschläge erstellt. Der Klient hat den Dienstplan eigenständig in Anwesenheit des Autors erstellt.
+
+Bei der Dienstplanerstellung für Juli 2014 waren alle nötigen Kompenten vorhanden. Zur Sicherheit haben der Klient und der Autor nochmal gemeinsam den Dienstplan erstellt und verifiziert, dass alle Kompontenten ordungsgemäß funktionieren.
+
+Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen ihre Eingaben selbstständig getätigt. Es war kein Zutun des Autors mehr notwendig. Der Algorithmus zur Dienstplanerstellung hat einen ausgewogenen Dienstplan erstellt, der vom Klienten angenommen wurde.
+
 \chapter{Ergebnis}
 Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage
 \begin{itemize}
@@ -1174,9 +1222,9 @@ Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklu
 
 Derzeit hat nur der Klient Einblick in die Team-Verwaltung. Es wäre wünschenswert, wenn Assistenen untereinander ihre Kontaktdaten (die ersten vier Zeilen in Abbildung \ref{fig:SingleTeamMember}) einsehen könnten. 
 
-\subsection{Inline-Dokumentation}
-Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite dokumentiert.
-Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann kontextbezogene Hilfe angezeigt bekommt. Eine Möglichkeit der Realisierung besteht mit Hilfe von \href{http://jqueryui.com/tooltip/}{jQuery UI Tooltip}\footnote{http://jqueryui.com/tooltip/ - zuletzt abgerufen am 22.08.2014} (siehe Abbildung \ref{fig:jQueryUiTooltip}).
+\subsection{Überarbeitung der Dokumentation}
+Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite (siehe Abschnitt \ref{sec:Dokumentation}) dokumentiert.
+Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Eine Möglichkeit der Realisierung besteht mit Hilfe von \href{http://jqueryui.com/tooltip/}{jQuery UI Tooltip}\footnote{http://jqueryui.com/tooltip/ - zuletzt abgerufen am 22.08.2014} (siehe Abbildung \ref{fig:jQueryUiTooltip}).
 
 \begin{figure}[htb]
 	\centering
@@ -1186,10 +1234,10 @@ Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assis
 \end{figure}
 
 \subsection{Aufgaben-Verwaltung erweitern}
-Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden die Aufgaben-Verwaltung nicht für sein Team einzusetzen, da der Tooling-Overhead zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt. Für anders organisierte Teams wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
+Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Klient entschieden die Aufgaben-Verwaltung für sein Team nicht einzusetzen, da der Mehraufwand durch die Verwaltung zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder eingestellt. Für andere Modelle in der Pflege wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
 
 \subsubsection{Hervorhebungen bei  Datum-Auswahl}
-In der Datum-Auswahl sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
+In der Datum-Auswahl (siehe Abbildung \ref{fig:ToDoManagerDatePicker}) sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
 
 \subsubsection{Aufgaben editieren}
 Aufgaben lassen sich derzeit nur anlegen, nicht im Nachhinein verändern. Eine Editierfunktion wäre von großem Nutzen.
