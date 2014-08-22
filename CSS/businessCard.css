@@ -51,22 +51,21 @@ input {
 }
 
 table {
+    border: 1px solid #808080;
     font-size: 10pt;
-    border: 2px solid #25467D;;
     border-spacing: 0px;
 }
 
 th, td {
-    text-align: center;
+    text-align: left;
     min-width: 30px;
     padding: 5px 5px 5px 5px;
     vertical-align: middle;
     border-bottom: 1px solid grey;
-    border-right: 1px solid grey;
 }
 
-td:last-child, th:last-child {
-    border-right: 0px;
+td:first-child {
+    padding-right: 30px;
 }
 
 tr:last-child > td {

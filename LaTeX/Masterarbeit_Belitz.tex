@@ -1162,13 +1162,28 @@ Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut b
 
 Bei der Optimierung des Assistenzplaners für Handys muss umgedacht werden. Man muss wegkommen von dem horizontal-basierten Layout mit Spalten hin zu einem linear-vertikalen Layout. \cite[S. 67]{bieh2008mobiles}. 
 
-\subsection{Team Übersicht überarbeiten}
-Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter geworden und unübersichtlich geworden. Mit Visitenkarten könnte man die Daten der Assistenten übersichtlich grafisch aufbereiten. 
-%TODO businessCard.html fertig implementieren und Screenshot einfügen
+\subsection{Team-Übersicht überarbeiten}
+Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter und unübersichtlich geworden. Eine mögliche Alternative zur breiten Tabelle ist in Abbildung \ref{fig:SingleTeamMember} gezeigt. Für jeden Assistenten gibt es eine Übersicht der Eigenschaften.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/SingleTeamMember.png}
+	\caption[ToDo]{Mögliche neue Darstellungsform eines Assistenten in der Team-Übersicht}
+	\label{fig:SingleTeamMember}
+\end{figure}
+
+Derzeit hat nur der Klient Einblick in die Team-Verwaltung. Es wäre wünschenswert, wenn Assistenen untereinander ihre Kontaktdaten (die ersten vier Zeilen in Abbildung \ref{fig:SingleTeamMember}) einsehen könnten. 
 
 \subsection{Inline-Dokumentation}
 Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite dokumentiert.
-Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann in einem Pop-Up kontextbezogene Hilfe angezeigt bekommt.
+Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Vorstellbar wäre, dass an einigen Stellen im Assistenzplaner ein Hilfe-Icon plaziert wird, auf das man klicken kann und dann kontextbezogene Hilfe angezeigt bekommt. Eine Möglichkeit der Realisierung besteht mit Hilfe von \href{http://jqueryui.com/tooltip/}{jQuery UI Tooltip}\footnote{http://jqueryui.com/tooltip/ - zuletzt abgerufen am 22.08.2014} (siehe Abbildung \ref{fig:jQueryUiTooltip}).
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.4]{../Images/Screenshots/jQueryUi/jQueryUiTooltip.png}
+	\caption[ToDo]{Sobald der Benutzer in das Feld \enquote{Lastname} klickt, bekommt er einem Hilfstext (Tooltip) angezeigt. Screenshot wurde am 22.08.2014 auf der Webseite http://jqueryui.com/tooltip/ aufgenommen.}
+	\label{fig:jQueryUiTooltip}
+\end{figure}
 
 \subsection{Aufgaben-Verwaltung erweitern}
 Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Haupt-Stakeholder entschieden die Aufgaben-Verwaltung nicht für sein Team einzusetzen, da der Tooling-Overhead zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder auf Eis gelegt. Für anders organisierte Teams wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
@@ -1233,7 +1248,8 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
    * FPDF
 
 * PhpStorm
-* Enterprise Architect
+* Enterprise Architect 11.1 Build 1110 von \href{http://www.sparxsystems.de}{Sparx Systems}\footnote{http://www.sparxsystems.de - zuletzt abgerufen am 22.08.2014}
+--> SysML Erweiterung?
 * GitHub
 * Cyberduck (FTP-Client)
 
