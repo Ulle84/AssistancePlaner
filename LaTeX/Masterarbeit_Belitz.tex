@@ -260,14 +260,19 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 
 
 \section{Modellierungssprachen}
+%TODO nachfolgende Sätze überdenken...
+Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen kann man komplexe Systeme konstruieren. Durch mehrere Abstraktionsebenen behält man die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
+
 \subsection{UML}
 Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
 
 \subsection{SysML}
-\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt.
-%TODO noch mehr zu SysML schreiben
+\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
+
+
+%TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
 
 
 \chapter{Anforderungsermittlung}
@@ -536,6 +541,9 @@ Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplane
 
 Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird regsistriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
 
+\subsection{Aufgaben-Verwaltung}
+%TODO schreiben
+% es war zwar nicht explizit vom Klienten gewünscht, aber doch testweise umgesetzt worden.
 
 
 \chapter{Marktanalyse}
@@ -561,59 +569,47 @@ Ein Beispiel wäre \Link{http://www.qtime.de/kostenlos/dienstplan-erstellung.html
 \section{Online Anwendungen}
 Es gibt einige Anwendungen im Internet, die es ermögichen Dienstpläne zu erstellen.
 
-Beispiele dafür sind:
+Beispiele hierfür sind:
 \begin{itemize}
 \item \Link{http://kostenloser-dienstplan.de}{Kostenloser Dienstplan}{23.08.2014}
-%\link{URL}{Beschreibung}{Datum}
-\item Schichtplaner
-\item Papershift
-\item EasyPep
-
+\item \Link{http://schichtplaner-online.de/index.php/de/}{Schichtplaner}{23.08.2014}
+\item \Link{http://www.papershift.com}{Papershift}{23.08.2014}
+\item \Link{https://easypep.de}{EasyPep}{23.08.2014}
+\item \Link{https://www.shiftjuggler.com/de/}{ShiftJuggler}{23.08.2014}
 \end{itemize}
 
-\subsection{Schichtplaner}
+Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwendungen sind in der Lage Stundenkontigente zu berücksichtigen. Bei allen Anwendungen wird der Dienstplan manuell erstellt. Bei keiner Anwendung können persönliche Vorlieben oder allgemein Regeln festgelegt werden. Alle Anwendungen waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
 
-
-%TODO Kapitel schreiben
-Ausführliche Recherche haben ergeben, dass es keine Lösung für das Problem gibt.
-
-Dennoch gibt es ein paar Ansätze:
-
-Offline
-* Dienstplan in Excel erstellen
-* QTime  -> zentral/dezentrale Dienstplanerstellung
-
-Online
-* Papershift http://www.papershift.com/tour
-
-Vorlagen
-- Einzelhandel
-- Restaurant
-- Club
-
-Mitarbeiter können sich für eine Schicht bewerben.
-
-
-
-* EasyPep https://easypep.de -> dienstplanerstellung manuell (kein Algorithmus, keine Stundenplanung)
-
-
-* schichtplaner http://schichtplaner-online.de/index.php/de/
-
-Rollen: Mitarbeiter, Manager, Administrator
-Plan sichtbar für Mitarbeiter
-Mitarbeiter scheint keine Einfluss zu haben -> Verfügbarkeiten können nicht angegeben werden
-keine automatische Erstellung
-
-* ShiftJuggler https://www.shiftjuggler.com/de/
-
-
---> alle unterstüzten nicht Dienst/Bereitschaftskonzept -> Stundenverrechnung geht schon gar nicht -> absoluter Spezialfall
-
--> Kombination mit ToDo Manager nicht auffindbar
-
+Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die vorliegenden Aufgabe erledigen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und ihren Code nicht offen gelegt haben.
 
 \chapter{Software-Design} % oder einfach nur Design?
+%TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
+
+Mit SysML lassen sich Systeme bestehend aus Hard- und Software modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
+
+\section{SysML Anforderungsdiagramm}
+\newpage
+...
+\newpage
+
+\section{UML Komponentendiagramm}
+\newpage
+...
+\newpage
+
+\section{UML Klassendiagramme}
+\newpage
+...
+\newpage
+...
+\newpage
+
+\section{UML Sequenzdiagramme}
+\newpage
+...
+\newpage
+
+
 SysML Modell
 UML Ablaufdiagramme
 
@@ -644,6 +640,75 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 
 Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt \ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
+\section{Benutzer-Verwaltung}
+%TODO session id erläutern - wie merkt sich der server wer aktuller Benutzer ist?
+%TODO screenshot einfügen Images/Screenshots/CookiePhpSessionId.png
+
+
+Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
+Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt \ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
+Bei der Anmeldung wird eine Session gestartet. %TODO genauer erklären und auf eine Quelle verweisen
+Weiterhin werden Session-Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind.
+%TODO ist die Beschreibung oben zu vage oder kann ich das so lassen?
+
+\section{Willkommen-Seite}
+Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome})wird den Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Welcome.png}
+	\caption[ToDo]{Willkommen-Seite}
+	\label{fig:Welcome}
+\end{figure}
+
+\section{Navigation}
+Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davon, ob jemand am System angmeldet ist (siehe Abbildung \ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung \ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}
+	\caption[Navigation bei angemeldetem Assistenten]{Navigation bei angemeldetem Assistenten}
+	\label{fig:NavigationLoggedIn}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
+	\caption[Navigation ohne Anmmeldung]{Navigation ohne Anmmeldung}
+	\label{fig:NavigationLoggedOut}
+\end{figure}
+
+%TODO evt. einige der vorherigen sections zusammenfassen
+
+
+\section{Anlegen eines neuen Klienten}
+\label{sec:AnlegenKlient}
+Das Anlegen eines neuen Klienten soll keine Hürde darstellen. Es sollen keine persönlichen Daten erhoben, so dass kein potentieller Nutzer abgeschreckt wird.
+
+Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}
+	\caption[Anlegen eines neuen Klienten]{Anlegen eines neuen Klienten mit Name und Passwort}
+	\label{fig:NewClient}
+\end{figure}
+
+Bedingungen an einen neuen Klientennamen sind:
+\begin{itemize}
+\item darf nicht leer sein
+\item darf noch nicht vergeben sein
+\item darf nur aus Buchstaben und Zahlen bestehen
+\end{itemize}
+
+Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. Der Inhalt der Textfelder bleibt erhalten, so dass der Benutzer dass Passwort und die Wiederholung dessen nicht nochmal eingeben muss.
+
+Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
+Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
+Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich mit dem neuen Zugang am System anzumelden.
+
+Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen eine E-Mail Adresse angeben, was aber nicht für die Benutzung des Assistenzplaners notwendig ist.
+
 \section{Übersicht}
 Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
 
@@ -655,16 +720,26 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 \end{figure}
 
 
-\section{Benutzer-Verwaltung}
-%TODO session id erläutern - wie merkt sich der server wer aktuller Benutzer ist?
-%TODO screenshot einfügen Images/Screenshots/CookiePhpSessionId.png
+\section{Einstellungen}
+Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung \ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
+Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt \ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Settings.png}
+	\caption[ToDo]{Einstellungsmöglichkeiten des Assistenzplaners}
+	\label{fig:Settings}
+\end{figure}
 
-Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
-Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt \ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
-Bei der Anmeldung wird eine Session gestartet. %TODO genauer erklären und auf eine Quelle verweisen
-Weiterhin werden Session-Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind.
-%TODO ist die Beschreibung oben zu vage oder kann ich das so lassen?
+\section{Standard-Dienstzeiten}
+Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Wochentag festzulegen wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten angepasst werden.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/DefaultTimes.png}
+	\caption[Standard-Dienstzeiten]{Verwaltung der Standard-Dienstzeiten}
+	\label{fig:DefaultTimes}
+\end{figure}
 
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
@@ -697,6 +772,52 @@ Neue Teammitglieder können mit Hilfe des Buttons "Neues Mitglied" hinzugefügt we
 Sollte ein Assistent sein Passwort vergessen haben, hat der Klient die Möglichkeit mit Hilfe des Buttons "Paswort zurücksetzen" (in der Spalte Aktionen) die Möglichkeit das Passwort des Assistenten auf den Wert des Standardpasswortes (was in den Einstellungen hinterlegt ist) zu setzen.
 
 Sollte ein Assitent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons "Löschen" (in der Spalte Aktionen) den Assistenten aus der Team-Übersicht zu entfernen.
+
+\section{Monatsplan}
+Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/MonthPlan3.png}
+	\caption[Monatsplan]{Monatsplan mit der Möglichkeit tagesweise Dienstbeginn und Dienstende festzulegen und Bemerkungen zu hinterlegen}
+	\label{fig:MonthPlan3}
+\end{figure}
+
+Neben den tagesweisen Bemerkungen hat der Klient noch eine Möglichkeit eine Nachricht an sein Team zu verfassen. Hier können allgemeine Hinweise für den Monat untergebracht werden.
+
+Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er sein Assistenz-Team auffordern mögliche Termine einzutragen, so kann er auf den Button "Team benachrichtigen" klicken. Vom Assistenzplaner wird dann eine E-Mail an jedes Mitglied des Assistenz-Teams geschickt mit der Bitte mögliche Termine einzutragen und der Nachricht des Klienten. Eine beispielhafte Nachricht findet sich in Abbildung \ref{fig:Mail}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/Mail.png}
+	\caption[Benachrichtigung der Assistenten]{Beispielhafte Benachrichtigung der Assistenten, mit der Bitte des Klienten die Termine für den nächsten Monat einzutragen.}
+	\label{fig:Mail}
+\end{figure}
+
+\section{Kalender}
+\label{sec:calendar}
+%TODO Wo kommen die Dienstzeiten her und wie sind diese zu interprätieren?
+
+Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
+Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/CalendarInput.png}
+	\caption[Kalender für die Eingabe möglicher Termine]{Kalender für die Eingabe der möglichen Termine}
+	\label{fig:CalendarInput}
+\end{figure}
+
+Mit Hilfe des Buttons "Alle Daten markieren" kann man auf einen Rutsch alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
+
+Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:CalendarNotesFromClient}), die dem Assitenten helfen können. Das sind zum einen die öffentlichen Notizen, die der Klient zum Monat erstellt hat, zum anderen die optionale Nachricht die der Klient an das Team verfasst hat.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/CalendarNotesFromClient.png}
+	\caption[ToDo]{Informationen vom Klienten für seine Assistenten}
+	\label{fig:CalendarNotesFromClient}
+\end{figure}
 
 \section{Dienst-Plan}
 \subsection{Aus Sicht des Klienten}
@@ -769,202 +890,6 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:
 	\caption[Dienste und Bereitschaften des angemeldeten Assistenten]{Dienste und Bereitschaften des angemeldeten Assistenten}
 	\label{fig:RosterAssistantMarkus2}
 \end{figure}
-
-\section{Monatsplan}
-Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/MonthPlan3.png}
-	\caption[Monatsplan]{Monatsplan mit der Möglichkeit tagesweise Dienstbeginn und Dienstende festzulegen und Bemerkungen zu hinterlegen}
-	\label{fig:MonthPlan3}
-\end{figure}
-
-Neben den tagesweisen Bemerkungen hat der Klient noch eine Möglichkeit eine Nachricht an sein Team zu verfassen. Hier können allgemeine Hinweise für den Monat untergebracht werden.
-
-Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er sein Assistenz-Team auffordern mögliche Termine einzutragen, so kann er auf den Button "Team benachrichtigen" klicken. Vom Assistenzplaner wird dann eine E-Mail an jedes Mitglied des Assistenz-Teams geschickt mit der Bitte mögliche Termine einzutragen und der Nachricht des Klienten. Eine beispielhafte Nachricht findet sich in Abbildung \ref{fig:Mail}.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/Mail.png}
-	\caption[Benachrichtigung der Assistenten]{Beispielhafte Benachrichtigung der Assistenten, mit der Bitte des Klienten die Termine für den nächsten Monat einzutragen.}
-	\label{fig:Mail}
-\end{figure}
-
-\section{Standard-Dienstzeiten}
-Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Wochentag festzulegen wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten angepasst werden.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/DefaultTimes.png}
-	\caption[Standard-Dienstzeiten]{Verwaltung der Standard-Dienstzeiten}
-	\label{fig:DefaultTimes}
-\end{figure}
-
-
-\section{Aufgaben-Verwaltung}
-\label{sec:AufgabenVerwaltung}
-Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung \ref{fig:ToDoManager}) zur Verfügung.
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManager.png}
-	\caption[Todo]{Aufgaben-Verwaltung mit einigen Test-Aufgaben}
-	\label{fig:ToDoManager}
-\end{figure}
-
-\subsection{Eigenschaften der Aufgaben}
-Die Aufgaben haben folgende Eigenschaften:
-\begin{itemize}
-\item Beschreibung
-\item Fälligkeitsdatum
-\item Wiederholungstyp (nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
-\item Wiederholungsintervall (z. B. alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
-\end{itemize}
-
-\subsection{Gruppierung der Aufgaben}
-Die Aufgaben werden mit Hilfe ihres Fälligkeitsdatums in folgende Gruppen sortiert:
-\begin{itemize}
-\item Erledigt
-\item Heute
-\item Morgen
-\item Übermorgen
-\item Zukünftig
-\item Ohne Datum
-\end{itemize}
-
-\subsection{Neue Aufgaben erstellen}
-Der Klient ist als Einziger in der Lage neue Aufgaben zu erstellen. Hierfür hat er eine Eingabemaske, wie sie in Abbildung \ref{fig:ToDoManagerNewToDo} zu sehen ist.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.45]{../Images/Screenshots/ToDoManagerNewToDo.png}
-	\caption[Todo]{Aufgaben-Verwaltung: Erstellung einer neuen Aufgabe}
-	\label{fig:ToDoManagerNewToDo}
-\end{figure}
-
-Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildung \ref{fig:CalendarInput}) unterstützt. Dieser öffent sich automatisch, sobald das Eingabefeld für das Datum den Fokus bekommt und schließt sich wieder, sobald der Klient ein Datum gewählt hat oder auf "Abbrechen" klickt.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManagerDatePicker.png}
-	\caption[Todo]{Aufgaben-Verwaltung: Wahl des Datums}
-	\label{fig:ToDoManagerDatePicker}
-\end{figure}
-
-%TODO Extension of Date-Object erläutern?
-
-\subsection{Aufgaben als erledigt markieren}
-Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie "Erledigt" sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
-
-Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängig machen, in dem man wieder die Checkbox links von der Aufgabenbeschreibung anklickt. Die Aufgabe ist nicht mehr durchgestrichen, wird in die richtige Kategorie (Heute, Morgen, ...) zurücksortiert und die gegebenenfalls erstellte Kopie der Aufgabe (mit neu berechnetem Fälligkeitsdatum) wird gelöscht.
-
-\subsection{Speichern}
-Um Änderungen an den Aufgaben (neu Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf "Speichern" drücken.
-
-\section{Einstellungen}
-Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung \ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
-Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt \ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/Settings.png}
-	\caption[ToDo]{Einstellungsmöglichkeiten des Assistenzplaners}
-	\label{fig:Settings}
-\end{figure}
-
-\section{Kalender}
-\label{sec:calendar}
-%TODO Wo kommen die Dienstzeiten her und wie sind diese zu interprätieren?
-
-Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
-Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/CalendarInput.png}
-	\caption[Kalender für die Eingabe möglicher Termine]{Kalender für die Eingabe der möglichen Termine}
-	\label{fig:CalendarInput}
-\end{figure}
-
-Mit Hilfe des Buttons "Alle Daten markieren" kann man auf einen Rutsch alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
-
-Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:CalendarNotesFromClient}), die dem Assitenten helfen können. Das sind zum einen die öffentlichen Notizen, die der Klient zum Monat erstellt hat, zum anderen die optionale Nachricht die der Klient an das Team verfasst hat.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/CalendarNotesFromClient.png}
-	\caption[ToDo]{Informationen vom Klienten für seine Assistenten}
-	\label{fig:CalendarNotesFromClient}
-\end{figure}
-
-\section{Dokumentation}
-\label{sec:Dokumentation}
-Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
-Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
-
-Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt.
-%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
-%TODO Fußnote?
-
-\section{Willkommen-Seite}
-Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome})wird den Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/Welcome.png}
-	\caption[ToDo]{Willkommen-Seite}
-	\label{fig:Welcome}
-\end{figure}
-
-\section{Anlegen eines neuen Klienten}
-\label{sec:AnlegenKlient}
-Das Anlegen eines neuen Klienten soll keine Hürde darstellen. Es sollen keine persönlichen Daten erhoben, so dass kein potentieller Nutzer abgeschreckt wird.
-
-Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}
-	\caption[Anlegen eines neuen Klienten]{Anlegen eines neuen Klienten mit Name und Passwort}
-	\label{fig:NewClient}
-\end{figure}
-
-Bedingungen an einen neuen Klientennamen sind:
-\begin{itemize}
-\item darf nicht leer sein
-\item darf noch nicht vergeben sein
-\item darf nur aus Buchstaben und Zahlen bestehen
-\end{itemize}
-
-Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. Der Inhalt der Textfelder bleibt erhalten, so dass der Benutzer dass Passwort und die Wiederholung dessen nicht nochmal eingeben muss.
-
-Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
-Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
-Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich mit dem neuen Zugang am System anzumelden.
-
-Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen eine E-Mail Adresse angeben, was aber nicht für die Benutzung des Assistenzplaners notwendig ist.
-
-\section{Impressum}
-Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
-
-\section{Navigation}
-Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davon, ob jemand am System angmeldet ist (siehe Abbildung \ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung \ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}
-	\caption[Navigation bei angemeldetem Assistenten]{Navigation bei angemeldetem Assistenten}
-	\label{fig:NavigationLoggedIn}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
-	\caption[Navigation ohne Anmmeldung]{Navigation ohne Anmmeldung}
-	\label{fig:NavigationLoggedOut}
-\end{figure}
-
-%TODO evt. einige der vorherigen sections zusammenfassen
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
@@ -1212,6 +1137,77 @@ Durch das Randomisieren der Liste %TODO Verweis setzen
 können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu erstellen, der die Stundenkontingente möglichst gleichmäßig ausschöpft wird am Ende "gemessen" wie gut der Dienstplan ist. Die Summe der beiden Toleranzwerte (Dienst und Bereitschaft) wird gebildet. Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe wird dem Benutzer angezeigt.
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
+
+\section{Aufgaben-Verwaltung}
+\label{sec:AufgabenVerwaltung}
+Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung \ref{fig:ToDoManager}) zur Verfügung.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManager.png}
+	\caption[Todo]{Aufgaben-Verwaltung mit einigen Test-Aufgaben}
+	\label{fig:ToDoManager}
+\end{figure}
+
+\subsection{Eigenschaften der Aufgaben}
+Die Aufgaben haben folgende Eigenschaften:
+\begin{itemize}
+\item Beschreibung
+\item Fälligkeitsdatum
+\item Wiederholungstyp (nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
+\item Wiederholungsintervall (z. B. alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
+\end{itemize}
+
+\subsection{Gruppierung der Aufgaben}
+Die Aufgaben werden mit Hilfe ihres Fälligkeitsdatums in folgende Gruppen sortiert:
+\begin{itemize}
+\item Erledigt
+\item Heute
+\item Morgen
+\item Übermorgen
+\item Zukünftig
+\item Ohne Datum
+\end{itemize}
+
+\subsection{Neue Aufgaben erstellen}
+Der Klient ist als Einziger in der Lage neue Aufgaben zu erstellen. Hierfür hat er eine Eingabemaske, wie sie in Abbildung \ref{fig:ToDoManagerNewToDo} zu sehen ist.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.45]{../Images/Screenshots/ToDoManagerNewToDo.png}
+	\caption[Todo]{Aufgaben-Verwaltung: Erstellung einer neuen Aufgabe}
+	\label{fig:ToDoManagerNewToDo}
+\end{figure}
+
+Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildung \ref{fig:CalendarInput}) unterstützt. Dieser öffent sich automatisch, sobald das Eingabefeld für das Datum den Fokus bekommt und schließt sich wieder, sobald der Klient ein Datum gewählt hat oder auf "Abbrechen" klickt.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManagerDatePicker.png}
+	\caption[Todo]{Aufgaben-Verwaltung: Wahl des Datums}
+	\label{fig:ToDoManagerDatePicker}
+\end{figure}
+
+%TODO Extension of Date-Object erläutern?
+
+\subsection{Aufgaben als erledigt markieren}
+Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie "Erledigt" sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
+
+Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängig machen, in dem man wieder die Checkbox links von der Aufgabenbeschreibung anklickt. Die Aufgabe ist nicht mehr durchgestrichen, wird in die richtige Kategorie (Heute, Morgen, ...) zurücksortiert und die gegebenenfalls erstellte Kopie der Aufgabe (mit neu berechnetem Fälligkeitsdatum) wird gelöscht.
+
+\subsection{Speichern}
+Um Änderungen an den Aufgaben (neu Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf "Speichern" drücken.
+
+\section{Dokumentation}
+\label{sec:Dokumentation}
+Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
+Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
+
+Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt.
+%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
+%TODO Fußnote?
+
+\section{Impressum}
+Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
 
 \chapter{Überführung in Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
