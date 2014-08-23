@@ -28,6 +28,11 @@
 \newcommand{\AutorName}[1]{\textsc{#1}}
 \newcommand{\Autor}[1]{\AutorName{\citeauthor{#1}}}
 
+% Links mit Zuletzt angerufen am in Fußnote---
+%\Link{URL}{Beschreibung}{Datum} --> \href{URL}{Beschreibung}\footnote{URL - zuletzt abgerufen am Datum}
+\newcommand{\Link}[3]{\href{#1}{#2}\footnote{#1 - zuletzt abgerufen am #3}}
+
+
 % verschiedene Befehle um Wörter semantisch auszuzeichnen ----------------------
 \newcommand{\NeuerBegriff}[1]{(\textbf{#1})}
 \newcommand{\Fachbegriff}[1]{\textit{#1}}
