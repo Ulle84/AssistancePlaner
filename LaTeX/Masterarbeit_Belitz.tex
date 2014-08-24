@@ -120,7 +120,7 @@ Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter ande
 \end{itemize}
 
 \subsection{HTTP}
-\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \Fachbegriff{HyperText Transport Protocol} \NeuerBegriff{HTTP}.
+\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}.
 HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
 
 \enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
@@ -145,7 +145,7 @@ Es gibt nach \cite[S. 508]{comer2002computernetzwerke} drei verschiedene Typen v
 \enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S. 514f]{comer2002computernetzwerke}
 
 \subsection{URL}
-\Fachbegriff{Uniform Resource Locator} \NeuerBegriff{URL} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
+\NewAbb{URL}{Uniform Resource Locator} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
 
 \qquad protokoll://domainNameComputer:port/dokumentName
 
@@ -172,21 +172,16 @@ Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Ob
 
 \NewAbb{PHP}{PHP Hypertext Preprocessor}
 
-%TODO alle Stellen von \NeuerBegriff{} suchen und durch \NewAbb{}{} ersetzen
-%TODO glossar rausschmeißen
-
-
-
 \subsection{XML}
 \label{sec:XML}
-\Fachbegriff{Extensible Markup Language} \NeuerBegriff{XML} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
+\NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
 
 \lstset{language=Xml, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleXML,caption=Beispiel für ein XML Dokument.]{../XML/example.xml}
 
 \subsection{HTML}
 \label{sec:HTML}
-\Fachbegriff{HyperText Markup Language} \NeuerBegriff{HTML} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. ... HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S. 21]{muenz2012html5}.
+\NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. ... HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S. 21]{muenz2012html5}.
 
 Nach \cite[S. 21]{muenz2012html5} ist es unter anderem möglich:
 \begin{itemize}
@@ -205,7 +200,7 @@ Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}.
 
 \subsection{CSS}
 \label{sec:CSS}
-Bei \Fachbegriff{Cascading Stylesheets} \NeuerBegriff{CSS} \enquote{handelt [es] sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.} \cite[S. 23]{muenz2012html5} 
+Bei \NewAbb{CSS}{Cascading Stylesheets} \enquote{handelt [es] sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.} \cite[S. 23]{muenz2012html5} 
 
 \enquote{CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschriften erster Ordnung oder für alle Textabsätze mit einem bestimmten Klassennamen oder für hervorgehobenen Text, der innerhalb einer Tabellenzelle vorkommt. Die zentralen Formate können in eine externe Syle-Datei ausgelagert werden[.] ... So ermöglicht CSS seitenübergreifend einheitliche Layouts und Formatierungen.} \cite[S. 24]{muenz2012html5}
 
@@ -241,7 +236,7 @@ Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschau
 
 \subsection{DOM}
 \label{sec:DOM}
-\Fachbegriff{Document Object Model} \NeuerBegriff{DOM} ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente.
+\NewAbb{DOM}{Document Object Model}  ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente.
 \enquote{HTML-Dokumente besitzen eine hierarchische Struktur, die im DOM als Baumstruktur repräsentiert wird. Die Knoten des Baums stellen die verschiedenen Arten von Inhalt in einem Dokument dar.} \cite[S. 310]{flanagan2002javascript}.
 DOM stellt unter anderem einen Satz von Methoden zur Verfügung der es möglich macht Elemente des Dokumentes aufzufinden. Z. B. kann man mit Hilfe von
 
@@ -253,11 +248,11 @@ Weiterhin stellt DOM Methoden zur Verfügung um Inahlte des Dokument-Baums zu ver
 
 \qquad \texttt{captions[0].setAttribute("id", "firstCaption");} 
 
-wird der \Fachbegriff{Identifikator} \NeuerBegriff{ID} der ersten Überschrift (erster Ordnung) gesetzt.
+wird der \NewAbb{ID}{Identifikator} der ersten Überschrift (erster Ordnung) gesetzt.
 
 \subsection{AJAX}
 \label{sec:AJAX}
-Bei \Fachbegriff{Asynchronous JavaScript and XML} \NeuerBegriff{AJAX} handelt es sich nicht direkt um eine Webtechnologie, eher  um eine spezielle Denkweise die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzten.
+Bei \NewAbb{AJAX}{Asynchronous JavaScript and XML} handelt es sich nicht direkt um eine Webtechnologie, eher  um eine spezielle Denkweise die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzten.
 
 \enquote{Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund. Ajax-Applikationen ermöglichen so eine Bedienung, die eher an eine Desktop-Anwendung als an eine Webapplikation erinnert.} \cite[S. 309]{koch2011javascript} 
 
@@ -271,13 +266,13 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen kann man komplexe Systeme konstruieren. Durch mehrere Abstraktionsebenen behält man die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
 
 \subsection{UML}
-Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
+Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
 
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
 
 \subsection{SysML}
-\Fachbegriff{System Modeling Language} \NeuerBegriff{SysML} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
+\NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
 
 
 %TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
@@ -1366,7 +1361,7 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 \renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
 \lstlistoflistings % Listings-Verzeichnis
 
-\input{Glossar}
+%Glossar
 \let\stdchapter\chapter %Nummer vor Abkürzungsverzeichnis (speichern der chapter Umgebung)
 \def\chapter*#1{\stdchapter{#1}} % neue Definition von chapter
 \printnomenclature
