@@ -87,9 +87,9 @@
 \tableofcontents % Inhaltsverzeichnis
 
 \chapter{Motivation}
-Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontigente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
+Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontigente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
@@ -300,9 +300,9 @@ Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z.
 \subsection{Dienstplan}
 Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. 
 
-\subsection{Stundenkontigent}
-\label{sec:Stundenkontigent}
-Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontigent ausgeschöpft bekommen.
+\subsection{Stundenkontingent}
+\label{sec:Stundenkontingent}
+Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontingent ausgeschöpft bekommen.
 
 \section{Ist-Prozess}
 Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient hat für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
@@ -380,7 +380,7 @@ Akzeptanzkriterien:
 \item Es ist möglich in einer Tabelle zu sehen, wie die Arbeitsstunden des Monats auf die Assistenten verteilt werden.
 \item Es wird dargestellt, wieviel Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung
 \item Die Differenz zwischen Soll- und Ist-Arbeitsstunden pro Assistent wird berechnet.
-\item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontigent eines Assistenten ausgeschöpft ist.
+\item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
 \end{itemize}
 
 \subsection{Öffentliche Bemerkungen (tagesbezogen)}
@@ -428,7 +428,7 @@ Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich 
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Es gibt einen Algorithmus, der automatisch unter Berücksichtigung der Verfügbarkeiten der Assistenten und der Vorlieben des Klienten einen Dienstplan erstellt, der die Stundenkontigente berücksichtigt.
+\item Es gibt einen Algorithmus, der automatisch unter Berücksichtigung der Verfügbarkeiten der Assistenten und der Vorlieben des Klienten einen Dienstplan erstellt, der die Stundenkontingente berücksichtigt.
 \item Der Dienstplan (der vom Algorithmus erstellt wird) wird dem Klienten übersichtlich in einer Tabelle dargestellt.
 \item Der Klient kann einen neuen Dienstplan anfordern, der Algorithmus läuft erneut und der neue Dienstplanvorschlag (der vom alten abweichte) wird wieder dargestellt.
 \end{itemize}
@@ -467,12 +467,12 @@ Akzeptanzkriterien:
 \item Der Algorithmus zur Dienstplanerstellung berücksichtigt Eingaben.
 \end{itemize}
 
-\subsection{Ausschöpfung Stundenkontigent}
+\subsection{Ausschöpfung Stundenkontingent}
 Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekommen.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontigente und erstellt einen Dienstplan, bei dem alle Assistenten ihr Stundenkontigent gleichmäßig ausgeschöpft bekommen.
+\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem alle Assistenten ihr Stundenkontingent gleichmäßig ausgeschöpft bekommen.
 \item In einer Tabelle kann man sehen, wie gut die Stunden ausgeschöpft sind.
 \end{itemize}
 
@@ -578,42 +578,32 @@ Beispiele hierfür sind:
 \item \Link{https://www.shiftjuggler.com/de/}{ShiftJuggler}{23.08.2014}
 \end{itemize}
 
-Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwendungen sind in der Lage Stundenkontigente zu berücksichtigen. Bei allen Anwendungen wird der Dienstplan manuell erstellt. Bei keiner Anwendung können persönliche Vorlieben oder allgemein Regeln festgelegt werden. Alle Anwendungen waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
+Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwendungen sind in der Lage Stundenkontingente zu berücksichtigen. Bei allen Anwendungen wird der Dienstplan manuell erstellt. Bei keiner Anwendung können persönliche Vorlieben oder allgemein Regeln festgelegt werden. Alle Anwendungen waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
 
 Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die vorliegenden Aufgabe erledigen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und ihren Code nicht offen gelegt haben.
 
 \chapter{Software-Design} % oder einfach nur Design?
 %TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
+** Vom Modell zur Software
 
 Mit SysML lassen sich Systeme bestehend aus Hard- und Software modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
 
 \section{SysML Anforderungsdiagramm}
-\newpage
-...
-\newpage
+\begin{figure}[htb]
+	\advance\leftskip-2.7cm
+	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
+	
+	%\centering
+	%\includegraphics[scale=0.75]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementsRotated.png}
+	\caption[ToDo]{SysML Anforderungsdiagramm}
+	\label{fig:SysMLRequirements}
+\end{figure}
 
 \section{UML Komponentendiagramm}
-\newpage
-...
-\newpage
 
 \section{UML Klassendiagramme}
-\newpage
-...
-\newpage
-...
-\newpage
 
 \section{UML Sequenzdiagramme}
-\newpage
-...
-\newpage
-
-
-SysML Modell
-UML Ablaufdiagramme
-
-* Vom Modell zur Software
 
 \chapter{Implementierung}
 %TODO nachfolgenden Satz am Ende nochmal prüfen
@@ -753,7 +743,7 @@ Jeder Assitent hat folgende Eigenschaften
 \item Nachname
 \item Telefonnummer
 \item Stichwörter - werden bei der Dienstplanerstellung berücksichtigt
-\item Stundenkontigent - Anzahl der Stunden in einem Monat, die der Assistent zur Verfügung hat
+\item Stundenkontingent - Anzahl der Stunden in einem Monat, die der Assistent zur Verfügung hat
 \item Priorisierung - ein Wert um den Assistenten bei der Dienstplanerstellung zu priorisieren (je höher der Wert, desto höher die Wahrscheinlichkeit, dass der Assistent viele Dienste bekommt)
 \item Bevorzugte Wochentage
 \end{itemize}
@@ -900,7 +890,7 @@ Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, de
 Nebenbedingungen sind, dass
 \begin{itemize}
 \item die Vorlieben des Klienten berücksichtig werden (Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußball-Spielen)
-\item die Stundenkontigente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt \ref{sec:Stundenkontigent})
+\item die Stundenkontingente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt \ref{sec:Stundenkontingent})
 
 \end{itemize}
 
@@ -938,7 +928,7 @@ Der Algorithmus gibt für jeden Tag des Monats einen Assistenten für den Dienst u
 
 \subsection{Erste Version - Hundertprozentige Betreuungsabdeckung}
 \label{sec:algorithmVersion1}
-Die erste Version des Algorithmus berücksichtigt nur die Mindestanforderung (hunderprozentige Betreuungsabdeckung). Der Algorithmus iteriert über alle Tage des Monats und prüft, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht ein vollständiger Dienstplan. Der Klient ist den ganzen Monat betreut, jedoch wurden weder die Stundenkontigente noch die Vorlieben des Klienten berücksichtigt.
+Die erste Version des Algorithmus berücksichtigt nur die Mindestanforderung (hunderprozentige Betreuungsabdeckung). Der Algorithmus iteriert über alle Tage des Monats und prüft, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht ein vollständiger Dienstplan. Der Klient ist den ganzen Monat betreut, jedoch wurden weder die Stundenkontingente noch die Vorlieben des Klienten berücksichtigt.
 
 \subsection{Zweite Version - Berücksichtigung der Priorisierungwerte}
 \label{sec:algorithmVersion2}
@@ -1053,9 +1043,9 @@ Tag des Monats & Private Bemerkungen & Assistent 1 & Assistent 2 & Assistent 3 \
 \label{tab:scoreTable4}
 \end{table}
 
-\subsection{Fünfte Version - Berücksichtigung der Stundenkontigente}
+\subsection{Fünfte Version - Berücksichtigung der Stundenkontingente}
 \label{sec:algorithmVersion5}
-In der letzten Verfeinerung des Algoritmus werden die Stundenkontingente berücksichtigt. Bisher hat der Algorithmus über alle Tage iteriert und jeden Tag isoliert betrachtet. Für jeden Tag wurde ein lokales Optimum gefunden. In der Regel führt dieses Vorgehen allerdings zu einer sehr unausgewogenen Stundenverteilung unterhalb der Assistenten. Um die Stundenkontigente der Assitenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. 
+In der letzten Verfeinerung des Algoritmus werden die Stundenkontingente berücksichtigt. Bisher hat der Algorithmus über alle Tage iteriert und jeden Tag isoliert betrachtet. Für jeden Tag wurde ein lokales Optimum gefunden. In der Regel führt dieses Vorgehen allerdings zu einer sehr unausgewogenen Stundenverteilung unterhalb der Assistenten. Um die Stundenkontingente der Assitenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. 
 
 Dazu werden die Daten in ein anderes Tabellenformat (siehe Tabelle \ref{tab:scoreTableConverted}) konvertiert. In die erste Spalte werden die Punkte (wenn sie größer Null sind) eingetragen, in der zweiten Spalte steht der Assitent und in der dritten Spalte der Tag.
 \begin{table}[htb]
@@ -1115,20 +1105,20 @@ Punkte & Name & Tag \\
 Weiterhin werden alle Stundenkontingent der Assistenten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung} hinterlegt sind, zusammen addiert.
 
 Dann werden alle Dienst- und Bereitschaftsstunden zusammen addiert.
-Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontigente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontigente) ermittelt und die Stundenkontigente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontigenten aller Assistenten werden um einen Prozentsatz x erhöht.
+Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingenten aller Assistenten werden um einen Prozentsatz x erhöht.
 %TODO noch weiter beim Beschreiben ausholen?
 
 %Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. In einer Schleife mit 1000 Durchläufen werden Dienstpläne erstellt und 
 
 Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle \ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden entsprechend verringert.
 
-Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontigente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent bestimmt werden können.
-Zur Erläuterung ein Beispiel: Angenommen der Monat hätte nur 2 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden und die Bereitschafszeiten betragen jeweils 1 Stunde am Tag. Es gibt 2 Assistenten mit Stundenkontigenten von 27 und 24 Stunden, so wäre der Skalierfaktor genau 1 und die Stundenkontigente der Assistenten würden nicht angepasst werden.
-Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontigent passen.
+Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontingente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent bestimmt werden können.
+Zur Erläuterung ein Beispiel: Angenommen der Monat hätte nur 2 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden und die Bereitschafszeiten betragen jeweils 1 Stunde am Tag. Es gibt 2 Assistenten mit Stundenkontingenten von 27 und 24 Stunden, so wäre der Skalierfaktor genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
+Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen.
 
-Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmuses eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine Stunde inkrementiert. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontigent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
+Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmuses eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine Stunde inkrementiert. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
 
-Angwendet auf das oben genannte Beispiel würde der die Schleife im sechsten Durchlauf (Toleranz = 5 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 9 Stunden (27 Stunden aus dem Stundenkontigent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontigentes mit der Toleranz von 5 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
+Angwendet auf das oben genannte Beispiel würde der die Schleife im sechsten Durchlauf (Toleranz = 5 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 9 Stunden (27 Stunden aus dem Stundenkontingent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontingentes mit der Toleranz von 5 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
 
 Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaften vergeben.
 
