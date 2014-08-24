@@ -166,9 +166,16 @@ Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im
 \section{Web-Technologien}
 \subsection{PHP}
 \label{sec:PHP}
-%TODO Beschreibung PHP
+%TODO Beschreibung PHP -> \cite[S. 16]{theis2006einstieg}
 Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
 * von UML zum PHP Code mittels Codegenerirung
+
+\NewAbb{PHP}{PHP Hypertext Preprocessor}
+
+%TODO alle Stellen von \NeuerBegriff{} suchen und durch \NewAbb{}{} ersetzen
+%TODO glossar rausschmeißen
+
+
 
 \subsection{XML}
 \label{sec:XML}
@@ -265,6 +272,7 @@ Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modell
 
 \subsection{UML}
 Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
+
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
 
@@ -273,6 +281,7 @@ Die \Fachbegriff{Unified Modeling Language} \NeuerBegriff{UML} \enquote{dient zu
 
 
 %TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
+% alle verwendeten Komponenten der SysML erläutern (Konnektoren: containment, satisfy, allgemeine Verbindung)
 
 
 \chapter{Anforderungsermittlung}
@@ -584,9 +593,11 @@ Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die
 
 \chapter{Software-Design} % oder einfach nur Design?
 %TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
-** Vom Modell zur Software
+% * Vom Modell zur Software
 
 Mit SysML lassen sich Systeme bestehend aus Hard- und Software modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
+
+In Abbilung \ref{fig:SysMLRequirements} ist das Anforderungsdiagramm zu sehen.
 
 \section{SysML Anforderungsdiagramm}
 \begin{figure}[htb]
@@ -599,9 +610,9 @@ Mit SysML lassen sich Systeme bestehend aus Hard- und Software modellieren. Da i
 	\label{fig:SysMLRequirements}
 \end{figure}
 
-\section{UML Komponentendiagramm}
-
 \section{UML Klassendiagramme}
+Da die Software-Architektur überschaubar ist wurde auf die Darstellung von Paket- und Komponentendiagramme verzichtet. Alle Klassen und deren Beziehungen sind in Abbildung \ref{UML Klassendiagramm} zu sehen.
+
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
 	\includegraphics[scale=0.7]{../Images/Screenshots/EnterpriseArchitect/UMLClassDiagram.png}
@@ -629,10 +640,14 @@ Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefal
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 
+%\section{Programmierung}
+%Neben der PHP-Klassen (siehe Abbildung \ref{UML Klassendiagramm}) wurden einige PHP-Skripte, JavaScript
+%TODO entscheiden, ob ich diesen Abschnitt schreibe
+
 \section{Persistenz der Daten}
 Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
 \begin{itemize}
-\item Daten können leicht zwischen Live-System und Test-System ausgetauscht werden.
+\item Daten können leicht zwischen Produktiv-System und Test-System ausgetauscht werden.
 \item Datenbank-Verwaltung entfällt.
 \item Es werden keine Datenbank-Anforderungen an den Server gestellt.
 \end{itemize}
@@ -640,15 +655,22 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt \ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
 \section{Benutzer-Verwaltung}
-%TODO session id erläutern - wie merkt sich der server wer aktuller Benutzer ist?
-%TODO screenshot einfügen Images/Screenshots/CookiePhpSessionId.png
-
-
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt \ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
-Bei der Anmeldung wird eine Session gestartet. %TODO genauer erklären und auf eine Quelle verweisen
-Weiterhin werden Session-Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind.
-%TODO ist die Beschreibung oben zu vage oder kann ich das so lassen?
+Bei der Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Befehl:
+
+\qquad \texttt{session\_start();}
+
+Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Beispiel für solch eine Session-ID findet sich in Abbildung:
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/CookiePhpSessionId.png}
+	\caption[ToDo]{Session-ID wird als Cookie im Browser gespeichert}
+	\label{fig:CookiePhpSessionId}
+\end{figure}
+
+Nach der Anmeldung werden dem superglobalen Array \textbf{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session + Setzen der Session-Variablen) ist \cite[S. 404]{schlossnagle2006php} entnommen.
 
 \section{Willkommen-Seite}
 Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome})wird den Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
