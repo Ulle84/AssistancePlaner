@@ -2,7 +2,7 @@
 
 require_once 'TeamMember.php';
 require_once 'functions.php';
-require_once 'Settings.php';
+require_once 'Settings.php'; //TODO should be removed
 
 class Team
 {
