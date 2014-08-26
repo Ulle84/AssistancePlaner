@@ -63,7 +63,6 @@
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
-%TODO alle Todos erledigen ;-)
 %TODO Captions (Bildunterschriften) überprüfen
 
 \addchap{Abstract}
@@ -83,6 +82,17 @@
 %Marielle
 %Freddy
 %Korrektoren (Melanie)
+
+Ich danke Herrn Prof. Dr. Mahr für die Betreuung und Korrektur dieser Masterarbeit. \\
+%TODO Zweitkorrektor
+
+Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er hat maßgeblich die Anforderungen gestellt und bereitwillig mit seinem Team die Software getestet.\\
+
+Ich danke sehr meinem \enquote{Masterarbeits-Buddy} Frederik für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
+
+Meinen Eltern danke ich sehr für alles, was sie mir auf den Weg gegeben haben!\\
+
+Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamten Studiums verständnisvoll unterstützt und mir den Rücken frei gehalten.
 
 \tableofcontents % Inhaltsverzeichnis
 
@@ -254,14 +264,10 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 
 \subsection{PHP}
 \label{sec:PHP}
-%TODO Beschreibung PHP -> \cite[S. 16]{theis2006einstieg}
-Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
-* von UML zum PHP Code mittels Codegenerirung
+\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, mit der es möglich ist Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. PHP hat eine sehr gute Datenbank-Unterstützung. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing \ref{lst:examplePHP} gezeigt.
 
-\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache. Mit ihr lassen sich dynamische Web-Dokumente erzeugen. Mit PHP ist es möglich Internetanwendungen zu programmieren. Meistens erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. PHP hat eine sehr gute Datenbank-Unterstützung. %TODO vorhergehenden Satz überdenken
-
-%TODO example.php
-
+\lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument.]{../PHP/example.php}
 
 \section{Modellierungssprachen}
 %TODO nachfolgende Sätze überdenken...
@@ -632,6 +638,13 @@ Für die Implementierung ist es notwendig sich auf die Programmiersprachen festzu
 
 \subsection{Backend}
 Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
+Weitere Grüne nach sind: \cite[S. 16]{theis2006einstieg}
+\begin{itemize}
+\item Einfache Entwicklung von Programmen
+\item Unterstützung verschiedener Plattformen
+\item Leichte Integration in Apache (weitverbreiteter Webserver)
+\end{itemize}
+
 
 \subsection{Frontend}
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
@@ -1363,13 +1376,10 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 %   erstellt.
 % ------------------------------------------------------------------------------
 
-\bibliography{../BibTeX/literatur} % Aufruf: bibtex Masterarbeit
+\bibliography{../BibTeX/literatur} % Aufruf: bibtex
 \bibliographystyle{natdin} % DIN-Stil des Literaturverzeichnisses
 
 % Anhang -----------------------------------------------------------------------
-%   Die Inhalte des Anhangs werden analog zu den Kapiteln inkludiert.
-%   Dies geschieht in der Datei "Anhang.tex".
-% ------------------------------------------------------------------------------
 \begin{appendix}
 \listoftables
 
