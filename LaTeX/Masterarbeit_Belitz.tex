@@ -164,14 +164,6 @@ Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im
 
 
 \section{Web-Technologien}
-\subsection{PHP}
-\label{sec:PHP}
-%TODO Beschreibung PHP -> \cite[S. 16]{theis2006einstieg}
-Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
-* von UML zum PHP Code mittels Codegenerirung
-
-\NewAbb{PHP}{PHP Hypertext Preprocessor}
-
 \subsection{XML}
 \label{sec:XML}
 \NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
@@ -259,6 +251,16 @@ Bei \NewAbb{AJAX}{Asynchronous JavaScript and XML} handelt es sich nicht direkt 
 Ein spezielles JavaScript-Objekt names \texttt{XMLHttpRequest} ermöglicht die asynchrone Kommunikation mit dem Server. Durch den asynchronen Aufruf kann der Benutzer direkt weiterarbeiten und wird nicht durch die Kommunikation mit dem Server blockiert. Ist die Antwort des Servers beim Client angekommen, wird sie sofort verarbeitet und gegebenenfalls dem Nutzer dargestellt.
 
 Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:webdokumente}) zu erstellen.
+
+\subsection{PHP}
+\label{sec:PHP}
+%TODO Beschreibung PHP -> \cite[S. 16]{theis2006einstieg}
+Seit PHP 4 kann man objektorientiert programmieren. Ein guter Einstieg in die Objektorienter Programmierung findet sich in ... 
+* von UML zum PHP Code mittels Codegenerirung
+
+\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache. Mit ihr lassen sich dynamische Web-Dokumente erzeugen. Mit PHP ist es möglich Internetanwendungen zu programmieren. Meistens erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. PHP hat eine sehr gute Datenbank-Unterstützung. %TODO vorhergehenden Satz überdenken
+
+%TODO example.php
 
 
 \section{Modellierungssprachen}
@@ -1356,18 +1358,6 @@ Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
 \subsubsection{Übersicht über erledigte Aufgaben}
 Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man nachvollziehen kann, welcher Assistent wann was erledigt hat.
 
-\listoftables % Tabellenverzeichnis
-\listoffigures
-\renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
-\lstlistoflistings % Listings-Verzeichnis
-
-%Glossar
-\let\stdchapter\chapter %Nummer vor Abkürzungsverzeichnis (speichern der chapter Umgebung)
-\def\chapter*#1{\stdchapter{#1}} % neue Definition von chapter
-\printnomenclature
-\label{sec:Glossar}
-\let\chapter\stdchapter % zurück zur alten Definition
-
 % Literaturverzeichnis ---------------------------------------------------------
 %   Das Literaturverzeichnis wird aus der BibTeX-Datenbank
 %   erstellt.
@@ -1381,15 +1371,23 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 %   Dies geschieht in der Datei "Anhang.tex".
 % ------------------------------------------------------------------------------
 \begin{appendix}
-\clearpage
-\chapter{Anhang}
-\label{sec:Anhang}
-% Rand der Aufzählungen in Tabellen anpassen
-\setdefaultleftmargin{1em}{}{}{}{}{}
+\listoftables
 
-\section{Inhalt der beiligenden CD}
+\listoffigures
+
+\renewcommand{\lstlistlistingname}{Verzeichnis der Listings}
+\lstlistoflistings % Listings-Verzeichnis
+
+%Glossar
+\let\stdchapter\chapter %Nummer vor Abkürzungsverzeichnis (speichern der chapter Umgebung)
+\def\chapter*#1{\stdchapter{#1}} % neue Definition von chapter
+\printnomenclature
+\let\chapter\stdchapter % zurück zur alten Definition
+
+\chapter{Inhalt der beiligenden CD}
 * Ordnerstruktur erklären
 
+\chapter{Hintergrundinformationen}
 \section{Verzeichnisstruktur auf Server}
 *PHP
 *HTML
