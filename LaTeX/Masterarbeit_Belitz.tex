@@ -97,9 +97,9 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \tableofcontents % Inhaltsverzeichnis
 
 \chapter{Motivation}
-Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch "Klient" genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen die möglichen Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
+Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf unter eine halbe Stunde sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
@@ -107,7 +107,7 @@ In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbe
 \section{Netzwerke und Internet}
 
 \subsection{Client/Server-Paradigma}
-\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigman nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S. 405]{comer2002computernetzwerke}
+\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S. 405]{comer2002computernetzwerke}
 
 \subsection{Clientsoftware}
 Nach \cite[S. 406]{comer2002computernetzwerke} hat die Clientsoftware unter anderem folgende Merkmale:
@@ -129,31 +129,6 @@ Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter ande
 \item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
 \end{itemize}
 
-\subsection{HTTP}
-\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}.
-HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
-
-\enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
-\begin{itemize}
-\item \Fachbegriff{GET} verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
-\item \Fachbegriff{HEAD} verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
-\item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
-\item \Fachbegriff{PUT} sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
-\end{itemize}
-Ein Browser erzeugt ein HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S. 497]{comer2002computernetzwerke}
-
-\subsection{Webdokumente}
-\label{sec:webdokumente}
-Es gibt nach \cite[S. 508]{comer2002computernetzwerke} drei verschiedene Typen von Webdokumenten:
-\begin{itemize}
-\item Statisch: Das Dokument ist fest in einer Datei definiert. Der Autor bestimmt einmalig bei Erstellung den Inhalt. Jede Anfrage an das statische Dokument führt zeitlich unabhänig zur identischen Ausgabe. Das statische Verhalten kann technisch mit starren HTML-Seiten realisiert werden.
-\item Dynamisch: Das Dokument ist nicht fest definiert. Sobald eine Anfrage an den Webserver gestellt wird, wird das dynamische Webdokument zusammengestellt. Der Inhalt des dynamischen Dokumentes kann sich von Anfrage zu Anfrage ändern. Das dynamische Verhalten kann mit Server-Script-Sprachen wie z. B. PHP realisiert werden. 
-\item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Sript-Sprachen wie z. B. JavaScript realisiert werden.
-\end{itemize}
-
-\subsection{Cookie}
-\enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S. 514f]{comer2002computernetzwerke}
-
 \subsection{URL}
 \NewAbb{URL}{Uniform Resource Locator} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
 
@@ -173,10 +148,35 @@ Ein Beispiel für eine URL ist die Startseite des Assitenzplaners:
 Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S. 496]{comer2002computernetzwerke} 
 
 
+\subsection{HTTP}
+\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}.
+HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
+
+\enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
+\begin{itemize}
+\item \Fachbegriff{GET} verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
+\item \Fachbegriff{HEAD} verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
+\item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
+\item \Fachbegriff{PUT} sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
+\end{itemize}
+Ein Browser erzeugt eine HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S. 497]{comer2002computernetzwerke}
+
+\subsection{Webdokumente}
+\label{sec:webdokumente}
+Es gibt drei verschiedene Typen von Webdokumenten \cite[S. 508]{comer2002computernetzwerke}:
+\begin{itemize}
+\item Statisch: Das Dokument ist fest in einer Datei definiert. Der Autor bestimmt einmalig bei Erstellung den Inhalt. Jede Anfrage an das statische Dokument führt zeitlich unabhänig zur identischen Ausgabe. Das statische Verhalten kann technisch mit starren HTML-Seiten realisiert werden.
+\item Dynamisch: Das Dokument ist nicht fest definiert. Sobald eine Anfrage an den Webserver gestellt wird, wird das dynamische Webdokument zusammengestellt. Der Inhalt des dynamischen Dokumentes kann sich von Anfrage zu Anfrage ändern. Das dynamische Verhalten kann mit Server-Script-Sprachen wie z. B. PHP realisiert werden. 
+\item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Sript-Sprachen wie z. B. JavaScript realisiert werden.
+\end{itemize}
+
+\subsection{Cookie}
+\enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S. 514f]{comer2002computernetzwerke}
+
 \section{Web-Technologien}
 \subsection{XML}
 \label{sec:XML}
-\NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten haben wiederum eigene Kinderknoten.
+\NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten (\texttt{Assistant}) haben wiederum eigene Kinderknoten (\texttt{Name} und \texttt{eMailAddress}). Die Schachtelung der Knoten kann beliebig tief erfolgen.
 
 \lstset{language=Xml, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleXML,caption=Beispiel für ein XML Dokument.]{../XML/example.xml}
@@ -185,7 +185,7 @@ Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im
 \label{sec:HTML}
 \NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. ... HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S. 21]{muenz2012html5}.
 
-Nach \cite[S. 21]{muenz2012html5} ist es unter anderem möglich:
+Es ist unter anderem möglich \cite[S. 21]{muenz2012html5}:
 \begin{itemize}
 \item das Dokument in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel einzuteilen
 \item dem Dokument Überschriften, Textabsätze, Listen und Tabellen hinzuzufügen
@@ -194,7 +194,7 @@ Nach \cite[S. 21]{muenz2012html5} ist es unter anderem möglich:
 \item Erweiterungssprachen wie CSS oder JavaScript zu integrieren
 \end{itemize}
 
-Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}.
+Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}. Man kann gut erkennen, dass HTML dieselbe Struktur wie XML hat.
 
 \lstset{language=Html, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleHTML,caption=Beispiel für ein HTML-Dokument.]{../HTML/example.html}
@@ -242,13 +242,13 @@ Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschau
 \enquote{HTML-Dokumente besitzen eine hierarchische Struktur, die im DOM als Baumstruktur repräsentiert wird. Die Knoten des Baums stellen die verschiedenen Arten von Inhalt in einem Dokument dar.} \cite[S. 310]{flanagan2002javascript}.
 DOM stellt unter anderem einen Satz von Methoden zur Verfügung der es möglich macht Elemente des Dokumentes aufzufinden. Z. B. kann man mit Hilfe von
 
-\qquad \texttt{var captions = window.document.getElementsByTagName("h1");} 
+\qquad \texttt{var captions = window.document.getElementsByTagName("'h1"');} 
 
 alle Überschriften erster Ordnung finden.
 
 Weiterhin stellt DOM Methoden zur Verfügung um Inahlte des Dokument-Baums zu verändern. Mit dem Code 
 
-\qquad \texttt{captions[0].setAttribute("id", "firstCaption");} 
+\qquad \texttt{captions[0].setAttribute("'id"', "'firstCaption"');} 
 
 wird der \NewAbb{ID}{Identifikator} der ersten Überschrift (erster Ordnung) gesetzt.
 
@@ -264,7 +264,7 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 
 \subsection{PHP}
 \label{sec:PHP}
-\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, mit der es möglich ist Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. PHP hat eine sehr gute Datenbank-Unterstützung. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing \ref{lst:examplePHP} gezeigt.
+\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing \ref{lst:examplePHP} gezeigt.
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument.]{../PHP/example.php}
@@ -288,9 +288,11 @@ Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dok
 
 
 \chapter{Anforderungsermittlung}
-
+%TODO Einleitung schreiben
 \section{Begrifflichkeiten}
 In diesem Abschnitt werden einige Begriffe erläutert, die im Folgenden häufig verwendet werden.
+
+%TODO Individuelle schwerstbehindertenbetreuung -> eigene section? Literatur verfügbar?
 
 \subsection{Klient}
 Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist. Im Rahmen der  individuellen Schwerstbehindertenbetreuung bekommt er Assistenten an die Seite gestellt. Mit Hilfe seiner Assistenten kann er ein selbstbestimmtes Leben führen.
@@ -304,7 +306,7 @@ Das Team eines Klienten besteht aus mehreren Assistenten. In dem kronketen Fall 
 
 \subsection{Dienst}
 Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. 
-Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig: wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet.
+Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig. Wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet.
 
 \subsection{Bereitschaft}
 Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschafsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
@@ -325,7 +327,7 @@ Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden i
 
 \section{Soll-Prozess}
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
-Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) anpassen. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
+Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
