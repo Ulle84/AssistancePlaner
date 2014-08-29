@@ -60,6 +60,7 @@
 
 % Deckblatt und Abstract ohne Seitenzahl
 %\ofoot{}
+\Note{Hi Freddy, die Anmerkungen für Dich sind hellrot hinterlegt und nicht Bestandteil der Ausarbeitung. Vielen Dank für das Lesen meiner Arbeit!}
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
@@ -86,7 +87,7 @@ Weiterhin danke ich Herrn Prof. Dr. Lano für die Zweitkorrektur.\\
 
 Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er hat maßgeblich die Anforderungen gestellt und bereitwillig mit seinem Team die Software getestet.\\
 
-Ich danke sehr Frederik für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
+Ich danke sehr Frederik für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\Note{Ich hoffe damit positive Motivation aufgebaut zu haben, viele Korrekturanregungen zu geben! ;-)}\\
 
 Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf den Weg gegeben haben!\\
 
@@ -97,7 +98,7 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \chapter{Motivation}
 Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assitenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
@@ -307,7 +308,7 @@ Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten un
 Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig. Wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet.
 
 \subsection{Bereitschaft}
-Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschafsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
+Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschaftsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
 
 \subsection{Dienstplan}
 Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. 
@@ -329,20 +330,28 @@ Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den komme
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
+\Note{Hier kommt wahrscheinlich (wie von Dir angeregt) noch ein Ablaufdiagramm hin.}
 
 \section{Benutzergeschichten}
 \enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
 
 Wichtig ist, dass die Anforderung einen \enquote{konkreten und sichtbaren Mehrwert für den Kunden} besitzt. \cite[S. 52]{wirdemann2011scrum}
 
-Benutzergeschichten haben ein festes Muster. Nach \cite[S. 59]{wirdemann2011scrum} hat sich für die Beschreibung folgendes Muster bewährt:
+Benutzergeschichten haben ein festes Muster. Es hat sich für die Beschreibung folgendes Muster bewährt \cite[S. 59]{wirdemann2011scrum}:
 
 \qquad Als <Benutzerrolle> will ich <das Ziel> [,so dass <Grund für das Ziel>]
 
 Aus den Gesprächen mit dem Klienten und der Formulierung des Soll-Prozesses sind einige Benutzergeschichten abgeleitet worden:
 
-%TODO ggf noch den  ..., um ... Teil ergänzen
-%TODO einheitliche Verwednung eines Begriffes für Notizen, Hinweise, etc.
+\subsection{Standard-Dienstzeiten}
+Als Klient möchte ich Standard-Dienstzeiten angeben können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Der Klient kann für jeden Wochentag einen Standard-Dienstbeginn und ein Standard-Dienstende festlegen.
+\item Die Standard-Dienstzeiten können gespeichert und wieder geladen werden.
+\item Bei der Erstellung eines Monatsplans werden initial die Standard-Dienstzeiten eingetragen.
+\end{itemize}
 
 \subsection{Angabe Dienstzeiten}
 Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
@@ -350,53 +359,13 @@ Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeite
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es ist möglich einen Monat auszuwählen.
+\item Initial werden die Standard-Dienstzeiten im Monats-Plan eingetragen.
 \item Es ist möglich die Dienstzeiten für den nächsten Monat festlegen zu können.
 \item Die Dienstzeiten für den nächsten Monat können gespeichert und wieder geladen werden.
 \end{itemize}
 
-\subsection{Verwaltung des Teams}
-Als Klient möchte ich mein Team verwalten.
-
-Akzeptanzkriterien:
-\begin{itemize}
-\item Es gibt eine Übersicht der Team-Mitglieder.
-\item Es ist möglich Team-Mitglieder hinzuzufügen.
-\item Es ist möglich die Eigenschaften der Team-Mitglieder zu editieren.
-\item Es ist möglich Team-Mitgleider aus dem Team zu entfernen.
-\item Es ist möglich das Team abzuspeichern und zu einem späteren Zeitpunkt wieder zu laden.
-\end{itemize}
-
-\subsection{Bewertung der Assistenten}
-Als Klient möchte ich die Assistenten bewerten, um guten Assistenten bei der Einteilung Vorrang zu gewähren.
-
-Akzeptanzkriterien:
-\begin{itemize}
-\item Es ist möglich jedem Assistenten in der Team-Verwaltung einen Priorisierungswert zuzuweisen.
-\item Der Algorithmus für die Dienstplanerstellung greift auf den Priorisierungswert zu und passt berücksichtigt diesen.
-\end{itemize}
-
-\subsection{Berücksichtigung der Wochentage}
-Als Klient möchte ich bei den Assistenten Vorlieben für Wochentage eingeben können.
-
-Akzeptanzkriterien:
-\begin{itemize}
-\item Es ist möglich jedem Assistenten in der Team-Verwaltung einen Wochentag zuzuweisen.
-\item Der Algorithmus für die Dienstplanerstellung greift auf die Wochentage zu und passt berücksichtigt diese.
-\end{itemize}
-
-\subsection{Stundenverteilung bei Dienstplanerstellung}
-Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stundenverteilung sehen können.
-
-Akzeptanzkriterien:
-\begin{itemize}
-\item Es ist möglich in einer Tabelle zu sehen, wie die Arbeitsstunden des Monats auf die Assistenten verteilt werden.
-\item Es wird dargestellt, wieviel Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung
-\item Die Differenz zwischen Soll- und Ist-Arbeitsstunden pro Assistent wird berechnet.
-\item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
-\end{itemize}
-
 \subsection{Öffentliche Bemerkungen (tagesbezogen)}
-Als Klient möchte ich Bemerkungen zum Tag erstellen können, die für jeden (Klient + Assistenten) sichtbar sind.
+Als Klient möchte ich Bemerkungen zum Tag erstellen können, die für jeden (Klient und Assistenten) sichtbar sind.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -426,42 +395,73 @@ Akzeptanzkriterien:
 \item Die Bemerkungen werden den Assistenten bei der Eingabe möglicher Termine angezeigt.
 \end{itemize}
 
+\subsection{Verwaltung des Teams}
+Als Klient möchte ich mein Team verwalten.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Es gibt eine Übersicht der Team-Mitglieder.
+\item Es ist möglich Team-Mitglieder hinzuzufügen.
+\item Es ist möglich die Eigenschaften der Team-Mitglieder zu editieren.
+\item Es ist möglich Team-Mitgleider aus dem Team zu entfernen.
+\item Es ist möglich das Team abzuspeichern und zu einem späteren Zeitpunkt wieder zu laden.
+\end{itemize}
+
+\subsection{Bewertung der Assistenten}
+Als Klient möchte ich die Assistenten bewerten, um bestimmte Assistenten bei der Dienstplanerstellung zu favorisieren.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Es ist möglich jedem Assistenten in der Team-Verwaltung einen Priorisierungswert zuzuweisen.
+\item Der Algorithmus für die Dienstplanerstellung greift auf den Priorisierungswert zu und berücksichtigt diesen.
+\end{itemize}
+
+\subsection{Berücksichtigung der Wochentage}
+Als Klient möchte ich für jeden Assistent die Möglichkeite haben, Vorlieben für bestimmte Wochentage eingeben können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Es ist möglich jedem Assistenten in der Team-Verwaltung favorisierte Wochentage zuzuweisen.
+\item Der Algorithmus für die Dienstplanerstellung greift auf die favorisierten Wochentage zu und berücksichtigt diese.
+\end{itemize}
+
 \subsection{Team benachrichtigen}
 Als Klient möchte ich eine Nachricht an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
 
 Akzeptanzkriterien:
 \begin{itemize}
 \item In der Team-Verwaltung gibt es eine Möglichkeit Kontaktdaten für die Assistenten zu hinterlegen.
-\item Der Klient hat die Möglichkeit per Knopfdruck sein Team zu benachrichtigen. In dieser Nachricht ist unter anderem ein automatisch generierter Text mit der Bitte die möglichen Termine einzutragen enthalten.
+\item Der Klient hat die Möglichkeit per Knopfdruck sein Team zu benachrichtigen. In dieser Nachricht ist unter anderem ein automatisch generierter Text mit der Bitte, die möglichen Termine einzutragen, enthalten.
 \end{itemize}
 
 \subsection{Dienstplan-Vorschläge}
-Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich anpassen kann.
+Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich manuell anpassen kann.
 
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es gibt einen Algorithmus, der automatisch unter Berücksichtigung der Verfügbarkeiten der Assistenten und der Vorlieben des Klienten einen Dienstplan erstellt, der die Stundenkontingente berücksichtigt.
 \item Der Dienstplan (der vom Algorithmus erstellt wird) wird dem Klienten übersichtlich in einer Tabelle dargestellt.
-\item Der Klient kann einen neuen Dienstplan anfordern, der Algorithmus läuft erneut und der neue Dienstplanvorschlag (der vom alten abweichte) wird wieder dargestellt.
+\item Wenn der Klient erneut einen Dienstplan anfordert, läuft der Algorithmus erneut und ein neuer Dienstplanvorschlag (der vom alten abweicht) wird wieder erzeugt und dargestellt.
 \end{itemize}
 
 \subsection{Manuelle Anpassung des Dientplans}
 Als Klient möchte ich die Möglichkeit haben, den Dienstplan nach meinen Wünschen anzupassen.
 
-Akzeptanzkriterium: Es ist möglich den vom Algorithmus erstellten Dienstplan manuell zu verändern.
+Akzeptanzkriterium: Es ist möglich den, vom Algorithmus erstellten, Dienstplan manuell zu verändern.
 
-\subsection{Standard-Dienstzeiten}
-Als Klient möchte ich Standard-Dienstzeiten angeben können.
+\subsection{Stundenverteilung bei Dienstplanerstellung}
+Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stundenverteilung sehen können.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Klient kann für jeden Wochentag einen Standard-Dienstbeginn und ein Standard-Dienstende festlegen.
-\item Die Standard-Dienstzeiten können gespeichert und wieder geladen werden.
-\item Bei der Erstellung eines Monatsplans werden initial die Standard-Dienstzeiten eingetragen.
+\item Es ist möglich in einer Tabelle zu sehen, wie die Arbeitsstunden des Monats auf die Assistenten verteilt werden.
+\item Es wird dargestellt, wieviel Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung.
+\item Die Differenz zwischen Soll- und Ist-Arbeitsstunden pro Assistent wird berechnet.
+\item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
 \end{itemize}
 
 \subsection{Eingabe möglicher Termine}
-Als Assistent möchte ich angeben können, wann ich arbeiten kann.
+Als Assistent möchte ich angeben können, wann ich Zeit habe zu arbeiten.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -475,8 +475,17 @@ Als Assistent möchte ich eine Möglichkeit haben Termine zu favorisieren.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Assistent kann neben \enquote{geht} und \enquote{geht nicht} auch ein \enquote{geht zur Not} eingeben. 
-\item Der Algorithmus zur Dienstplanerstellung berücksichtigt Eingaben.
+\item Der Assistent kann neben \enquote{geht} und \enquote{geht nicht} auch ein \enquote{geht zur Not} auswählen. 
+\item Der Algorithmus zur Dienstplanerstellung berücksichtigt diese Abstufung der Eingaben.
+\end{itemize}
+
+\subsection{Bemerkungen der Assistenten}
+Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
+
+Akzeptanzkriterien:
+\begin{itemize}
+\item Neben der Termineingaben kann der Assistent auch Bemerkungen machen.
+\item Der Klient bekommt die Bemerkungen bei der Dienstplanerstellung angezeigt.
 \end{itemize}
 
 \subsection{Ausschöpfung Stundenkontingent}
@@ -484,8 +493,8 @@ Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekom
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem alle Assistenten ihr Stundenkontingent gleichmäßig ausgeschöpft bekommen.
-\item In einer Tabelle kann man sehen, wie gut die Stunden ausgeschöpft sind.
+\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem alle Assistenten ihre Stundenkontingente gleichmäßig ausgeschöpft bekommen.
+\item In einer Tabelle kann man sehen, wie gleichmäßig die Stundenkontigente der Assistenten ausgeschöpft sind.
 \end{itemize}
 
 \subsection{Ansicht Dienst- und Bereitschaftszeiten}
@@ -496,15 +505,6 @@ Akzeptanzkriterien:
 \item Der Assistent kann den Dienstplan einsehen.
 \item Im Dienstplan sind die Dienste und Bereitschaften des angemeldeten Assistenten farblich hinterlegt.
 \item In einer gesonderten Übersicht sieht der Assistent nur seine Dienst- und Bereitschaftszeiten.
-\end{itemize}
-
-\subsection{Bemerkungen der Assistenten}
-Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
-
-Akzeptanzkriterien:
-\begin{itemize}
-\item Neben der Termineingaben kann der Assistent auch Bemerkungen machen.
-\item Der Klient bekommt die Bemerkungen bei der Dienstplanerstellung angezeigt.
 \end{itemize}
 
 \subsection{Letzte Änderung Dienstplan}
@@ -522,7 +522,7 @@ Als Anwender möchte ich eine Dokumentation des Systems zur Verfügung haben, um m
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es steht eine Dokumentation zur Verfügung.
-\item Die Dokumentation wird abhängig vom Typ (Klient/Assistent) des angemeldeten Benutzer erzeugt.
+\item Die Dokumentation wird abhängig vom Typ des angemeldeten Benutzers (Klient/Assistent) erzeugt.
 \item Es wird nur die Dokumentation der tatsächlich verwendeten Funktionen angezeigt.
 \end{itemize}
 
@@ -533,43 +533,44 @@ Akzeptanzkriterien:
 \begin{itemize}
 \item Der Anwender kann Feedback eingeben und senden.
 \item Der Anwender kann eine E-Mail-Adresse für eine Antwort eingeben.
-\item Das Feld für die Antwort E-Mail-Adresse wird nach Möglichkeit automatisch ausgefüllt.
+\item Das Feld für die Antwort E-Mail-Adresse wird nach Möglichkeit automatisch ausgefüllt. Die benötigen Daten werden aus den Einstellungen (für den Klienten) oder der Team-Verwaltung (für die Assistenten) ausgelesen.
 \end{itemize}
 
 \section{Abgeleitete Anforderungen}
 Aus den Benutzergeschichten ergeben sich einige abgeleitete Anforderungen, die zwar nicht explizit erwähnt wurden, aber für eine technische Umsetzung zwingend notwendig sind.
-%-> SysML Diagramm
-
-
+%TODO weitere abgeleitete Anforderungen?
 
 \subsection{Plattformunabhägigkeit}
 Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Handy, Tablet, Desktop) bedienen lassen können. Weiterhin sollen die größten Betriebssysteme (Windows, Linux, MacOS X, Android, iOS) unterstützt werden.
 
 \subsection{Serverbasierte Anwendung}
-Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
+Klient und Assistenten möchten an verschiedenen Orten zu verschiedenen Zeiten unabhägign voneinander das System bedienen. Um diese Bedingungen zu erfüllen, bietet sich eine serverbasierte Anwendung an.
+
+%Damit der Klient mit seinen Assistenten asynchron zusammenarbeiten kann, bietet sich eine serverbasierte Anwendung an. Der Klient verwaltet alle Daten online. Die Assistenten können ihre Eingaben losgelöst vom Klienten vornehmen.
 
 \subsection{Benutzer-Verwaltung}
-Der Klient und der Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, der Assitent hingegen möchte mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
+Der Klient und die Assistent haben unterschiedliche Interessen am Assistenzplaner. Der Klient möchte unter anderem den Dienstplan erstellen und sein Team verwalten, die Assistenten hingegen möchten mögliche Termine eintragen und den fertigen Dienstplan einsehen können.
 
-Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird regsistriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
+Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer einen eigenen Zugang, der mit einem personenbezogenen Passwort geschützt wird. Bei der Anmeldung am System wird registriert ob es sich um einen Klienten oder einen Assistenten handelt und dementsprechend der angezeigte Inhalt variiert.
 
 \subsection{Aufgaben-Verwaltung}
 %TODO schreiben
 % es war zwar nicht explizit vom Klienten gewünscht, aber doch testweise umgesetzt worden.
+\Note{BAUSTELLE - muss ich noch schreiben}
 
 
 \chapter{Marktanalyse}
-Bevor eine eigene Lösung entwickelt wird, ist es ratsam zu recherchieren, was es schon auf dem Markt gibt.
+Bevor eine Lösung doppelt entwickelt wird, ist es ratsam zu recherchieren, was es schon auf dem Markt gibt.
 
 Die meisten Anwendungen zur Dienstplanerstellung sind für die Verwendung in Krankenhäusern, Einzelhandel, Restaurant oder Clubs optimiert.
 
 \section{Dienstplan in Excel}
-Im Netz kann man jede Menge Vorlagen für die Erstellung von Dienstplänen mit Hilfe der Tabellenkalkulation \Link{http://office.microsoft.com/de-de/excel/}{Excel}{23.08.2014}. Die Zusammenarbeit von Klient und Assistent über das Internet gestaltet sich schwer. Man kann Dokumente freigeben. Damit haben die Assistenten die Möglichkeit ihre Temine einzutragen. Allerdings haben sie damit auch Einsicht und Zugriff auf alles, was sie nicht sehen sollten. Es gibt nicht die Möglichkeit einzelne Bereiche des Dokumentes freizugeben.
+Im Internet kann man jede Menge Vorlagen für die Erstellung von Dienstplänen mit Hilfe der Tabellenkalkulation \Link{http://office.microsoft.com/de-de/excel/}{Excel}{23.08.2014} finden. Die Zusammenarbeit von Klient und Assistent über das Internet gestaltet sich schwierig. Der Klient kann Dokumente freigeben, und damit den Assistenten die Möglichkeit geben ihre Temine einzutragen. Allerdings haben sie damit auch Einsicht und Zugriff auf alles, was sie nicht sehen sollten. Es gibt nicht die Möglichkeit einzelne Bereiche des Dokumentes freizugeben.
 
 \section{Offline Anwendungen}
-Es gibt Programme zur Dienstplanerstellung, die ohne Internet-Anbindung arbeiten. Hier müsste der Klient die Eingabe der Assistenten selbstständig vornehmen.
+Es gibt Programme zur Dienstplanerstellung, die ohne Internet-Anbindung arbeiten. Hier müsste der Klient die Eingabe der möglichen Termien der Assistenten selbstständig vornehmen.
 
-Ein Beispiel wäre \Link{http://www.qtime.de/kostenlos/dienstplan-erstellung.html}{QTime}{23.08.2014}. Aber schon der Blick auf die Screenshots (Beispiel: Abbildung \ref{fig:DienstplanungSchichtstatus}) lässt erahnen, dass die Software sehr komplex ist und für jemanden der sie nur einmal im Monat verwenden möchte zuviel Einarbeitung abverlangt.
+Ein Beispiel für solch eine Anwendugn ist \Link{http://www.qtime.de/kostenlos/dienstplan-erstellung.html}{QTime}{23.08.2014}. Aber schon der Blick auf die Screenshots (Beispiel: Abbildung \ref{fig:DienstplanungSchichtstatus}) lässt erahnen, dass die Software sehr komplex ist und für jemanden der sie nur einmal im Monat verwenden möchte zuviel Einarbeitung abverlangt.
 
 \begin{figure}[htb]
 	\centering
@@ -579,7 +580,7 @@ Ein Beispiel wäre \Link{http://www.qtime.de/kostenlos/dienstplan-erstellung.html
 \end{figure}
 
 \section{Online Anwendungen}
-Es gibt einige Anwendungen im Internet, die es ermögichen Dienstpläne zu erstellen.
+Es gibt einige Anwendungen im Internet, die es ermöglichen, Dienstpläne zu erstellen.
 
 Beispiele hierfür sind:
 \begin{itemize}
@@ -590,19 +591,21 @@ Beispiele hierfür sind:
 \item \Link{https://www.shiftjuggler.com/de/}{ShiftJuggler}{23.08.2014}
 \end{itemize}
 
-Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwendungen sind in der Lage Stundenkontingente zu berücksichtigen. Bei allen Anwendungen wird der Dienstplan manuell erstellt. Bei keiner Anwendung können persönliche Vorlieben oder allgemein Regeln festgelegt werden. Alle Anwendungen waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
+Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwendungen sind in der Lage Stundenkontingente zu berücksichtigen. Bei allen Anwendungen wird der Dienstplan manuell erstellt. Bei keiner Anwendung können persönliche Vorlieben oder allgemein Regeln für die Dienstplanerstellung festgelegt werden. Alle Anwendungen waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
 
-Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die vorliegenden Aufgabe erledigen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und ihren Code nicht offen gelegt haben.
+Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die vorliegenden Aufgabe erledigen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
 \chapter{Software-Design} % oder einfach nur Design?
+\Note{Dieses Kapitel ist noch in Bearbeitung!}
+
+
 %TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
 % * Vom Modell zur Software
 
-Mit SysML lassen sich Systeme bestehend aus Hard- und Software modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
-
-In Abbilung \ref{fig:SysMLRequirements} ist das Anforderungsdiagramm zu sehen.
+Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
 
 \section{SysML Anforderungsdiagramm}
+In Abbilung \ref{fig:SysMLRequirements} ist das Anforderungsdiagramm zu sehen.
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
@@ -613,8 +616,27 @@ In Abbilung \ref{fig:SysMLRequirements} ist das Anforderungsdiagramm zu sehen.
 	\label{fig:SysMLRequirements}
 \end{figure}
 
+\section{UML Komponentendiagramm}
+%TODO UML Komponentendiagramm erstellen und beschreiben
+Die Anforderungen werden nach dem Top-Down-Prinzip in Software umgesetzt. Es werden Komponenten aus den Anforderungen abgeleitet und modelliert.
+
+Das Komponentendiagramm ist in Abbilung \ref{fig:UMLKomponentendiagramm} zu sehen.
+\begin{figure}[htb]
+	\centering
+	%TODO Abbidlung einfügen
+	%\includegraphics[scale=0.8]{../Images/Screenshots/?.png}
+	\Note{Platzhalter}
+	\caption[ToDo]{UML Komponentendiagramm}
+	\label{fig:UMLKomponentendiagramm}
+\end{figure}
+
 \section{UML Klassendiagramme}
-Da die Software-Architektur überschaubar ist wurde auf die Darstellung von Paket- und Komponentendiagramme verzichtet. Alle Klassen und deren Beziehungen sind in Abbildung \ref{UML Klassendiagramm} zu sehen.
+%Da die Software-Architektur überschaubar ist wurde auf die Darstellung von Paket- und Komponentendiagramme verzichtet. 
+
+%TODO Text schreiben
+Alle Klassen und deren Beziehungen sind in Abbildung \ref{fig:UMLClassDiagram} zu sehen.
+
+\Note{Die Klassendiagramme sind noch nicht fertig! Es gibt schon ein Klassendiagramm, welches alle Klassen enthält, aber noch sehr unübersichtlich ist. Zwischen die Klassen werden noch Interfaces gestellt, so dass man Komponenten erstellen kann und diese übersichtlich in eigenen Klassendiagrammen darstellen kann.}
 
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
@@ -627,6 +649,9 @@ Da die Software-Architektur überschaubar ist wurde auf die Darstellung von Paket
 \end{figure}
 
 \section{UML Sequenzdiagramme}
+%TODO Sequenzdiagramme erstellen, einfügen und beschreiben
+\Note{Sequenzdiagramme habe ich noch nicht erstellt}
+
 
 \chapter{Implementierung}
 %TODO nachfolgenden Satz am Ende nochmal prüfen
@@ -634,11 +659,11 @@ In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Desig
 Die Programmiersprachen werden gewählt...
 
 \section{Wahl der Programmiersprachen}
-Für die Implementierung ist es notwendig sich auf die Programmiersprachen festzulegen.
+Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
 
-\subsection{Backend}
-Beim Backend (der Serverseite) ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
-Weitere Grüne nach sind: \cite[S. 16]{theis2006einstieg}
+\subsection{Server}
+Bei der Serverseite ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} von über 80\% und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
+Weitere Gründe \cite[S. 16]{theis2006einstieg} sind:
 \begin{itemize}
 \item Einfache Entwicklung von Programmen
 \item Unterstützung verschiedener Plattformen
@@ -646,9 +671,10 @@ Weitere Grüne nach sind: \cite[S. 16]{theis2006einstieg}
 \end{itemize}
 
 
-\subsection{Frontend}
+\subsection{Client}
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
+%TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
 
 %\section{Programmierung}
 %Neben der PHP-Klassen (siehe Abbildung \ref{UML Klassendiagramm}) wurden einige PHP-Skripte, JavaScript
@@ -662,7 +688,7 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 \item Es werden keine Datenbank-Anforderungen an den Server gestellt.
 \end{itemize}
 
-Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt \ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echte Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
+Eine potentielle Fehlerquelle bei dem Gebrauch von textbasierten Daten ist, wenn zwei Benutzer gleichzeitig schreibend auf eine Datei zugreifen wollen. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt \ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art Semaphore eingesetzt. Unter PHP gibt es keine echten Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
 \section{Benutzer-Verwaltung}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
@@ -671,7 +697,7 @@ Bei der Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Be
 
 \qquad \texttt{session\_start();}
 
-Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Beispiel für solch eine Session-ID findet sich in Abbildung:
+Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Beispiel für solch eine Session-ID findet sich in Abbildung \ref{fig:CookiePhpSessionId}.
 
 \begin{figure}[htb]
 	\centering
@@ -680,10 +706,10 @@ Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Bei
 	\label{fig:CookiePhpSessionId}
 \end{figure}
 
-Nach der Anmeldung werden dem superglobalen Array \textbf{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session + Setzen der Session-Variablen) ist \cite[S. 404]{schlossnagle2006php} entnommen.
+Nach der Anmeldung werden im superglobalen Array \texttt{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session und Setzen der Session-Variablen) ist \cite[S. 404]{schlossnagle2006php} entnommen.
 
 \section{Willkommen-Seite}
-Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome})wird den Interessenten erklärt, was der Assistenz-Planer ist. Man wird aufgefordert einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
+Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome}) werden dem Interessenten Informationen über den Assistenzplaner präsentiert. Man wird gebeten einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
 
 \begin{figure}[htb]
 	\centering
@@ -693,7 +719,7 @@ Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 \end{figure}
 
 \section{Navigation}
-Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davon, ob jemand am System angmeldet ist (siehe Abbildung \ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung \ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
+Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davon, ob jemand am System angmeldet ist (siehe Abbildung \ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung \ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
 
 \begin{figure}[htb]
 	\centering
@@ -709,14 +735,11 @@ Die Navigation steht immer gut sichtbar oben rechts zur Verfügung. Abhängig davo
 	\label{fig:NavigationLoggedOut}
 \end{figure}
 
-%TODO evt. einige der vorherigen sections zusammenfassen
-
-
-\section{Anlegen eines neuen Klienten}
+\section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
-Das Anlegen eines neuen Klienten soll keine Hürde darstellen. Es sollen keine persönlichen Daten erhoben, so dass kein potentieller Nutzer abgeschreckt wird.
+Das Anlegen eines neuen Klienten-Zugangs soll keine Hürde darstellen. Es werden bei der Erstellung eines neuen Klienten-Zugangs keine persönlichen Daten erhoben.
 
-Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben.
+Um einen neuen Klienten-Zugang anzulegen wird man gebeten ein Klientennamen, ein Passwort und die Passwort-Wiederholung einzugeben (siehe Abbildung \ref{fig:NewClient}).
 
 \begin{figure}[htb]
 	\centering
@@ -727,18 +750,19 @@ Um einen neuen Klienten anzulegen wird man gebeten ein Klientennamen, ein Passwo
 
 Bedingungen an einen neuen Klientennamen sind:
 \begin{itemize}
-\item darf nicht leer sein
-\item darf noch nicht vergeben sein
-\item darf nur aus Buchstaben und Zahlen bestehen
+\item Er darf nicht leer sein.
+\item Er darf noch nicht vergeben sein.
+\item Er darf nur aus Buchstaben und Zahlen bestehen. Sonderzeichen und Leerzeichen sind nicht erlaubt.
 \end{itemize}
 
 Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. Der Inhalt der Textfelder bleibt erhalten, so dass der Benutzer dass Passwort und die Wiederholung dessen nicht nochmal eingeben muss.
 
-Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner Data ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten gespeichert werden.
-Weiterhin wird in der in der Datei "Data\textbackslash KlientenName\textbackslash Team\textbackslash passwords.txt" das vergebene Passwort verschlüsselt abgespeichert. %TODO Link auf das Kapitel wo das näher erklärt wird.
+Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner \texttt{Data} ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten persistent gespeichert werden.
+Weiterhin wird in der in einer Datei das vergebene Passwort verschlüsselt abgespeichert.
+%TODO Link auf das Kapitel wo das näher erklärt wird.
 Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war und wird gebeten sich mit dem neuen Zugang am System anzumelden.
 
-Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen eine E-Mail Adresse angeben, was aber nicht für die Benutzung des Assistenzplaners notwendig ist.
+Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen personenbezogene Daten (Vorname, Nachname, E-Mail-Adresse) angeben, was aber nicht zwingend für die Benutzung des Assistenzplaners notwendig ist.
 
 \section{Übersicht}
 Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
@@ -746,13 +770,14 @@ Auf der Übersichts-Seite (siehe Abbildung \ref{fig:Overview}) werden dem Benutze
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}
-	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht Assistenzplaner für Klienten - von hier aus erreicht man per Link alle Verfügbaren Seiten}
+	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht Assistenzplaner für Klienten - von hier aus erreicht man per Link alle verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
 
 
 \section{Einstellungen}
 Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung \ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
+%TODO Beschreibung des Vorgehens mit Standard-Passwort hier oder an einer andreen sTelle?
 Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt \ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
 
 \begin{figure}[htb]
@@ -763,7 +788,7 @@ Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-V
 \end{figure}
 
 \section{Standard-Dienstzeiten}
-Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Wochentag festzulegen wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten angepasst werden.
+Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Wochentag festzulegen wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten für jeden Tag angepasst werden.
 
 \begin{figure}[htb]
 	\centering
@@ -775,11 +800,13 @@ Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der K
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
 %TODO Referenzen auf Requirement-Abschnitt?
-Der Klient braucht eine Möglichkeit um sein Assistenz-Team zu verwalten. Der Klient möchte Team-Mitglieder hinzufügen, editieren und löschen. Weiterhin möchte er das Passwort eines Assistenten zurücksetzen können.
+%Der Klient braucht eine Möglichkeit um sein Assistenz-Team zu verwalten. Der Klient möchte Team-Mitglieder hinzufügen, editieren und löschen. Weiterhin möchte er das Passwort eines Assistenten zurücksetzen können.
 
-Jeder Assitent hat folgende Eigenschaften
+Mit der Team-Verwaltung kann der Klient die Eigenschaften seiner Team-Mitglieder verwalten.
+
+Jeder Assistent hat folgende Eigenschaften:
 \begin{itemize}
-\item Kennung - eindeutige ID, mit der sich der Klient am System anmeldet
+\item Kennung - eindeutige ID, mit der sich der Assistent am System anmeldet
 \item Vorname
 \item Nachname
 \item Telefonnummer
@@ -792,17 +819,18 @@ Jeder Assitent hat folgende Eigenschaften
 Die Eigenschaften werden in tabellarischer Form dargestellt (siehe Abbildung \ref{fig:TeamTable}) und sind editierbar.
 
 \begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.35]{../Images/Screenshots/teamTable.png}
+	%\centering
+	\advance\leftskip-2.7cm
+	\includegraphics[scale=0.42]{../Images/Screenshots/teamTable.png}
 	\caption[Verwaltung Assistenz-Team]{Verwaltung der Assistentz-Team-Mitglieder}
 	\label{fig:TeamTable}
 \end{figure}
 
-Neue Teammitglieder können mit Hilfe des Buttons "Neues Mitglied" hinzugefügt werden. Das neue Teammitglied hat inital  das Passwort was in den Einstellungen hinterlegt wurde.
+Neue Teammitglieder können mit Hilfe des Buttons \enquote{Neues Mitglied} hinzugefügt werden. Das neue Teammitglied hat inital  das Passwort was in den Einstellungen hinterlegt wurde.
 
-Sollte ein Assistent sein Passwort vergessen haben, hat der Klient die Möglichkeit mit Hilfe des Buttons "Paswort zurücksetzen" (in der Spalte Aktionen) die Möglichkeit das Passwort des Assistenten auf den Wert des Standardpasswortes (was in den Einstellungen hinterlegt ist) zu setzen.
+Sollte ein Assistent sein Passwort vergessen haben, hat der Klient mit Hilfe des Buttons \enquote{Paswort zurücksetzen} (in der Spalte Aktionen) die Möglichkeit das Passwort des Assistenten auf den Wert des Standardpasswortes (was in den Einstellungen hinterlegt ist) zu setzen.
 
-Sollte ein Assitent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons "Löschen" (in der Spalte Aktionen) den Assistenten aus der Team-Übersicht zu entfernen.
+Sollte ein Assistent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons \enquote{Löschen} (in der Spalte Aktionen) den Assistenten aus der Team-Verwaltung zu entfernen.
 
 \section{Monatsplan}
 Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
@@ -816,7 +844,7 @@ Mit dem Monatsplan (siehe Abbildung \ref{fig:MonthPlan3})  plant der Klient den 
 
 Neben den tagesweisen Bemerkungen hat der Klient noch eine Möglichkeit eine Nachricht an sein Team zu verfassen. Hier können allgemeine Hinweise für den Monat untergebracht werden.
 
-Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er sein Assistenz-Team auffordern mögliche Termine einzutragen, so kann er auf den Button "Team benachrichtigen" klicken. Vom Assistenzplaner wird dann eine E-Mail an jedes Mitglied des Assistenz-Teams geschickt mit der Bitte mögliche Termine einzutragen und der Nachricht des Klienten. Eine beispielhafte Nachricht findet sich in Abbildung \ref{fig:Mail}.
+Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er sein Assistenz-Team auffordern mögliche Termine einzutragen, so kann er auf den Button \enquote{Team benachrichtigen} klicken. Vom Assistenzplaner wird dann eine E-Mail an jedes Mitglied des Assistenz-Teams geschickt mit der Bitte mögliche Termine einzutragen und der Nachricht des Klienten. Eine beispielhafte Nachricht findet sich in Abbildung \ref{fig:Mail}.
 
 \begin{figure}[htb]
 	\centering
@@ -839,9 +867,9 @@ Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet,
 	\label{fig:CalendarInput}
 \end{figure}
 
-Mit Hilfe des Buttons "Alle Daten markieren" kann man auf einen Rutsch alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
+Mit Hilfe des Buttons \enquote{Alle Daten markieren} kann man alle Daten eines Monats grün (bedeutet: Assistent verfügbar) markieren.
 
-Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:CalendarNotesFromClient}), die dem Assitenten helfen können. Das sind zum einen die öffentlichen Notizen, die der Klient zum Monat erstellt hat, zum anderen die optionale Nachricht die der Klient an das Team verfasst hat.
+Im oberen Bereich sind alle Informationen dargestellt (siehe Abbildung \ref{fig:CalendarNotesFromClient}), die dem Assistenten helfen können. Das sind zum einen die öffentlichen Notizen, die der Klient zum Monat erstellt hat, zum anderen die optionale Nachricht die der Klient an das Team verfasst hat.
 
 \begin{figure}[htb]
 	\centering
@@ -868,8 +896,7 @@ Der Assistenzplaner erstellt eine Tabelle (siehe Abbildung \ref{fig:RosterClient
 	\label{fig:RosterClient1}
 \end{figure}
 
-Der Klient bekommt vom Assistenzplaner mit Hilfe des Algorithmus einen Dienstplan erstellt %TODO Verweis auf Abschnitt mit Algorithmus
-den er nach seinen Belieben anpassen kann. Dazu klickt er einfach in die Zellen der Dienstplantabelle und kann zwischen den Zuständen
+Der Klient bekommt vom Assistenzplaner mit Hilfe des Algorithmus (siehe Abschnitt \ref{sec:algorithm}) einen Dienstplan erstellt, den er nach seinen Belieben anpassen kann. Dazu klickt er in die Zellen der Dienstplantabelle und kann zwischen den Zuständen
 \begin{itemize}
 \item Assistent hat Dienst
 \item Assistent hat Bereitschaft
@@ -886,7 +913,7 @@ Unterhalb der Dienstplantabelle ist eine weitere Tabelle (siehe Abbildung \ref{f
 	\label{fig:RosterClient2}
 \end{figure}
 
-In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden + Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden. %TODO Link auf entsprechenden Abschnitt
+In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden plus Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden. %TODO Link auf entsprechenden Abschnitt
 In der vierten Spalte wird die Differenz zwischen Spalte 2 und 3 berechnet. In der fünften Spalte ist die Differenz (Spalte 4) ins Verhältnis der benötigten Arbeitsstunden (Spalte 3) gesetzt und prozentual ausgedrückt. Die Zeilen werden farblich hinterlegt:
 \begin{itemize}
 \item Grün: Der Betrag der prozentualen Abweichung (Spalte 5) ist kleiner 10\% 
@@ -897,23 +924,23 @@ Die Stundenübersicht wird jedes Mal aktualisiert, wenn der Klient in der Dienstp
 
 Per Knopfdruck kann der Klient einige Funktionen ausführen:
 \begin{itemize}
-\item Dienstplan prüfen: Es wird geprüft, dass für jeden Tag genau ein Assistent Dienst und genau ein Assistent Bereitschaft hat
+\item Dienstplan prüfen: Es wird geprüft, dass für jeden Tag genau ein Assistent Dienst und genau ein Assistent Bereitschaft hat.
 \item Dienstplan speichern: Der Dienstplan wird gespeichert. Gleichzeitig wird das Datum der letzten Änderung aktualisiert.
-\item Dienstplan löschen: Der Dienstplan wird nach Rückversicherung gelöscht. Durch ein Neuladen der Dienstplanseite wird vom Assistenzplaner wieder ein neuer Dienstplanvorschlag erstellt.
-\item Dienstplan als PDF anzeigen: Der Dienstplan wird im PDF-Format exportiert. Als PDF kann der Dienstplan leicht per E-Mail verschickt und ausgedruckt werden.% Der Dienstplan als PDF dient letztendlich als Leistungsnachweis.
+\item Dienstplan löschen: Der Dienstplan wird nach Rückversicherung gelöscht. Durch ein Neuladen der Dienstplan-Seite wird vom Assistenzplaner ein neuer Dienstplanvorschlag erstellt.
+\item Dienstplan als PDF anzeigen: Der Dienstplan wird als \NewAbb{PDF}{Portable Document Format} exportiert. Als PDF kann der Dienstplan leicht per E-Mail verschickt und ausgedruckt werden.% Der Dienstplan als PDF dient letztendlich als Leistungsnachweis.
 \end{itemize}
 
 \subsection{Aus Sicht des Assistenten}
-Der Assistent hat keine Möglichkeit den Dienstplan zu verändern. Er kann lediglich den fertigen Dienstplan einsehen. In einer Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus1}) werden tagesweise die Dienstzeiten und Bereitschafszeiten dargestellt. Weiterhin kann man sehen welcher Assistent Dienst bzw. Bereitschaft hat. Die Dienste und Bereitschaften des angemeldeten Assistenen werden farblich hervorgehoben.
+Der Assistent hat keine Möglichkeit den Dienstplan zu verändern. Er kann lediglich den fertigen Dienstplan einsehen. In einer Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus1}) werden tagesweise die Dienst-und Bereitschaftszeiten dargestellt. Weiterhin kann man sehen welcher Assistent Dienst bzw. Bereitschaft hat. Die Dienste und Bereitschaften des angemeldeten Assistenen werden farblich hervorgehoben.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/RosterAssistantMarkus1.png}
-	\caption[Gesamter Dienstplan aus Sicht des Assistenten]{Gesamter Dienstplan aus Sicht des Assistenten - farbig hervorgehoben sind die Dienste bzw. Bereitschaften des angemeldten Assistenten}
+	\caption[Gesamter Dienstplan aus Sicht des Assistenten]{Gesamter Dienstplan aus Sicht des Assistenten \enquote{Markus} - farbig hervorgehoben sind die Dienste bzw. Bereitschaften des angemeldten Assistenten}
 	\label{fig:RosterAssistantMarkus1}
 \end{figure}
 
-Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus2}) in der der angemeldete Assistent seine Dienste und Bereitschaften kompakt einsehen kann.
+Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:RosterAssistantMarkus2}) in der nur die Dienste und Bereitschaften des angemeldeten Assistenten angezeigt werden.
 
 \begin{figure}[htb]
 	\centering
@@ -923,20 +950,22 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:
 \end{figure}
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
+\label{sec:algorithm}
+%TODO Version 5 in 5 und 6 aufteilen? Randomisierung hervorheben
 Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
 
 \subsection{Anforderungen}
-Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, der eine hunderprozentige Betreuungsabdeckung erreicht. Für jeden Tag muss ein Assistent für den Dienst und ein Assistent für die Bereitschaft im Dienstplan eingetragen sein.
+Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, der eine hundertprozentige Betreuungsabdeckung erreicht. Für jeden Tag muss ein Assistent für den Dienst und ein Assistent für die Bereitschaft im Dienstplan eingetragen sein.
 
 Nebenbedingungen sind, dass
 \begin{itemize}
-\item die Vorlieben des Klienten berücksichtig werden (Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußball-Spielen)
+\item die Vorlieben des Klienten berücksichtigt werden (z. B. Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußball-Spielen)
 \item die Stundenkontingente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt \ref{sec:Stundenkontingent})
 
 \end{itemize}
 
 \subsection{Eingabe}
-Der Algorithmus bekommt als Eingabe die Verfügbarkeiten der Assitenten (pro Tag). Diese sind folgendermaßen codiert:
+Der Algorithmus bekommt als Eingabe die Verfügbarkeiten der Assistenten (pro Tag). Diese sind folgendermaßen codiert:
 \begin{itemize}
 \item 0: Assistent ist nicht verfügbar
 \item 1: Assistent ist zur Not verfügbar
@@ -960,7 +989,7 @@ Stichwörter & \xmark & \xmark & \xmark & \cmark & \cmark \\
 Stundenkontingent & \xmark & \xmark & \xmark & \xmark & \cmark \\
 \hline 
 \end{tabular}  
-\caption{ToDo} %TODO Beschreibung - Übersicht der Eingabe...
+\caption{Übersicht der verwendeten Daten aus der Team-Verwaltung}
 \label{tab:inputAlgorithm}
 \end{table}
 
@@ -969,11 +998,11 @@ Der Algorithmus gibt für jeden Tag des Monats einen Assistenten für den Dienst u
 
 \subsection{Erste Version - Hundertprozentige Betreuungsabdeckung}
 \label{sec:algorithmVersion1}
-Die erste Version des Algorithmus berücksichtigt nur die Mindestanforderung (hunderprozentige Betreuungsabdeckung). Der Algorithmus iteriert über alle Tage des Monats und prüft, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht ein vollständiger Dienstplan. Der Klient ist den ganzen Monat betreut, jedoch wurden weder die Stundenkontingente noch die Vorlieben des Klienten berücksichtigt.
+Die erste Version des Algorithmus berücksichtigt nur die Mindestanforderung (hundertprozentige Betreuungsabdeckung). Der Algorithmus iteriert über alle Tage des Monats und prüft, ob es mindestens zwei Assistenten gibt, die Zeit haben. Der erste freie Assistent bekommt den Dienst, der zweite freie Assistent bekommt die Bereitschaft zugewiesen. Bei dieser ersten Version entsteht ein vollständiger Dienstplan. Der Klient ist den ganzen Monat betreut, jedoch wurden weder die Stundenkontingente noch die Vorlieben des Klienten berücksichtigt.
 
-\subsection{Zweite Version - Berücksichtigung der Priorisierungwerte}
+\subsection{Zweite Version - Berücksichtigung der Priorisierungswerte}
 \label{sec:algorithmVersion2}
-In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient eine Priorisierungswert festlegen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
+In der zweiten Version des Algorithmus werden die allgemeinen Vorlieben des Klienten berücksichtig. Für jedes Teammitglied kann der Klient einen Priorisierungswert festlegen (siehe Abschnitt \ref{sec:TeamVerwaltung}).
 Es wird eine Punktetabelle erstellt. Die erste Spalte ist der Tag des Monats, jede weitere Spalte repräsentiert die Verfügbarkeit eines Assistenten. Ist der Assistent nicht verfügbar, so wird eine Null eingetragen. Ist der Assistent zur Not verfügbar, so wird eine Eins eingetragen. Ist der Assistent voll verfügbar, so wird eine Zehn eingetragen. Als Beispiel dienen die Zahlen in Tabelle \ref{tab:scoreTable}.
 \begin{table}[htb]
 \centering
@@ -990,22 +1019,22 @@ Tag des Monats & Punkte Assistent 1 & Punkte Assistent 2 & Punkte Assistent 3 \\
 ... & ... & ... & ... \\ 
 \hline 
 \end{tabular} 
-\caption{Punktetabelle}
+\caption{Punktetabelle zur Dienstplanerstellung}
 \label{tab:scoreTable}
 \end{table}
 
-Nun wird jeder Verfügbarkeitswert mit dem Priorisierungswert multipliziert. Mit den Prioriserungswerten aus Tabelle \ref{tab:teamMemberPriorities} verändert sich die Punktetabelle.
+Nun wird jeder Verfügbarkeitswert mit dem Priorisierungswert multipliziert. Mit den beispielhaften Priorisierungswerten aus Tabelle \ref{tab:teamMemberPriorities} verändert sich die Punktetabelle.
 \begin{table}[htb]
 \centering
 \begin{tabular}{|c|c|}
 \hline 
-Assitent & Priorisierungwert \\ 
+Assistent & Priorisierungswert \\ 
 \hline 
-Assitent 1 & 1 \\ 
+Assistent 1 & 1 \\ 
 \hline 
-Assitent 2 & 2 \\ 
+Assistent 2 & 2 \\ 
 \hline 
-Assitent 3 & 3 \\ 
+Assistent 3 & 3 \\ 
 \hline 
 \end{tabular} 
 \caption{Priorisierungswerte aus der Team-Verwaltung}
@@ -1032,11 +1061,31 @@ Tag des Monats & Punkte Assistent 1 & Punkte Assistent 2 & Punkte Assistent 3 \\
 \label{tab:scoreTable2}
 \end{table}
 
-Nach der Erstellung der Punktetabelle iteriert der Algorithmus über alle Tage und gibt dem Assistenten mit der höchsten Punktzahl den Dienst und dem Assistenten mit der zweithöchsten Punktzahl die Bereitschaft.
+Nach der Erstellung der Punktetabelle iteriert der Algorithmus über alle Tage und gibt dem Assistenten mit der höchsten Punktzahl den Dienst und dem Assistenten mit der zweithöchsten Punktzahl die Bereitschaft. Mit den Beispielwerten würde sich ein Dienstplan wie er in Tabelle \ref{tab:roster} dargestellt ist ergeben.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Tag des Monats & Dienst & Bereitschaft \\ 
+\hline 
+1 (Montag) & Assistent 3 & Assitent 2  \\ 
+\hline 
+2 (Dienstag) & Assistent 2 & Assistent 1 \\ 
+\hline 
+3 (Mittwoch) & Assistent 3  & Assistent 1 \\ 
+\hline 
+... & ... & ... \\ 
+\hline 
+\end{tabular}
+\caption{Beispielhafter Dienstplan}
+\label{tab:roster}
+\end{table}
+
 
 \subsection{Dritte Version - Berücksichtigung der Wochentage}
 \label{sec:algorithmVersion3}
-In der dritten Version des Algorithmus werden (zusätzlich zu den Priorisierungwerten) die Wochentage (Montag, Dienstag, ...) berücksichtigt.
+In der dritten Version des Algorithmus werden (zusätzlich zu den Priorisierungswerten) die Wochentage (Montag, Dienstag, ...) berücksichtigt.
 Der Klient kann Assistenten an bestimmten Wochentagen priorisieren (vgl. Abschnitt \ref{sec:TeamVerwaltung}).
 Der Algorithmus geht genauso vor wie im vorherigen Abschnitt beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 2 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt (siehe Tabelle \ref{tab:scoreTable3}). Somit steigt die Wahrscheinlichkeit, dass Assistent 2 an einem Montag für den Dienst eingeteilt wird. In dem konkreten Beispiel wird Assistent 2 am Montag den Dienst bekommen, obwohl Assistent 3 eine generell höhere Priorisierung hat.
 
@@ -1063,7 +1112,7 @@ Tag des Monats & Punkte Assistent 1 & Punkte Assistent 2 & Punkte Assistent 3 \\
 \label{sec:algorithmVersion4}
 Der Algorithums arbeitet prinzipiell wie im vorherigen Abschnitt beschrieben. Bei der Erstellung der Punktetabelle werden jedoch die   privaten Bemerkungen im Monatsplan tagesweise nach Stichwörtern durchsucht. Ist ein Stichwort in der Team-Verwaltung bei einem Assistenten hinterlegt, so wird der Punktwert des Assistenten an dem betreffenden Tag verzehnfacht.
 
-Zur Erläuterung ein Beispiel: Angenommen beim Assistenten 3 ist in der Team-Verwaltung das Stichwort "FCB" hinterlegt. Wenn gleichzeitig bei den privaten Bemerkungen am ersten Tag des Monats ein "FCB" enthalten ist, so wird der Punktewert des Assistenten von 30 auf 300 verzehnfacht (vergleiche auch Tabelle \ref{tab:scoreTable4}). Damit hat Assistent 3 die höchste Punktezahl für den ersten Tag des Monats und wird für den Dienst eingeteilt.
+Zur Erläuterung ein Beispiel: Angenommen beim Assistenten 3 ist in der Team-Verwaltung das Stichwort \enquote{FCB} hinterlegt. Wenn gleichzeitig bei den privaten Bemerkungen am ersten Tag des Monats ein \enquote{FCB} enthalten ist, so wird der Punktewert des Assistenten von 30 auf 300 verzehnfacht (vergleiche auch Tabelle \ref{tab:scoreTable4}). Damit hat Assistent 3 die höchste Punktezahl für den ersten Tag des Monats und wird für den Dienst eingeteilt.
 
 \begin{table}[htb]
 \centering
@@ -1086,9 +1135,9 @@ Tag des Monats & Private Bemerkungen & Assistent 1 & Assistent 2 & Assistent 3 \
 
 \subsection{Fünfte Version - Berücksichtigung der Stundenkontingente}
 \label{sec:algorithmVersion5}
-In der letzten Verfeinerung des Algoritmus werden die Stundenkontingente berücksichtigt. Bisher hat der Algorithmus über alle Tage iteriert und jeden Tag isoliert betrachtet. Für jeden Tag wurde ein lokales Optimum gefunden. In der Regel führt dieses Vorgehen allerdings zu einer sehr unausgewogenen Stundenverteilung unterhalb der Assistenten. Um die Stundenkontingente der Assitenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. 
+In der letzten Verfeinerung des Algorithmus werden die Stundenkontingente berücksichtigt. Bisher hat der Algorithmus über alle Tage iteriert und jeden Tag isoliert betrachtet. Für jeden Tag wurde ein lokales Optimum gefunden. In der Regel führt dieses Vorgehen allerdings zu einer sehr unausgewogenen Stundenverteilung unterhalb der Assistenten. Um die Stundenkontingente der Assistenten gleichmäßig auzuschöpfen ist es notwendig den gesamten Monat auf einmal zu betrachten. 
 
-Dazu werden die Daten in ein anderes Tabellenformat (siehe Tabelle \ref{tab:scoreTableConverted}) konvertiert. In die erste Spalte werden die Punkte (wenn sie größer Null sind) eingetragen, in der zweiten Spalte steht der Assitent und in der dritten Spalte der Tag.
+Dazu werden die Daten in ein anderes Tabellenformat (siehe Tabelle \ref{tab:scoreTableConverted}) konvertiert. In die erste Spalte werden die Punkte (wenn sie größer Null sind) eingetragen, in der zweiten Spalte steht der Assistent und in der dritten Spalte der Tag.
 \begin{table}[htb]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1143,26 +1192,28 @@ Punkte & Name & Tag \\
 \label{tab:scoreTableConvertedAndSorted}
 \end{table}
 
-Weiterhin werden alle Stundenkontingent der Assistenten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung} hinterlegt sind, zusammen addiert.
+Weiterhin werden alle Stundenkontingente der Assistenten, die in der Team-Verwaltung (siehe Abschnitt \ref{sec:TeamVerwaltung}) hinterlegt sind, zusammen addiert.
 
 Dann werden alle Dienst- und Bereitschaftsstunden zusammen addiert.
-Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingenten aller Assistenten werden um einen Prozentsatz x erhöht.
+Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht.
 %TODO noch weiter beim Beschreiben ausholen?
 
 %Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. In einer Schleife mit 1000 Durchläufen werden Dienstpläne erstellt und 
 
-Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle \ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden entsprechend verringert.
+Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zu erst werden alle Dienste vergeben, die Bereitschaften erst später. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle \ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden um die Netto-Dienststundenanzahl des Tages verringert.
 
-Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontingente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent bestimmt werden können.
-Zur Erläuterung ein Beispiel: Angenommen der Monat hätte nur 2 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden und die Bereitschafszeiten betragen jeweils 1 Stunde am Tag. Es gibt 2 Assistenten mit Stundenkontingenten von 27 und 24 Stunden, so wäre der Skalierfaktor genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
+Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontingenten wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent für den Dienst bestimmt werden können.
+
+Folgendes Beispiel soll dies erläutern. Angenommen der Monat hätte nur 3 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden. Die Summe der Dienstszeiten wäre 48. Es gibt 2 Assistenten mit Stundenkontingenten von 28 und 20 Stunden. Der Skalierfaktor wäre genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
 Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen.
 
-Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmuses eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine Stunde inkrementiert. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
+Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmus eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine Stunde inkrementiert. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
 
-Angwendet auf das oben genannte Beispiel würde der die Schleife im sechsten Durchlauf (Toleranz = 5 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 9 Stunden (27 Stunden aus dem Stundenkontingent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontingentes mit der Toleranz von 5 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
+Angwendet auf das oben genannte Beispiel würde der die Schleife im fünften Durchlauf (Toleranz = 4 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 10 Stunden (28 Stunden aus dem Stundenkontingent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontingentes mit der Toleranz von 4 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
 
-Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaften vergeben.
+Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaften vergeben. Einziger Unerschied ist, dass der Toleranzwert immer um eine halbe Stunde inkrementiert wird.
 
+%TODO sechste Version des Algorithmus
 %TODO nachfolgender Absatz versteht außer mir wohl keiner ;-)
 Durch das Randomisieren der Liste %TODO Verweis setzen
 können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu erstellen, der die Stundenkontingente möglichst gleichmäßig ausschöpft wird am Ende "gemessen" wie gut der Dienstplan ist. Die Summe der beiden Toleranzwerte (Dienst und Bereitschaft) wird gebildet. Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe wird dem Benutzer angezeigt.
@@ -1184,12 +1235,12 @@ Die Aufgaben haben folgende Eigenschaften:
 \begin{itemize}
 \item Beschreibung
 \item Fälligkeitsdatum
-\item Wiederholungstyp (nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
+\item Wiederholungstyp (wierholt sich nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
 \item Wiederholungsintervall (z. B. alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
 \end{itemize}
 
 \subsection{Gruppierung der Aufgaben}
-Die Aufgaben werden mit Hilfe ihres Fälligkeitsdatums in folgende Gruppen sortiert:
+Die Aufgaben werden an Hand ihres Fälligkeitsdatums in folgende Gruppen sortiert:
 \begin{itemize}
 \item Erledigt
 \item Heute
@@ -1205,11 +1256,11 @@ Der Klient ist als Einziger in der Lage neue Aufgaben zu erstellen. Hierfür hat 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.45]{../Images/Screenshots/ToDoManagerNewToDo.png}
-	\caption[Todo]{Aufgaben-Verwaltung: Erstellung einer neuen Aufgabe}
+	\caption[Todo]{Aufgaben-Verwaltung - Erstellunen einer neuen Aufgabe}
 	\label{fig:ToDoManagerNewToDo}
 \end{figure}
 
-Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildung \ref{fig:CalendarInput}) unterstützt. Dieser öffent sich automatisch, sobald das Eingabefeld für das Datum den Fokus bekommt und schließt sich wieder, sobald der Klient ein Datum gewählt hat oder auf "Abbrechen" klickt.
+Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildung \ref{fig:ToDoManagerDatePicker}) unterstützt. Dieser öffent sich automatisch, sobald das Eingabefeld für das Datum den Fokus bekommt und schließt sich wieder, sobald der Klient ein Datum gewählt hat oder auf \enquote{Abbrechen} klickt.
 
 \begin{figure}[htb]
 	\centering
@@ -1221,31 +1272,31 @@ Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildu
 %TODO Extension of Date-Object erläutern?
 
 \subsection{Aufgaben als erledigt markieren}
-Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie "Erledigt" sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
+Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie \enquote{Erledigt} sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
 
 Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängig machen, in dem man wieder die Checkbox links von der Aufgabenbeschreibung anklickt. Die Aufgabe ist nicht mehr durchgestrichen, wird in die richtige Kategorie (Heute, Morgen, ...) zurücksortiert und die gegebenenfalls erstellte Kopie der Aufgabe (mit neu berechnetem Fälligkeitsdatum) wird gelöscht.
 
 \subsection{Speichern}
-Um Änderungen an den Aufgaben (neu Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf "Speichern" drücken.
+Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf \enquote{Speichern} drücken.
 
 \section{Dokumentation}
 \label{sec:Dokumentation}
-Für die Benutzer des Assistenz-Planers steht jederzeit im rechten oberen Bereich ein Link Dokumentation zur Verfügung.
-Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenz-Planer arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
+Für die Benutzer des Assistenzplaners steht jederzeit im Navigations-Bereich (oben rechts) ein Link zur Verfügung, der zur Dokumentation führt.
+Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenzplaner arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
 
 Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt.
 %TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
 %TODO Fußnote?
 
 \section{Impressum}
-Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Impressum hinzugefügt. Dieses beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
+Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Seite hinzugefügt, die jederzeit über die Navigation zu erreichen ist. Diese beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
 
 \chapter{Überführung in Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
 
 Den Dienstplan für den Monat April 2014 hat der Klient noch komplett manuell erstellt.
 
-Schon bei der Dienstplanerstellung für den Mai 2014 wurde der Klient technisch unterstützt. Es war möglich die Termin-Antworten der Assistenten übersichtlich in einer Tabelle darzustellen. Somit musste der Klient nicht mehr sieben E-Mail Antworten gleichzeitig überblicken. Es war möglich Dienste und Bereitschaften manuell einzutragen und den Dienstplan zu speichern. Der Autor war dabei und hat dabei viel über die Dienstplanerstellung gelernt und erfahren worauf es dem Klienten ankommt.
+Schon bei der Dienstplanerstellung für den Mai 2014 wurde der Klient technisch unterstützt. Es war möglich die Termin-Antworten der Assistenten übersichtlich in einer Tabelle darzustellen. Somit musste der Klient nicht mehr sieben E-Mail Antworten gleichzeitig überblicken. Es war möglich Dienste und Bereitschaften manuell einzutragen und den Dienstplan zu speichern. Der Autor war bei der Dienstplanerstellung dabei und hat viel über die Hintergründe erfahren und herausfinden können worauf es dem Klienten ankommt.
 
 Bei der Dienstplanerstellung für Juni 2014 hat schon ein Algorithmus im Hintergrund gearbeitet und Dienstplanvorschläge erstellt. Der Klient hat den Dienstplan eigenständig in Anwesenheit des Autors erstellt.
 
@@ -1265,20 +1316,25 @@ Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem 
 \end{itemize}
 
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
-* wenn nicht schon in Arbeit eingeflossen, dann hier die Gespräche mit Commit und Matthias Rösch verarbeiten
+Es wurde eine Webanwendung erschaffen, die dem Klienten sehr viel Arbeit abnimmt. Der Klient ist mit der Lösung sehr zufrieden und wird in Zukunft nur noch den Assistenzplaner zur Dienstplanerstellung verwenden.
+
+Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch gibt es einige Stellen, bei denen es Verbesserungs- oder Erweiterungspotential gibt.
+
+Der Autor plant, das Projekt weiter zu führen und den \Link{http://assistenzplaner.de/PHP/index.php}{Assistenzplaner}{21.09.2014} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in \Link{https://github.com/Ulle84/AssistancePlaner}{GitHub}{21.09.2014} eingecheckt.
 
 \section{Mehr Teams}
+\Note{BAUSTELLE: Am 1.9. habe ich den Termin beim Landesbeauftragen für behinderte Menschen in Rheinland Pfalz - sein Feedback und seine Anregungen werde ich hier ggf. einfließen lassen. Weiterhin habe ich hoffenlitch im September ein Gespräch mit dem Leistungsträger von Patrick - hier erhoffe ich mir auch weiteres Feedback}
+
 * Wie kann man noch mehr Menschen bzw. Teams erreichen
 %TODO Abschnitt nach Gesprächen schreiben
 
 %TODO Werte wie 2 bei passendem Wochentag oder 10 bei passendem Stichwort evt. nochmal anpassen, wenn mehr Daten zur Verfügung stehen
 
-
-\section{Mögliche Erweiterungen}
-In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
+\section{Mögliche Verbesserungen}
+In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgestellt und diskutiert.
 
 \subsection{Speicherung in Datenbank}
-Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht weden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System ausgetauscht lassen.
+Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen.
 
 \subsection{Barrierefreiheit}
 \enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S. 28]{bremus2013barrierefreiheit}
@@ -1294,34 +1350,10 @@ Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sol
 Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S. 29]{bremus2013barrierefreiheit}} ist.
 
 \subsection{AJAX tiefer verwurzeln}
-Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich und kann schon als benutzerunfreundlich bezeichnet werden. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt direkt per AJAX an den Server geschickt werden und der Server die Daten direkt persistent ablegt.
-
-\subsection{Internationalisierung}
-Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu unterstützen wäre ein grundlegender Umbau notwendig. Weiterführende Informationen finden sich in der offiziellen \Link{http://php.net/manual/en/book.intl.php}{PHP-Dokumentation}{21.08.2014}
-
-\subsection{iCalendar Export}
-Im iCalendar-Format können Termine ausgetauscht werden. Ein Beispiel für ein Ereignis im iCalendar Format:
-
-\lstset{language=, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
-\lstinputlisting[label=lst:exampleCalendar,caption=Beispiel für ein iCalendar-Termin.]{../iCalendar/example.ics}
-
-In dem Ereignis ist der Dienst vom 22.08.2014 14:00 Uhr bis 23.08.2014 9:00 Uhr beschrieben.
-
-Für die Assistenten wäre es interessant seine Dienst- und Bereitschaftszeiten im iCalendar-Format abbonieren zu können. So hätten die Assistenten jederzeit aktuell ihre Arbeitszeiten, ohne ständig online auf dem Assistenzplaner nachschauen zu müssen. Ein iCalendar lässt sich leicht in den eigenen Online-Kalender integrieren, so dass sich die Dienst- und Bereitschaftszeiten jederzeit von unterwegs auf dem Smart-Phone einsehen lassen.
-
-\subsection{Feiertage importieren}
-Für die Erstellung des Monatsplans wäre es für den Klienten hilfreich, wenn man Feiertage importieren könnte. Im Idealfall würde sogar das Bundesland, in dem der Klient lebt, berücksichtigt werden.
-Zum Beispiel könnte man auf der Webseite \Link{http://www.ifeiertage.de}{iFeiertage}{21.08.2014} einen Feiertage-Kalender abonnieren. Dieser wäre als iCalendar verfügbar:
-
-\qquad \texttt{webcal://ifeiertage.de/rp-.ics}
-
-Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage importieren} zur Verfügung gestellt bekommt. Betätigt der Klient diesen Knopf, so werden alle Feiertage für diesen Monat in den öffentlichen Notizen eingetragen. Weiterhin werden die Dienstzeiten auf 24-stündige Dienste angepasst, da der Klient an Feiertagen rund um die Uhr Assistenz hat.
-
-\subsection{Logging}
-Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
+Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich und kann schon als benutzerunfreundlich bezeichnet werden. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt, direkt per AJAX an den Server geschickt werden und der Server die Daten direkt persistent ablegt.
 
 \subsection{Responsive Webdesign}
-Responsive (reaktionsfähiges) Webdesign bedeutet flexibel auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S. 8]{zillgens2013responsive}.
+Responsive (reaktionsfähiges) Webdesign bedeutet auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S. 8]{zillgens2013responsive}.
 
 Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig (siehe Abbildung \ref{fig:AssistancePlannerOniPhone})
 
@@ -1335,7 +1367,7 @@ Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut b
 Bei der Optimierung des Assistenzplaners für Handys muss umgedacht werden. Man muss wegkommen von dem horizontal-basierten Layout mit Spalten hin zu einem linear-vertikalen Layout. \cite[S. 67]{bieh2008mobiles}. 
 
 \subsection{Team-Übersicht überarbeiten}
-Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter und unübersichtlich geworden. Eine mögliche Alternative zur breiten Tabelle ist in Abbildung \ref{fig:SingleTeamMember} gezeigt. Für jeden Assistenten gibt es eine Übersicht der Eigenschaften.
+Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter und unübersichtlich geworden (siehe Abbildung \ref{fig:TeamTable}). Eine mögliche Alternative zur breiten Tabelle ist in Abbildung \ref{fig:SingleTeamMember} gezeigt. Für jeden Assistenten gibt es eine eigene Übersicht der Eigenschaften.
 
 \begin{figure}[htb]
 	\centering
@@ -1348,7 +1380,7 @@ Derzeit hat nur der Klient Einblick in die Team-Verwaltung. Es wäre wünschenswer
 
 \subsection{Überarbeitung der Dokumentation}
 Derzeit ist der Assistenzplaner für Klienten und Assistenten auf einer zentralen Seite (siehe Abschnitt \ref{sec:Dokumentation}) dokumentiert.
-Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Eine Möglichkeit der Realisierung besteht mit Hilfe von \Link{http://jqueryui.com/tooltip/}{jQuery UI Tooltip}{22.08.2014} (siehe Abbildung \ref{fig:jQueryUiTooltip}).
+Wünschenswert wäre es, wenn kontextsensitive Informationen zusätzlich über den gesamten Assistenzplaner an geeigneter Stelle leicht zugänglich verteilt wären. Eine Möglichkeit der Realisierung besteht mit Hilfe von \Link{http://jqueryui.com/tooltip/}{jQuery UI Tooltip}{22.08.2014} (siehe Abbildung \ref{fig:jQueryUiTooltip}).
 
 \begin{figure}[htb]
 	\centering
@@ -1356,6 +1388,33 @@ Wünschenswert wäre es, wenn die Informationen zusätzlich über den gesamten Assis
 	\caption[ToDo]{Sobald der Benutzer in das Feld \enquote{Lastname} klickt, bekommt er einem Hilfstext (Tooltip) angezeigt. Screenshot wurde am 22.08.2014 auf der Webseite http://jqueryui.com/tooltip/ aufgenommen.}
 	\label{fig:jQueryUiTooltip}
 \end{figure}
+
+\section{Mögliche Erweiterungen}
+In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
+
+\subsection{Internationalisierung}
+Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu unterstützen wäre ein grundlegender Umbau notwendig. Weiterführende Informationen finden sich in der offiziellen \Link{http://php.net/manual/en/book.intl.php}{PHP-Dokumentation}{21.08.2014}
+
+\subsection{iCalendar Export}
+Im iCalendar-Format können Termine ausgetauscht werden. Ein Beispiel für ein Ereignis im iCalendar Format:
+
+\lstset{language=, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:exampleCalendar,caption=Beispiel für ein iCalendar-Termin.]{../iCalendar/example.ics}
+
+In dem Ereignis ist der Dienst vom 22.08.2014 14:00 Uhr bis 23.08.2014 9:00 Uhr beschrieben.
+
+Für die Assistenten wäre es interessant ihre Dienst- und Bereitschaftszeiten im iCalendar-Format abbonieren zu können. So hätten die Assistenten jederzeit aktuell ihre Arbeitszeiten, ohne ständig online auf dem Assistenzplaner nachschauen zu müssen. Ein iCalendar lässt sich leicht in den eigenen Online-Kalender integrieren, so dass sich die Dienst- und Bereitschaftszeiten jederzeit von unterwegs auf dem Smart-Phone einsehen lassen.
+
+\subsection{Feiertage importieren}
+Für die Erstellung des Monatsplans wäre es für den Klienten hilfreich, wenn man Feiertage importieren könnte. Im Idealfall würde sogar das Bundesland, in dem der Klient lebt, berücksichtigt werden.
+Zum Beispiel könnte man auf der Webseite \Link{http://www.ifeiertage.de}{iFeiertage}{21.08.2014} einen Feiertage-Kalender abonnieren. Dieser wäre als iCalendar verfügbar:
+
+\qquad \texttt{webcal://ifeiertage.de/rp-.ics}
+
+Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage importieren} zur Verfügung gestellt bekommt. Betätigt der Klient diesen Knopf, so werden alle Feiertage für diesen Monat in den öffentlichen Notizen eingetragen. Weiterhin werden die Dienstzeiten auf 24-stündige Dienste angepasst, da der Klient an Feiertagen rund um die Uhr Assistenz hat.
+
+\subsection{Logging}
+Derzeit ist nicht nachvollziehbar, wer wann was am Assistenzplaner gemacht hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu haben, in dem man sehen kann, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
 
 \subsection{Aufgaben-Verwaltung erweitern}
 Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Klient entschieden die Aufgaben-Verwaltung für sein Team nicht einzusetzen, da der Mehraufwand durch die Verwaltung zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung schon nach einer Woche wieder eingestellt. Für andere Modelle in der Pflege wäre es aber evt. von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
@@ -1370,7 +1429,9 @@ Aufgaben lassen sich derzeit nur anlegen, nicht im Nachhinein verändern. Eine Ed
 Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
 
 \subsubsection{Übersicht über erledigte Aufgaben}
-Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man nachvollziehen kann, welcher Assistent wann was erledigt hat.
+Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man nachvollziehen könnte, welcher Assistent wann welche Aufgabe erledigt hat.
+
+\Note{So, mein liebster Masterarbeits-Buddy ;-) Hast es geschafft, der Rest ist automatisch generiert bzw. nicht vollständig. Vielen Dank fürs Durchkämpfen! :-)}
 
 % Literaturverzeichnis ---------------------------------------------------------
 %   Das Literaturverzeichnis wird aus der BibTeX-Datenbank
