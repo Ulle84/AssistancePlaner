@@ -64,20 +64,25 @@
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
-%TODO Captions (Bildunterschriften) überprüfen
-
 \addchap{Abstract}
 \label{sec:Abstract}
 %TODO Abstract am Ende auf Englisch schreiben
 %TODO von Justin querlesen lassen
+\Note{Gut das ich einen amerikanischen Schwip-Schwager habe, der mir neulich ins Garangentor gefahren ist und mir noch einen Gefallen schuldet :-D Er wird die Übersetzung hoffentlich machen.}
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
--> Assistenzplaner.de/master
-* webbasierte Anwendung -> Zusammenarbeit über das Internet
-	* Assistenz-Teams zu verwalten
-	* Dienstpläne zu erstellen
-	* Aufgaben der Assistenten zu verwalten
+%TODO Überarbeitung
+Um einen körperlich behinderten Menschen (Klienten) und sein Team (bestehend aus Assistenten) bei der Dienstplanerstellung zu unterstüzen wurde die serverbasierte Anwendung \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} geschaffen.
+
+Mit dem Assistenzplaner ist es unter anderem möglich:
+\begin{itemize}
+\item Assistenz-Teams zu verwalten
+\item automatisiert Dienstpläne zu erstellen
+\item Aufgaben der Assistenten zu verwalten
+\end{itemize}
+
+\Note{Hey Buddy, hier bin ich besonders auf Dein Feedback angewiesen - ich bin so tief in dem Thema drin, dass ich das Gefühl habe gar nicht mehr zusammenfassend sagen zu können, was der Assistenzplaner ist.}
 
 \addchap{Danksagung}
 %TODO Melanie?
@@ -94,6 +99,8 @@ Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf 
 Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamten Studiums verständnisvoll unterstützt und mir den Rücken frei gehalten. %TODO Anregungen und Verbesserungsvorschläge
 
 \tableofcontents % Inhaltsverzeichnis
+
+%TODO alle chapters durchscahuen und gucken, dass am Anfang immer eine Einleitung steht (sofern notwendig)
 
 \chapter{Motivation}
 Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
@@ -269,11 +276,12 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 \lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument.]{../PHP/example.php}
 
 \section{Modellierungssprachen}
-%TODO nachfolgende Sätze überdenken...
 Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen kann man komplexe Systeme konstruieren. Durch mehrere Abstraktionsebenen behält man die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
 
 \subsection{UML}
-Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml} 
+Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml}
+
+\Note{Evt. werde ich noch näher auf die Diagrammtypen eingehen, die ich verwendet habe - das werde ich entscheiden, wenn ich mit der Diagramm-Erstellung fertig bin. Was meinst Du zu dem Thema?}
 
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
@@ -281,17 +289,18 @@ Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dok
 \subsection{SysML}
 \NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
 
+\Note{Hier wollte ich evt. noch das Anforderungsdiagramm und die verwendeten Beziehungen zwischen den Anforderungen (containment, satisfy, ...) beschreiben, oder geht das dann zu tief?}
+
 
 %TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
 % alle verwendeten Komponenten der SysML erläutern (Konnektoren: containment, satisfy, allgemeine Verbindung)
 
 
 \chapter{Anforderungsermittlung}
-%TODO Einleitung schreiben
+In diesem Kapitel werden die Anforderungen dargestellt. Neben den konkreten Benutzergeschichten, die von den zukünftigen Benutzern formuliert wurden, werden auch nicht explizit erwähnte Anforderungen festgehalten.
+
 \section{Begrifflichkeiten}
 In diesem Abschnitt werden einige Begriffe erläutert, die im Folgenden häufig verwendet werden.
-
-%TODO Individuelle schwerstbehindertenbetreuung -> eigene section? Literatur verfügbar?
 
 \subsection{Klient}
 Der Klient ist ein körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist. Im Rahmen der  individuellen Schwerstbehindertenbetreuung bekommt er Assistenten an die Seite gestellt. Mit Hilfe seiner Assistenten kann er ein selbstbestimmtes Leben führen.
@@ -322,12 +331,11 @@ Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komp
 Die Assistenten haben auf diese E-Mail geantwortet und darin beschrieben wann sie Zeit für Dienste haben.
 Der Klient hat manuell den Dienstplan erstellt und musste dabei ständig zwischen seiner Tabelle und allen Antworten des Teams (sieben an der Zahl) wechseln. Nach der Fertigstellung des Dienstplans hat der Klient eine E-Mail mit dem Dienstplan an sein Team geschickt.
 Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden im Monat) und Nerven gekostet.
-%TODO Ablaufdiagramm?
 
 \section{Soll-Prozess}
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
 Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
-Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf unter eine halbe Stunde.
+Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf wenige Minuten.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
 \Note{Hier kommt wahrscheinlich (wie von Dir angeregt) noch ein Ablaufdiagramm hin.}
@@ -539,7 +547,6 @@ Akzeptanzkriterien:
 
 \section{Abgeleitete Anforderungen}
 Aus den Benutzergeschichten ergeben sich einige abgeleitete Anforderungen, die zwar nicht explizit erwähnt wurden, aber für eine technische Umsetzung zwingend notwendig sind.
-%TODO weitere abgeleitete Anforderungen?
 
 \subsection{Plattformunabhägigkeit}
 Die Software-Lösung soll sich auf unterschiedlichen Geräte-Kategorien (z .B. Handy, Tablet, Desktop) bedienen lassen können. Weiterhin sollen die größten Betriebssysteme (Windows, Linux, MacOS X, Android, iOS) unterstützt werden.
@@ -558,7 +565,6 @@ Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten 
 %TODO schreiben
 % es war zwar nicht explizit vom Klienten gewünscht, aber doch testweise umgesetzt worden.
 \Note{BAUSTELLE - muss ich noch schreiben}
-
 
 \chapter{Marktanalyse}
 Bevor eine Lösung doppelt entwickelt wird, ist es ratsam zu recherchieren, was es schon auf dem Markt gibt.
@@ -800,7 +806,6 @@ Bei den Standard-Dienstzeiten (siehe Abbildung \ref{fig:DefaultTimes}) hat der K
 
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
-%TODO Referenzen auf Requirement-Abschnitt?
 %Der Klient braucht eine Möglichkeit um sein Assistenz-Team zu verwalten. Der Klient möchte Team-Mitglieder hinzufügen, editieren und löschen. Weiterhin möchte er das Passwort eines Assistenten zurücksetzen können.
 
 Mit der Team-Verwaltung kann der Klient die Eigenschaften seiner Team-Mitglieder verwalten.
@@ -856,7 +861,6 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 
 \section{Kalender}
 \label{sec:calendar}
-%TODO Wo kommen die Dienstzeiten her und wie sind diese zu interprätieren?
 
 Mit Hilfe des Kalenders (siehe Abbildung \ref{fig:CalendarInput}) kann ein Assistent die Termine eintragen, an denen er Dienst machen kann. Durch einen Klick auf ein Datum ändert sich der Zustand des Datums und damit auch die Hintergrundfarbe.
 Rot bedeuetet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, dass der Assistent zur Not verfügbar wäre. Grün bedeutet, dass der Assistent an dem Datum uneingeschränkt zur Verfügung steht.
@@ -914,7 +918,7 @@ Unterhalb der Dienstplantabelle ist eine weitere Tabelle (siehe Abbildung \ref{f
 	\label{fig:RosterClient2}
 \end{figure}
 
-In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden plus Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden. %TODO Link auf entsprechenden Abschnitt
+In der zweiten Spalte sind die zusammengerechneten Arbeitsstunden (Dienststunden plus Bereitschaftsstunden) aufgeführt. In der dritten Spalte sieht man die benötigten Arbeitsstunden.
 In der vierten Spalte wird die Differenz zwischen Spalte 2 und 3 berechnet. In der fünften Spalte ist die Differenz (Spalte 4) ins Verhältnis der benötigten Arbeitsstunden (Spalte 3) gesetzt und prozentual ausgedrückt. Die Zeilen werden farblich hinterlegt:
 \begin{itemize}
 \item Grün: Der Betrag der prozentualen Abweichung (Spalte 5) ist kleiner 10\% 
@@ -952,7 +956,6 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung \ref{fig:
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 \label{sec:algorithm}
-%TODO Version 5 in 5 und 6 aufteilen? Randomisierung hervorheben
 Im folgenden Abschnitt wird erläutert, was die Anforderungen an den Algorithmus zur Dienstplanerstellung sind und wie der Algorithmus entwickelt und iterativ verfeinert worden ist.
 
 \subsection{Anforderungen}
@@ -1197,9 +1200,6 @@ Weiterhin werden alle Stundenkontingente der Assistenten, die in der Team-Verwal
 
 Dann werden alle Dienst- und Bereitschaftsstunden zusammen addiert.
 Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht.
-%TODO noch weiter beim Beschreiben ausholen?
-
-%Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. In einer Schleife mit 1000 Durchläufen werden Dienstpläne erstellt und 
 
 Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zu erst werden alle Dienste vergeben, die Bereitschaften erst später. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle \ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden um die Netto-Dienststundenanzahl des Tages verringert.
 
@@ -1290,7 +1290,6 @@ Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine ander
 
 Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt.
 %TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
-%TODO Fußnote?
 
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Seite hinzugefügt, die jederzeit über die Navigation zu erreichen ist. Diese beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
@@ -1311,20 +1310,21 @@ Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen 
 Durch die iterative Vorgehensweise hat sich der Klient sehr gut eingebunden gefühlt. Er konnte in regelmäßigen Intervallen den aktuellen Stand der Software sehen und sein Feedback äußern, was direkt in die weitere Entwicklung eingeflossen ist.
 
 \chapter{Ergebnis}
-Der Assistenzplaner wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage
+Der \LinkWithoutDate{http://assistenzplaner.de/master}{Assistenzplaner} wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage
 \begin{itemize}
 \item Assistenz-Teams zu verwalten
 \item Dienstpläne zu erstellen
 \item Aufgaben für die Assistenz-Teams zu verwalten
-%TODO noch mehr?
 \end{itemize}
+
+Die Webanwendung wurde mit vielen gängigen Browsern (Firefox, Chrome, Safari) erfolgreich getestet.
 
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
 Es wurde eine Webanwendung erschaffen, die dem Klienten sehr viel Arbeit abnimmt. Der Klient ist mit der Lösung sehr zufrieden und wird in Zukunft nur noch den Assistenzplaner zur Dienstplanerstellung verwenden. Alle gewünschten Benutzergeschichten (siehe Abschnitt \ref{sec:userstories}) wurden umgesetzt.
 
 Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch gibt es einige Stellen, bei denen es Verbesserungs- oder Erweiterungspotential gibt.
 
-Der Autor plant, das Projekt weiter zu führen und den \Link{http://assistenzplaner.de/PHP/index.php}{Assistenzplaner}{15.09.2014} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in \Link{https://github.com/Ulle84/AssistancePlaner}{GitHub}{15.09.2014} eingecheckt.
+Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt.
 
 \section{Mehr Teams}
 \Note{BAUSTELLE: Am 1.9. habe ich den Termin beim Landesbeauftragen für behinderte Menschen in Rheinland Pfalz - sein Feedback und seine Anregungen werde ich hier ggf. einfließen lassen. Weiterhin habe ich hoffenlitch im September ein Gespräch mit dem Leistungsträger von Patrick - hier erhoffe ich mir auch weiteres Feedback}
@@ -1332,7 +1332,6 @@ Der Autor plant, das Projekt weiter zu führen und den \Link{http://assistenzplan
 * Wie kann man noch mehr Menschen bzw. Teams erreichen
 %TODO Abschnitt nach Gesprächen schreiben
 
-%TODO Werte wie 2 bei passendem Wochentag oder 10 bei passendem Stichwort evt. nochmal anpassen, wenn mehr Daten zur Verfügung stehen
 
 \section{Mögliche Verbesserungen}
 In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgestellt und diskutiert.
@@ -1490,20 +1489,7 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 * GitHub
 * Cyberduck (FTP-Client)
 
-* Firefox, Safari, FireBug
-
-\section{Verwendete Hardware}
-\subsection{Entwickler-Laptop}
-%TODO diesen Abschnitt wirklich schreiben?
-MacBook Pro
-
-\subsection{Server}
-%phpInfo ausführen und informationen abschreiben
-
-\subsection{Webseiten}
-% wichtige verwendete Webseiten-Zitate als PDF abspeichern und einbinden - kann man sich damit das "zuletzt abgerufen am" sparen?
-
-    
+* Firefox, Safari, FireBug   
     
 % \input{Quellcode}
 \end{appendix}
