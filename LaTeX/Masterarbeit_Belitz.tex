@@ -108,7 +108,7 @@ Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur
 Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
-In diesem Kapitel werden die technischen Grundlagen für das Verständnis der Arbeit gelegt.
+In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
 
 \section{Netzwerke und Internet}
 
@@ -662,8 +662,7 @@ Alle Klassen und deren Beziehungen sind in Abbildung \ref{fig:UMLClassDiagram} z
 
 \chapter{Implementierung}
 %TODO nachfolgenden Satz am Ende nochmal prüfen
-In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden.
-Die Programmiersprachen werden gewählt...
+In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Der Schwerpunkt liegt auf der Darstellung der Ergebnisse.
 
 \section{Wahl der Programmiersprachen}
 Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
@@ -683,9 +682,12 @@ Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 %TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
 
+%TODO schreiben?
 %\section{Programmierung}
-%Neben der PHP-Klassen (siehe Abbildung \ref{UML Klassendiagramm}) wurden einige PHP-Skripte, JavaScript
-%TODO entscheiden, ob ich diesen Abschnitt schreibe
+%\Note{Im nachfolgenden Satz fehlt noch der Abbildungs-Link, da das Design-Kapitel noch nicht vollständig ist.}
+%Neben der PHP-Klassen (siehe Abbildung %TODO Link auf Klassendiagramme
+%) sind weitere PHP, JavaScript und CSS-Dateien entstanden. Details dazu finden sich in Abschnitt %TODO Link auf Anhang
+
 
 \section{Persistenz der Daten}
 Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
@@ -1217,12 +1219,13 @@ Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaft
 Durch das Randomisieren der Liste (siehe Tabelle \ref{tab:scoreTableConvertedAndSorted}) können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu wählen, der die Stundenkontingente möglichst gleichmäßig ausschöpft werden 1000 Dienstpläne erstellt und am Ende ermittelt wie gut jeder Dienstplan ist. Als Metrik dient die Summe der beiden Toleranzwerte (Dienst und Bereitschaft). Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe der Toleranzwerte wird dem Benutzer angezeigt.
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
-\Note{Hier kommt evt. noch eine grafische Darstellung des Algorithmus als Ablaufdiagramm hin}
+%TODO Pseudocode?
+\Note{Hier kommt evt. noch eine grafische Darstellung des Algorithmus als Ablaufdiagramm hin. Oder Pseudocode? Was würdest Du machen?}
 
 \subsection{Performance des Algorithmus}
 Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese \enquote{Wartezeit} vertretbar.
 
-Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{Vorsicht vor Optimierungen}{29.08.2014} von Clean Code Developer wurde vorerst davon abgesehen.
+Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde vorerst davon abgesehen.
 
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
@@ -1324,12 +1327,12 @@ Es wurde eine Webanwendung erschaffen, die dem Klienten sehr viel Arbeit abnimmt
 
 Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch gibt es einige Stellen, bei denen es Verbesserungs- oder Erweiterungspotential gibt.
 
-Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt.
+Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt.
 
 \section{Mehr Teams}
-\Note{BAUSTELLE: Am 1.9. habe ich den Termin beim Landesbeauftragen für behinderte Menschen in Rheinland Pfalz - sein Feedback und seine Anregungen werde ich hier ggf. einfließen lassen. Weiterhin habe ich hoffenlitch im September ein Gespräch mit dem Leistungsträger von Patrick - hier erhoffe ich mir auch weiteres Feedback}
+\Note{BAUSTELLE: Am 1.9. habe ich den Termin beim Landesbeauftragen für behinderte Menschen in Rheinland Pfalz - sein Feedback und seine Anregungen werde ich hier ggf. einfließen lassen. Weiterhin habe ich hoffenltich im September ein Gespräch mit einer Vertreterin des Leistungsträgers von Patrick - hier erhoffe ich mir auch weiteres Feedback}
 
-* Wie kann man noch mehr Menschen bzw. Teams erreichen
+* Wie kann man noch mehr Menschen bzw. Teams erreichen?
 %TODO Abschnitt nach Gesprächen schreiben
 
 
@@ -1453,6 +1456,7 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 
 % Anhang -----------------------------------------------------------------------
 \begin{appendix}
+\chapter{Verzeichnisse}
 \listoftables
 
 \listoffigures
@@ -1470,6 +1474,9 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 * Ordnerstruktur erklären
 
 \chapter{Hintergrundinformationen}
+
+%\section{Kurzinformation zu }
+
 \section{Verzeichnisstruktur auf Server}
 *PHP
 *HTML
@@ -1479,6 +1486,10 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 
 
 \section{Verwendete Software}
+In diesem Abschnitt wird erläutert, welche Software eingesetzt wurde.
+
+
+
 * PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
    * PhpMailer
    * FPDF
