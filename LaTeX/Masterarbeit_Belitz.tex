@@ -229,6 +229,12 @@ Ein Beispiel für ein JavaScript-Dokument findet sich in Listing \ref{lst:example
 \lstset{language=Java, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleJavaScript,caption=Beispiel für ein JavaScript-Dokument.]{../JavaScript/example.js}
 
+%Sehr nützlich ist der Protoyping-Mechanismus von JavaScript. 
+Bei JavaScript sind einige Objekte jederzeit verfügbar (z. B. \texttt{RegExp}, \texttt{Date}, \texttt{window}). Diese Objekte lassen sich auch zur Laufzeit noch um Funktionalität erweitern. Dies geschieht über den Prototyping-Mechanismus. Ein Beispiel findet sich in Listing \ref{lst:javaScriptProto}. Hier wird das bestehende \texttt{Date}-Objekt um die Funktion \texttt{addYears(number)} erweitert.
+
+\lstset{language=Java, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:javaScriptProto,caption=Beispiel für die Erweiterung eines bestehenden Objekts in JavaScript]{../JavaScript/examplePrototype.js}
+
 \subsection{Zusammenarbeit HTML, CSS und JavaScript}
 HTML, CSS und JavaScript arbeiten ergänzen sich gegenseitig. Wenn man der Idee von \cite[S. 8]{teague2011css3} folgt, dann ergeben die drei Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
 
@@ -310,7 +316,7 @@ Der Assistent ist ein Helfer, der den Klienten pflegt und ihn im alltäglichen Le
 
 \subsection{Team}
 Der Klient muss rund um die Uhr mit Assistenz unterstützt werden. Dafür bedarf es eines Teams.
-Das Team eines Klienten besteht aus mehreren Assistenten. In dem kronketen Fall sind es sieben Assistenten.
+Das Team eines Klienten besteht aus mehreren Assistenten. In dem konkreten Fall sind es sieben Assistenten.
 
 \subsection{Dienst}
 Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. 
@@ -1276,8 +1282,6 @@ Bei der Auswahl des Fälligkeitsdatums wird er duch einen Kalender (siehe Abbildu
 	\label{fig:ToDoManagerDatePicker}
 \end{figure}
 
-%TODO Extension of Date-Object erläutern?
-
 \subsection{Aufgaben als erledigt markieren}
 Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links von der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie \enquote{Erledigt} sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
 
@@ -1327,20 +1331,30 @@ Es wurde eine Webanwendung erschaffen, die dem Klienten sehr viel Arbeit abnimmt
 
 Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch gibt es einige Stellen, bei denen es Verbesserungs- oder Erweiterungspotential gibt.
 
-Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt.
+Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt. So hat jeder die Möglichkeit sich den Assitenzplaner auf dem eigenen Server einzurichten.
 
 \section{Mehr Teams}
-\Note{BAUSTELLE: Am 1.9. habe ich den Termin beim Landesbeauftragen für behinderte Menschen in Rheinland Pfalz - sein Feedback und seine Anregungen werde ich hier ggf. einfließen lassen. Weiterhin habe ich hoffenltich im September ein Gespräch mit einer Vertreterin des Leistungsträgers von Patrick - hier erhoffe ich mir auch weiteres Feedback}
+Der Assistenzplaner ist derzeit (September 2014) eine spezialisierte Lösung für einen Klienten mit seinem Team.
+Der Autor hatte am 01.09.2014 ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch}{02.09.2014}. Hier hat er den Assistenzplaner vorgestellt und sich vom Landesbeauftragen einige Ansprechpartner im Bereich Assistenzplanung nennen lassen. Der Landesbeauftrage hat selber sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner.
 
-* Wie kann man noch mehr Menschen bzw. Teams erreichen?
-%TODO Abschnitt nach Gesprächen schreiben
+Der Autor hofft, dass sich noch ein paar Beta-Tester bereit erklären den Assistenzplaner einzusetzten. Sicherlich werden auch noch einige Anforderungen hinzu kommen, da jeder Klient mit seinem Team einen anderen Prozess und verschiedene Rahmenbedingungen bei der Dienstplanerstellung hat.
+
+Sobald der Assistenzplaner von einigen Klienten mit ihren Teams erfolgreich erprobt ist, möchte der Autor den Assistenzplaner öffentlich bewerben\footnote{Der Autor hat keinerlei finanzielles Interesse. Die Nutzung des Assistenzplaner ist kostenlos und wird es auch immer bleiben!}. Einige mögliche Kanäle sind nachfolgend aufgezählt:
+
+\begin{itemize}
+\item \Link{http://inklusion-blog.rlp.de}{Blog von Matthias Rösch, Landesbeauftragter für die Belange behinderter Menschen in Rheinland-Pfalz}{02.09.2014}
+\item \Link{http://www.kobinet-nachrichten.org}{kobinet Nachrichten - Online Nachrichten von und für behinderte Menschen}{02.09.2014}
+\item \Link{http://www.forsea.de}{ForseA - Forum selbstbestimmter Assistenz behinderter Menschen e.V.}{02.09.2014}
+\item Flyer im \Link{http://www.zsl-mz.de}{ZSL Mainz}{02.09.2014}, \Link{http://www.zsl-bad-kreuznach.org}{ZSL Bad Kreuznach}{02.09.2014}, \Link{http://www.commit-cbf.de}{Commit Mainz}{02.09.2014} und weiteren Einrichtungen hinterlegen
+\item Nachricht über den E-Mail-Verteiler des Landesbeauftragen
+\end{itemize}
 
 
 \section{Mögliche Verbesserungen}
 In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgestellt und diskutiert.
 
 \subsection{Speicherung in Datenbank}
-Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen.
+Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen und keinerlei Anforderungen an den Server (bezüglich einer Datenbank) gestellt werden.
 
 \subsection{Barrierefreiheit}
 \enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S. 28]{bremus2013barrierefreiheit}
@@ -1405,6 +1419,9 @@ Serverseitig sei das PHP-Framework \Link{http://symfony.com}{Symfony2}{29.08.201
 \section{Mögliche Erweiterungen}
 In diesem Abschnitt werden mögliche Erweiterungen des Assistenzplaners vorgestellt und diskutiert.
 
+\subsection{Mehrere Dienste pro Tag}
+Derzeit ist nur ein Dienst pro Tag planbar. Um noch mehr Klienten zu erreichen wäre es sinnvoll, wenn man mehrere Dienste pro Tag planen könnte.
+
 \subsection{Internationalisierung}
 Derzeit ist der Assistenzplaner komplett in Deutsch. Um auch andere Sprachen zu unterstützen wäre ein grundlegender Umbau notwendig. Weiterführende Informationen finden sich in der offiziellen \Link{http://php.net/manual/en/book.intl.php}{PHP-Dokumentation}{21.08.2014}
 
@@ -1456,7 +1473,7 @@ Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man na
 
 % Anhang -----------------------------------------------------------------------
 \begin{appendix}
-\chapter{Verzeichnisse}
+%\chapter{Verzeichnisse}
 \listoftables
 
 \listoffigures
