@@ -100,8 +100,6 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 
 \tableofcontents % Inhaltsverzeichnis
 
-%TODO alle chapters durchscahuen und gucken, dass am Anfang immer eine Einleitung steht (sofern notwendig)
-
 \chapter{Motivation}
 Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
@@ -667,8 +665,7 @@ Alle Klassen und deren Beziehungen sind in Abbildung \ref{fig:UMLClassDiagram} z
 
 
 \chapter{Implementierung}
-%TODO nachfolgenden Satz am Ende nochmal prüfen
-In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Der Schwerpunkt liegt auf der Darstellung der Ergebnisse.
+In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Der Schwerpunkt liegt auf der Darstellung der Ergebnisse\footnote{Der Autor hat sich gegen die Darstellung und Beschreibung von Quellcode entschieden. Der interessierte Leser kann den Quellcode auf der beiliegenden CD oder bei GitHub (\url{https://github.com/Ulle84/AssistancePlaner}) einsehen}.
 
 \section{Wahl der Programmiersprachen}
 Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
@@ -1408,6 +1405,12 @@ Wünschenswert wäre es, wenn kontextsensitive Informationen zusätzlich über den g
 	\caption[Beispiel Tooltip]{Sobald der Benutzer in das Feld \enquote{Lastname} klickt, bekommt er einem Hilfstext (Tooltip) angezeigt. Screenshot wurde am 22.08.2014 auf der Webseite http://jqueryui.com/tooltip/ aufgenommen.}
 	\label{fig:jQueryUiTooltip}
 \end{figure}
+
+\subsection{Erhöhung der Sicherheit}
+* Passwortlänge
+* Hin und wieder neues Passwort vergeben
+* Passwortinhalt - Buchstaben + Zahlen
+* Captcha beim Anlegen eines neuen Klienten-Kontos
 
 \subsection{Verwendung von Frameworks}
 Derzeit ist alles \enquote{zu Fuß programmiert}. Der Autor hat sich bewusst gegen den Einsatz von Frameworks entschieden, um den Einarbeitungsaufwand gering zu halten.
