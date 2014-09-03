@@ -1,5 +1,7 @@
 <?php
 
+require_once 'TeamOrganisationInterface.php';
+
 require_once 'AssistanceInput.php';
 require_once 'Team.php';
 require_once 'MonthPlan.php';

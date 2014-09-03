@@ -1,12 +1,14 @@
 <?php
 
+require_once 'MonthOrganisationInterface.php';
+
 require_once 'Day.php';
 require_once 'functions.php';
 require_once 'WorkingTimes.php';
 require_once 'AssistanceInput.php';
 require_once 'Settings.php';
 
-class MonthPlan
+class MonthPlan implements MonthOrganisationInterface
 {
     public $year;
     public $month;
@@ -51,6 +53,10 @@ class MonthPlan
             $this->days[$i]->calculateWorkingHours();
         }
 
+    }
+
+    public function getDays() {
+        return $this->days;
     }
 
     private function initWeekdays()

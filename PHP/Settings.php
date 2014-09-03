@@ -1,6 +1,8 @@
 <?php
 
-class Settings
+include_once 'SettingsInterface.php';
+
+class Settings implements SettingsInterface
 {
     public $standardPassword;
     public $adminName;
@@ -18,6 +20,10 @@ class Settings
 
         $this->fileName = "../Data/" . $adminName . "/Organization/settings.txt";
         $this->readFromFile();
+    }
+
+    public function getAdminName() {
+        return $this->adminName;
     }
 
     public function readFromFile()

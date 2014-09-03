@@ -1,10 +1,12 @@
 <?php
 
+require_once 'TeamOrganisationInterface.php';
+
 require_once 'TeamMember.php';
 require_once 'functions.php';
-require_once 'Settings.php'; //TODO should be removed
 
-class Team
+
+class Team implements TeamOrganisationInterface
 {
     private $tableId = "teamTable";
     private $fileName;
