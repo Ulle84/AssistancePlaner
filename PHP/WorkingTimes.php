@@ -60,7 +60,7 @@ class WorkingTimes
         echo '<tr>';
         echo '<th>Wochentag</th>';
         echo '<th>Dienstbeginn</th>';
-        echo '<th>Dienstende</th>';
+        echo '<th>Dienstende (am Folgetag)</th>';
         echo '</tr>';
 
         $weekdays = get_weekdays();
