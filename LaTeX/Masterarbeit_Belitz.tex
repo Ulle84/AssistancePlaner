@@ -98,20 +98,21 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \tableofcontents % Inhaltsverzeichnis
 
 \chapter{Motivation}
-Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
+Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden \enquote{Klient} genannt), der auf persönliche Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher erstellte der Klient den Dienstplan jeden Monat manuell. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen mögliche Arbeits-Termine enthalten waren) und einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das manuelle Erstellen des Dienstplans dauerte ca. vier Stunden pro Monat.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
 
 \section{Netzwerke und Internet}
+%TODO das komplette Kapitel ist ein Zitat von Comer -> vielleicht kann man mehr Quellen berücksichtigen?
 
 \subsection{Client/Server-Paradigma}
-\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S. 405]{comer2002computernetzwerke}
+\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S.~405]{comer2002computernetzwerke}
 
 \subsection{Clientsoftware}
-Nach \cite[S. 406]{comer2002computernetzwerke} hat die Clientsoftware unter anderem folgende Merkmale:
+Nach \cite[S.~406]{comer2002computernetzwerke} weist die Clientsoftware unter anderem folgende Merkmale auf:
 \begin{itemize}
 \item Sie \enquote{ist ein Anwendungsprogramm, die vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt.}
 \item Sie \enquote{läuft lokal auf dem Personalcomputer eines Benutzers}
@@ -121,11 +122,11 @@ Nach \cite[S. 406]{comer2002computernetzwerke} hat die Clientsoftware unter ande
 
 
 \subsection{Serversoftware}
-Nach \cite[S. 406]{comer2002computernetzwerke} hat die Serversoftware unter anderem folgende Merkmale:
+Nach \cite[S.~406]{comer2002computernetzwerke} weist die Serversoftware unter anderem folgende Merkmale auf:
 \begin{itemize}
 \item Sie \enquote{ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber auch gleichzeitig mehrere entfernte Clients bedienen}.
 \item Sie \enquote{läuft auf einem gemeinsam genutzten Computer.}
-\item Sie \enquote{wartet passiv auf deie Verbindungsaufnahme durch einen entfernten Client.}
+\item Sie \enquote{wartet passiv auf die Verbindungsaufnahme durch einen entfernten Client.}
 \item Sie \enquote{nimmt den Kommunikationswunsch von beliebigen Clients entgegen, bietet aber nur einen Dienst.}
 \item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
 \end{itemize}
@@ -142,16 +143,15 @@ Ein Beispiel für eine URL ist die Startseite des Assitenzplaners:
 \qquad http://assistenzplaner.de/index.html
 
 \subsection{Browser}
-\enquote{Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.} \cite[S. 489]{comer2002computernetzwerke} 
+\enquote{Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.} \cite[S.~489]{comer2002computernetzwerke} 
 
 \subsection{Link}
 \label{sec:Link}
-Link ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S. 496]{comer2002computernetzwerke} 
+Link (manchmal auch Hyperlink) ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S.~496]{comer2002computernetzwerke} 
 
 
 \subsection{HTTP}
-\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}.
-HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S. 497]{comer2002computernetzwerke}.
+\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}. HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S.~497]{comer2002computernetzwerke}
 
 \enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
 \begin{itemize}
@@ -160,42 +160,42 @@ HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server 
 \item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
 \item \Fachbegriff{PUT} sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
 \end{itemize}
-Ein Browser erzeugt eine HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S. 497]{comer2002computernetzwerke}
+Ein Browser erzeugt eine HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S.~497]{comer2002computernetzwerke}
 
 \subsection{Webdokumente}
 \label{sec:webdokumente}
-Es gibt drei verschiedene Typen von Webdokumenten \cite[S. 508]{comer2002computernetzwerke}:
+Es gibt drei verschiedene Typen von Webdokumenten \cite[S.~508]{comer2002computernetzwerke}:
 \begin{itemize}
 \item Statisch: Das Dokument ist fest in einer Datei definiert. Der Autor bestimmt einmalig bei Erstellung den Inhalt. Jede Anfrage an das statische Dokument führt zeitlich unabhänig zur identischen Ausgabe. Das statische Verhalten kann technisch mit starren HTML-Seiten realisiert werden.
 \item Dynamisch: Das Dokument ist nicht fest definiert. Sobald eine Anfrage an den Webserver gestellt wird, wird das dynamische Webdokument zusammengestellt. Der Inhalt des dynamischen Dokumentes kann sich von Anfrage zu Anfrage ändern. Das dynamische Verhalten kann mit Server-Script-Sprachen wie z. B. PHP realisiert werden. 
-\item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Sript-Sprachen wie z. B. JavaScript realisiert werden.
+\item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Script-Sprachen wie z. B. JavaScript realisiert werden.
 \end{itemize}
 
 \subsection{Cookie}
-\enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S. 514f]{comer2002computernetzwerke}
+\enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S.~514f]{comer2002computernetzwerke}
 
 \section{Web-Technologien}
 \subsection{XML}
 \label{sec:XML}
-\NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML ist es möglich hierarchisch strukturierter Daten darzustellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es ein Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant} die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten haben. Die Kinderknoten (\texttt{Assistant}) haben wiederum eigene Kinderknoten (\texttt{Name} und \texttt{eMailAddress}). Die Schachtelung der Knoten kann beliebig tief erfolgen.
+\NewAbb{XML}{Extensible Markup Language} ist eine Auszeichnungssprache. Mit XML lassen sich hierarchisch strukturierter Daten darstellen. Mit den textbasierten XML-Dateien ist es leicht möglich Daten zwischen Systemen auszutauschen. Die XML-Dateien sind für den Menschen gut lesbar. Die Syntax ist einfach gehalten. Es gibt Tags und Attribute. Die Tags können ineinander geschachtelt werden. Ein beispielhaftes XML Dokument findet sich in Listing \ref{lst:exampleXML}. Hier gibt es einen Wurzelknoten \texttt{AssitanceTeam} mit zwei Kinderknoten \texttt{Assistant}, die jeweils das Attribut \texttt{isAvailable} mit unterschiedlichen Werten beinhalten. Die Kinderknoten (\texttt{Assistant}) haben wiederum eigene Kinderknoten (\texttt{Name} und \texttt{eMailAddress}). Die Schachtelung der Knoten kann beliebig tief erfolgen.
 
 \lstset{language=Xml, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleXML,caption=Beispiel für ein XML Dokument.]{../XML/example.xml}
 
 \subsection{HTML}
 \label{sec:HTML}
-\NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. ... HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S. 21]{muenz2012html5}.
+\NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. [...] HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S.~21]{muenz2012html5}.
 
-Es ist unter anderem möglich \cite[S. 21]{muenz2012html5}:
+Es ist unter anderem möglich, vlg. \cite[S.~21]{muenz2012html5},
 \begin{itemize}
 \item das Dokument in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel einzuteilen
 \item dem Dokument Überschriften, Textabsätze, Listen und Tabellen hinzuzufügen
 \item Links (siehe Abschnitt \ref{sec:Link}) auf beliebige andere Webseiten oder Datenquellen im Internet einzubinden
 \item Formulare in das Dokuement zu integrieren
-\item Erweiterungssprachen wie CSS oder JavaScript zu integrieren
+\item Erweiterungssprachen wie CSS oder JavaScript einzubinden
 \end{itemize}
 
-Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}. Man kann gut erkennen, dass HTML dieselbe Struktur wie XML hat.
+Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}. Die Verwandschaft von XML und HTML spiegelt sich in der gemeinsamen Struktur der Dokumente wider.
 
 \lstset{language=Html, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleHTML,caption=Beispiel für ein HTML-Dokument.]{../HTML/example.html}
@@ -203,9 +203,9 @@ Ein Beispiel für ein HTML Dokument findet sich in Listing \ref{lst:exampleHTML}.
 
 \subsection{CSS}
 \label{sec:CSS}
-Bei \NewAbb{CSS}{Cascading Stylesheets} \enquote{handelt [es] sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.} \cite[S. 23]{muenz2012html5} 
+Bei \NewAbb{CSS}{Cascading Stylesheets} \enquote{handelt [es] sich um eine beschreibende Ergänzungssprache für HTML. Sie klinkt sich nahtlos in HTML ein und hat zwei Aufgaben: das Formatieren von Inhalten und das Gestalten von Webseitenlayouts.} \cite[S.~23]{muenz2012html5} 
 
-\enquote{CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschriften erster Ordnung oder für alle Textabsätze mit einem bestimmten Klassennamen oder für hervorgehobenen Text, der innerhalb einer Tabellenzelle vorkommt. Die zentralen Formate können in eine externe Syle-Datei ausgelagert werden[.] ... So ermöglicht CSS seitenübergreifend einheitliche Layouts und Formatierungen.} \cite[S. 24]{muenz2012html5}
+\enquote{CSS erlaubt es, zentrale Formate zu definieren, beispielsweise für alle Überschriften erster Ordnung oder für alle Textabsätze mit einem bestimmten Klassennamen oder für hervorgehobenen Text, der innerhalb einer Tabellenzelle vorkommt. Die zentralen Formate können in eine externe Style-Datei ausgelagert werden [...] So ermöglicht CSS seitenübergreifend einheitliche Layouts und Formatierungen.} \cite[S.~24]{muenz2012html5}
 
 \lstset{language=C, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:exampleCSS,caption=Beispiel für ein CSS-Dokument.]{../CSS/example.css}
@@ -216,7 +216,7 @@ Bei \NewAbb{CSS}{Cascading Stylesheets} \enquote{handelt [es] sich um eine besch
 Mögliche Einsatzgebiete von JavaScript sind unter anderem:
 \begin{itemize}
 \item Plausibilitätsprüfung (Validierung) von Formulareingaben vor dem Absenden
-\item Dynamische Manipulation von Webseiten mit Hilfe von DOM (siehe Abschnitt \ref{sec:DOM})
+\item Dynamische Manipulation von Webseiten mit Hilfe von DOM
 \item Senden und Empfangen von Daten, ohne dass der Browser die Seite neu laden muss mit AJAX (siehe Abschnitt \ref{sec:AJAX})
 \end{itemize}
 Ein Beispiel für ein JavaScript-Dokument findet sich in Listing \ref{lst:exampleJavaScript}.
@@ -230,8 +230,8 @@ Bei JavaScript sind einige Objekte jederzeit verfügbar (z. B. \texttt{RegExp}, \
 \lstset{language=Java, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:javaScriptProto,caption=Beispiel für die Erweiterung eines bestehenden Objekts in JavaScript]{../JavaScript/examplePrototype.js}
 
-\subsection{Zusammenarbeit HTML, CSS und JavaScript}
-HTML, CSS und JavaScript arbeiten ergänzen sich gegenseitig. Wenn man der Idee von \cite[S. 8]{teague2011css3} folgt, dann ergeben die drei Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
+\subsection{Zusammenarbeit von HTML, CSS und JavaScript}
+HTML, CSS und JavaScript ergänzen sich gegenseitig. Wenn man der Idee von \cite[S.~8]{teague2011css3} folgt, dann ergeben die drei Webtechnologien eine vollständige Sprache: HTML stellt die Substantive zur Verfügung, CSS die Adjektive und Adverbien und JavaScript fügt die Verben hinzu. 
 
 Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschaut (siehe Abbildung \ref{fig:ExampleHtmlCssJavaScript}), dann ist zu erkennen, wie die Zusammenarbeit der drei Webtechnologien sich in der Praxis auswirkt. Im HTML wird die Struktur des Dokumentes definiert, mit dem verwendeten CSS-Dokument (Listing \ref{lst:exampleCSS}) wird das Aussehen angepasst und mit JavaScript (Listing \ref{lst:exampleJavaScript}) wird dynamisch Inhalt erzeugt.
 
@@ -246,14 +246,14 @@ Wenn man sich den HTML-Code von Listing \ref{lst:exampleHTML} im Browser anschau
 \subsection{DOM}
 \label{sec:DOM}
 \NewAbb{DOM}{Document Object Model}  ist eine Programmierschnittstelle für den Zugriff auf HTML- oder XML-Dokumente.
-\enquote{HTML-Dokumente besitzen eine hierarchische Struktur, die im DOM als Baumstruktur repräsentiert wird. Die Knoten des Baums stellen die verschiedenen Arten von Inhalt in einem Dokument dar.} \cite[S. 310]{flanagan2002javascript}.
-DOM stellt unter anderem einen Satz von Methoden zur Verfügung der es möglich macht Elemente des Dokumentes aufzufinden. Z. B. kann man mit Hilfe von
+\enquote{HTML-Dokumente besitzen eine hierarchische Struktur, die im DOM als Baumstruktur repräsentiert wird. Die Knoten des Baums stellen die verschiedenen Arten von Inhalt in einem Dokument dar.} \cite[S.~310]{flanagan2002javascript}
+DOM stellt unter anderem einen Satz von Methoden zur Verfügung, der es möglich macht, Elemente des Dokumentes aufzufinden. Zum Beispiel kann man mit Hilfe von
 
 \qquad \texttt{var captions = window.document.getElementsByTagName("'h1"');} 
 
 alle Überschriften erster Ordnung finden.
 
-Weiterhin stellt DOM Methoden zur Verfügung um Inahlte des Dokument-Baums zu verändern. Mit dem Code 
+Weiterhin stellt DOM Methoden zur Verfügung um Inhalte des Dokument-Baums zu verändern. Mit dem Code 
 
 \qquad \texttt{captions[0].setAttribute("'id"', "'firstCaption"');} 
 
@@ -261,9 +261,9 @@ wird der \NewAbb{ID}{Identifikator} der ersten Überschrift (erster Ordnung) gese
 
 \subsection{AJAX}
 \label{sec:AJAX}
-Bei \NewAbb{AJAX}{Asynchronous JavaScript and XML} handelt es sich nicht direkt um eine Webtechnologie, eher  um eine spezielle Denkweise die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzten.
+Bei \NewAbb{AJAX}{Asynchronous JavaScript and XML} handelt es sich nicht direkt um eine Webtechnologie, sondern eher  um eine spezielle Denkweise, die Kombination von HTML bzw. XML, CSS und JavaScript einzusetzen.
 
-\enquote{Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund. Ajax-Applikationen ermöglichen so eine Bedienung, die eher an eine Desktop-Anwendung als an eine Webapplikation erinnert.} \cite[S. 309]{koch2011javascript} 
+\enquote{Mit Ajax können einzelne Informationen nach Bedarf vom Server geholt und in die bestehende Seite integriert werden. Im besten Fall entfallen die Wartezeiten, und die Kommunikation mit dem Server tritt aus der Sicht des Anwenders in den Hintergrund. Ajax-Applikationen ermöglichen so eine Bedienung, die eher an eine Desktop-Anwendung als an eine Webapplikation erinnert.} \cite[S.~309]{koch2011javascript} 
 
 Ein spezielles JavaScript-Objekt names \texttt{XMLHttpRequest} ermöglicht die asynchrone Kommunikation mit dem Server. Durch den asynchronen Aufruf kann der Benutzer direkt weiterarbeiten und wird nicht durch die Kommunikation mit dem Server blockiert. Ist die Antwort des Servers beim Client angekommen, wird sie sofort verarbeitet und gegebenenfalls dem Nutzer dargestellt.
 
@@ -271,7 +271,7 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 
 \subsection{PHP}
 \label{sec:PHP}
-\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten die im Browser angezeigt werden. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing \ref{lst:examplePHP} gezeigt.
+\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten, die im Browser angezeigt werden. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing \ref{lst:examplePHP} gezeigt.
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument.]{../PHP/example.php}
@@ -280,13 +280,12 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt \ref{sec:web
 Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen kann man komplexe Systeme konstruieren. Durch mehrere Abstraktionsebenen behält man die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
 
 \subsection{UML}
-Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml}
+Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S.~4]{rupp2012uml}
 
-%TODO ??? verwendete Diagrammtypen beschreiben
-%TODO ??? Beispiel-Diagramm 
+%TODO ??? verwendete Diagrammtypen beschreiben -> Freddy meinte, dass man den Kern kurz vor Vewendung des Diagramms darstellen sollte
 
 \subsection{SysML}
-\NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
+\NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache, die sich zur Modellierung von komplexen Systemen einsetzen lässt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
 
 
 %TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
@@ -307,42 +306,44 @@ Der Assistent ist ein Helfer, der den Klienten pflegt und ihn im alltäglichen Le
 
 \subsection{Team}
 Der Klient muss rund um die Uhr mit Assistenz unterstützt werden. Dafür bedarf es eines Teams.
-Das Team eines Klienten besteht aus mehreren Assistenten. In dem konkreten Fall sind es sieben Assistenten.
+Das Team eines Klienten besteht aus mehreren Assistenten. In dem konkreten Fall besteht das Team aus sieben Assistenten.
 
 \subsection{Dienst}
 Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten und steht ihm helfend zur Verfügung. 
-Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig. Wenn ein Assistent einen Dienst von 13:00 Uhr des Tages bis 8:00 Uhr des Folgetages hat, dann sind das rechnerisch 17 Stunden die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 11 Stunden vergütet.
+Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig. Wenn ein Assistent einen Dienst von 13:00 Uhr eines Tages bis 8:00 Uhr des Folgetages wahrnimmt, dann sind das rechnerisch 19 Stunden, die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 13 Stunden vergütet.
 
 \subsection{Bereitschaft}
-Wenn ein Assistent Bereitschaft hat, dann muss er zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschaftsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
+Wenn ein Assistent Bereitschaft hat, dann muss er in der Lage sein den Dienst zu übernehmen und zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten, deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschaftsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
 
 \subsection{Dienstplan}
-Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten der Dienst hat und einen Assistenten der Bereitschaft hat. 
+Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten, der Dienst hat, und einen Assistenten, der Bereitschaft hat. 
 
 \subsection{Stundenkontingent}
 \label{sec:Stundenkontingent}
-Jeder Assistent arbeit unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontingent ausgeschöpft bekommen.
+Die Assistenten arbeiten unterschiedlich viel. Die Monatsstundenzahl variiert zwischen 30 und 130. Bei der Dienstplanerstellung ist darauf zu achten, dass alle Assistenten möglichst gleichmäßig ihr Stundenkontingent ausgeschöpft bekommen.
 
 \section{Ist-Prozess}
-Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient hat für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team geschickt und darum gebeten Rückmeldung zu geben, wie die Verfügbarkeiten sind.
-Die Assistenten haben auf diese E-Mail geantwortet und darin beschrieben wann sie Zeit für Dienste haben.
-Der Klient hat manuell den Dienstplan erstellt und musste dabei ständig zwischen seiner Tabelle und allen Antworten des Teams (sieben an der Zahl) wechseln. Nach der Fertigstellung des Dienstplans hat der Klient eine E-Mail mit dem Dienstplan an sein Team geschickt.
-Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden im Monat) und Nerven gekostet.
+Vor Beginn der Arbeiten des Autors war der Prozess zur Dienstplanerstellung komplett manuell. Der Klient schickte für die Dienstplanerstellung eine E-Mail mit Hinweisen für den Monat an sein Team und bat um Rückmeldung bezüglich der Verfügbarkeiten.
+Die Assistenten beantworteten diese E-Mail mit Zeitangaben für mögliche Dienste.
+Der Klient erstellte manuell den Dienstplan und musste dabei ständig zwischen seiner Übersichts-Tabelle und allen Antworten der sieben Teammitglieder wechseln. Nach der Fertigstellung des Dienstplans versandte der Klient eine E-Mail mit dem Dienstplan an sein Team.
+Die Dienstplanerstellung war zeitaufwändig (ca. vier Stunden im Monat) und wurde vom Klienten als umständlich wahrgenommen.
+
+%Die Dienstplanerstellung hat den Klienten viel Zeit (ca. vier bis fünf Stunden im Monat) und Nerven gekostet.
 
 \section{Soll-Prozess}
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
-Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschlag unterbreitet werden. Der Dienstplan kann von dem Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
+Der Klient gibt auf einer Webseite die Dienstzeiten für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten, die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschläge unterbreitet werden. Der Dienstplan kann vom Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf wenige Minuten.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
 
 \section{Benutzergeschichten}
 \label{sec:userstories}
-\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S. 46]{pichler2008scrum}
+\enquote{Benutzergeschichten beschreiben Anforderungen aus der Sicht des Endanwenders. Sie bestehen aus einem Namen, aus einer kurzen textuellen Beschreibung der Anforderung und einer Reihe von Akzeptanzkriterien. Letztere halten fest, welche Kriterien erfüllt sein müssen, damit die Anforderung als erfolgreich realisiert gilt.} \cite[S.~46]{pichler2008scrum}
 
-Wichtig ist, dass die Anforderung einen \enquote{konkreten und sichtbaren Mehrwert für den Kunden} besitzt. \cite[S. 52]{wirdemann2011scrum}
+Wichtig ist, dass die Anforderung einen \enquote{konkreten und sichtbaren Mehrwert für den Kunden} besitzt. \cite[S.~52]{wirdemann2011scrum}
 
-Benutzergeschichten haben ein festes Muster. Es hat sich für die Beschreibung folgendes Muster bewährt \cite[S. 59]{wirdemann2011scrum}:
+Benutzergeschichten haben ein festes Muster. Es hat sich für die Beschreibung folgendes Muster bewährt \cite[S.~59]{wirdemann2011scrum}:
 
 \qquad Als <Benutzerrolle> will ich <das Ziel> [,so dass <Grund für das Ziel>]
 
@@ -353,19 +354,19 @@ Als Klient möchte ich Standard-Dienstzeiten angeben können.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Klient kann für jeden Wochentag einen Standard-Dienstbeginn und ein Standard-Dienstende festlegen.
+\item Der Klient kann für jeden Tag der Woche einen Standard-Dienstbeginn und ein Standard-Dienstende festlegen.
 \item Die Standard-Dienstzeiten können gespeichert und wieder geladen werden.
 \item Bei der Erstellung eines Monatsplans werden initial die Standard-Dienstzeiten eingetragen.
 \end{itemize}
 
 \subsection{Angabe Dienstzeiten}
-Als Klient möchte ich für den nächsten Monat angeben können, wie die Dienstzeiten sind.
+Als Klient möchte ich für den nächsten Monat vorausplanen können, wie die Dienstzeiten sind.
 
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es ist möglich einen Monat auszuwählen.
 \item Initial werden die Standard-Dienstzeiten im Monats-Plan eingetragen.
-\item Es ist möglich die Dienstzeiten für den nächsten Monat festlegen zu können.
+\item Es ist möglich die Dienstzeiten für den nächsten Monat festzulegen.
 \item Die Dienstzeiten für den nächsten Monat können gespeichert und wieder geladen werden.
 \end{itemize}
 
@@ -391,7 +392,7 @@ Akzeptanzkriterien:
 \end{itemize}
 
 \subsection{Öffentliche Bemerkungen (monatsbezogen)}
-Als Klient möchte ich monatsbezogene Bemerkungen zum Dienstplan eingeben können.
+Als Klient möchte ich monatsbezogene Bemerkungen zum Dienstplan eingeben können, die für jeden (Klient und Assistenten) sichtbar sind.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -408,7 +409,7 @@ Akzeptanzkriterien:
 \item Es gibt eine Übersicht der Team-Mitglieder.
 \item Es ist möglich Team-Mitglieder hinzuzufügen.
 \item Es ist möglich die Eigenschaften der Team-Mitglieder zu editieren.
-\item Es ist möglich Team-Mitgleider aus dem Team zu entfernen.
+\item Es ist möglich Team-Mitglieder aus dem Team zu entfernen.
 \item Es ist möglich das Team abzuspeichern und zu einem späteren Zeitpunkt wieder zu laden.
 \end{itemize}
 
@@ -422,7 +423,7 @@ Akzeptanzkriterien:
 \end{itemize}
 
 \subsection{Berücksichtigung der Wochentage}
-Als Klient möchte ich für jeden Assistent die Möglichkeite haben, Vorlieben für bestimmte Wochentage eingeben können.
+Als Klient möchte ich für jeden Assistent die Möglichkeit haben, Vorlieben für bestimmte Wochentage eingeben können.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -431,7 +432,7 @@ Akzeptanzkriterien:
 \end{itemize}
 
 \subsection{Team benachrichtigen}
-Als Klient möchte ich eine Nachricht an mein Team verschicken können, mit der Bitte freie Termine einzutragen.
+Als Klient möchte ich eine Nachricht an mein Team verschicken können mit der Bitte, freie Termine einzutragen.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -445,11 +446,11 @@ Als Klient möchte ich mehrere Vorschläge für einen Dienstplan bekommen, die ich 
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es gibt einen Algorithmus, der automatisch unter Berücksichtigung der Verfügbarkeiten der Assistenten und der Vorlieben des Klienten einen Dienstplan erstellt, der die Stundenkontingente berücksichtigt.
-\item Der Dienstplan (der vom Algorithmus erstellt wird) wird dem Klienten übersichtlich in einer Tabelle dargestellt.
-\item Wenn der Klient erneut einen Dienstplan anfordert, läuft der Algorithmus erneut und ein neuer Dienstplanvorschlag (der vom alten abweicht) wird wieder erzeugt und dargestellt.
+\item Der vom Algorithmus erstellte Dienstplan wird dem Klienten übersichtlich in einer Tabelle angezeigt.
+\item Wenn der Klient erneut einen Dienstplan anfordert, läuft der Algorithmus erneut und ein neuer Dienstplanvorschlag (der vom alten abweicht) wird generiert und dargestellt.
 \end{itemize}
 
-\subsection{Manuelle Anpassung des Dientplans}
+\subsection{Manuelle Anpassung des Dienstplans}
 Als Klient möchte ich die Möglichkeit haben, den Dienstplan nach meinen Wünschen anzupassen.
 
 Akzeptanzkriterium: Es ist möglich den, vom Algorithmus erstellten, Dienstplan manuell zu verändern.
@@ -480,16 +481,16 @@ Als Assistent möchte ich eine Möglichkeit haben Termine zu favorisieren.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Assistent kann neben \enquote{geht} und \enquote{geht nicht} auch ein \enquote{geht zur Not} auswählen. 
+\item Der Assistent kann neben \enquote{Dienst möglich} und \enquote{Dienst ungmöglich} auch ein \enquote{Dienst zur Not möglich} auswählen. 
 \item Der Algorithmus zur Dienstplanerstellung berücksichtigt diese Abstufung der Eingaben.
 \end{itemize}
 
 \subsection{Bemerkungen der Assistenten}
-Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen transportieren zu können.
+Als Assistent möchte ich bei der Angabe von Terminen auch Bemerkungen machen können, um weitere Informationen zu transportieren.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Neben der Termineingaben kann der Assistent auch Bemerkungen machen.
+\item Neben den Termineingaben kann der Assistent auch Bemerkungen machen.
 \item Der Klient bekommt die Bemerkungen bei der Dienstplanerstellung angezeigt.
 \end{itemize}
 
@@ -498,7 +499,7 @@ Als Assistent möchte ich mein Stundenkontingent möglichst gut ausgeschöpft bekom
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem alle Assistenten ihre Stundenkontingente gleichmäßig ausgeschöpft bekommen.
+\item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem alle Assistenten ihre Stundenkontingente möglichst gleichmäßig ausgeschöpft bekommen.
 \item In einer Tabelle kann man sehen, wie gleichmäßig die Stundenkontigente der Assistenten ausgeschöpft sind.
 \end{itemize}
 
@@ -507,13 +508,13 @@ Als Assistent möchte ich sehen, wann ich Dienst oder Bereitschaft habe.
 
 Akzeptanzkriterien:
 \begin{itemize}
-\item Der Assistent kann den Dienstplan einsehen.
+\item Der Assistent kann den gesamten Dienstplan aller Assistenten eines Monats einsehen.
 \item Im Dienstplan sind die Dienste und Bereitschaften des angemeldeten Assistenten farblich hinterlegt.
 \item In einer gesonderten Übersicht sieht der Assistent nur seine Dienst- und Bereitschaftszeiten.
 \end{itemize}
 
 \subsection{Letzte Änderung Dienstplan}
-Als Anwender möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde.
+Als Anwender (Klient oder Assistent) möchte ich sehen, wann der Dienstplan zum letzten Mal geändert wurde, um zu überprüfen, ob es eine Änderung gegeben hat.
 
 Akzeptanzkriterien:
 \begin{itemize}
@@ -685,7 +686,7 @@ Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulege
 
 \subsection{Server}
 Bei der Serverseite ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} von über 80\% und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
-Weitere Gründe \cite[S. 16]{theis2006einstieg} sind:
+Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 \begin{itemize}
 \item Einfache Entwicklung von Programmen
 \item Unterstützung verschiedener Plattformen
@@ -730,7 +731,7 @@ Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Bei
 	\label{fig:CookiePhpSessionId}
 \end{figure}
 
-Nach der Anmeldung werden im superglobalen Array \texttt{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session und Setzen der Session-Variablen) ist \cite[S. 404]{schlossnagle2006php} entnommen.
+Nach der Anmeldung werden im superglobalen Array \texttt{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session und Setzen der Session-Variablen) ist \cite[S.~404]{schlossnagle2006php} entnommen.
 
 \section{Willkommen-Seite}
 Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung \ref{fig:Welcome}) werden dem Interessenten Informationen über den Assistenzplaner präsentiert. Man wird gebeten einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
@@ -1345,7 +1346,7 @@ Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://as
 Der Assistenzplaner ist derzeit (September 2014) eine spezialisierte Lösung für einen Klienten mit seinem Team.
 Der Autor hatte am 01.09.2014 ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch}{02.09.2014}. Hier hat er den Assistenzplaner vorgestellt und sich vom Landesbeauftragen einige Ansprechpartner im Bereich Assistenzplanung nennen lassen. Der Landesbeauftrage hat selber sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner.
 
-Der Autor hofft, dass sich noch ein paar Beta-Tester bereit erklären den Assistenzplaner einzusetzten. Sicherlich werden auch noch einige Anforderungen hinzu kommen, da jeder Klient mit seinem Team einen anderen Prozess und verschiedene Rahmenbedingungen bei der Dienstplanerstellung hat.
+Der Autor hofft, dass sich noch ein paar Beta-Tester bereit erklären den Assistenzplaner einzusetzen. Sicherlich werden auch noch einige Anforderungen hinzu kommen, da jeder Klient mit seinem Team einen anderen Prozess und verschiedene Rahmenbedingungen bei der Dienstplanerstellung hat.
 
 Sobald der Assistenzplaner von einigen Klienten mit ihren Teams erfolgreich erprobt ist, möchte der Autor den Assistenzplaner öffentlich bewerben\footnote{Der Autor hat keinerlei finanzielles Interesse. Die Nutzung des Assistenzplaner ist kostenlos und wird es auch immer bleiben!}. Einige mögliche Kanäle sind nachfolgend aufgezählt:
 
@@ -1365,23 +1366,23 @@ In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgeste
 Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen und keinerlei Anforderungen an den Server (bezüglich einer Datenbank) gestellt werden.
 
 \subsection{Barrierefreiheit}
-\enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S. 28]{bremus2013barrierefreiheit}
+\enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S.~28]{bremus2013barrierefreiheit}
 
-\enquote{Barrierefreiheit als Thema für Webentwickler und -designer wird auch deshalb immer wichtiger und interessanter, weil die Menschen eine immer höhere Lebenserwartung haben, und gerade Menschen mit Behinderungen immer besser medizinisch versorgt werden können.}  \cite[S. 29]{bremus2013barrierefreiheit} 
+\enquote{Barrierefreiheit als Thema für Webentwickler und -designer wird auch deshalb immer wichtiger und interessanter, weil die Menschen eine immer höhere Lebenserwartung haben, und gerade Menschen mit Behinderungen immer besser medizinisch versorgt werden können.}  \cite[S.~29]{bremus2013barrierefreiheit} 
 
-\enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability} \cite[S. 30]{bremus2013barrierefreiheit}
+\enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability} \cite[S.~30]{bremus2013barrierefreiheit}
 
-\enquote{Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.}  \cite[S. 31]{bremus2013barrierefreiheit} 
+\enquote{Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.}  \cite[S.~31]{bremus2013barrierefreiheit} 
 
-\enquote{Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S. 31]{bremus2013barrierefreiheit}
+\enquote{Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S.~31]{bremus2013barrierefreiheit}
 
-Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S. 29]{bremus2013barrierefreiheit}} ist.
+Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich} \cite[S.~29]{bremus2013barrierefreiheit}} ist.
 
 \subsection{AJAX tiefer verwurzeln}
 Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich und kann schon als benutzerunfreundlich bezeichnet werden. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt, direkt per AJAX an den Server geschickt werden und der Server die Daten direkt persistent ablegt.
 
 \subsection{Responsive Webdesign}
-Responsive (reaktionsfähiges) Webdesign bedeutet auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S. 8]{zillgens2013responsive}.
+Responsive (reaktionsfähiges) Webdesign bedeutet auf \enquote{die steigende Anzahl verschiedener Display-Größen und Geräte angemessen zu reagieren} \cite[S.~8]{zillgens2013responsive}.
 
 Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut bedient werden. Auf Smart-Phones ist das Aussehen und die Bedienung verbesserungswürdig (siehe Abbildung \ref{fig:AssistancePlannerOniPhone})
 
@@ -1392,7 +1393,7 @@ Auf Desktops und Tablets wird der Assistenzplaner gut dargestellt und kann gut b
 	\label{fig:AssistancePlannerOniPhone}
 \end{figure}
 
-Bei der Optimierung des Assistenzplaners für Handys muss umgedacht werden. Man muss wegkommen von dem horizontal-basierten Layout mit Spalten hin zu einem linear-vertikalen Layout. \cite[S. 67]{bieh2008mobiles}. 
+Bei der Optimierung des Assistenzplaners für Handys muss umgedacht werden. Man muss wegkommen von dem horizontal-basierten Layout mit Spalten hin zu einem linear-vertikalen Layout. \cite[S.~67]{bieh2008mobiles}. 
 
 \subsection{Team-Übersicht überarbeiten}
 Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklung war das die richtige Entscheidung. Im Laufe der Entwicklung sind aber immer mehr Spalten hinzugekommen und die Tabelle ist mit der Zeit immer breiter und unübersichtlich geworden (siehe Abbildung \ref{fig:TeamTable}). Eine mögliche Alternative zur breiten Tabelle ist in Abbildung \ref{fig:SingleTeamMember} gezeigt. Für jeden Assistenten gibt es eine eigene Übersicht der Eigenschaften.
