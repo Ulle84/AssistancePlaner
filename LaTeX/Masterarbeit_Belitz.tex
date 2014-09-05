@@ -60,7 +60,6 @@
 
 % Deckblatt und Abstract ohne Seitenzahl
 %\ofoot{}
-\Note{Hi Freddy, die Anmerkungen für Dich sind hellrot hinterlegt und nicht Bestandteil der Ausarbeitung. Vielen Dank für das Lesen meiner Arbeit!}
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
@@ -68,12 +67,12 @@
 \label{sec:Abstract}
 %TODO Abstract am Ende auf Englisch schreiben
 %TODO von Justin querlesen lassen
-\Note{Gut das ich einen amerikanischen Schwip-Schwager habe, der mir neulich ins Garangentor gefahren ist und mir noch einen Gefallen schuldet :-D Er wird die Übersetzung hoffentlich machen.}
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
 %TODO Überarbeitung
-Um einen körperlich behinderten Menschen (Klienten) und sein Team (bestehend aus Assistenten) bei der Dienstplanerstellung zu unterstüzen wurde die serverbasierte Anwendung \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} geschaffen.
+%TODO Feedback Freddy (Mail) einarbeiten
+Um einen körperlich behinderten Menschen (Klienten) und sein Team (bestehend aus Assistenten) bei der Dienstplanerstellung zu unterstützen wurde die serverbasierte Anwendung \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} geschaffen.
 
 Mit dem Assistenzplaner ist es unter anderem möglich:
 \begin{itemize}
@@ -81,8 +80,6 @@ Mit dem Assistenzplaner ist es unter anderem möglich:
 \item automatisiert Dienstpläne zu erstellen
 \item Aufgaben der Assistenten zu verwalten
 \end{itemize}
-
-\Note{Hey Buddy, hier bin ich besonders auf Dein Feedback angewiesen - ich bin so tief in dem Thema drin, dass ich das Gefühl habe gar nicht mehr zusammenfassend sagen zu können, was der Assistenzplaner ist.}
 
 \addchap{Danksagung}
 %TODO Melanie?
@@ -92,7 +89,7 @@ Weiterhin danke ich Herrn Prof. Dr. Lano für die Zweitkorrektur.\\
 
 Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er hat maßgeblich die Anforderungen gestellt und bereitwillig mit seinem Team die Software getestet.\\
 
-Ich danke sehr Frederik für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\Note{Ich hoffe damit positive Motivation aufgebaut zu haben, viele Korrekturanregungen zu geben! ;-)}\\
+Ich danke Frederik sehr für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
 
 Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf den Weg gegeben haben!\\
 
@@ -103,7 +100,7 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \chapter{Motivation}
 Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden nur noch \enquote{Klient} genannt), der auf Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Bisher hat der Klient den Dienstplan jeden Monat manuell erstellt. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen möglichen Arbeits-Termine enthalten waren) und mühevoll einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das Erstellen des Dienstplans hat den Klienten ca. vier Stunden pro Monat gekostet.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstüzen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten bekommen einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
@@ -285,15 +282,11 @@ Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modell
 \subsection{UML}
 Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S. 4]{rupp2012uml}
 
-\Note{Evt. werde ich noch näher auf die Diagrammtypen eingehen, die ich verwendet habe - das werde ich entscheiden, wenn ich mit der Diagramm-Erstellung fertig bin. Was meinst Du zu dem Thema?}
-
 %TODO ??? verwendete Diagrammtypen beschreiben
 %TODO ??? Beispiel-Diagramm 
 
 \subsection{SysML}
 \NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache die sich zur Modellierung von Systemen einsetzen lässt. Sie wird bei er Modellierung von komplexen Systemen eingesetzt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
-
-\Note{Hier wollte ich evt. noch das Anforderungsdiagramm und die verwendeten Beziehungen zwischen den Anforderungen (containment, satisfy, ...) beschreiben, oder geht das dann zu tief?}
 
 
 %TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
@@ -342,7 +335,6 @@ Der Klient gibt auf einer Webseite die Dienstzeiten und Kommentare für den komme
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf wenige Minuten.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
 %UML Aktivitätsdiagramm
-\Note{Hier kommt wahrscheinlich (wie von Dir angeregt) noch ein Ablaufdiagramm hin.}
 
 \section{Benutzergeschichten}
 \label{sec:userstories}
@@ -568,7 +560,6 @@ Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten 
 \subsection{Aufgaben-Verwaltung}
 %TODO schreiben
 % es war zwar nicht explizit vom Klienten gewünscht, aber doch testweise umgesetzt worden.
-\Note{BAUSTELLE - muss ich noch schreiben}
 
 \chapter{Marktanalyse}
 Bevor eine Lösung doppelt entwickelt wird, ist es ratsam zu recherchieren, was es schon auf dem Markt gibt.
@@ -578,7 +569,7 @@ Die meisten Anwendungen zur Dienstplanerstellung sind für die Verwendung in Kran
 \section{Dienstplan in Excel}
 Im Internet kann man jede Menge Vorlagen für die Erstellung von Dienstplänen mit Hilfe der Tabellenkalkulation \Link{http://office.microsoft.com/de-de/excel/}{Excel}{23.08.2014} finden. Die Zusammenarbeit von Klient und Assistent über das Internet gestaltet sich schwierig. Der Klient kann Dokumente freigeben, und damit den Assistenten die Möglichkeit geben ihre Temine einzutragen. Allerdings haben sie damit auch Einsicht und Zugriff auf alles, was sie nicht sehen sollten. Es gibt nicht die Möglichkeit einzelne Bereiche des Dokumentes freizugeben.
 
-\section{Offline Anwendungen}
+\section{Offline-Anwendungen}
 Es gibt Programme zur Dienstplanerstellung, die ohne Internet-Anbindung arbeiten. Hier müsste der Klient die Eingabe der möglichen Termien der Assistenten selbstständig vornehmen.
 
 Ein Beispiel für solch eine Anwendugn ist \Link{http://www.qtime.de/kostenlos/dienstplan-erstellung.html}{QTime}{23.08.2014}. Aber schon der Blick auf die Screenshots (Beispiel: Abbildung \ref{fig:DienstplanungSchichtstatus}) lässt erahnen, dass die Software sehr komplex ist und für jemanden der sie nur einmal im Monat verwenden möchte zuviel Einarbeitung abverlangt.
@@ -590,7 +581,7 @@ Ein Beispiel für solch eine Anwendugn ist \Link{http://www.qtime.de/kostenlos/di
 	\label{fig:DienstplanungSchichtstatus}
 \end{figure}
 
-\section{Online Anwendungen}
+\section{Online-Anwendungen}
 Es gibt einige Anwendungen im Internet, die es ermöglichen, Dienstpläne zu erstellen.
 
 Beispiele hierfür sind:
@@ -607,8 +598,6 @@ Keiner dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige der Anwen
 Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die vorliegenden Aufgabe erledigen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
 \chapter{Software-Design} % oder einfach nur Design?
-\Note{Dieses Kapitel ist noch in Bearbeitung!}
-
 
 %TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
 % * Vom Modell zur Software
@@ -642,9 +631,8 @@ Das Komponentendiagramm ist in Abbilung \ref{fig:UMLKomponentendiagramm} zu sehe
 \section{UML Klassendiagramme}
 %TODO Diagramme skalieren und zurechtrücken
 \begin{figure}[htb]
-	%\centering
-	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthNavigation.png}
+	\centering
+	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthNavigation.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentMonthNavigation}
 \end{figure}
@@ -652,48 +640,41 @@ Das Komponentendiagramm ist in Abbilung \ref{fig:UMLKomponentendiagramm} zu sehe
 \begin{figure}[htb]
 	%\centering
 	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthOrganisation.png}
+	\includegraphics[scale=0.55]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthOrganisation.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentMonthOrganisation}
 \end{figure}
 
 \begin{figure}[htb]
-	%\centering
-	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentRoster.png}
+	\centering
+	\includegraphics[scale=0.7]{../Images/Screenshots/EnterpriseArchitect/UMLComponentRoster.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentRoster}
 \end{figure}
 
 \begin{figure}[htb]
-	%\centering
-	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentSettings.png}
+	\centering
+	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentSettings.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentSettings}
 \end{figure}
 
 \begin{figure}[htb]
-	%\centering
-	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentTeamOrganisation.png}
+	\centering
+	\includegraphics[scale=0.45]{../Images/Screenshots/EnterpriseArchitect/UMLComponentTeamOrganisation.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentTeamOrganisation}
 \end{figure}
 
 \begin{figure}[htb]
-	%\centering
-	\advance\leftskip-2.0cm
-	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentToDoManager.png}
+	\centering
+	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentToDoManager.png}
 	\caption[ToDo]{ToDo}
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
 
-
-
 \section{UML Sequenzdiagramme}
 %TODO Sequenzdiagramme erstellen, einfügen und beschreiben
-\Note{Sequenzdiagramme habe ich noch nicht erstellt}
 
 
 \chapter{Implementierung}
@@ -719,7 +700,6 @@ Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript z
 
 %TODO schreiben?
 %\section{Programmierung}
-%\Note{Im nachfolgenden Satz fehlt noch der Abbildungs-Link, da das Design-Kapitel noch nicht vollständig ist.}
 %Neben der PHP-Klassen (siehe Abbildung %TODO Link auf Klassendiagramme
 %) sind weitere PHP, JavaScript und CSS-Dateien entstanden. Details dazu finden sich in Abschnitt %TODO Link auf Anhang
 
@@ -1255,7 +1235,6 @@ Durch das Randomisieren der Liste (siehe Tabelle \ref{tab:scoreTableConvertedAnd
 
 %TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
 %TODO Pseudocode?
-\Note{Hier kommt evt. noch eine grafische Darstellung des Algorithmus als Ablaufdiagramm hin. Oder Pseudocode? Was würdest Du machen?}
 
 \subsection{Performance des Algorithmus}
 Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese \enquote{Wartezeit} vertretbar.
@@ -1330,7 +1309,7 @@ Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch 
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner ein Seite hinzugefügt, die jederzeit über die Navigation zu erreichen ist. Diese beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
 
-\chapter{Überführung in Produktiv-Betrieb}
+\chapter{Überführung in den Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
 
 Den Dienstplan für den Monat April 2014 hat der Klient noch komplett manuell erstellt.
@@ -1362,7 +1341,7 @@ Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch
 
 Der Autor plant, das Projekt weiter zu führen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assitenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt. So hat jeder die Möglichkeit sich den Assitenzplaner auf dem eigenen Server einzurichten.
 
-\section{Mehr Teams}
+\section{Einsatz bei mehreren Teams}
 Der Assistenzplaner ist derzeit (September 2014) eine spezialisierte Lösung für einen Klienten mit seinem Team.
 Der Autor hatte am 01.09.2014 ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch}{02.09.2014}. Hier hat er den Assistenzplaner vorgestellt und sich vom Landesbeauftragen einige Ansprechpartner im Bereich Assistenzplanung nennen lassen. Der Landesbeauftrage hat selber sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner.
 
@@ -1495,8 +1474,6 @@ Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
 
 \subsubsection{Übersicht über erledigte Aufgaben}
 Von Vorteil (gerade für die Leistungserbringungs-Nachweise) wäre es, wenn man nachvollziehen könnte, welcher Assistent wann welche Aufgabe erledigt hat.
-
-\Note{So, mein liebster Masterarbeits-Buddy ;-) Hast es geschafft, der Rest ist automatisch generiert bzw. nicht vollständig. Vielen Dank fürs Durchkämpfen! :-)}
 
 % Literaturverzeichnis ---------------------------------------------------------
 %   Das Literaturverzeichnis wird aus der BibTeX-Datenbank
