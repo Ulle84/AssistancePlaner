@@ -70,39 +70,35 @@
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
-%TODO Überarbeitung
-%TODO Feedback Freddy (Mail) einarbeiten
-%Um einen körperlich behinderten Menschen (Klienten) und sein Team (bestehend aus Assistenten) bei der Dienstplanerstellung zu unterstützen wurde die serverbasierte Anwendung geschaffen.
-
 Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serverbasierte Anwendung geschaffen, um körperlich behinderte Menschen (Klienten) und ihre Assistenz-Teams bei der Planung zu unterstützen.
 
-Grundlage für die automatische Dienstplanerstellung stellt die Team-Verwaltung dar. Hier kann der Klient seine Assistenten verwalten und Daten eingeben, die bei der Dienstplanerstellung bereücksichtigt werden.
+Ein Klient ist auf persönliche Assistenz angewiesen. Die Dienstzeiten können von wenigen Stunden am Tag bis zu einem ganzen Tag variieren.
 
-Es wurde ein Algorithmus entwickelt, der alle Vorlieben des Klienten, die Verfügbarkeiten 
+Mit dem Assistenzplaner hat der Klient die Möglichkeit ihre Assistenz-Teams zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
 
-* Verfügbarkeiten der Assistenten
-* Vorlieben des Klienten
-* usw.
+Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
 
-* Assistenz-Teams verwalten
-* Automatisiert Dienstpläne erstellen
-* Aufgaben der Assistenen
-* OpenSource
+Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontigente berücksichtigt. Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen. Weiterhin ist es möglich den Dienstplan manuell anzupassen.
 
+Eine Aufgaben-Verwaltung rundet den Assistenzplaner ab.
 
-Neben 
+In der vorliegenden Ausarbeitung werden nach einem einleitenden Grundlagenteil die Anforderungen dargestellt. Bei einer Marktanalyse wird verifiziert, dass es noch keine bestehende Lösung gibt, die alle Anforderungen erfüllt. Die Kapitel Software-Design und Implementierung zeigen, wie der Autor die Anforderungen umgesetzt hat. Die Arbeit schließt mit einem Fazit ab, in dem einige Verbesserungs- und Erweiterungsmöglichkeiten aufgezeigt werden.
 
-Mit dem Assistenzplaner ist es unter anderem möglich:
-\begin{itemize}
-\item Assistenz-Teams zu verwalten
-\item Automatisiert Dienstpläne zu erstellen
-\item Aufgaben der Assistenten zu verwalten
-\end{itemize}
+Bei Abgabe dieser vorliegenden Ausarbeitung wurde ein \LinkWithoutDate{http://assistenzplaner.de/master}{Code-Freeze des Assistenzplaners} durchgeführt.
 
-Der Assistenzplaner berücksichtigt die Vorlieben des Klienten bei der Dienstplanerstellung. Parallel fließen freie Termine der Assistenten für Dienste und
-Bereitschaften ein. Innerhalb kurzer Zeit erzeugt die serverbasierte Anwendung Vorschläge für Dienstpläne, die sich nachträglich individuell anpassen lassen. Der Assistenzplaner als Open-Source-Projekt bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} für jederman verfügbar. 
+Der Autor hat den Assistenzplaner als Open-Source-Projekt bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} veröffentlicht und wird zukünftig weiter daran arbeiten.
 
-Die entstandene Lösung ist kostenfrei, einfach zu installieren und leicht zu bedienen.
+%Mit dem Assistenzplaner ist es unter anderem möglich:
+%\begin{itemize}
+%\item Assistenz-Teams zu verwalten
+%\item Automatisiert Dienstpläne zu erstellen
+%\item Aufgaben der Assistenten zu verwalten
+%\end{itemize}
+
+%Der Assistenzplaner berücksichtigt die Vorlieben des Klienten bei der Dienstplanerstellung. Parallel fließen freie Termine der Assistenten für Dienste und
+%Bereitschaften ein. Innerhalb kurzer Zeit erzeugt die serverbasierte Anwendung Vorschläge für Dienstpläne, die sich nachträglich individuell anpassen lassen. Der Assistenzplaner als Open-Source-Projekt bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} für jederman verfügbar. 
+
+%Die entstandene Lösung ist kostenfrei, einfach zu installieren und leicht zu bedienen.
 
 \addchap{Danksagung}
 %TODO Melanie?
@@ -583,8 +579,7 @@ Der Klient und die Assistent haben unterschiedliche Interessen am Assistenzplane
 Jeder Benutzer möchte seine Daten individuell eingeben können. Die hinterlegten Daten sollten nicht für jedermann einsehbar sein. Daher bekommt jeder Benutzer eigene Zugangsdaten, bestehend aus ID und individuellem Passwort. Bei der Anmeldung am System wird registriert, ob es sich um einen Klienten oder einen Assistenten handelt. Dementsprechend variiert der angezeigte Inhalt.
 
 \subsection{Aufgaben-Verwaltung}
-%TODO schreiben
-% es war zwar nicht explizit vom Klienten gewünscht, aber doch testweise umgesetzt worden.
+Eine Ergänzung zu der Dienstplanerstellung wäre eine Aufgaben-Verwaltung. Der Klient kann Aufgaben mit Fälligkeitsdatum und eventuellen Wiederholungen definieren. Klient und Assistenen können die Aufgaben einsehen und als erledigt markieren.
 
 \chapter{Marktanalyse}
 In diesem Kapitel wird eine Marktanalyse durchgeführt. Ziel ist es herauszufinden, ob auf dem Markt eine Lösung verfügbar ist, die alle Anforderungen (siehe Kapitel~\ref{anforderungen}) berücksichtigen.
@@ -626,80 +621,129 @@ Keine dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige sind in de
 Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die formulierten Anforderungen erfüllen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
 \chapter{Software-Design} % oder einfach nur Design?
-
-%TODO Einleitung: Antwort auf die Frage: "Wie setzt man die Anforderungen in ein Modell/eine Lösung um?"
-% * Vom Modell zur Software
-
-Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
+In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in einem SysML Anforderungsdiagramm dargestellt. Daraufhin wird ein Software-Design in UML entworfen, das den Anforderungen gerecht wird. 
 
 \section{SysML Anforderungsdiagramm}
+Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
+
+Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt. Die Anforderungen können Beziehungen untereinander haben. Es wurden nicht alle Beziehungen der SysML verwendet. Nachfolgend sind die verwendeten Beziehungen dargestellt.
+
+\subsection{Enthältbeziehung}
+Die Enthältbeziehung beschreibt, dass eine Anforderung in einer anderen enthalten ist \cite[S.~318]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgabenverwaltung} enthalten.
+
+\begin{figure}[htb]
+	\centering
+	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
+	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementContainment.png}
+	\caption{SysML Anforderungsdiagramm - Enthältbeziehung}
+	\label{fig:SysMLRequirementContainment}
+\end{figure}
+
+\subsection{Erfüllungsbeziehung}
+Die Erfüllungsbeziehung beschreibt, dass ein Element eine Anforderung erfüllt \cite[S.~319]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<satisfy>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementSatisfy} ist ein Beispiel dargestellt. Die Anforderung \enquote{Kalender} erfüllt die Anforderung \enquote{Angabe möglicher Termine}.
+
+\begin{figure}[htb]
+	\centering
+	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
+	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementSatisfy.png}
+	\caption{SysML Anforderungsdiagramm - Erfüllungsbeziehung}
+	\label{fig:SysMLRequirementSatisfy}
+\end{figure}
+
+\subsection{Verfeinerungsbeziehung}
+Die Verfeinerungsbeziehung beschreibt, dass ein Modellelement die Eigenschaften einer Anforderung detaillierter darstellt \cite[S.~325]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<refine>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementRefine} ist ein Beispiel dargestellt. Die Anforderung \enquote{Wiederkehrende Aufgaben erstellen} verfeinert die Anforderung \enquote{Aufgabe erstellen}.
+
+\begin{figure}[htb]
+	\centering
+	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
+	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementRefine.png}
+	\caption{SysML Anforderungsdiagramm - Verfeinerungsbeziehung}
+	\label{fig:SysMLRequirementRefine}
+\end{figure}
+
 %TODO Darstellung des Anforderungsdiagramms verbessern
-In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm zu sehen.
+\subsection{Anforderungsdiagramm}
+In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
+
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
+	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
-	
-	%\centering
-	%\includegraphics[scale=0.75]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementsRotated.png}
 	\caption[SysML Anforderungsdiagramm]{SysML Anforderungsdiagramm}
 	\label{fig:SysMLRequirements}
 \end{figure}
 
 \section{UML Komponentendiagramm}
 %TODO UML Komponentendiagramm erstellen und beschreiben
-Die Anforderungen werden nach dem Top-Down-Prinzip in Software umgesetzt. Es werden Komponenten aus den Anforderungen abgeleitet und modelliert.
+Die Anforderungen wurden nach dem Top-Down-Prinzip in Software umgesetzt. Es wurden Komponenten aus den Anforderungen abgeleitet und modelliert. Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
 
+\begin{figure}[H]
 %TODO Freddy meinte: ungleiche Größen, ungeleiches RAster, nicht ausgerichtet, etwas lieblos
-Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
-\begin{figure}[htb]
 	\advance\leftskip-2.0cm
+	\Note{Grafik wird noch überarbeitet.}
 	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentDiagram.png}
 	\caption[UML Komponentendiagramm]{UML Komponentendiagramm}
 	\label{fig:UMLKomponentendiagramm}
 \end{figure}
 
+Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie möglich zu machen. Zwei Komponenten (\texttt{ToDoManager} und \texttt{MonthNavigation}) sind  völlig autark. Die restlichen vier Komponenten sind durch schlanke Interfaces\footnote{Interface = Zwischenstück, auch häufig Schnittstelle genannt} verbunden. Beim \texttt{MonthOrganisationInterface} und \texttt{SettingsInterface} ist nur eine Methode zu implementieren. Beim \texttt{TeamOrganisationInterface} sind fünf Methoden zu implementieren.  
+
 \section{UML Klassendiagramme}
-%TODO Diagramme skalieren und zurechtrücken
-\begin{figure}[htb]
+%TODO noch mehr zu den Klassendiagrammen schreiben?
+In diesem Abschnitt werden die Komponenten aus Abbildung~\ref{fig:UMLKomponentendiagramm} näher beleuchtet und die darin liegenden Klassen gezeigt.
+
+Die Komponente \texttt{MonthNavigation} (siehe Abbildung~\ref{fig:UMLComponentMonthNavigation}) enthält nur die Klasse \texttt{MonthNavigation}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthNavigation.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{MonthNavigation}]{Klassendiagramm der Komponente \texttt{MonthNavigation}}
 	\label{fig:UMLComponentMonthNavigation}
 \end{figure}
 
-\begin{figure}[htb]
+Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponentMonthOrganisation}) enthält die Klassen \texttt{MonthPlan}, \texttt{AssistanceInput}, \texttt{WorkingTimes} und \texttt{Day}. Zentrale Klasse ist \texttt{MonthPlan}, die Instanzen von allen weiteren Klassen hat.
+
+\begin{figure}[H]
 	%\centering
 	\advance\leftskip-2.0cm
 	\includegraphics[scale=0.55]{../Images/Screenshots/EnterpriseArchitect/UMLComponentMonthOrganisation.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{MonthOrganisation}]{Klassendiagramm der Komponente \texttt{MonthOrganisation}}
 	\label{fig:UMLComponentMonthOrganisation}
 \end{figure}
 
-\begin{figure}[htb]
+Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) enthält nur die Klasse \texttt{Roster}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{../Images/Screenshots/EnterpriseArchitect/UMLComponentRoster.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{Roster}]{Klassendiagramm der Komponente \texttt{Roster}}
 	\label{fig:UMLComponentRoster}
 \end{figure}
 
-\begin{figure}[htb]
+Die Komponente \texttt{Settings} (siehe Abbildung~\ref{fig:UMLComponentSettings}) enthält die Klassen \texttt{Passwords} und \texttt{Settings}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentSettings.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{Settings}]{Klassendiagramm der Komponente \texttt{Settings}}
 	\label{fig:UMLComponentSettings}
 \end{figure}
 
-\begin{figure}[htb]
+Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentTeamOrganisation}) enthält die Klassen \texttt{Team} und \texttt{TeamMember}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.45]{../Images/Screenshots/EnterpriseArchitect/UMLComponentTeamOrganisation.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{TeamOrganisation}]{Klassendiagramm der Komponente \texttt{TeamOrganisation}}
 	\label{fig:UMLComponentTeamOrganisation}
 \end{figure}
 
-\begin{figure}[htb]
+Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoManager}) enthält die Klassen \texttt{ToDoManager} und \texttt{ToDoItem}. 
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentToDoManager.png}
-	\caption[ToDo]{ToDo}
+	\caption[Klassendiagramm der Komponente \texttt{ToDoManager}]{Klassendiagramm der Komponente \texttt{ToDoManager}}
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
 
@@ -790,6 +834,9 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 	\caption[Navigation ohne Anmmeldung]{Navigation ohne Anmmeldung}
 	\label{fig:NavigationLoggedOut}
 \end{figure}
+
+\section{Monatsnavigation}
+%TODO schreiben?
 
 \section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
