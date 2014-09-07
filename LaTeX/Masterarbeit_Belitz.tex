@@ -626,7 +626,9 @@ In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in einem S
 \section{SysML Anforderungsdiagramm}
 Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
 
-Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt. Die Anforderungen können Beziehungen untereinander haben. Es wurden nicht alle Beziehungen der SysML verwendet. Nachfolgend sind die verwendeten Beziehungen dargestellt.
+Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt. Die Anforderungen können Beziehungen untereinander haben. Nachfolgend sind die verwendeten Beziehungen dargestellt.
+
+%TODO allgemeine Beziehung/Abhängigkeit
 
 \subsection{Enthältbeziehung}
 Die Enthältbeziehung beschreibt, dass eine Anforderung in einer anderen enthalten ist \cite[S.~318]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgabenverwaltung} enthalten.
@@ -662,20 +664,35 @@ Die Verfeinerungsbeziehung beschreibt, dass ein Modellelement die Eigenschaften 
 \end{figure}
 
 %TODO Darstellung des Anforderungsdiagramms verbessern
+%TODO Monatsnavigation fehlt in Anforderungsdiagramm
 \subsection{Anforderungsdiagramm}
 In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
 
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
-	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
+	\Note{Die Grafik wird durch eine Schönere ausgetauscht! Die Monatsnavigation wird noch als Anforderung ergänzt.}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
 	\caption[SysML Anforderungsdiagramm]{SysML Anforderungsdiagramm}
 	\label{fig:SysMLRequirements}
 \end{figure}
 
+Es ist deutlich eine Clusterung zu erkennen. Die Anforderungen \enquote{Erstellung Dienstplan}, \enquote{Erstellung Montsplan}, \enquote{Team-Verwaltung}, \enquote{Benutzerverwaltung} und \enquote{Aufgabenverwaltung} sind die zentralen Anforderungen, die weitere Anforderungen enthalten. 
+
 \section{UML Komponentendiagramm}
-%TODO UML Komponentendiagramm erstellen und beschreiben
-Die Anforderungen wurden nach dem Top-Down-Prinzip in Software umgesetzt. Es wurden Komponenten aus den Anforderungen abgeleitet und modelliert. Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
+%allgemeines zum UML Komponentendiagramm schreiben
+Mit dem Komponentendiagramm der UML kann man eine Grobarchitektur der Software darstellen. Die Diagrammform ist hilfreich um sich einen Überblick zu verschaffen. Nutzt eine Komponente Funktionalität einer anderen Komponente, so kann man dies durch Interfaces\footnote{Der Autor bevorzugt den englischen Begriff Interface (deutsch: Zwischenstück), weil er ihn treffender findet als das häufig verwendete Wort \enquote{Schnittstelle}.} darstellen.
+
+%Alle Anforderungen, die im SysML Anforderungsdiagramm als zentral eingeschätzt wurden, werden in eigenen Paketen implementiert. 
+Das Anforderungsdiagramm ist in Deutsch gehalten, da es noch unabhängig von einer Programmiersprache ist. Software schreibt der Autor ausschließlich englischsprachig. Nachfolgend sind die zentralen Anforderungen und die daraus abgeleiteten Pakatnamen dargestellt:
+
+\begin{itemize}
+\item Erstellung Dienstplan $\Rightarrow$ Roster
+\item Erstellung Montsplan $\Rightarrow$ MonthOrganisation
+\item Team-Verwaltung und Benutzerverwaltung $\Rightarrow$ TeamOrganisation
+\item Aufgabenverwaltung $\Rightarrow$ ToDoManager
+\end{itemize}
+
+Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
 
 \begin{figure}[H]
 %TODO Freddy meinte: ungleiche Größen, ungeleiches RAster, nicht ausgerichtet, etwas lieblos
@@ -686,7 +703,7 @@ Die Anforderungen wurden nach dem Top-Down-Prinzip in Software umgesetzt. Es wur
 	\label{fig:UMLKomponentendiagramm}
 \end{figure}
 
-Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie möglich zu machen. Zwei Komponenten (\texttt{ToDoManager} und \texttt{MonthNavigation}) sind  völlig autark. Die restlichen vier Komponenten sind durch schlanke Interfaces\footnote{Interface = Zwischenstück, auch häufig Schnittstelle genannt} verbunden. Beim \texttt{MonthOrganisationInterface} und \texttt{SettingsInterface} ist nur eine Methode zu implementieren. Beim \texttt{TeamOrganisationInterface} sind fünf Methoden zu implementieren.  
+Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie möglich zu machen. Zwei Komponenten (\texttt{ToDoManager} und \texttt{MonthNavigation}) sind  völlig autark. Die restlichen vier Komponenten sind durch schlanke Interfaces verbunden. Beim \texttt{MonthOrganisationInterface} und \texttt{SettingsInterface} ist nur eine Methode zu implementieren. Beim \texttt{TeamOrganisationInterface} sind fünf Methoden zu implementieren.  
 
 \section{UML Klassendiagramme}
 %TODO noch mehr zu den Klassendiagrammen schreiben?
@@ -747,7 +764,7 @@ Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoMa
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
 
-\section{UML Sequenzdiagramme}
+%\section{UML Sequenzdiagramme}
 %TODO Sequenzdiagramme erstellen, einfügen und beschreiben
 
 
