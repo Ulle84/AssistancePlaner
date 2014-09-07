@@ -664,7 +664,8 @@ Die Verfeinerungsbeziehung beschreibt, dass ein Modellelement die Eigenschaften 
 \end{figure}
 
 %TODO Darstellung des Anforderungsdiagramms verbessern
-%TODO Monatsnavigation fehlt in Anforderungsdiagramm
+%TODO Monatsnavigation fehlt in Anforderungsdiagramm und in Aufzählung
+%TODO INput Freddy: Überlegung: Magst Du die Grafik vielleicht in zwei aufteilen? Zunächst eine als Übersicht, die nur die sechs "Haupt-Features" enthält. Und anschließend exemplarisch eine Anforderung detailliert vorstellen? Erstellung Dienst- oder Monatsplan?
 \subsection{Anforderungsdiagramm}
 In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
 
@@ -687,9 +688,9 @@ Das Anforderungsdiagramm ist in Deutsch gehalten, da es noch unabhängig von eine
 
 \begin{itemize}
 \item Erstellung Dienstplan $\Rightarrow$ Roster
-\item Erstellung Montsplan $\Rightarrow$ MonthOrganisation
-\item Team-Verwaltung und Benutzerverwaltung $\Rightarrow$ TeamOrganisation
-\item Aufgabenverwaltung $\Rightarrow$ ToDoManager
+\item Erstellung Monatsplan $\Rightarrow$ MonthOrganisation
+\item Team-Verwaltung und Benutzer-Verwaltung $\Rightarrow$ TeamOrganisation
+\item Aufgaben-Verwaltung $\Rightarrow$ ToDoManager
 \end{itemize}
 
 Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
@@ -706,9 +707,10 @@ Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehe
 Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie möglich zu machen. Zwei Komponenten (\texttt{ToDoManager} und \texttt{MonthNavigation}) sind  völlig autark. Die restlichen vier Komponenten sind durch schlanke Interfaces verbunden. Beim \texttt{MonthOrganisationInterface} und \texttt{SettingsInterface} ist nur eine Methode zu implementieren. Beim \texttt{TeamOrganisationInterface} sind fünf Methoden zu implementieren.  
 
 \section{UML Klassendiagramme}
-%TODO noch mehr zu den Klassendiagrammen schreiben?
+%TODO noch mehr zu den Klassendiagrammen schreiben? -> ja, Freddy meinte, ich solle mehr schreiben
 In diesem Abschnitt werden die Komponenten aus Abbildung~\ref{fig:UMLKomponentendiagramm} näher beleuchtet und die darin liegenden Klassen gezeigt.
 
+\subsection{Komponente \texttt{MonthNavigation}}
 Die Komponente \texttt{MonthNavigation} (siehe Abbildung~\ref{fig:UMLComponentMonthNavigation}) enthält nur die Klasse \texttt{MonthNavigation}.
 
 \begin{figure}[H]
@@ -718,7 +720,10 @@ Die Komponente \texttt{MonthNavigation} (siehe Abbildung~\ref{fig:UMLComponentMo
 	\label{fig:UMLComponentMonthNavigation}
 \end{figure}
 
-Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponentMonthOrganisation}) enthält die Klassen \texttt{MonthPlan}, \texttt{AssistanceInput}, \texttt{WorkingTimes} und \texttt{Day}. Zentrale Klasse ist \texttt{MonthPlan}, die Instanzen von allen weiteren Klassen hat.
+Die Klasse \texttt{MonthNavigation} ist für die Erstellung der Monats-Navigation (Implementierung siehe Abschnitt \ref{Monatsnavigation}) zuständig.
+
+\subsection{Komponente \texttt{MonthOrganisation}}
+Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponentMonthOrganisation}) enthält die Klassen \texttt{MonthPlan}, \texttt{AssistanceInput}, \texttt{WorkingTimes} und \texttt{Day}.
 
 \begin{figure}[H]
 	%\centering
@@ -728,6 +733,9 @@ Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponent
 	\label{fig:UMLComponentMonthOrganisation}
 \end{figure}
 
+Zentrale Klasse ist \texttt{MonthPlan}, die Instanzen von allen weiteren Klassen hat. Mit der Klasse \texttt{MonthPlan} werden alle Daten des Monatplans (Implementierung siehe Abschnitt \ref{Monatsplan}) verwaltet. Die Kalendereingaben (Implementierung siehe Abschnitt \ref{sec:calendar}) der Assistenten werden in der Klasse \texttt{AssistanceInput} hinterlegt. Die Standardarbeitszeiten (Implementierung siehe Abschnitt \ref{sec:standardDienstzeiten}) werden von der Klasse \texttt{WorkingTimes} bereitgestellt. In der Klasse \texttt{Day} werden alle tagesbezogenen Daten gebündelt.
+
+\subsection{Komponente \texttt{Roster}}
 Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) enthält nur die Klasse \texttt{Roster}.
 
 \begin{figure}[H]
@@ -737,6 +745,9 @@ Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) en
 	\label{fig:UMLComponentRoster}
 \end{figure}
 
+Die Klasse \texttt{Roster} wird bei der Dienstplanerstellung (Implementierung siehe Abschnitt \ref{sec:rosterImplementation}) verwendet.
+
+\subsection{Komponente \texttt{Settings}}
 Die Komponente \texttt{Settings} (siehe Abbildung~\ref{fig:UMLComponentSettings}) enthält die Klassen \texttt{Passwords} und \texttt{Settings}.
 
 \begin{figure}[H]
@@ -746,6 +757,9 @@ Die Komponente \texttt{Settings} (siehe Abbildung~\ref{fig:UMLComponentSettings}
 	\label{fig:UMLComponentSettings}
 \end{figure}
 
+Mit der Klasse \texttt{Settings} werden die Einstellungen (Implementierung siehe Abschnitt \ref{sec:EinstellungenImpl}) des Assistenzplaners verwaltet. In der Klasse \texttt{Passwords} sind alle Funktionen vorhanden, die für die Benutzerverwaltung (Implementierung siehe Abschnitt \ref{sec:BenutzerVerwaltungImpl}) benötigt werden.
+
+\subsection{Komponente \texttt{TeamOrganisation}}
 Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentTeamOrganisation}) enthält die Klassen \texttt{Team} und \texttt{TeamMember}.
 
 \begin{figure}[H]
@@ -755,6 +769,9 @@ Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentT
 	\label{fig:UMLComponentTeamOrganisation}
 \end{figure}
 
+In der Klasse \texttt{Team} ist die Funktionalität für die Team-Verwaltung (Implementierung siehe Abschnitt \ref{sec:TeamVerwaltung}) implementiert. \texttt{Team} hat soviele Instanzen von \texttt{TeamMember}, wie das Assistenz-Team Mitglieder hat. Die Klasse TeamMember ist eine reine Datenhaltungsklasse\footnote{Alle Member sind \texttt{public}.} ohne Funktionalität.
+
+\subsection{Komponente \texttt{ToDoManager}}
 Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoManager}) enthält die Klassen \texttt{ToDoManager} und \texttt{ToDoItem}. 
 
 \begin{figure}[H]
@@ -763,6 +780,8 @@ Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoMa
 	\caption[Klassendiagramm der Komponente \texttt{ToDoManager}]{Klassendiagramm der Komponente \texttt{ToDoManager}}
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
+
+In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwaltung (Implementierung siehe Abschnitt \ref{sec:AufgabenVerwaltung}) implementiert. \texttt{ToDoManager} hat soviele Instanzen von \texttt{ToDoItem}, wie Aufgaben in der Aufabenliste hinterlegt sind. Die Klasse \texttt{ToDoItem} ist eine reine Datenhaltungsklasse ohne Funktionalität.
 
 %\section{UML Sequenzdiagramme}
 %TODO Sequenzdiagramme erstellen, einfügen und beschreiben
@@ -808,6 +827,7 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 Eine potentielle Fehlerquelle beim Gebrauch von textbasierten Daten ist der gleichzeitige Schreibzugriff zweier Benutzer auf eine Datei. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt~\ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art \Link{http://de.wikipedia.org/wiki/Semaphor_(Informatik)}{Semaphor}{05.09.2014} eingesetzt. Unter PHP gibt es keine echten Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
 \section{Benutzer-Verwaltung}
+\label{sec:BenutzerVerwaltungImpl}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt~\ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt~\ref{sec:TeamVerwaltung}).
 Bei der Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Befehl:
@@ -853,7 +873,9 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 \end{figure}
 
 \section{Monatsnavigation}
+\label{Monatsnavigation}
 %TODO schreiben?
+..., mit der von einem Monat zum vorherigen, aktuellen und nächsten Monat navigiert werden kann.
 
 \section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
@@ -896,6 +918,7 @@ Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutze
 
 
 \section{Einstellungen}
+\label{sec:EinstellungenImpl}
 Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung~\ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
 %TODO Beschreibung des Vorgehens mit Standard-Passwort hier oder an einer andreen sTelle?
 Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
@@ -908,6 +931,7 @@ Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-V
 \end{figure}
 
 \section{Standard-Dienstzeiten}
+\label{sec:standardDienstzeiten}
 Bei den Standard-Dienstzeiten (siehe Abbildung~\ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Tag der Woche festzulegen, wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten für jeden Tag angepasst werden.
 
 \begin{figure}[htb]
@@ -952,6 +976,7 @@ Sollte ein Assistent sein Passwort vergessen haben, hat der Klient mit Hilfe des
 Sollte ein Assistent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons \enquote{Löschen} (in der Spalte \enquote{Aktionen}) den Assistenten aus der Team-Verwaltung zu entfernen.
 
 \section{Monatsplan}
+\label{Monatsplan}
 Mit dem Monatsplan (siehe Abbildung~\ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
 
 \begin{figure}[htb]
@@ -997,6 +1022,7 @@ Im oberen Bereich der Webseite sind alle Informationen dargestellt (siehe Abbild
 \end{figure}
 
 \section{Dienst-Plan}
+\label{sec:rosterImplementation}
 \subsection{Aus Sicht des Klienten}
 Wenn die Assistenten ihre Termine eingetragen haben, ist der Klient in der Lage den Dienstplan zu erstellen. Falls es Tage gibt, an denen nicht mindestens zwei Assistenten (einer für Dienst und einer für Bereitschaft) Zeit haben, so bekommt er eine Warnung, da dann eine vollständige Dienstplanerstellung nicht möglich ist.
 
