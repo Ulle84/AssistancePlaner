@@ -74,7 +74,7 @@ Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serv
 
 Ein Klient ist auf persönliche Assistenz angewiesen. Die Dienstzeiten können von wenigen Stunden am Tag bis zu einem ganzen Tag variieren.
 
-Mit dem Assistenzplaner hat der Klient die Möglichkeit ihre Assistenz-Teams zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
+Mit dem Assistenzplaner hat der Klient die Möglichkeit sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
 
 Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
 
@@ -126,6 +126,7 @@ In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorl
 
 \section{Netzwerke und Internet}
 %TODO das komplette Kapitel ist ein Zitat von Comer -> vielleicht kann man mehr Quellen berücksichtigen?
+%TODO einfach aufräumen?
 
 \subsection{Client/Server-Paradigma}
 \enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S.~405]{comer2002computernetzwerke}
@@ -301,14 +302,8 @@ Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modell
 \subsection{UML}
 Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S.~4]{rupp2012uml}
 
-%TODO ??? verwendete Diagrammtypen beschreiben -> Freddy meinte, dass man den Kern kurz vor Vewendung des Diagramms darstellen sollte
-
 \subsection{SysML}
 \NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache, die sich zur Modellierung von komplexen Systemen einsetzen lässt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
-
-
-%TODO noch mehr zu SysML schreiben -> Anforderungsdiagramm
-% alle verwendeten Komponenten der SysML erläutern (Konnektoren: containment, satisfy, allgemeine Verbindung)
 
 
 \chapter{Anforderungsermittlung}
@@ -355,7 +350,7 @@ Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehre
 Der Klient gibt auf einer Webseite die Dienstzeiten für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten, die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschläge unterbreitet werden. Der Dienstplan kann vom Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf wenige Minuten.
 %TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
-%UML Aktivitätsdiagramm
+\Note{Hier kommt noch ein Diagramm hin!}
 
 \section{Benutzergeschichten}
 \label{sec:userstories}
@@ -618,20 +613,19 @@ Beispiele hierfür sind:
 
 Keine dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige sind in der Lage Stundenkontingente zu berücksichtigen. Bei allen wird der Dienstplan manuell erstellt. Bei keiner können persönliche Vorlieben oder allgemein Regeln für die Dienstplanerstellung festgelegt werden. Alle waren auf die reine Erstellung eines Dienstplans ausgelegt, Erweiterungen wie Aufgaben-Verwaltung waren nicht vorgesehen.
 
-Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die die formulierten Anforderungen erfüllen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
+Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die alle formulierten Anforderungen erfüllen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
-\chapter{Software-Design} % oder einfach nur Design?
+\chapter{Software-Design}
 In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in einem SysML Anforderungsdiagramm dargestellt. Daraufhin wird ein Software-Design in UML entworfen, das den Anforderungen gerecht wird. 
 
 \section{SysML Anforderungsdiagramm}
 Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
 
-Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt. Die Anforderungen können Beziehungen untereinander haben. Nachfolgend sind die verwendeten Beziehungen dargestellt.
-
-%TODO allgemeine Beziehung/Abhängigkeit
+Die Anforderung \enquote{beschreibt ein oder mehrere Eigenschaften oder Verhaltensweisen eines Systems, die stets erfüllt sein müssen.} \cite[S.~315]{weilkiens2014systems}
+Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt, in deren oberen Bereich der Stereotyp <<requirement>> steht. Die Anforderungen können Beziehungen untereinander haben. Nachfolgend sind die verwendeten Beziehungen dargestellt.
 
 \subsection{Enthältbeziehung}
-Die Enthältbeziehung beschreibt, dass eine Anforderung in einer anderen enthalten ist \cite[S.~318]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgabenverwaltung} enthalten.
+Die Enthältbeziehung \enquote{beschreibt, dass eine Anforderung in einer anderen enthalten ist.} \cite[S.~318]{weilkiens2014systems} Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgabenverwaltung} enthalten.
 
 \begin{figure}[htb]
 	\centering
@@ -642,7 +636,7 @@ Die Enthältbeziehung beschreibt, dass eine Anforderung in einer anderen enthalte
 \end{figure}
 
 \subsection{Erfüllungsbeziehung}
-Die Erfüllungsbeziehung beschreibt, dass ein Element eine Anforderung erfüllt \cite[S.~319]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<satisfy>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementSatisfy} ist ein Beispiel dargestellt. Die Anforderung \enquote{Kalender} erfüllt die Anforderung \enquote{Angabe möglicher Termine}.
+Die Erfüllungsbeziehung \enquote{beschreibt, dass ein Element eine Anforderung erfüllt.} \cite[S.~319]{weilkiens2014systems} Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<satisfy>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementSatisfy} ist ein Beispiel dargestellt. Die Anforderung \enquote{Kalender} erfüllt die Anforderung \enquote{Angabe möglicher Termine}.
 
 \begin{figure}[htb]
 	\centering
@@ -653,7 +647,7 @@ Die Erfüllungsbeziehung beschreibt, dass ein Element eine Anforderung erfüllt \c
 \end{figure}
 
 \subsection{Verfeinerungsbeziehung}
-Die Verfeinerungsbeziehung beschreibt, dass ein Modellelement die Eigenschaften einer Anforderung detaillierter darstellt \cite[S.~325]{weilkiens2014systems}. Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<refine>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementRefine} ist ein Beispiel dargestellt. Die Anforderung \enquote{Wiederkehrende Aufgaben erstellen} verfeinert die Anforderung \enquote{Aufgabe erstellen}.
+Die Verfeinerungsbeziehung \enquote{beschreibt, dass ein Modellelement die Eigenschaften einer Anforderung detaillierter darstellt.} \cite[S.~325]{weilkiens2014systems} Dargestellt wird diese Beziehung durch einen Pfeil, der mit dem Stereotyp <<refine>> beschriftet ist. In Abbildung~\ref{fig:SysMLRequirementRefine} ist ein Beispiel dargestellt. Die Anforderung \enquote{Wiederkehrende Aufgaben erstellen} verfeinert die Anforderung \enquote{Aufgabe erstellen}.
 
 \begin{figure}[htb]
 	\centering
@@ -666,12 +660,13 @@ Die Verfeinerungsbeziehung beschreibt, dass ein Modellelement die Eigenschaften 
 %TODO Darstellung des Anforderungsdiagramms verbessern
 %TODO Monatsnavigation fehlt in Anforderungsdiagramm und in Aufzählung
 %TODO INput Freddy: Überlegung: Magst Du die Grafik vielleicht in zwei aufteilen? Zunächst eine als Übersicht, die nur die sechs "Haupt-Features" enthält. Und anschließend exemplarisch eine Anforderung detailliert vorstellen? Erstellung Dienst- oder Monatsplan?
+%TODO allemeine Pfeile streichen und dadurch Unabhänige TEile extrahieren
 \subsection{Anforderungsdiagramm}
 In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
 
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
-	\Note{Die Grafik wird durch eine Schönere ausgetauscht! Die Monatsnavigation wird noch als Anforderung ergänzt.}
+	\Note{Die Grafik ist vorläufig!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
 	\caption[SysML Anforderungsdiagramm]{SysML Anforderungsdiagramm}
 	\label{fig:SysMLRequirements}
@@ -684,7 +679,7 @@ Es ist deutlich eine Clusterung zu erkennen. Die Anforderungen \enquote{Erstellu
 Mit dem Komponentendiagramm der UML kann man eine Grobarchitektur der Software darstellen. Die Diagrammform ist hilfreich um sich einen Überblick zu verschaffen. Nutzt eine Komponente Funktionalität einer anderen Komponente, so kann man dies durch Interfaces\footnote{Der Autor bevorzugt den englischen Begriff Interface (deutsch: Zwischenstück), weil er ihn treffender findet als das häufig verwendete Wort \enquote{Schnittstelle}.} darstellen.
 
 %Alle Anforderungen, die im SysML Anforderungsdiagramm als zentral eingeschätzt wurden, werden in eigenen Paketen implementiert. 
-Das Anforderungsdiagramm ist in Deutsch gehalten, da es noch unabhängig von einer Programmiersprache ist. Software schreibt der Autor ausschließlich englischsprachig. Nachfolgend sind die zentralen Anforderungen und die daraus abgeleiteten Pakatnamen dargestellt:
+Das Anforderungsdiagramm ist in Deutsch gehalten, da es noch unabhängig von einer Programmiersprache ist. Software schreibt der Autor ausschließlich englischsprachig. Nachfolgend sind die zentralen Anforderungen und die daraus abgeleiteten Paketnamen dargestellt:
 
 \begin{itemize}
 \item Erstellung Dienstplan $\Rightarrow$ Roster
@@ -707,7 +702,6 @@ Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehe
 Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie möglich zu machen. Zwei Komponenten (\texttt{ToDoManager} und \texttt{MonthNavigation}) sind  völlig autark. Die restlichen vier Komponenten sind durch schlanke Interfaces verbunden. Beim \texttt{MonthOrganisationInterface} und \texttt{SettingsInterface} ist nur eine Methode zu implementieren. Beim \texttt{TeamOrganisationInterface} sind fünf Methoden zu implementieren.  
 
 \section{UML Klassendiagramme}
-%TODO noch mehr zu den Klassendiagrammen schreiben? -> ja, Freddy meinte, ich solle mehr schreiben
 In diesem Abschnitt werden die Komponenten aus Abbildung~\ref{fig:UMLKomponentendiagramm} näher beleuchtet und die darin liegenden Klassen gezeigt.
 
 \subsection{Komponente \texttt{MonthNavigation}}
@@ -809,11 +803,6 @@ Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 %TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
-
-%TODO schreiben?
-%\section{Programmierung}
-%Neben der PHP-Klassen (siehe Abbildung %TODO Link auf Klassendiagramme
-%) sind weitere PHP, JavaScript und CSS-Dateien entstanden. Details dazu finden sich in Abschnitt %TODO Link auf Anhang
 
 
 \section{Persistenz der Daten}
@@ -1347,6 +1336,7 @@ Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlich
 %TODO Grafik für folgende Beispiel erstellen
 Folgendes Beispiel soll dies erläutern. Angenommen der Monat hätte nur 3 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden. Die Summe der Dienstszeiten wäre 48. Es gibt 2 Assistenten mit Stundenkontingenten von 28 und 20 Stunden. Der Skalierfaktor wäre genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
 Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen.
+\Note{Hier werde ich noch eine erläuternde Grafik einfügen.}
 
 Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmus eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine volle Stunde inkrementell erhöht. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
 
@@ -1448,14 +1438,15 @@ Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen 
 Durch die iterative Vorgehensweise fühlte sich der Klient sehr gut eingebunden. Er konnte in regelmäßigen Intervallen den aktuellen Stand der Software sehen und sein Feedback äußern, was direkt in die weitere Entwicklung einfloss.
 
 \chapter{Ergebnis}
-%TODO geradeziehen live version und master version
-%TODO nach Schreiben der Zusammenfassung diese Passage nochmal überarbeiten
-Der \LinkWithoutDate{http://assistenzplaner.de/master}{Assistenzplaner} wurde als Webanwendung neu erschaffen. Er ist unter anderem in der Lage:
-\begin{itemize}
-\item Assistenz-Teams zu verwalten
-\item Dienstpläne zu erstellen
-\item Aufgaben für die Assistenz-Teams zu verwalten
-\end{itemize}
+Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serverbasierte Anwendung geschaffen, um körperlich behinderte Menschen (Klienten) und ihre Assistenz-Teams bei der Planung zu unterstützen.
+
+Der Klient hat die Möglichkeit sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
+
+Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
+
+Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontigente berücksichtigt. Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen. Weiterhin ist es möglich den Dienstplan manuell anzupassen.
+
+Eine Aufgaben-Verwaltung rundet den Assistenzplaner ab.
 
 Die Webanwendung wurde mit vielen gängigen Browsern (Firefox, Chrome, Safari) erfolgreich getestet.
 
