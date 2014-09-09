@@ -783,7 +783,7 @@ In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwa
 \chapter{Implementierung}
 %TODO Einleitung überarbeiten
 %TODO Immer einen Abschnitt Ergebnis und einen Abschnitt "Code-Details" schreiben?
-In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt\footnote{Der Autor hat sich gegen die ausführliche Darstellung und Beschreibung von Quellcode entschieden. Der interessierte Leser kann den Quellcode auf der beiliegenden CD oder bei GitHub (\url{https://github.com/Ulle84/AssistancePlaner}) einsehen}. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
+In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt. In den Abschnitten \enquote{Implementierungsdetails} werden weiterführende Informationen dargestellt, die für das Gesamtverständnis der Ausarbeitung nicht wichtig sind und übersprungen werden können. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
 
 \section{Wahl der Programmiersprachen}
 Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
@@ -803,6 +803,12 @@ Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 %TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
 
+\section{Einheitliches Layout}
+Mit Hilfe von CSS wird die Darstellung des Assistenzplaners konsistent definiert. Es gibt ein globales Stylesheet, was in allen Webseiten verwendert wird.
+
+\subsection{Implementierungsdetails}
+In der Datei \file{global.css} sind alle globalen Styles definiert. 
+
 
 \section{Persistenz der Daten}
 Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
@@ -812,12 +818,27 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 \item Es werden keine Datenbank-Anforderungen an den Server gestellt.
 \end{itemize}
 
+\subsection{Implementierungsdetails}
 Eine potentielle Fehlerquelle beim Gebrauch von textbasierten Daten ist der gleichzeitige Schreibzugriff zweier Benutzer auf eine Datei. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt~\ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art \Link{http://de.wikipedia.org/wiki/Semaphor_(Informatik)}{Semaphor}{05.09.2014} eingesetzt. Unter PHP gibt es keine echten Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
+
+Es gibt einige PHP-Scripte zum Speichern von Daten. Bei allen werden per \texttt{POST}-Parameter die zu speichernden Inhalte übermittelt, ein File schreibend geöffnet und der übertragene Inhalt geschrieben.
+Die PHP-Scripte, die für das Speichern zuständig sind, heißen:
+\begin{itemize}
+\item \file{calendarSaver.php}
+\item \file{changePasswordSaver.php}
+\item \file{defaultTimesSaver.php}
+\item \file{monthPlanSaver.php}
+\item \file{rosterSaver.php}
+\item \file{settingsSaver.php}
+\item \file{toDoSaver.php}
+\end{itemize}
 
 \section{Benutzer-Verwaltung}
 \label{sec:BenutzerVerwaltungImpl}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
 Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt~\ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt~\ref{sec:TeamVerwaltung}).
+
+\subsection{Implementierungsdetails}
 Bei der Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Befehl:
 
 \qquad \texttt{session\_start();}
@@ -833,6 +854,9 @@ Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Bei
 
 Nach der Anmeldung werden im superglobalen Array \texttt{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session und Setzen der Session-Variablen) ist \cite[S.~404]{schlossnagle2006php} entnommen.
 
+Das PHP-Script \file{login.php} ist für die Erstellung der Eingabefelder zuständig. Wenn der Benutzer auf den Button \enquote{Anmelden} drückt, werden die Daten aus den Eingabefeldern nach einer erfolgreichen Validierung per \texttt{POST} an den \file{loginHandler.php} geschickt. Der Login-Handler verifiziert, dass der Nutzer besteht und das Passwort korrekt ist. 
+%TODO weiter schreiben
+
 \section{Willkommen-Seite}
 Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung~\ref{fig:Welcome}) werden dem Interessenten Informationen über den Assistenzplaner präsentiert. Man wird gebeten einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
 
@@ -842,6 +866,9 @@ Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 	\caption[Willkommen-Seite]{Willkommen-Seite}
 	\label{fig:Welcome}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren
 
 \section{Navigation}
 Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davon, ob jemand am System angemeldet ist (siehe Abbildung~\ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung~\ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
@@ -860,6 +887,9 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 	\label{fig:NavigationLoggedOut}
 \end{figure}
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren
+
 \section{Monatsnavigation}
 \label{Monatsnavigation}
 An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwischen den Monaten navigieren können. Mithilfe der Monatsnavigation (siehe Abbildung \ref{fig:MonthNavigation}) kann man vom derzeit angezeigeten Monat immer zum vorherigen, aktuellen und nächsten Monat navigieren.
@@ -870,6 +900,9 @@ An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwisch
 	\caption{Monatsnavigation}
 	\label{fig:MonthNavigation}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren
 
 \section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
@@ -900,6 +933,9 @@ Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgrei
 
 Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen personenbezogene Daten (Vorname, Nachname, E-Mail-Adresse) angeben, was aber nicht zwingend für die Benutzung des Assistenzplaners notwendig ist.
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren
+
 \section{Übersicht}
 Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
 
@@ -909,6 +945,9 @@ Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutze
 	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht des Assistenzplaners für Klienten mit Links zu allen verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 
 \section{Einstellungen}
@@ -924,6 +963,9 @@ Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-V
 	\label{fig:Settings}
 \end{figure}
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+
 \section{Standard-Dienstzeiten}
 \label{sec:standardDienstzeiten}
 Bei den Standard-Dienstzeiten (siehe Abbildung~\ref{fig:DefaultTimes}) hat der Klient die Möglichkeit für jeden Tag der Woche festzulegen, wie standardmäßig die Dienstzeiten sind. Diese Standard-Dienstzeiten werden initial im Monatsplan eingetragen, können aber vom Klienten für jeden Tag angepasst werden.
@@ -934,6 +976,9 @@ Bei den Standard-Dienstzeiten (siehe Abbildung~\ref{fig:DefaultTimes}) hat der K
 	\caption[Standard-Dienstzeiten]{Verwaltung der Standard-Dienstzeiten.}
 	\label{fig:DefaultTimes}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
@@ -969,6 +1014,9 @@ Sollte ein Assistent sein Passwort vergessen haben, hat der Klient mit Hilfe des
 
 Sollte ein Assistent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons \enquote{Löschen} (in der Spalte \enquote{Aktionen}) den Assistenten aus der Team-Verwaltung zu entfernen.
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+
 \section{Monatsplan}
 \label{Monatsplan}
 Mit dem Monatsplan (siehe Abbildung~\ref{fig:MonthPlan3})  plant der Klient den nächsten Monat. Er kann pro Tag den Dienstbeginn und das Dienstende festlegen und Notizen zum Tag erstellen. Die Notizen unterteilen sich in öffentliche und private Notizen. Öffentliche Notizen können auch vom Assistenzteam eingesehen werden. Private Notizen können nur vom Klienten selbst eingesehen werden.
@@ -990,6 +1038,9 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 	\caption[Benachrichtigung der Assistenten]{Beispielhafte Benachrichtigung der Assistenten mit der Bitte des Klienten, die Termine für den nächsten Monat einzutragen}
 	\label{fig:Mail}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 \section{Kalender}
 \label{sec:calendar}
@@ -1086,6 +1137,9 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung~\ref{fig:
 	\caption[Dienste und Bereitschaften des angemeldeten Assistenten]{Dienste und Bereitschaften des angemeldeten Assistenten \enquote{Markus}}
 	\label{fig:RosterAssistantMarkus2}
 \end{figure}
+
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 \label{sec:algorithm}
@@ -1359,6 +1413,9 @@ Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assisten
 
 Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde vorerst davon abgesehen.
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
 Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung~\ref{fig:ToDoManager}) zur Verfügung.
@@ -1416,6 +1473,9 @@ Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängi
 \subsection{Speichern}
 Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf \enquote{Speichern} drücken.
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+
 \section{Dokumentation}
 \label{sec:Dokumentation}
 Für die Benutzer des Assistenzplaners steht jederzeit im Navigations-Bereich (oben rechts) ein Link zur Verfügung, der zur Dokumentation führt.
@@ -1424,8 +1484,14 @@ Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine ander
 Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt, damit man leicht zum entsprechenden Kapitel der Dokumentation navigieren kann.
 %TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
 
+\subsection{Implementierungsdetails}
+%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner eine Seite hinzugefügt, die jederzeit über die Navigation zu erreichen ist. Diese beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
+
+\subsection{Implementierungsdetails}
+Das Impressum ist in der 
 
 \chapter{Überführung in den Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
