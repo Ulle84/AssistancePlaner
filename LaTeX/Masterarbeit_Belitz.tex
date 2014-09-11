@@ -822,24 +822,24 @@ Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.t
 Eine potentielle Fehlerquelle beim Gebrauch von textbasierten Daten ist der gleichzeitige Schreibzugriff zweier Benutzer auf eine Datei. Das ist derzeit nur bei den Kalender-Eingaben der Assistenten (siehe Abschnitt~\ref{sec:calendar}) möglich. Um den gleichzeitigen Zugriff zu verhindern wird eine Art \Link{http://de.wikipedia.org/wiki/Semaphor_(Informatik)}{Semaphor}{05.09.2014} eingesetzt. Unter PHP gibt es keine echten Semaphoren, aber es gibt die Möglichkeit auf eine Datei sperrend zuzugreifen. So wird verhindert, dass zwei Prozesse gleichzeitig in eine Datei schreiben, falls zwei Assistenten gleichzeitig ihre Daten speichern wollen.
 
 Es gibt einige PHP-Scripte zum Speichern von Daten. Bei allen werden per \texttt{POST}-Parameter die zu speichernden Inhalte übermittelt, ein File schreibend geöffnet und der übertragene Inhalt geschrieben.
-Die PHP-Scripte, die für das Speichern zuständig sind, heißen:
-\begin{itemize}
-\item \file{calendarSaver.php}
-\item \file{changePasswordSaver.php}
-\item \file{defaultTimesSaver.php}
-\item \file{monthPlanSaver.php}
-\item \file{rosterSaver.php}
-\item \file{settingsSaver.php}
-\item \file{toDoSaver.php}
-\end{itemize}
+Die PHP-Scripte, die für das Speichern zuständig sind, heißen \file{calendarSaver.php}, \file{changePasswordSaver.php}, \file{defaultTimesSaver.php}, \file{monthPlanSaver.php}, \file{rosterSaver.php}, \file{settingsSaver.php} und \file{toDoSaver.php}.
 
 \section{Benutzer-Verwaltung}
 \label{sec:BenutzerVerwaltungImpl}
 Damit der Klient und die Assistenten benutzerspezifische Eingaben tätigen können ist eine Verwaltung der Benutzer notwendig.
-Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden. Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt~\ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet. Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt~\ref{sec:TeamVerwaltung}).
+Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort anmelden (siehe Abbildung \ref{fig:Login}). Es gibt zwei Rollen von Benutzern: die Klienten und die Assistenten. Die Klienten lassen beim Anmelden das Eingabefeld \enquote{Assistent} leer. Die Klienten können sich ihren Zugang selbstständig anlegen (siehe Abschnitt~\ref{sec:AnlegenKlient}). Die Zugänge der Assistenten werden von den Klienten verwaltet.\footnote{Jeder Assistent ist damit fest einem Klienten zugeteilt. Theoretisch kann ein Assistent auch in mehrern Teams Mitglied sein.} Klienten haben die Möglichkeit Asisstenten zum Team hinzuzufügen und zu entfernen (siehe Abschnitt~\ref{sec:TeamVerwaltung}).
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Login.png}
+	\caption{Login-Maske des Assistenzplaners}
+	\label{fig:Login}
+\end{figure}
 
 \subsection{Implementierungsdetails}
-Bei der Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Befehl:
+Das PHP-Script \file{login.php} ist für die Erstellung der Eingabefelder zuständig. Wenn der Benutzer auf den Button \enquote{Anmelden} drückt, werden die Daten aus den Eingabefeldern nach einer erfolgreichen Validierung per \texttt{POST} an den \file{loginHandler.php} geschickt. Der Login-Handler verifiziert, dass der Nutzer besteht und das Passwort korrekt eingegeben wurde. 
+
+Nach der erfolgreichen Anmeldung wird eine PHP-Session gestartet. Dies geschieht mit dem PHP-Befehl:
 
 \qquad \texttt{session\_start();}
 
@@ -854,8 +854,12 @@ Im Hintergrund wird im Browser eine Session-ID erstellt und gespeichert. Ein Bei
 
 Nach der Anmeldung werden im superglobalen Array \texttt{\$\_SESSION} Variablen gesetzt, die hilfreich für die weitere Verwendung des Assistenzplaners sind. Diese Vorgehensweise (Start einer Session und Setzen der Session-Variablen) ist \cite[S.~404]{schlossnagle2006php} entnommen.
 
-Das PHP-Script \file{login.php} ist für die Erstellung der Eingabefelder zuständig. Wenn der Benutzer auf den Button \enquote{Anmelden} drückt, werden die Daten aus den Eingabefeldern nach einer erfolgreichen Validierung per \texttt{POST} an den \file{loginHandler.php} geschickt. Der Login-Handler verifiziert, dass der Nutzer besteht und das Passwort korrekt ist. 
-%TODO weiter schreiben
+Falls sich der Assistent mit dem Standard-Passwort angemeldet hat, so wird er zu \texttt{changePassword.php} weitergeleitet. Dort wird er aufgefordert sein Passwort zu ändern. Ansonsten wird er zur Übersicht (siehe Abschnitt \ref{sec:overviewImpl}) weitergeleitet. Eine weiter Möglichkeit ist, dass die Login-Seite mit dem \texttt{GET}-Parameter \texttt{redirect} aufgerufen wurde. Das passiert zum Beispiel, wenn der Assistent in der automatisch generierten Nachricht auf einen Link klickt, der auf folgendes Ziel verweist:
+
+\qquad http://assistenzplaner.de/PHP/login.php?redirect=calendarView
+
+Dann wird der Nutzer nach erfolgreicher Anmeldung direkt zur Kalender-Ansicht weitergeleitet.
+
 
 \section{Willkommen-Seite}
 Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Seite}{23.08.2014} (siehe Abbildung~\ref{fig:Welcome}) werden dem Interessenten Informationen über den Assistenzplaner präsentiert. Man wird gebeten einen neuen Klienten-Zugang einzurichten oder sich mit einem bestehenden Zugang anzumelden.
@@ -868,7 +872,11 @@ Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren
+Die Willkommensseite wird durch das PHP-Script \file{index.php} generiert. Man kann zwei Aktionen durchführen:
+\begin{enumerate}
+\item Ein neues Konto anlegen $\Rightarrow$ \file{createNewAccount.php}
+\item Anmelden $\Rightarrow$ \file{login.php}
+\end{enumerate}
 
 \section{Navigation}
 Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davon, ob jemand am System angemeldet ist (siehe Abbildung~\ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung~\ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
@@ -888,7 +896,7 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren
+Die Navigation wird durch das PHP-Script \file{navigation.php} erzeugt. Dieses Script wird in allen Seiten direkt nach dem HTML-\texttt{body}-Tag inkludiert\footnote{PHP-Code: \texttt{<?php include('navigation.php'); ?>}}. Im Script werden aus dem superglobalen Array \texttt{\$\_SESSION} einige Informationen ausgelesen und abhängig davon der Inhalt der Navigation variiert. In der Navigations werden Hyperlinks zu anderen PHP-Scripten dargestellt.
 
 \section{Monatsnavigation}
 \label{Monatsnavigation}
@@ -902,7 +910,7 @@ An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwisch
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren
+Die Monatsnavigation wird von der PHP-Klasse \texttt{MonthNavigation} erstellt. Es reicht eine Instanz von \texttt{MonthNavigation} zu erstellen. Bei der Konstruktion muss man nur einen Pfad auf das aufrufende PHP-Script, das Jahr und den Monat angeben. Vorraussetzung ist, dass das aufrufende PHP-Script mit den \texttt{GET}-Parametern \texttt{year} und \texttt{month} aufgerufen werden kann. Das ist bei den PHP-Scripten \file{monthPlanView.php}, \file{rosterView.php} und \file{calendarView.php} der Fall.
 
 \section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
@@ -934,9 +942,11 @@ Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgrei
 Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen personenbezogene Daten (Vorname, Nachname, E-Mail-Adresse) angeben, was aber nicht zwingend für die Benutzung des Assistenzplaners notwendig ist.
 
 \subsection{Implementierungsdetails}
+%TODO Wird im Ordner ... aus dem vorherigen Abschnitt hier her verschieben
 %TODO Inhalt produzieren
 
 \section{Übersicht}
+\label{sec:overviewImpl}
 Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
 
 \begin{figure}[htb]
