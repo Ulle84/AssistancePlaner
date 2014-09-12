@@ -293,7 +293,7 @@ Mit Hilfe von AJAX ist es möglich aktive Dokumente (siehe Abschnitt~\ref{sec:web
 \NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten, die im Browser angezeigt werden. Mit PHP kann man objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing~\ref{lst:examplePHP} gezeigt.
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
-\lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument]{../PHP/example.php}
+\lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument]{../PHP/exampleBase.php}
 
 \section{Modellierungssprachen}
 Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen kann man komplexe Systeme konstruieren. Durch mehrere Abstraktionsebenen behält man die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
@@ -781,14 +781,13 @@ In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwa
 
 
 \chapter{Implementierung}
-%TODO Einleitung überarbeiten
-%TODO Immer einen Abschnitt Ergebnis und einen Abschnitt "Code-Details" schreiben?
 In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt. In den Abschnitten \enquote{Implementierungsdetails} werden weiterführende Informationen dargestellt, die für das Gesamtverständnis der Ausarbeitung nicht wichtig sind und übersprungen werden können. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
 
 \section{Wahl der Programmiersprachen}
 Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
 
 \subsection{Server}
+%TODO nachteile aufzählen?
 Bei der Serverseite ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} von über 80\% und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 \begin{itemize}
@@ -799,7 +798,7 @@ Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 
 
 \subsection{Client}
-Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wir mit Hilfe von CSS bestimmt.
+Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wird mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
 %TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
 
@@ -808,7 +807,7 @@ Mit Hilfe von CSS wird die Darstellung des Assistenzplaners konsistent definiert
 
 \subsection{Implementierungsdetails}
 In der Datei \file{global.css} sind alle globalen Styles definiert. 
-
+%TODO weitere Stylesheets und deren Einsatzzweck erwähnen
 
 \section{Persistenz der Daten}
 Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
@@ -891,16 +890,16 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
-	\caption[Navigation ohne Anmmeldung]{Navigation ohne Anmmeldung}
+	\caption[Navigation ohne Anmeldung]{Navigation ohne Anmmeldung}
 	\label{fig:NavigationLoggedOut}
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Die Navigation wird durch das PHP-Script \file{navigation.php} erzeugt. Dieses Script wird in allen Seiten direkt nach dem HTML-\texttt{body}-Tag inkludiert\footnote{PHP-Code: \texttt{<?php include('navigation.php'); ?>}}. Im Script werden aus dem superglobalen Array \texttt{\$\_SESSION} einige Informationen ausgelesen und abhängig davon der Inhalt der Navigation variiert. In der Navigations werden Hyperlinks zu anderen PHP-Scripten dargestellt.
+Die Navigation wird durch das PHP-Script \file{navigation.php} erzeugt. Dieses Script wird in allen Seiten direkt nach dem HTML-\texttt{body}-Tag inkludiert\footnote{PHP-Code: \texttt{<?php include('navigation.php'); ?>}}. Im Script werden aus dem superglobalen Array \texttt{\$\_SESSION} einige Informationen ausgelesen und abhängig davon der Inhalt der Navigation variiert. In der Navigation werden Hyperlinks zu anderen PHP-Scripten dargestellt.
 
 \section{Monatsnavigation}
 \label{Monatsnavigation}
-An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwischen den Monaten navigieren können. Mithilfe der Monatsnavigation (siehe Abbildung \ref{fig:MonthNavigation}) kann man vom derzeit angezeigeten Monat immer zum vorherigen, aktuellen und nächsten Monat navigieren.
+An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwischen den Monaten navigieren können. Mithilfe der Monatsnavigation (siehe Abbildung \ref{fig:MonthNavigation}) kann man vom derzeit angezeigeten Monat immer zum vorherigen, aktuellen und nächsten Monat navigieren. Befindet man sich zum Beispiel heute (12.09.2014) in der Navigation im Monat Januar 2015, so gelangt man mit dem Link \enquote{Vorheriger Monat} zum Dezember 2014, mit dem Link \enquote{Aktueller Monat} zum September 2014 und mit dem Link \enquote{Nächster Monat} zum Februar 2015.
 
 \begin{figure}[htb]
 	\centering
@@ -910,7 +909,12 @@ An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Anwender zwisch
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Die Monatsnavigation wird von der PHP-Klasse \texttt{MonthNavigation} erstellt. Es reicht eine Instanz von \texttt{MonthNavigation} zu erstellen. Bei der Konstruktion muss man nur einen Pfad auf das aufrufende PHP-Script, das Jahr und den Monat angeben. Vorraussetzung ist, dass das aufrufende PHP-Script mit den \texttt{GET}-Parametern \texttt{year} und \texttt{month} aufgerufen werden kann. Das ist bei den PHP-Scripten \file{monthPlanView.php}, \file{rosterView.php} und \file{calendarView.php} der Fall.
+Die Monatsnavigation wird von der PHP-Klasse \texttt{MonthNavigation} erstellt. Es reicht eine Instanz von \texttt{MonthNavigation} zu erstellen. Bei der Konstruktion muss man nur einen Pfad auf das aufrufende PHP-Script, das Jahr und den Monat angeben (siehe Listing \ref{lst:phpMonthNavigation}).  
+
+\lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:phpMonthNavigation,caption=Anlegen der Monatsnavigation]{../PHP/exampleMonthNavigation.php}
+
+Vorraussetzung ist, dass das aufrufende PHP-Script mit den \texttt{GET}-Parametern \texttt{year} und \texttt{month} aufgerufen werden kann. Das ist bei den PHP-Scripten \file{monthPlanView.php}, \file{rosterView.php} und \file{calendarView.php} der Fall.
 
 \section{Anlegen eines neuen Klienten-Zugangs}
 \label{sec:AnlegenKlient}
@@ -934,16 +938,16 @@ Bedingungen an einen neuen Klientennamen sind:
 
 Wenn eine Bedinung nicht erfüllt ist, so wird der Benutzer darauf hingewiesen. Die Inhalte der Textfelder bleibt erhalten, so dass der Benutzer dass Passwort und die Wiederholung dessen nicht nochmal eingeben muss.
 
-Wenn alle Bedingungen erfüllt sind und ein Passwort vergeben wurde, wird im Ordner \texttt{Data} ein Unterordner mit dem Klientennamen angelegt, in dem alle Daten persistent gespeichert werden.
-Weiterhin wird in der in einer Datei das vergebene Passwort verschlüsselt abgespeichert.
-%TODO Link auf das Kapitel wo das näher erklärt wird.
-Der Benutzer bekommt eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war, und wird gebeten, sich mit dem neuen Zugang am System anzumelden.
+Wenn alle Bedingungen erfüllt sind, bekommt der Benutzer eine Meldung, dass das Anlegen eines neuen Kontos erfolgreich war. Weiterhin wird er gebeten, sich mit dem neuen Zugang am System anzumelden.
 
 Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen personenbezogene Daten (Vorname, Nachname, E-Mail-Adresse) angeben, was aber nicht zwingend für die Benutzung des Assistenzplaners notwendig ist.
 
 \subsection{Implementierungsdetails}
-%TODO Wird im Ordner ... aus dem vorherigen Abschnitt hier her verschieben
-%TODO Inhalt produzieren
+% createNewAccount.php crateNewAccountHandler.php
+%TODO hier zwischentext von unten einfügen
+Das PHP-Script \file{createNewAccount.php} erzeugt die Seite mit den Eingabefeldern (siehe Abbildung~\ref{fig:NewClient}). Drückt der Benutzer auf den \button{Klient anlegen}, so verifziert die Funktion \texttt{createNewAccount()} des JavaScripts \file{createNewAccount.js}, dass alle Eingaben korrekt sind und der Klientenname die geforderten Bedingungen erfüllt. Anschließend werden der Klientenname und das Passwort per \texttt{POST}-Parameter an das PHP-Script \file{createNewAccountHandler.php} geschickt. 
+
+Dieses Script legt im Ordner \folder{Data} ein Unterordner mit dem Klientennamen an, in dem alle Daten persistent gespeichert werden. Darunter wird der Unterordner \folder{Team} angelegt. In diesem Ordner wird in der Datei \file{passwords.txt} der Hash des vergebenen Passworts abgespeichert. Dabei wird die PHP-Funktion \Link{http://php.net/manual/de/function.password-hash.php}{\texttt{password\_hash()}}{12.09.2014} verwendet. Selbst wenn ein Hacker die Passwort-Datei in die Hände bekommt ist sie nutzlos, da von einem Hash nicht auf das Passwort zurückgeschlossen werden kann.
 
 \section{Übersicht}
 \label{sec:overviewImpl}
@@ -957,12 +961,11 @@ Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutze
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
-
+Die Übersicht wird von dem PHP-Script \file{overview.php} erzeugt. Abhängig von den Variablen, die im superglobalen Array \texttt{\$\_SESSION} gesetzt sind, variiert der Inhalt der dargestellten Seite. Weiterhin spielen die Einstellungen, die in der Klasse \texttt{Settings} gespeichert wurden eine Rolle.
 
 \section{Einstellungen}
 \label{sec:EinstellungenImpl}
-Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung~\ref{fig:Settings}). Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
+Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung~\ref{fig:Settings}), die nur für den Klienten zugänglich sind.. Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
 %TODO Beschreibung des Vorgehens mit Standard-Passwort hier oder an einer andreen sTelle?
 Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
 
@@ -974,7 +977,7 @@ Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-V
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Die Einstellungsseite wird von dem PHP-Script \file{settingsView.php} erstellt. Drückt der Benutzer auf den \button{Einstellungen speichern}, so wird die Funktion \texttt{saveSettings} im JavaScript \file{settings.js} aufgerufen. Diese Funktion parst aus den Einstellungen die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{settingsSaver.php}, welches die Daten persistent in der Datei \file{settings.txt} im Ordner \folder{Organization} speichert.
 
 \section{Standard-Dienstzeiten}
 \label{sec:standardDienstzeiten}
@@ -988,7 +991,7 @@ Bei den Standard-Dienstzeiten (siehe Abbildung~\ref{fig:DefaultTimes}) hat der K
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Die Standard-Dienstzeiten-Seite wird von dem PHP-Script \file{defaultTimes.php} erstellt. Drückt der Benutzer auf den \button{Speichern}, so wird die Funktion \texttt{save} im JavaScript \file{defaultTimes.js} aufgerufen. Diese Funktion parst aus der Standard-Dienszeiten-Tabelle die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{defaultTimesSaver.php}, welches die Daten persistent in der Datei \file{defaultTimes.txt} im Ordner \folder{Organization} speichert.
 
 \section{Team-Verwaltung}
 \label{sec:TeamVerwaltung}
@@ -1025,7 +1028,13 @@ Sollte ein Assistent sein Passwort vergessen haben, hat der Klient mit Hilfe des
 Sollte ein Assistent das Team verlassen, so hat der Klient die Möglichkeit mit Hilfe des Buttons \enquote{Löschen} (in der Spalte \enquote{Aktionen}) den Assistenten aus der Team-Verwaltung zu entfernen.
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Die Team-Verwaltungs-Seite wird von dem PHP-Script \file{teamTable.php} erstellt. Drückt der Benutzer auf den \button{Team Speichern}, so wird die Funktion \texttt{saveTeam} im JavaScript \file{team.js} aufgerufen. Diese Funktion ruft die Unterfunktion \texttt{checkLoginNames}\footnote{\texttt{checkLoginNames} prüft unter anderem, dass alle Team-Mitglied-IDs voneinander verschieden sind. Falls etwas nicht den Anforderungen genügt, wird der Benutzer mit einem Info-Fenster benachrichtigt und das Speichern der Team-Tabelle wird abgebrochen.} auf, parst aus der Team-Tabelle die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{teamSaver.php}, welches die Daten persistent in der Datei \file{team.txt} im Ordner \folder{Team} speichert.
+
+Drückt der Benutzer auf den \button{Neues Mitglied}, so wird die Funktion \texttt{newMember} im JavaScript \file{team.js} aufgerufen. In dieser wird per DOM eine neue Tabellenzeile erstellt und an die bestehende Tabelle angehängt.
+
+Drückt der Benutzer auf den \button{Passwort zurücksetzen} (in der Spalte Aktionen), so wird die Funktion \texttt{resetPassword} im JavaScript \file{team.js} aufgerufen. Die ID des betroffenen Team-Mitgliedes wird per \texttt{POST}-Parameter an das PHP-Script \file{resetPassword.php} geschickt. Dieses Script erzeugt eine Instanz der Klasse \texttt{Passwords} und ruft die Funktion \texttt{resetPassword} mit der übergebenen ID auf. Diese Funktion setzt das Passwort auf das Standardpasswort, welches in der Klasse \texttt{Settings} hinterlegt ist.
+
+Drückt der Benutzer auf den \button{Löschen} (in der Spalte Aktionen), so wird die Funktion \texttt{removeMember} im JavaScript \file{team.js} aufgerufen. Der Benutzer wird gefragt, ob er das wirklich tun möchte. Stimmt er zu, so wird per DOM die Zeile aus der Tabelle entfernt.
 
 \section{Monatsplan}
 \label{Monatsplan}
@@ -1038,7 +1047,7 @@ Mit dem Monatsplan (siehe Abbildung~\ref{fig:MonthPlan3})  plant der Klient den 
 	\label{fig:MonthPlan3}
 \end{figure}
 
-Neben den tagesweisen Bemerkungen kann der Klient eine Nachricht an sein Team zu verfassen. Hier können allgemeine Hinweise für den Monat untergebracht werden.
+Neben den tagesweisen Bemerkungen kann der Klient eine Nachricht an sein Team verfassen. Hier können allgemeine Hinweise für den Monat untergebracht werden.
 
 Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er sein Assistenz-Team auffordern, Termine einzutragen, so kann er auf den Button \enquote{Team benachrichtigen} klicken. Vom Assistenzplaner wird dann eine E-Mail an jedes Mitglied des Assistenz-Teams geschickt mit der Bitte, mögliche Termine einzutragen. Bei Bedarf kann der Klient eine zustätzliche Nachricht an sein Team verfassen. Eine beispielhafte Nachricht findet sich in Abbildung~\ref{fig:Mail}.
 
@@ -1050,7 +1059,9 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Der Monatsplan wird vom PHP-Script \file{monthPlanView.php} erstellt. Darin wird eine Instanz der Klasse \texttt{MonthPlan} erzeugt. Drückt der Benutzer auf den \button{Speichern}, so wird die Funktion \texttt{save} im JavaScript \file{monthPlan.js} aufgerufen. Diese Funktion parst aus dem Monatsplan die Daten heraus, ergänzt sie um die Eingaben im Nachrichtenfeld und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{monthPlanSaver.php}, welches die Daten persistent in der Datei \file{YYYY-M.txt}\footnote{YYYY steht für das Jahr, M für den Monat - Beispiel \texttt{2014-10.txt}} im Ordner \folder{MonthPlan} speichert.
+
+Drückt der Benutzer auf den \button{Team benachrichtigen}, so wird die Funktion \texttt{notifyTeam} im JavaScript \file{monthPlan.js} aufgerufen. Per \texttt{POST}-Parameter wird die verfasste Nachricht, das Jahr und der Monat an das PHP-Script \file{notifyTeam.php} geschickt. Dieses Script erstellt im Wesentlichen eine Instanz von \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014} und verschickt eine E-Mail an das Team.
 
 \section{Kalender}
 \label{sec:calendar}
@@ -1076,7 +1087,10 @@ Im oberen Bereich der Webseite sind alle Informationen dargestellt (siehe Abbild
 	\label{fig:CalendarNotesFromClient}
 \end{figure}
 
-\section{Dienst-Plan}
+\subsection{Implementierungsdetails}
+Die Kalender-Seite wird von dem PHP-Script \file{calendarView.php} erstellt. Drückt der Benutzer auf den \button{Speichern}, so wird die Funktion \texttt{save} im JavaScript \file{calendar.js} aufgerufen. Diese Funktion parst aus dem Kalender die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{calendarSaver.php}, welches die Daten persistent in der Datei \file{YYYY-M.txt} im Ordner \folder{AssistanceInput} speichert.
+
+\section{Dienstplan}
 \label{sec:rosterImplementation}
 \subsection{Aus Sicht des Klienten}
 Wenn die Assistenten ihre Termine eingetragen haben, ist der Klient in der Lage den Dienstplan zu erstellen. Falls es Tage gibt, an denen nicht mindestens zwei Assistenten (einer für Dienst und einer für Bereitschaft) Zeit haben, so bekommt er eine Warnung, da dann eine vollständige Dienstplanerstellung nicht möglich ist.
@@ -1149,7 +1163,13 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung~\ref{fig:
 \end{figure}
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Die Dienstplan-Seite wird von dem PHP-Script \file{rosterView.php} erstellt. Drückt der Benutzer auf den \button{Dienstplan speichern}, so wird die Funktion \texttt{save} im JavaScript \file{roster.js} aufgerufen. Diese Funktion prüft die Vollständigkeit des Dienstplans, parst aus dem Dienstplan die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{rosterSaver.php}, welches die Daten persistent in der Datei \file{YYYY-M.txt} im Ordner \folder{Roster} speichert.
+
+Drückt der Benutzer auf den \button{Dienstplan prüfen}, so wird die Funktion \texttt{checkRoster} im JavaScript \file{roster.js} aufgerufen. Diese Funktion prüft für jeden Tag, dass genau ein Assitent für den Dienst und genau ein Assistent für die Bereitschaft eingetragen ist. Ist dies nicht der Fall, so wird der Benutzer mit einer Message-Box darüber benachrichtigt.
+
+Drückt der Benutzer auf den \button{Dienstplan löschen}, so wird die Funktion \texttt{deleteRoster} im JavaScript \file{roster.js} aufgerufen. Der Benutzer wird gefragt, ob er dies wirklich tun möchte. Nach der Rückversicherung wird das PHP-Script \file{rosterEraser.php} aufgerufen.
+
+Drückt der Benutzer auf den \button{Dienstplan als PDF anzeigen}, so wird die Funktion \texttt{createPdf} im JavaScript \file{roster.js} aufgerufen. Diese Funktion prüft, ob der Dienstplan vollständig ist und navigiert zum PHP-Script \file{rosterViewPdf.php}, das die PDF-Version des Dienstplans anzeigt.
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 \label{sec:algorithm}
@@ -1491,17 +1511,21 @@ Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu
 Für die Benutzer des Assistenzplaners steht jederzeit im Navigations-Bereich (oben rechts) ein Link zur Verfügung, der zur Dokumentation führt.
 Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenzplaner arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
 
-Im oberen Bereich der Dokumentation werden mit Hilfe von JavaScript automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt, damit man leicht zum entsprechenden Kapitel der Dokumentation navigieren kann.
-%TODO Weiter erläutern wie Inhaltsverzeichnis, Tabellenverzeichnis und Abbildungsverzeichnis zu Stande kommen?
+Im oberen Bereich der Dokumentation werden Inhalts-, Abbildungs- und Tabellenverzeichnisse angezeigt, damit man leicht zum entsprechenden Kapitel der Dokumentation navigieren kann.
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
+Die Dokumentations-Seite wird vom PHP-Script \file{documentation.php} erstellt. Abhänig von den Variablen, die im superglobalen Array \texttt{\$\_SESSION} gesetzt sind, wird der Inhalt variiert. Es werden weitere PHP-Scripts\footnote{Die weiteren PHP-Scripts beginnen alle mit dem Präfix \file{documentation}, zum Beispiel \file{documentationCalendar.php}} per \texttt{include} eingebunden.
+%\footnote{\file{documentationCalendar.php}, \file{documentationCalendarColor.php}, \file{documentationMonthNavigation.php}, \file{documentationMonthPlan.php}, \file{documentationNavigation.php}, \file{documentationRoster.php}, \file{documentationRosterClient.php}, \file{documentationSettings.php}, \file{documentationStandardWorkingTimes.php}, \file{documentationTeam.php}, \file{documentationToDoManager.php}, \file{documentationToDoManagerAssisatant.php}, \file{documentationToDoManagerClient.php}}
+
+Im oberen Bereich der Dokumentation werden mit Hilfe von des JavaScripts \file{documentation.js} automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt. Für die Erstellung des Inhaltsverzeichnis werden alle Überschriften\footnote{HTML-Tags: \texttt{h1}, \texttt{h2}, \texttt{h3}, \texttt{h4}, \texttt{h5}, \texttt{h6}} geparst und deren Inhalte ausgelesen. Die Erstellung der Abbildungs- und Tabellenverzeichnisse funktioniert analog.
+
+Wenn in Abbildungen (HTML-Tag: \texttt{img}) oder Tabellen (HTML-Tag: \texttt{table}) das Attribut \texttt{title} gesetzt ist, so werden Abbildungs- bzw. Tabellenunterschriften mit dem Inhalt des \texttt{title}-Attributes erstellt.
 
 \section{Impressum}
 Um eine Abmahnung zu vermeiden wurde dem Assistenzplaner eine Seite hinzugefügt, die jederzeit über die Navigation zu erreichen ist. Diese beinhaltet das Impressum mit allen Angaben gemäß § 5 Telemediengesetz, einen Haftungsausschuss (Disclaimer) sowie eine Datenschutzerklärung.
 
 \subsection{Implementierungsdetails}
-Das Impressum ist in der 
+Das Impressum ist im PHP-Script \file{impressum.php} hinterlegt.
 
 \chapter{Überführung in den Produktiv-Betrieb}
 Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt. 
@@ -1716,7 +1740,7 @@ In diesem Abschnitt wird erläutert, welche Software eingesetzt wurde.
 
 
 * PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
-   * PhpMailer
+   * PhpMailer  -> \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014}
    * FPDF
 
 * PhpStorm

@@ -1,22 +1,3 @@
-// Author:  Ulrich Belitz
-// Created on: 2012-12-10
-
-/*
-ToDo
-- add description at the beginning of the file
-- refactoring double code
-- possibility to supress table and image captions
-
-Done
-- Refactoring Chapter Counters -> Array
-- Author und Last Change aus CVS verwenden
-- Title �ber das Inhaltsverzeichnis
-- Verlinkung von Kapiteln
-- set and link internal hrefs for contents
-- automatische Nummerierung der �berschriften
-- set tooltip for table data
-*/
-
 // global variables
 var contents = null;
 var documentationSectionChilds = null;
@@ -31,7 +12,6 @@ var documentationSection = null;
 
 function init() {
 	initVariables();
-	prettyPrintFooter();
 	createContents();
 	createTitle();
 	createTableCaptions();
@@ -39,31 +19,6 @@ function init() {
 	createListOfTables();
 	createListOfFigures();
 	createTableToolTips();
-}
-
-function prettyPrintFooter() {
-	prettyPrintCVSTagsById("lastChange");
-	prettyPrintCVSTagsById("author");
-	prettyPrintCVSTagsById("revision");
-}
-
-function prettyPrintCVSTagsById (id) {
-	var element = window.document.getElementById(id);
-	if (element == null) {
-		return;
-	}
-	var lastChangeText = element.textContent;
-	if (id == "lastChange") {
-		lastChangeText = lastChangeText.replace("$Date: ", "");
-	}
-	if (id == "author") {
-		lastChangeText = lastChangeText.replace("$Author: ", "");
-	}
-	if (id == "revision") {
-		lastChangeText = lastChangeText.replace("$Revision: ", "");
-	}
-	lastChangeText = lastChangeText.replace(" $", "");
-	element.textContent = lastChangeText;
 }
 
 function createContents() {
