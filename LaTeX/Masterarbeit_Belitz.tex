@@ -65,7 +65,6 @@
 
 \addchap{Abstract}
 \label{sec:Abstract}
-%TODO {Abstract auf Englisch schreiben}
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
@@ -100,14 +99,14 @@ Der Autor hat den Assistenzplaner als Open-Source-Projekt bei \LinkWithoutDate{h
 %Die entstandene Lösung ist kostenfrei, einfach zu installieren und leicht zu bedienen.
 
 \addchap{Danksagung}
-%TODO Melanie?
-
 Ich danke Herrn Prof. Dr. Mahr für die Betreuung und Korrektur dieser Masterarbeit. 
 Weiterhin danke ich Herrn Prof. Dr. Lano für die Zweitkorrektur.\\
 
 Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er hat maßgeblich die Anforderungen gestellt und bereitwillig mit seinem Team die Software getestet.\\
 
 Ich danke Frederik sehr für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
+
+%TODO Melanie?
 
 Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf den Weg gegeben haben!\\
 
@@ -124,9 +123,6 @@ Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Ide
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
 
 \section{Netzwerke und Internet}
-%TODO das komplette Kapitel ist ein Zitat von Comer -> vielleicht kann man mehr Quellen berücksichtigen?
-%TODO einfach aufräumen?
-
 \subsection{Client/Server-Paradigma}
 \enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S.~405]{comer2002computernetzwerke}
 
@@ -348,8 +344,7 @@ Die Dienstplanerstellung war zeitaufwändig (ca. vier Stunden im Monat) und wurde
 Ein möglicher Soll-Prozess könnte folgendermaßen aussehen: % es gibt immer mehrere Möglichkeiten!
 Der Klient gibt auf einer Webseite die Dienstzeiten für den kommenden Monat ein. Per Knopfdruck wird das Team benachrichtigt und darum gebeten, die freien Tage auf einer Webseite (Link ist in der Nachricht enthalten) einzugeben. Sobald alle Assistenten ihre Eingaben getätigt haben können dem Klienten mit Hilfe eines Algorithmus mehrere Dienstplan-Vorschläge unterbreitet werden. Der Dienstplan kann vom Klienten manuell editiert werden und nach den eigenen Vorlieben (die bei der automatischen Erstellung schon größtenteils berücksichtigt wurden) angepasst werden. Der Klient gibt den Dienstplan frei und benachrichtigt sein Team, dass ein neuer Dienstplan verfügbar ist, der online eingesehen werden kann.
 Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den Klient sinkt auf wenige Minuten.
-%TODO BPMN Diagramm - Subjekt-Interaktions-Diagram - Ablaufdiagramm - http://www.metasonic.de/metasonic-suite
-\Note{Hier kommt noch ein Diagramm hin!}
+\Note{Hier wird ein Subjekt-Interaktions-Diagram ergänzt.}
 
 \section{Benutzergeschichten}
 \label{sec:userstories}
@@ -615,6 +610,7 @@ Keine dieser Anwendungen unterstützt das Bereitschaftskonzept. Einige sind in de
 Zusammenfassend lässt sich festhalten, dass es keine bestehende Lösung gibt, die alle formulierten Anforderungen erfüllen kann. Es gibt auch keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
 \chapter{Software-Design}
+\Note{Alle Grafiken dieses Kapitels sind vorläufig und werden noch überarbeitet.}
 In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in einem SysML Anforderungsdiagramm dargestellt. Daraufhin wird ein Software-Design in UML entworfen, das den Anforderungen gerecht wird. 
 
 \section{SysML Anforderungsdiagramm}
@@ -628,7 +624,6 @@ Die Enthältbeziehung \enquote{beschreibt, dass eine Anforderung in einer anderen
 
 \begin{figure}[htb]
 	\centering
-	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementContainment.png}
 	\caption{SysML Anforderungsdiagramm - Enthältbeziehung}
 	\label{fig:SysMLRequirementContainment}
@@ -639,7 +634,6 @@ Die Erfüllungsbeziehung \enquote{beschreibt, dass ein Element eine Anforderung e
 
 \begin{figure}[htb]
 	\centering
-	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementSatisfy.png}
 	\caption{SysML Anforderungsdiagramm - Erfüllungsbeziehung}
 	\label{fig:SysMLRequirementSatisfy}
@@ -650,22 +644,16 @@ Die Verfeinerungsbeziehung \enquote{beschreibt, dass ein Modellelement die Eigen
 
 \begin{figure}[htb]
 	\centering
-	\Note{Die Grafik wird durch eine Schönere ausgetauscht!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementRefine.png}
 	\caption{SysML Anforderungsdiagramm - Verfeinerungsbeziehung}
 	\label{fig:SysMLRequirementRefine}
 \end{figure}
 
-%TODO Darstellung des Anforderungsdiagramms verbessern
-%TODO Monatsnavigation fehlt in Anforderungsdiagramm und in Aufzählung
-%TODO INput Freddy: Überlegung: Magst Du die Grafik vielleicht in zwei aufteilen? Zunächst eine als Übersicht, die nur die sechs "Haupt-Features" enthält. Und anschließend exemplarisch eine Anforderung detailliert vorstellen? Erstellung Dienst- oder Monatsplan?
-%TODO allemeine Pfeile streichen und dadurch Unabhänige TEile extrahieren
 \subsection{Anforderungsdiagramm}
 In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
 
 \begin{figure}[htb]
 	\advance\leftskip-2.7cm
-	\Note{Die Grafik ist vorläufig!}
 	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
 	\caption[SysML Anforderungsdiagramm]{SysML Anforderungsdiagramm}
 	\label{fig:SysMLRequirements}
@@ -690,9 +678,7 @@ Das Anforderungsdiagramm ist in Deutsch gehalten, da es noch unabhängig von eine
 Das Komponentendiagramm ist in Abbilung~\ref{fig:UMLKomponentendiagramm} zu sehen.
 
 \begin{figure}[H]
-%TODO Freddy meinte: ungleiche Größen, ungeleiches RAster, nicht ausgerichtet, etwas lieblos
-	\advance\leftskip-2.0cm
-	\Note{Grafik wird noch überarbeitet.}
+\advance\leftskip-2.0cm
 	\includegraphics[scale=0.4]{../Images/Screenshots/EnterpriseArchitect/UMLComponentDiagram.png}
 	\caption[UML Komponentendiagramm]{UML Komponentendiagramm}
 	\label{fig:UMLKomponentendiagramm}
@@ -776,10 +762,6 @@ Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoMa
 
 In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwaltung (Implementierung siehe Abschnitt \ref{sec:AufgabenVerwaltung}) implementiert. \texttt{ToDoManager} hat soviele Instanzen von \texttt{ToDoItem}, wie Aufgaben in der Aufabenliste hinterlegt sind. Die Klasse \texttt{ToDoItem} ist eine reine Datenhaltungsklasse ohne Funktionalität.
 
-%\section{UML Sequenzdiagramme}
-%TODO Sequenzdiagramme erstellen, einfügen und beschreiben
-
-
 \chapter{Implementierung}
 In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt. In den Abschnitten \enquote{Implementierungsdetails} werden weiterführende Informationen dargestellt, die für das Gesamtverständnis der Ausarbeitung nicht wichtig sind und übersprungen werden können. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
 
@@ -787,7 +769,6 @@ In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Desig
 Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
 
 \subsection{Server}
-%TODO nachteile aufzählen?
 Bei der Serverseite ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} von über 80\% und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
 Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 \begin{itemize}
@@ -800,14 +781,12 @@ Weitere Gründe \cite[S.~16]{theis2006einstieg} sind:
 \subsection{Client}
 Der Server generiert mit Hilfe von PHP den HTML-Code, der an den Client (Browser) gesendet wird. Im HTML wird ausschließlich die Struktur der angezeigten Seite definiert. Das Aussehen wird mit Hilfe von CSS bestimmt.
 Um die Funktionalität auf der Seite des Clients zu erweitern, kommt JavaScript zum Einsatz.
-%TODO Verweis auf den Grundlagen-Abschnitt - evt. nochmal anders beschreiben
 
 \section{Einheitliches Layout}
 Mit Hilfe von CSS wird die Darstellung des Assistenzplaners konsistent definiert. Es gibt ein globales Stylesheet, was in allen Webseiten verwendert wird.
 
 \subsection{Implementierungsdetails}
-In der Datei \file{global.css} sind alle globalen Styles definiert. 
-%TODO weitere Stylesheets und deren Einsatzzweck erwähnen
+In der Datei \file{global.css} sind alle globalen Styles definiert. An manchen Stellen des Assistenzplaners wird das globale Stylesheet durch spezifische Stylesheets ergänzt. Zum Beispiel kommt bei der Dokumentation (siehe Abschnitt \ref{sec:Dokumentation}) das Stylesheet \file{documentation.css} zum Einsatz.
 
 \section{Persistenz der Daten}
 Alles was persistent gespeichert werden muss, wird in textbasierten Dateien (*.txt) abgelegt. Im Vergleich zu Datenbanken hat man folgende Vorteile:
@@ -943,8 +922,6 @@ Wenn alle Bedingungen erfüllt sind, bekommt der Benutzer eine Meldung, dass das 
 Zu einem späteren Zeitpunkt kann der Klient in den Einstellungen personenbezogene Daten (Vorname, Nachname, E-Mail-Adresse) angeben, was aber nicht zwingend für die Benutzung des Assistenzplaners notwendig ist.
 
 \subsection{Implementierungsdetails}
-% createNewAccount.php crateNewAccountHandler.php
-%TODO hier zwischentext von unten einfügen
 Das PHP-Script \file{createNewAccount.php} erzeugt die Seite mit den Eingabefeldern (siehe Abbildung~\ref{fig:NewClient}). Drückt der Benutzer auf den \button{Klient anlegen}, so verifziert die Funktion \texttt{createNewAccount()} des JavaScripts \file{createNewAccount.js}, dass alle Eingaben korrekt sind und der Klientenname die geforderten Bedingungen erfüllt. Anschließend werden der Klientenname und das Passwort per \texttt{POST}-Parameter an das PHP-Script \file{createNewAccountHandler.php} geschickt. 
 
 Dieses Script legt im Ordner \folder{Data} ein Unterordner mit dem Klientennamen an, in dem alle Daten persistent gespeichert werden. Darunter wird der Unterordner \folder{Team} angelegt. In diesem Ordner wird in der Datei \file{passwords.txt} der Hash des vergebenen Passworts abgespeichert. Dabei wird die PHP-Funktion \Link{http://php.net/manual/de/function.password-hash.php}{\texttt{password\_hash()}}{12.09.2014} verwendet. Selbst wenn ein Hacker die Passwort-Datei in die Hände bekommt ist sie nutzlos, da von einem Hash nicht auf das Passwort zurückgeschlossen werden kann.
@@ -965,9 +942,7 @@ Die Übersicht wird von dem PHP-Script \file{overview.php} erzeugt. Abhängig von 
 
 \section{Einstellungen}
 \label{sec:EinstellungenImpl}
-Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung~\ref{fig:Settings}), die nur für den Klienten zugänglich sind.. Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat.
-%TODO Beschreibung des Vorgehens mit Standard-Passwort hier oder an einer andreen sTelle?
-Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
+Um den Assistenzplaner zu konfigurieren gibt es die Einstellungen (siehe Abbildung~\ref{fig:Settings}), die nur für den Klienten zugänglich sind.. Hier können Vorname, Nachname und E-Mail-Adresse des Klienten gespeichert werden. Weiterhin kann hier das Standard-Passwort angesehen und editiert werden. Jeder neu angelegte Assistent kann sich mit dem Standard-Passwort beim Assistenzplaner anmelden. Weiterhin kann das Passwort eines Assistenten vom Klienten auf das Standard-Passwort zurückgesetzt werden, falls der Assistent sein Passwort vergessen hat. Zum Schluss kann der Klient in den Einstellungen festlegen, ob er die Aufgaben-Verwaltung (siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) nutzen möchte oder nicht.
 
 \begin{figure}[htb]
 	\centering
@@ -1422,10 +1397,9 @@ Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zuerst w
 
 Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontingente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent für den Dienst bestimmt werden können.
 
-%TODO Grafik für folgende Beispiel erstellen
 Folgendes Beispiel soll dies erläutern. Angenommen der Monat hätte nur 3 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden. Die Summe der Dienstszeiten wäre 48. Es gibt 2 Assistenten mit Stundenkontingenten von 28 und 20 Stunden. Der Skalierfaktor wäre genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
 Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen.
-\Note{Hier werde ich noch eine erläuternde Grafik einfügen.}
+\Note{Hier wird noch eine erläuternde Grafik eingefügt.}
 
 Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmus eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine volle Stunde inkrementell erhöht. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
 
@@ -1435,16 +1409,12 @@ Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaft
 
 Durch das Randomisieren der Liste (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}) können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu wählen, der die Stundenkontingente möglichst gleichmäßig ausschöpft, werden 1000 Dienstpläne erstellt und am Ende ermittelt, wie gut jeder Dienstplan ist. Als Metrik dient die Summe der beiden Toleranzwerte (Dienst und Bereitschaft). Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe der Toleranzwerte wird dem Benutzer angezeigt.
 
-%TODO den endgültigen Algorithmus nochmal komplett im Detail mit Bild (Ablaufdiagramm?) beschreiben
-%TODO Pseudocode? -> nein, richtigen Code!
-
 \subsection{Performance des Algorithmus}
 Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese Laufzeit vertretbar.
 
 Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde vorerst davon abgesehen.
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
@@ -1504,7 +1474,6 @@ Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängi
 Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf \enquote{Speichern} drücken.
 
 \subsection{Implementierungsdetails}
-%TODO Inhalt produzieren oder Kapitel löschen, falls nicht nötig
 
 \section{Dokumentation}
 \label{sec:Dokumentation}
