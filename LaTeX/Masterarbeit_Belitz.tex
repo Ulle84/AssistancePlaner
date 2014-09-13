@@ -1238,6 +1238,7 @@ Assistent 3 & 3 \\
 \end{table}
 
 Das Ergebnis ist in Tabelle~\ref{tab:scoreTable2} zu sehen.
+
 \begin{table}[htb]
 \centering
 \begin{tabular}{|c|c|c|c|}
@@ -1360,7 +1361,7 @@ Punkte & Name & Tag \\
 \label{tab:scoreTableConverted}
 \end{table}
 
-Die Punktetabelle wird anschließend randomisiert (durcheinandergewürfelt, gemischt), damit es nicht zur Blockbildung (ein Assistent hat mehrere Tage hintereinander Dienst) bei den Diensten kommt.
+Die Punktetabelle wird anschließend randomisiert (durcheinandergewürfelt, gemischt), damit es nicht zur Blockbildung bei den Diensten (ein Assistent hat mehrere Tage hintereinander Dienst) kommt.
 Anschließend wird sie nach der ersten Spalte (dem Punktewert) sortiert (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}).
 
 \begin{table}[htb]
@@ -1391,30 +1392,54 @@ Punkte & Name & Tag \\
 Weiterhin werden alle Stundenkontingente der Assistenten, die in der Team-Verwaltung (siehe Abschnitt~\ref{sec:TeamVerwaltung}) hinterlegt sind, addiert.
 
 Dann werden alle Dienst- und Bereitschaftsstunden addiert.
-Sollte die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente sein, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht.
+Ist die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden geteilt durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht. Ist die Summe der Dienst- und Bereitschaftsstunden kleiner oder gleich als die Summe der Stundenkontingente, bleiben die Stundenkontigente der Assistenten unverändert.
 
 Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zuerst werden alle Dienste vergeben, anschließend die Bereitschaften. Der Algorithmus iteriert über die nach Punkten sortierte Tabelle~\ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedinungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden um die Netto-Dienststundenanzahl des Tages verringert.
 
 Durch die unterschiedlich langen Dienstzeiten von Tag zu Tag und unterschiedlichen Stundenkontingente wird nach dem ersten Durchgang nicht für jeden Tag ein Assistent für den Dienst bestimmt werden können.
 
-Folgendes Beispiel soll dies erläutern. Angenommen der Monat hätte nur 3 Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden. Die Summe der Dienstszeiten wäre 48. Es gibt 2 Assistenten mit Stundenkontingenten von 28 und 20 Stunden. Der Skalierfaktor wäre genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
-Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent den 18 Stunden-Dienst und der zweite Assistent den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen.
-\Note{Hier wird noch eine erläuternde Grafik eingefügt.}
+Folgendes Beispiel soll dies erläutern. Angenommen der Monat hätte nur drei Tage. Die Dienstzeiten betragen 18, 16 und 14 Stunden. Die Summe der Dienstszeiten wäre 48. Es gibt zwei Assistenten (A1 und A2) mit Stundenkontingenten von 28 und 20 Stunden. Beide Assistenten haben an allen drei Tagen Zeit und haben gleiche Priorisierungswerte. Der Skalierfaktor wäre genau 1 und die Stundenkontingente der Assistenten würden nicht angepasst werden.
+Nach dem ersten Durchlauf (bei gleichen Priorisierungswerten) hätte der erste Assistent (A1) den 18 Stunden-Dienst und der zweite Assistent (A2) den 16 Stunden-Dienst. Der 14 Stunden-Dienst würde bei keinem der beiden Assistenten mehr ins Stundenkontingent passen (siehe Abbildung \ref{fig:RosterExample1}).
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.35]{../Images/Screenshots/RosterExample1.png}
+	\caption{Verteilung der Dienste mit 0 Stunden Toleranz}
+	\label{fig:RosterExample1}
+\end{figure}
 
 Um die angesprochene Problematik zu lösen wird um den Kern des Algorithmus eine Schleife hinzugefügt, die einen Toleranzwert (beginnend bei Null Stunden) immer um eine volle Stunde inkrementell erhöht. Bei der Prüfung, ob der Assistent noch genug Stunden zur Verfügung hat, wird der Toleranzwert zum noch verbleibenden Stundenkontingent hinzugefügt. Die hinzugefügte Schleife endet, sobald für jeden Tag ein Dienst vergeben wurde.
 
-Angewendet auf das oben genannte Beispiel würde der die Schleife im fünften Durchlauf (Toleranz = 4 Stunden) dem ersten Assistenten den Dienst geben, da die verbleibenden 10 Stunden (28 Stunden aus dem Stundenkontingent abzüglich der 18 Stunden des eingeteilten Dienstes) seines Kontingentes mit der Toleranz von 4 Stunden addiert genau die 14 Stunden Dienstzeit ergibt.
+Angewendet auf das oben genannte Beispiel würde der die Schleife im fünften Durchlauf (Toleranz = 4 Stunden - siehe Abbildung \ref{fig:RosterExample2}) dem ersten Assistenten  (A1) den Dienst geben, da die verbleibenden 10 Stunden (28 Stunden aus dem Stundenkontingent abzüglich der 18 Stunden des ersten Dienstes) seines Kontingentes mit der Toleranz von 4 Stunden addiert genau die 14 Stunden Dienstzeit ergibt (siehe Abbildung \ref{fig:RosterExample3}).
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.35]{../Images/Screenshots/RosterExample2.png}
+	\caption{Stundenübersicht mit 4 Stunden Toleranz}
+	\label{fig:RosterExample2}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.35]{../Images/Screenshots/RosterExample3.png}
+	\caption{Verteilung der Dienste mit 4 Stunden Toleranz}
+	\label{fig:RosterExample3}
+\end{figure}
 
 Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaften vergeben. Einziger Unterschied ist, dass der Toleranzwert immer um eine halbe Stunde inkrementiert wird.
 
 Durch das Randomisieren der Liste (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}) können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu wählen, der die Stundenkontingente möglichst gleichmäßig ausschöpft, werden 1000 Dienstpläne erstellt und am Ende ermittelt, wie gut jeder Dienstplan ist. Als Metrik dient die Summe der beiden Toleranzwerte (Dienst und Bereitschaft). Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe der Toleranzwerte wird dem Benutzer angezeigt.
 
+\subsection{Implementierungsdetails}
+Der Quellcode der kommentierten Implementierung der fünften Version des Algorithmus findet sich in Listing \ref{lst:rosterAlgorithm}.
+
+\lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
+\lstinputlisting[label=lst:rosterAlgorithm,caption=Algorithmus zur Dienstplanerstellung]{../PHP/rosterAlgorithm.php}
+
 \subsection{Performance des Algorithmus}
 Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese Laufzeit vertretbar.
 
-Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde vorerst davon abgesehen.
-
-\subsection{Implementierungsdetails}
+Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde zu Gunsten der Code-Lesbarkeit vorerst davon abgesehen.
 
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
@@ -1474,6 +1499,8 @@ Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängi
 Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf \enquote{Speichern} drücken.
 
 \subsection{Implementierungsdetails}
+Die Aufgaben-Seite wird von dem PHP-Script \file{toDoManagerView.php} erstellt. Das Meiste an Funktionalität ist clients-seitig im JavaScript \file{toDoManager.js} implementiert, hier wird viel mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt \ref{sec:JavaScript}) in der Datei \file{DateExtended.js} um einige Funktionen erweitert wurde.
+%TODO Satz verifizieren und Abschnitt zu Ende schreiben.
 
 \section{Dokumentation}
 \label{sec:Dokumentation}
