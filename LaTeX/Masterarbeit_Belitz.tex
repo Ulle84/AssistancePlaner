@@ -100,8 +100,8 @@ Der Autor hat den Assistenzplaner als Open-Source-Projekt bei \LinkWithoutDate{h
 %Die entstandene Lösung ist kostenfrei, einfach zu installieren und leicht zu bedienen.
 
 \addchap{Danksagung}
-Ich danke Herrn Prof. Dr. Mahr für die Betreuung und Korrektur dieser Masterarbeit. 
-Weiterhin danke ich Herrn Prof. Dr. Lano für die Zweitkorrektur.\\
+Ich danke Herrn Prof. Dr. Mahr für die Betreuung und Begutachtung dieser Masterarbeit. 
+Weiterhin danke ich Herrn Prof. Dr. Lano für das Zweitgutachten.\\
 
 Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er hat maßgeblich die Anforderungen gestellt und bereitwillig mit seinem Team die Software getestet.\\
 
@@ -1145,7 +1145,7 @@ Drückt der Benutzer auf den \button{Dienstplan prüfen}, so wird die Funktion \te
 
 Drückt der Benutzer auf den \button{Dienstplan löschen}, so wird die Funktion \texttt{deleteRoster} im JavaScript \file{roster.js} aufgerufen. Der Benutzer wird gefragt, ob er dies wirklich tun möchte. Nach der Rückversicherung wird das PHP-Script \file{rosterEraser.php} aufgerufen.
 
-Drückt der Benutzer auf den \button{Dienstplan als PDF anzeigen}, so wird die Funktion \texttt{createPdf} im JavaScript \file{roster.js} aufgerufen. Diese Funktion prüft, ob der Dienstplan vollständig ist und navigiert zum PHP-Script \file{rosterViewPdf.php}, das die PDF-Version des Dienstplans anzeigt.
+Drückt der Benutzer auf den \button{Dienstplan als PDF anzeigen}, so wird die Funktion \texttt{createPdf} im JavaScript \file{roster.js} aufgerufen. Diese Funktion prüft, ob der Dienstplan vollständig ist und navigiert zum PHP-Script \file{rosterViewPdf.php}, das die PDF-Version des Dienstplans anzeigt. Hierbei kommt die Klasse \Link{http://www.fpdf.org}{\texttt{FPDF}}{13.09.2014} zum Einsatz.
 
 \section{Entwicklung des Algorithmus zur Dienstplanerstellung}
 \label{sec:algorithm}
@@ -1751,33 +1751,92 @@ Auf den Ordnern der beiliegenden CD sind folgende Daten enthalten:
 %\item \folder{} $\Rightarrow$ 
 \end{itemize}
 
-\chapter{Hintergrundinformationen}
-\section{Verwendete Software}
-In diesem Abschnitt wird erläutert, welche Software eingesetzt wurde.
+\chapter{Verwendete Software}
+In diesem Abschnitt wird erläutert, welche Software für die Erstellung dieser Master-Thesis eingesetzt wurde.
 
-\subsection{PhpStorm}
-Als \NewAbb{IDE}{Integrated Development Environment} für die Entwicklung von PHP, HTML, CSS und JavaScript wurde PhpStrom (Version siehe Abbildung \ref{fig:PhpStorm}) verwendet.
+\section*{\LaTeX}
+Die vorliegenden Ausarbeitung wurde mit \LaTeX\ geschrieben. Verwendet wurde die Distribution TeXLive (Details siehe Abbildung \ref{fig:TexDistribution}). Als Editor wurde TeXMaker (Version siehe Abbildung \ref{fig:TeXMaker}) verwendet.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/PhpStorm.png}
-	\caption{Screenshot des Info-Dialogs der IDE PhpStorm}
+	\includegraphics[scale=0.6]{../Images/Screenshots/TexDistribution.png}
+	\caption{Infodialog der Tex-Distribution}
+	\label{fig:TexDistribution}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/TeXMaker.png}
+	\caption{Infodialog des TeXMakers}
+	\label{fig:TeXMaker}
+\end{figure}
+
+\section*{PhpStorm}
+Als \NewAbb{IDE}{Integrated Development Environment} für die Entwicklung von PHP, HTML, CSS und JavaScript wurde PhpStorm (Version siehe Abbildung \ref{fig:PhpStorm}) verwendet.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/PhpStorm.png}
+	\caption{Infodialog der IDE PhpStorm}
 	\label{fig:PhpStorm}
 \end{figure}
 
-* LibreOffice
+\section*{Cyberduck}
+Als Client für den Transfer von Daten zwischen Entwicklerlaptop und Server via \NewAbb{FTP}{File Transfer Protocol} wurde Cyberduck (Version siehe Abbildung \ref{fig:Cyberduck}) eingesetzt. 
 
-* PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
-   * PhpMailer  -> \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014}
-   * FPDF
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/Cyberduck.png}
+	\caption{Infodialog des FTP-Programms Cyberduck}
+	\label{fig:Cyberduck}
+\end{figure}
 
-* PhpStorm
-* Enterprise Architect 11.1 Build 1110 von \Link{http://www.sparxsystems.de}{Sparx Systems}{22.08.2014}
---> SysML Erweiterung?
-* GitHub
-* Cyberduck (FTP-Client)
+\section*{GitHub}
+Der Autor hat ein öffentliches Repository auf \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} erstellt. 
 
-* Firefox, Safari, FireBug   
+Als Client für den Transfer von Daten zwischen Entwicklerlaptop und GitHub-Server wurde GitHub (Version siehe Abbildung \ref{fig:GitHub}) eingesetzt.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{../Images/Screenshots/GitHub.png}
+	\caption{Infodialog des Programs GitHub}
+	\label{fig:GitHub}
+\end{figure}
+
+\section*{Firefox}
+Zum Testen des HTML und CSS-Codes wurde Firefox (Version siehe Abbildung \ref{fig:Firefox}) eingesetzt.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/Firefox.png}
+	\caption{Infodialog des Programs Firefox}
+	\label{fig:Firefox}
+\end{figure}
+
+Zum Debuggen von JavaScript-Code kam die Firefox-Erweiterung Firebug (Version siehe Abbildung \ref{fig:Firebug}) zum Einsatz. 
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/Firebug.png}
+	\caption{Infodialog der Firefox-Erweiterung Firebug}
+	\label{fig:Firebug}
+\end{figure}
+
+\section*{PHP}
+PHP wurde in der Version 5.5 (siehe Abbildung \ref{fig:PhpInfo}) eingesetzt.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.7]{../Images/Screenshots/PhpVersion.png}
+	\caption{Verwendete PHP Version}
+	\label{fig:PhpInfo}
+\end{figure}
+
+Weiterhin wurden die Klassen \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014} und \Link{http://www.fpdf.org}{FPDF}{13.09.2014} verwendet. Beide sind frei verfügbar und bedenkenlos in dem Open-Source-Projekt Assistenzplaner einsetzbar.
+
+% Enterprise Architect 11.1 Build 1110 von \Link{http://www.sparxsystems.de}{Sparx Systems}{22.08.2014}
+%--> SysML Erweiterung?
+
     
 % \input{Quellcode}
 \end{appendix}
