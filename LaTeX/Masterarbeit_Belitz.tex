@@ -60,7 +60,6 @@
 
 % Deckblatt und Abstract ohne Seitenzahl
 %\ofoot{}
-\Note{Dies ist eine vorläufige Version der Master-Thesis.}
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
@@ -108,7 +107,7 @@ Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er
 
 Ich danke Frederik sehr für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
 
-Melanie danke ich für die vielen Korrekturanregungen.\\
+Melanie danke ich vielmals für die vielen Korrekturanregungen und die Gastfreundschaft während der Präsenz-Phasen des Studiums.\\
 
 Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf den Weg gegeben haben!\\
 
@@ -122,7 +121,7 @@ Ein Bekannter des Autors ist ein körperlich behinderter Mensch (im folgenden \en
 Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
-In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
+In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt. Wer schon selbst Webprogrammierung mit PHP, HTML, CSS und JavaScript gemacht hat, kann dieses Kapitel überspringen.
 
 \section{Netzwerke und Internet}
 \subsection{Client/Server-Paradigma}
@@ -1733,24 +1732,40 @@ Von Vorteil (gerade für die Nachweise der Leistungserbringung) wäre es, wenn nac
 \let\chapter\stdchapter % zurück zur alten Definition
 
 \chapter{Inhalt der beiligenden CD}
-* Ordnerstruktur erklären
+Auf den Ordnern der beiliegenden CD sind folgende Daten enthalten:
+\begin{itemize}
+\item \folder{BibTeX} $\Rightarrow$ BibTeX-Datei, in der alle Literaturquellen enthalten sind
+\item \folder{CSS} $\Rightarrow$ CSS-Dateien, in denen die Style-Formatierungen enhalten sind
+\item \folder{Data} $\Rightarrow$ Die Daten, die der Assistenzplaner persistent speichert
+\item \folder{ExternalResources} $\Rightarrow$ FreePDF und PHPMailer
+\item \folder{HTML} $\Rightarrow$ HTML-Dateien
+\item \folder{iCalendar} $\Rightarrow$ iCalendar-Beispiel-Datei
+\item \folder{Images} $\Rightarrow$ Screenshots und weiter Bilder
+\item \folder{JavaScript} $\Rightarrow$ JavaScript-Dateien
+\item \folder{LaTeX} $\Rightarrow$ Quelldateien dieser Ausarbeitung
+\item \folder{LibreOffice} $\Rightarrow$ Tabelle
+\item \folder{Modell} $\Rightarrow$ UML- und SysML-Modelle
+\item \folder{PDF} $\Rightarrow$ PDF-Dokumente
+\item \folder{PHP} $\Rightarrow$ PHP-Dateien
+\item \folder{XML} $\Rightarrow$ XML-Beispiel-Datei
+%\item \folder{} $\Rightarrow$ 
+\end{itemize}
 
 \chapter{Hintergrundinformationen}
-
-%\section{Kurzinformation zu }
-
-\section{Verzeichnisstruktur auf Server}
-*PHP
-*HTML
-*JavaScript
-* Data
-...
-
-
 \section{Verwendete Software}
 In diesem Abschnitt wird erläutert, welche Software eingesetzt wurde.
 
+\subsection{PhpStorm}
+Als \NewAbb{IDE}{Integrated Development Environment} für die Entwicklung von PHP, HTML, CSS und JavaScript wurde PhpStrom (Version siehe Abbildung \ref{fig:PhpStorm}) verwendet.
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{../Images/Screenshots/PhpStorm.png}
+	\caption{Screenshot des Info-Dialogs der IDE PhpStorm}
+	\label{fig:PhpStorm}
+\end{figure}
+
+* LibreOffice
 
 * PHP 5.5.14 -> http://assistenzplaner.de/PHP/phpInfo.php
    * PhpMailer  -> \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014}
