@@ -60,11 +60,13 @@
 
 % Deckblatt und Abstract ohne Seitenzahl
 %\ofoot{}
+\Note{Dies ist eine vorläufige Version der Master-Thesis.}
 \include{Deckblatt}
 \include{Erklaerung} % Selbständigkeitserklärung
 
 \addchap{Abstract}
 \label{sec:Abstract}
+\Note{Hier wird noch die Zusammenfassung auf Englisch ergänzt.}
 
 \addchap{Kurzfassung}
 \label{sec:Zusammenfassung}
@@ -106,11 +108,11 @@ Herzlicher Dank geht an Patrick! Ohne ihn wäre diese Arbeit nicht entstanden. Er
 
 Ich danke Frederik sehr für die vielen Skype-Gespräche, das gegenseitige Motivieren und die zahlreichen Korrekturanregungen.\\
 
-%TODO Melanie?
+Melanie danke ich für die vielen Korrekturanregungen.\\
 
 Meinen Eltern danke ich sehr herzlich für alles, was sie mir ermöglicht und auf den Weg gegeben haben!\\
 
-Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamten Studiums verständnisvoll unterstützt und mir den Rücken frei gehalten. %TODO Anregungen und Verbesserungsvorschläge
+Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamten Studiums verständnisvoll unterstützt und mir den Rücken frei gehalten. Weiterhin hat sie wertvolle Anregungen und Korrekturvorschläge beigetragen.
 
 \tableofcontents % Inhaltsverzeichnis
 
@@ -201,7 +203,7 @@ Es gibt drei verschiedene Typen von Webdokumenten \cite[S.~508]{comer2002compute
 \label{sec:HTML}
 \NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. [...] HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S.~21]{muenz2012html5}.
 
-Es ist unter anderem möglich, vlg. \cite[S.~21]{muenz2012html5},
+Es ist unter anderem möglich, vergleiche \cite[S.~21]{muenz2012html5},
 \begin{itemize}
 \item das Dokument in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel einzuteilen
 \item dem Dokument Überschriften, Textabsätze, Listen und Tabellen hinzuzufügen
@@ -240,7 +242,7 @@ Ein Beispiel für ein JavaScript-Dokument findet sich in Listing~\ref{lst:example
 \lstinputlisting[label=lst:exampleJavaScript,caption=Beispiel für ein JavaScript-Dokument]{../JavaScript/example.js}
 
 %Sehr nützlich ist der Protoyping-Mechanismus von JavaScript. 
-Bei JavaScript sind einige Objekte jederzeit verfügbar (z. B. \texttt{RegExp}, \texttt{Date}, \texttt{window}). Diese Objekte lassen sich auch zur Laufzeit noch um Funktionalität erweitern. Dies geschieht über den Prototyping-Mechanismus. Ein Beispiel findet sich in Listing~\ref{lst:javaScriptProto}. Hier wird das bestehende \texttt{Date}-Objekt um die Funktion \texttt{addYears(number)} erweitert.
+Bei JavaScript sind einige Objekte jederzeit verfügbar (zum Beispiel \texttt{RegExp}, \texttt{Date}, \texttt{window}). Diese Objekte lassen sich auch zur Laufzeit noch um Funktionalität erweitern. Dies geschieht über den Prototyping-Mechanismus. Ein Beispiel findet sich in Listing~\ref{lst:javaScriptProto}. Hier wird das bestehende \texttt{Date}-Objekt um die Funktion \texttt{addYears(number)} erweitert.
 
 \lstset{language=Java, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:javaScriptProto,caption=Beispiel für die Erweiterung eines bestehenden Objekts in JavaScript]{../JavaScript/examplePrototype.js}
@@ -323,7 +325,7 @@ Wenn ein Assistent Dienst hat, dann ist er permanent in der Nähe des Klienten un
 Für den Leistungsnachweis ist eine Berechnung der Dienststunden notwendig. Wenn ein Assistent einen Dienst von 13:00 Uhr eines Tages bis 8:00 Uhr des Folgetages wahrnimmt, dann sind das rechnerisch 19 Stunden, die er gearbeitet hat. Die Nacht wird mit 6 Stunden berechnet und abgezogen. So bekommt der Assistent eine Netto-Arbeitszeit von 13 Stunden vergütet.
 
 \subsection{Bereitschaft}
-Wenn ein Assistent Bereitschaft hat, dann muss er in der Lage sein den Dienst zu übernehmen und zu einer festgelegten Zeit (z. B. von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten, deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschaftsstunde  (z. B. von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
+Wenn ein Assistent Bereitschaft hat, dann muss er in der Lage sein den Dienst zu übernehmen und zu einer festgelegten Zeit (zum Beispiel von 10:00 bis 11:00 Uhr) telefonisch erreichbar sein. Falls der diensthabende Assistent erkrankt, springt der Bereitschaftshabende ein und übernimmt den Dienst. Bei Diensten, deren Netto-Arbeitszeit größer als 13 Stunden ist, wird eine zweite Bereitschaftsstunde  (zum Beispiel von 18:00 bis 19:00 Uhr) vereinbart, falls der diensthabende Assistent während der Arbeitsausführung erkrankt. Jede Bereitschaftsstunde wird mit dem Faktor 0.5 vergütet. 
 
 \subsection{Dienstplan}
 Im Dienstplan sind die Dienst- und Bereitschaftszeiten der Assistenten festgehalten. Für jeden Tag gibt es einen Assistenten, der Dienst hat, und einen Assistenten, der Bereitschaft hat. 
@@ -928,7 +930,7 @@ Dieses Script legt im Ordner \folder{Data} ein Unterordner mit dem Klientennamen
 
 \section{Übersicht}
 \label{sec:overviewImpl}
-Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (z. B. Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
+Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutzer alle verfügbaren Seiten als Hyperlink aufgelistet. Hierbei werden der Benutzertyp (Klient oder Assistent) und die Einstellungen (zum Beispiel Aufgaben-Verwaltung benutzen oder nicht) berücksichtigt.
 
 \begin{figure}[htb]
 	\centering
@@ -1155,8 +1157,8 @@ Mindestanforderung an den Algorithmus ist, dass er einen Dienstplan erstellt, de
 
 Nebenbedingungen sind, dass
 \begin{itemize}
-\item die Vorlieben des Klienten berücksichtigt werden (z. B. Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußballspielen)
-\item die Stundenkontingente der Assistenten gleichmäßig ausgeschöpft werden (vgl. Abschnitt~\ref{sec:Stundenkontingent})
+\item die Vorlieben des Klienten berücksichtigt werden (zum Beispiel Assistent A lieber am Wochenende, Assistent B bei einem wichtigen Termin, Assistent C bei Fußballspielen)
+\item die Stundenkontingente der Assistenten gleichmäßig ausgeschöpft werden (vergleiche Abschnitt~\ref{sec:Stundenkontingent})
 
 \end{itemize}
 
@@ -1283,7 +1285,7 @@ Tag des Monats & Dienst & Bereitschaft \\
 \subsection{Dritte Version - Berücksichtigung der Wochentage}
 \label{sec:algorithmVersion3}
 In der dritten Version des Algorithmus werden (zusätzlich zu den personenbezogenen Priorisierungswerten) die Wochentage (Montag, Dienstag, ...) berücksichtigt.
-Der Klient kann Assistenten an bestimmten Wochentagen bevorzugen (vgl. Abschnitt~\ref{sec:TeamVerwaltung}).
+Der Klient kann Assistenten an bestimmten Wochentagen bevorzugen (vergleiche Abschnitt~\ref{sec:TeamVerwaltung}).
 Der Algorithmus geht genauso vor wie im vorherigen Abschnitt beschrieben. Zusätzlich wird jedoch der Wochentag berücksichtigt. Ist zum Beispiel Assistent 2 am Montag priorisiert, so werden die Werte an allen Montagen in der Punktetabelle verdoppelt (siehe Tabelle~\ref{tab:scoreTable3}). Somit steigt die Wahrscheinlichkeit, dass Assistent 2 an einem Montag für den Dienst eingeteilt wird. In dem konkreten Beispiel wird Assistent 2 am Montag den Dienst bekommen, obwohl Assistent 3 eine generell höhere Priorisierung hat.
 
 \begin{table}[htb]
@@ -1457,7 +1459,7 @@ Die Aufgaben haben folgende Eigenschaften:
 \item Beschreibung
 \item Fälligkeitsdatum
 \item Wiederholungstyp (wierholt sich nie, wiederholt sich ab Erledigungsdatum, wiederholt sich ab Fälligkeitsdatum)
-\item Wiederholungsintervall (z. B. alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
+\item Wiederholungsintervall (zum Beispiel alle 2 Tage) - vorausgesetzt, dass sich die Aufgabe wiederholt
 \end{itemize}
 
 \subsection{Gruppierung der Aufgaben}
@@ -1499,13 +1501,28 @@ Hat man aus Versehen eine Aufgabe als erledigt markiert, kann man dies rückgängi
 Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss man auf den Knopf \enquote{Speichern} drücken.
 
 \subsection{Implementierungsdetails}
-Die Aufgaben-Seite wird von dem PHP-Script \file{toDoManagerView.php} erstellt. Das Meiste an Funktionalität ist clients-seitig im JavaScript \file{toDoManager.js} implementiert, hier wird viel mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt \ref{sec:JavaScript}) in der Datei \file{DateExtended.js} um einige Funktionen erweitert wurde.
-%TODO Satz verifizieren und Abschnitt zu Ende schreiben.
+Die Aufgaben-Seite wird vom PHP-Script \file{toDoManagerView.php} erstellt. Der größte Teil der Funktionalität ist clientsseitig im JavaScript \file{toDoManager.js} implementiert. Hier wird viel mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt \ref{sec:JavaScript}) in der Datei \file{DateExtended.js} um einige Funktionen erweitert wurde.
+Weiterhin ist in der Datei \file{toDoManager.js} die Klasse \texttt{ToDo} enthalten. Der \texttt{DatePicker} ist in der Datei \file{datePicker.js} definiert.
+
+Das PHP-Script \file{toDoSaver.php} speichert die offenen Aufgaben in die Datei \file{toDos.txt} und die erledigten Aufgaben in die Datei \file{done.txt}. Beide Dateien liegen im Ordner \folder{ToDoManager}.
+
+\section{Feedback}
+Mit der Feedback-Funktion hat der Benutzer die Möglichkeit Kontakt zum Entwickler des Assistenzplaners aufzunehmen. Es gibt ein Formular (siehe Abbildung \ref{fig:Feedback}), worin Feedback, Änderungswünsche und Kritik geäußert werden können. Wenn für den Benutzer eine E-Mail-Adresse hinterlegt ist (Klient $\Rightarrow$ Einstellungen, Assistent $\Rightarrow$ Team-Verwaltung), so wird diese automatisch als E-Mail-Adresse für eine Antwort vorgeschlagen. Der Benutzer kann aber auch eine andere Antwort-Adresse angeben.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.4]{../Images/Screenshots/Feedback.png}
+	\caption{Eingabemaske für das Feedback}
+	\label{fig:Feedback}
+\end{figure}
+
+\subsection{Implementierungsdetails}
+Die Generierung des Feedback wird vom PHP-Script \file{feedbackView.php} durchgeführt. Drückt der Benutzer auf den \button{Feedback abschicken}, so wird die Funktion \texttt{sendFeedback} im JavaScript \file{feedback.js} aufgerufen. Diese Funktion schickt das Feedback per \texttt{POST}-Parameter an das PHP-Script \file{feedbackSender.php}. Dieses Script erstellt im Wesentlichen eine Instanz von \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014} und verschickt eine E-Mail an den Entwickler des Assitenzplaners. Die E-Mail-Adresse für die Antwort ist in der versendeten E-Mail enthalten, so dass der Entwickler den direkten Kontakt mit dem Benutzer, der das Feedback formuliert hat, aufnehmen kann.
 
 \section{Dokumentation}
 \label{sec:Dokumentation}
 Für die Benutzer des Assistenzplaners steht jederzeit im Navigations-Bereich (oben rechts) ein Link zur Verfügung, der zur Dokumentation führt.
-Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenzplaner arbeiten. Weiterhin werden die Einstellungen berücksichtigt, z. B. wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
+Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine andere Dokumentation zu Gesicht als Assistenten, da beide auf unterschiedliche Weise mit dem Assistenzplaner arbeiten. Weiterhin werden die Einstellungen berücksichtigt, zum Beispiel wird das Dokumenations-Kapitel über die Aufgaben-Verwaltung nur angezeigt, wenn diese auch verwendet wird.
 
 Im oberen Bereich der Dokumentation werden Inhalts-, Abbildungs- und Tabellenverzeichnisse angezeigt, damit man leicht zum entsprechenden Kapitel der Dokumentation navigieren kann.
 

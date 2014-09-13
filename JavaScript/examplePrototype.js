@@ -1,5 +1,5 @@
-Date.prototype.addYears = function (number) {
+Date.prototype.addYears = function (numberOfYears) {
     var year = this.getFullYear();
-    year += parseInt(number);
+    year += parseInt(numberOfYears);
     this.setFullYear(year);
 }
