@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssitanceTeam>
+<AssistanceTeam>
     <Assistant isAvailable="true">
         <Name>Max Mustermann</Name>
         <eMailAddress>max@mustermann.de</eMailAddress>
@@ -8,4 +8,4 @@
         <Name>Markus Mustermann</Name>
         <eMailAddress>markus@mustermann.de</eMailAddress>
     </Assistant>
-</AssitanceTeam>
+</AssistanceTeam>
