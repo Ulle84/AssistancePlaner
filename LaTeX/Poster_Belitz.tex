@@ -1,0 +1,143 @@
+\documentclass[a0b,landscape]{a0poster}
+
+\input{Meta}
+
+\usepackage[english]{babel}
+
+\usepackage[ansinew]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{geometry}
+%\geometry{paperwidth=1500mm,paperheight=900mm} % A1
+%\geometry{paperwidth=1188mm,paperheight=841mm} % A0
+   \pdfminorversion=6
+   
+%\usepackage[absolute,showboxes]{textpos}
+\usepackage[absolute]{textpos}
+\TPGrid[15mm,15mm]{17}{12}
+\setlength{\parindent}{0pt}
+\usepackage{graphicx,color,microtype,ragged2e,caption}
+\captionsetup{margin=10mm,labelfont=bf,font=small,justification=justified,hypcap=false}
+\usepackage[scaled=1.25]{helvet}
+\usepackage{graphics} %Damit die Formeln auch mitskalieren
+\renewcommand{\rmdefault}{phv}
+\usepackage{a0size,exscale,calc,array}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{units}
+\usepackage{textcomp}
+\usepackage[colorlinks=true,linkcolor=blue,pdfborder=000,citecolor=black, urlcolor=blue]{hyperref}
+\usepackage{setspace}
+\onehalfspacing
+
+\definecolor{lightblue}{rgb}{0.9,0.9,1}
+
+% Schriftgrößen nezu definieren .. ARVO minimum = 28
+\def\sectionautorefname{table}
+
+\begin{document}
+
+\TPMargin{0mm}
+   
+% PDF Info
+ \pdfinfo{
+	/Author	(\autor)
+	/Title(\titel - \untertitel)
+	/Subject()
+	/Keywords()
+	/Creator(TeX)
+	/Producer()
+	}%
+
+
+% Kopfzeile
+% -----------------------------
+
+
+% Bavaria:
+% -----------------------------
+
+
+% Partnerlogos:
+% -----------------------------
+%\begin{textblock}{6}(0,0)
+%\FAULogo[width=170mm]
+%\end{textblock}
+
+%\begin{textblock}{1}(0.0,0.6)
+%\MOLogo[height=4.5cm]\hspace{2cm}\includegraphics[height=3.5cm]{IMPRS}\\
+%\end{textblock}
+
+\begin{textblock}{1.25}(0.0,0.2)
+\begin{center}
+\includegraphics[scale=0.9]{../Images/Thesis/LogoOhmHochschule}
+%\MOLogo[height=6cm]%\\
+%\textbf{Medical Optics}
+\end{center}
+\end{textblock}
+
+\begin{textblock}{1.9}(15.0,0.1)
+\begin{center}
+	\includegraphics[scale=1.0]{../Images/Thesis/efi}
+\end{center}
+\end{textblock}
+
+
+% -----------------------------
+
+\begin{textblock}{17}(0,0.1)
+\centering
+
+%\vspace*{9.0cm}
+\huge\textbf{\titel\\[0.5ex]\untertitel}
+
+\vspace*{0.8cm}
+
+\large\textbf{\autor}\\[1ex]
+
+\normalsize
+\textit{\school}\\[0.5ex]
+\textit{Fakultät \fakultaet}\\[0.5ex]
+\end{textblock}
+
+\normalsize
+
+% Textteil
+% -----------------------------
+
+% Inneren Rand für die Texte setzen:
+\TPMargin{8mm}
+
+\begin{textblock}{5.5}(0,1.6)
+%\colorbox{lightblue}{\parbox{\textwidth}{
+\input{Spalte1}%}}
+\end{textblock}
+
+\begin{textblock}{5.5}(5.75,1.88)
+\input{Spalte2}
+\end{textblock}
+
+\begin{textblock}{5.5}(11.5,1.88)
+\input{Spalte3}
+\end{textblock}
+
+% Fußzeile
+% ------------------------
+% Linien:
+% -----------------------------
+
+\TPMargin{0mm} % dafür den inneren Rand =0 setzen
+
+\begin{textblock}{17}(0,1.75)
+\tikz  \draw[style=very thick] (0pt,0pt)--(\linewidth,4pt);
+\end{textblock}
+
+%\begin{textblock}{17}(0,11.65)
+%\tikz  \draw[style=very thick] (0pt,0pt)--(\linewidth,4pt);
+%\end{textblock}
+
+
+\end{document}
