@@ -73,7 +73,7 @@ Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serv
 
 Die Planung umfasst die Erstellung von Dienstplänen und die Verwaltung von Aufgaben.
 
-Mit dem Assistenzplaner hat der Klient die Möglichkeit sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
+Mit dem Assistenzplaner hat der Klient die Möglichkeit, sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
 
 Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
 
@@ -112,7 +112,9 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \tableofcontents % Inhaltsverzeichnis
 
 \chapter{Motivation}
-Viele Menschen mit körperlicher Behinderung sind auf persönliche Assistenz angewiesen. Diese Assistanz umfasst neben der Pflege auch die Erfüllung alltäglicher Aufgaben. Mit Hilfe persönlicher Assistenz wird ein selbstbestimmtes Leben ermöglicht. Auch im Bekanntenkreis des Autors ist ein körperlich behinderter Mensch (im folgenden \enquote{Klient} genannt), der auf persönliche Assistenz angewiesen ist. Der Klient hat sieben Assistenten. Die Verwaltung geschieht über einen Dienstplan. Bisher erstellte der Klient den Dienstplan jeden Monat manuell. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen mögliche Arbeits-Termine enthalten waren) und einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das manuelle Erstellen des Dienstplans dauerte ca. vier Stunden pro Monat.
+Viele Menschen mit körperlicher Behinderung sind auf persönliche Assistenz angewiesen. Diese Assistanz umfasst neben der Pflege auch die Erfüllung alltäglicher Aufgaben. Mit Hilfe persönlicher Assistenz wird ein selbstbestimmtes Leben ermöglicht. 
+
+In dieser Ausarbeitung wird ein körperlich behinderter Mensch (im folgenden \enquote{Klient} genannt) herausgegriffen. Dieser Klient hat sieben Assistenten. Die Verwaltung geschieht über einen Dienstplan. Bisher erstellte der Klient den Dienstplan jeden Monat manuell. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen mögliche Arbeits-Termine enthalten waren) und einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das manuelle Erstellen des Dienstplans dauerte ca. vier Stunden pro Monat.
 
 Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
@@ -198,14 +200,13 @@ Es gibt drei verschiedene Typen von Webdokumenten \cite[S.~508]{comer2002compute
 \label{sec:HTML}
 \NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. [...] HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S.~21]{muenz2012html5}.
 
-%TODO Melanie meinte: umformulieren
-Es ist unter anderem möglich, vergleiche \cite[S.~21]{muenz2012html5},
+Es ist unter anderem möglich:
 \begin{itemize}
 \item das Dokument in Bereiche wie Kopf, Inhalt, Fuß, Navigation und Artikel einzuteilen
 \item dem Dokument Überschriften, Textabsätze, Listen und Tabellen hinzuzufügen
 \item Links (siehe Abschnitt~\ref{sec:Link}) auf beliebige andere Webseiten oder Datenquellen im Internet einzubinden
 \item Formulare in das Dokuement zu integrieren
-\item Erweiterungssprachen wie CSS oder JavaScript einzubinden
+\item Erweiterungssprachen wie CSS oder JavaScript einzubinden \cite[S.~21]{muenz2012html5}
 \end{itemize}
 
 Ein Beispiel für ein HTML Dokument findet sich in Listing~\ref{lst:exampleHTML}. Die Verwandtschaft von XML und HTML spiegelt sich in der gemeinsamen Struktur der Dokumente wider. Im Beispiel wird ein Dokument mit dem Titel \enquote{Assistenzplaner} definiert. Weiterhin werden CSS und JavaScript eingebunden. Wenn die Seite vollständig geladen ist, wird die JavaScript-Funktion \texttt{init} ausgeführt. Im Dokument selbst (\texttt{body}) ist eine Überschrift und ein Platzhalter mit dem \NewAbb{ID}{Identifikator}  \texttt{createContentWithJavaScript} definiert. Über die ID kann das Element gefunden werden und der Inhalt per JavaScript verändert werden.
@@ -285,8 +286,6 @@ Mit Hilfe von AJAX ist es möglich, aktive Dokumente (siehe Abschnitt~\ref{sec:we
 \subsection{PHP}
 \label{sec:PHP}
 \NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich, Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten, die im Browser angezeigt werden. Mit PHP ist es möglich, objektorientiert programmieren. Ein einfaches PHP-Script ist in Listing~\ref{lst:examplePHP} gezeigt.
-
-%TODO Beschreibung ergänzen
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument]{../PHP/exampleBase.php}
@@ -875,16 +874,14 @@ Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davo
 
 \begin{figure}[htb]
 	\centering
-	%TODO Rahmen um Grafik
-	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}
+	\fbox{ \includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}}
 	\caption[Navigation bei angemeldetem Assistenten]{Navigation bei angemeldetem Assistenten}
 	\label{fig:NavigationLoggedIn}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		%TODO Rahmen um Grafik
-	\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}
+		\fbox{\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}}
 	\caption[Navigation ohne Anmeldung]{Navigation ohne Anmmeldung}
 	\label{fig:NavigationLoggedOut}
 \end{figure}
@@ -948,8 +945,7 @@ Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutze
 
 \begin{figure}[htb]
 	\centering
-	%TODO Rahmen hinzufügen
-	\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}
+		\fbox{\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}}
 	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht des Assistenzplaners für Klienten mit Links zu allen verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
@@ -1366,14 +1362,45 @@ Punkte & Name & Tag \\
 \hline
 30 & Assistent 3 & 3 \\ 
 \hline 
- 
 \end{tabular}
 \caption{Umgewandelte Punktetabelle}
 \label{tab:scoreTableConverted}
 \end{table}
 
-Die Punktetabelle wird anschließend randomisiert (durcheinandergewürfelt, gemischt), damit es nicht zur Blockbildung bei den Diensten (ein Assistent hat mehrere Tage hintereinander Dienst) kommt.
-Anschließend wird sie nach der ersten Spalte (dem Punktewert) sortiert (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}).
+Wenn jetzt von oben nach unten der Reihe nach die Dienst vergeben werden würden kann es zur Blockbildung (ein Assistent hat mehrere Tage hintereinander Dienst) kommen. Um dies zu verdeutlichen ist in Tabelle \ref{tab:scoreTableConvertedBlock} ein fiktives Beispiel dargestellt. 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline 
+Punkte & Name & Tag \\ 
+\hline
+10 & Assistent 1 & 1 \\ 
+\hline
+10 & Assistent 1 & 2 \\ 
+\hline
+10 & Assistent 1 & 3 \\  
+\hline
+10 & Assistent 2 & 1 \\ 
+\hline
+10 & Assistent 2 & 2 \\ 
+\hline
+10 & Assistent 2 & 3 \\ 
+\hline
+10 & Assistent 3 & 1 \\ 
+\hline 
+10 & Assistent 3 & 2 \\ 
+\hline 
+10 & Assistent 3 & 3 \\ 
+\hline 
+\end{tabular}
+\caption{Umgewandelte Punktetabelle unter der Bedingung, das alle Assistenten Zeit haben und gleich priorisiert sind}
+\label{tab:scoreTableConvertedBlock}
+\end{table}
+
+Falls alle Assistenten an den drei Tagen voll verfügbar wären und alle den Priorisierungswert 1 hätten, dann würden in der konvertierten Tabelle erst alle möglichen Termine von Assistent 1, dann von Assistent 2 und am Ende die von Assistent 3 stehen. Falls nun der Algorithmus von oben nach unten die Dienste verteilen würde, so würde erst Assistent 1 so lange Dienst am Stück bekommen, bis sein Stundenkontingent ausgeschöpft ist, danach Assistent 2 und so weiter.
+
+Um die Blockbildung zu vermeiden, wird die Punktetabelle randomisiert (durcheinandergewürfelt, gemischt). Anschließend wird sie nur nach der ersten Spalte (dem Punktewert) sortiert (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}), damit trotz Randomisierung garantiert ist dass die Vorlieben des Klienten berücksichtigt werden. 
 
 \begin{table}[htb]
 \centering
@@ -1400,10 +1427,10 @@ Punkte & Name & Tag \\
 \label{tab:scoreTableConvertedAndSorted}
 \end{table}
 
-Weiterhin werden alle Stundenkontingente der Assistenten, die in der Team-Verwaltung (siehe Abschnitt~\ref{sec:TeamVerwaltung}) hinterlegt sind, addiert.
+Da die Anzahl der benötigten Stunden nicht mit der Anzahl der zur Verfügung stehenden Stunden der Assistenten übereinstimmen muss, wird dies zunächst geprüft. Hierfür werden alle Stundenkontingente der Assistenten, die in der Team-Verwaltung (siehe Abschnitt~\ref{sec:TeamVerwaltung}) hinterlegt sind, addiert.
 
-Dann werden alle Dienst- und Bereitschaftsstunden addiert.
-Ist die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden geteilt durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht. Ist die Summe der Dienst- und Bereitschaftsstunden kleiner oder gleich als die Summe der Stundenkontingente, bleiben die Stundenkontigente der Assistenten unverändert.
+Dann werden alle Dienst- und Bereitschaftsstunden aus dem Monatsplan addiert.
+Ist die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden geteilt durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht. Damit wird erreicht, dass die Mehrarbeit gleichmäßig auf die Assistenten verteilt wird. Ist die Summe der Dienst- und Bereitschaftsstunden kleiner oder gleich der Summe der Stundenkontingente, bleiben die Stundenkontigente der Assistenten unverändert.
 
 Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zuerst werden alle Dienste vergeben, anschließend die Bereitschaften. Der Algorithmus iteriert über die nach Punkten sortierte Tabelle~\ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedingungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden um die Netto-Dienststundenanzahl des Tages verringert.
 
@@ -1441,16 +1468,13 @@ Nachdem alle Dienste vergeben wurden, werden auf dieselbe Weise die Bereitschaft
 
 Durch das Randomisieren der Liste (siehe Tabelle~\ref{tab:scoreTableConvertedAndSorted}) können mehrere Dienstpläne erstellt werden. Um von den vielen möglichen Dienstplänen einen zu wählen, der die Stundenkontingente möglichst gleichmäßig ausschöpft, werden 1000 Dienstpläne erstellt und am Ende ermittelt, wie gut jeder Dienstplan ist. Als Metrik dient die Summe der beiden Toleranzwerte (Dienst und Bereitschaft). Das theoretische Optimum ist Null. Der Dienstplan mit der niedrigsten Summe der Toleranzwerte wird dem Benutzer angezeigt.
 
+Durch die Randomisierung der Punktetabelle kann bei jeder Dienstplanerstellung ein anderern Dienstplan herauskommen. Dieses Verhalten ist vom Klienten auch erwünscht, da er sich mehrer verschiedene Dienstplanmöglichkeiten anzeigen lassen will.
+
 \subsection{Implementierungsdetails}
-Der Quellcode der kommentierten Implementierung der fünften Version des Algorithmus findet sich in Listing \ref{lst:rosterAlgorithm}.
+Der kommentierte Quellcode\footnote{Die Mischung zwischen englischem Quellcode und deutschen Kommentaren ist schlechter Stil! Dies ließ sich leider nicht vermeiden, da der Quellcode in englischer Sprache programmiert wurde, die Ausarbeitung jedoch in deutscher Sprache verfasst ist.} der Implementierung der fünften Version des Algorithmus findet sich in Listing \ref{lst:rosterAlgorithm}.
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:rosterAlgorithm,caption=Algorithmus zur Dienstplanerstellung]{../PHP/rosterAlgorithm.php}
-
-\subsection{Performance des Algorithmus}
-Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird, liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese Laufzeit vertretbar.
-
-Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde zu Gunsten der Code-Lesbarkeit vorerst davon abgesehen.
 
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
@@ -1483,7 +1507,7 @@ Die Aufgaben werden an Hand ihres Fälligkeitsdatums in folgende Gruppen sortiert
 \end{itemize}
 
 \subsection{Neue Aufgaben erstellen}
-Der Klient hat als Einziger die Berechtigung neue Aufgaben zu erstellen. Hierfür hat er eine Eingabemaske, wie sie in Abbildung~\ref{fig:ToDoManagerNewToDo} zu sehen ist.
+Der Klient hat als Einziger die Berechtigung, neue Aufgaben zu erstellen. Hierfür hat er eine Eingabemaske, wie sie in Abbildung~\ref{fig:ToDoManagerNewToDo} zu sehen ist.
 
 \begin{figure}[htb]
 	\centering
@@ -1516,7 +1540,7 @@ Weiterhin ist in der Datei \file{toDoManager.js} die Klasse \texttt{ToDo} enthal
 Das PHP-Script \file{toDoSaver.php} speichert die offenen Aufgaben in die Datei \file{toDos.txt} und die erledigten Aufgaben in die Datei \file{done.txt}. Beide Dateien liegen im Ordner \folder{ToDoManager}.
 
 \section{Feedback}
-Mit der Feedback-Funktion hat der Benutzer die Möglichkeit Kontakt zum Entwickler des Assistenzplaners aufzunehmen. Es gibt ein Formular (siehe Abbildung \ref{fig:Feedback}), worin Feedback, Änderungswünsche und Kritik geäußert werden können. Wenn für den Benutzer eine E-Mail-Adresse hinterlegt ist (Klient $\Rightarrow$ Einstellungen, Assistent $\Rightarrow$ Team-Verwaltung), so wird diese automatisch als E-Mail-Adresse für eine Antwort vorgeschlagen. Der Benutzer kann aber auch eine andere Antwort-Adresse angeben.
+Mit der Feedback-Funktion hat der Benutzer die Möglichkeit, Kontakt zum Entwickler des Assistenzplaners aufzunehmen. Es gibt ein Formular (siehe Abbildung \ref{fig:Feedback}), worin Feedback, Änderungswünsche und Kritik geäußert werden können. Wenn für den Benutzer eine E-Mail-Adresse hinterlegt ist (Klient $\Rightarrow$ Einstellungen, Assistent $\Rightarrow$ Team-Verwaltung), so wird diese automatisch als E-Mail-Adresse für eine Antwort vorgeschlagen. Der Benutzer kann aber auch eine andere Antwort-Adresse angeben.
 
 \begin{figure}[htb]
 	\centering
@@ -1536,7 +1560,7 @@ Der Dokumentations-Inhalt wird individuell erzeugt. Klienten bekommen eine ander
 Im oberen Bereich der Dokumentation werden Inhalts-, Abbildungs- und Tabellenverzeichnisse angezeigt, damit der Benutzer leicht zum entsprechenden Kapitel der Dokumentation navigieren kann.
 
 \subsection{Implementierungsdetails}
-Die Dokumentations-Seite wird vom PHP-Script \file{documentation.php} erstellt. abhängig von den Variablen, die im superglobalen Array \texttt{\$\_SESSION} gesetzt sind, wird der Inhalt variiert. Es werden weitere PHP-Scripts\footnote{Die weiteren PHP-Scripts beginnen alle mit dem Präfix \file{documentation}, zum Beispiel \file{documentationCalendar.php}} per \texttt{include} eingebunden.
+Die Dokumentations-Seite wird vom PHP-Script \file{documentation.php} erstellt. Abhängig von den Variablen, die im superglobalen Array \texttt{\$\_SESSION} gesetzt sind, wird der Inhalt variiert. Es werden weitere PHP-Scripts\footnote{Die weiteren PHP-Scripts beginnen alle mit dem Präfix \file{documentation}, zum Beispiel \file{documentationCalendar.php}} per \texttt{include} eingebunden.
 %\footnote{\file{documentationCalendar.php}, \file{documentationCalendarColor.php}, \file{documentationMonthNavigation.php}, \file{documentationMonthPlan.php}, \file{documentationNavigation.php}, \file{documentationRoster.php}, \file{documentationRosterClient.php}, \file{documentationSettings.php}, \file{documentationStandardWorkingTimes.php}, \file{documentationTeam.php}, \file{documentationToDoManager.php}, \file{documentationToDoManagerAssisatant.php}, \file{documentationToDoManagerClient.php}}
 
 Im oberen Bereich der Dokumentation werden mit Hilfe des JavaScripts \file{documentation.js} automatisch Inhalts-, Abbildungs- und Tabellenverzeichnisse erstellt. Für die Erstellung des Inhaltsverzeichnis werden alle Überschriften\footnote{HTML-Tags: \texttt{h1}, \texttt{h2}, \texttt{h3}, \texttt{h4}, \texttt{h5}, \texttt{h6}} geparst und deren Inhalte ausgelesen. Die Erstellung der Abbildungs- und Tabellenverzeichnisse funktioniert analog.
@@ -1554,24 +1578,28 @@ Die Überführung in den Produktiv-Betrieb wurde iterativ durchgeführt.
 
 Den Dienstplan für den Monat April 2014 hat der Klient noch komplett manuell erstellt.
 
-Schon bei der Dienstplanerstellung für den Mai 2014 wurde der Klient technisch unterstützt. Es war möglich, die Termin-Antworten der Assistenten übersichtlich in einer Tabelle darzustellen. Somit musste der Klient nicht mehr sieben E-Mail Antworten gleichzeitig überblicken. Es war möglich, Dienste und Bereitschaften manuell einzutragen und den Dienstplan zu speichern. Der Autor war bei der Dienstplanerstellung dabei und hat viel über die Hintergründe erfahren und herausfinden können, worauf es dem Klienten ankommt.
+Schon bei der Dienstplanerstellung für den Mai 2014 wurde der Klient technisch unterstützt. Es war möglich, die Termin-Antworten der Assistenten übersichtlich in einer Tabelle darzustellen. Somit musste der Klient nicht mehr sieben E-Mail Antworten gleichzeitig überblicken. Es war möglich, Dienste und Bereitschaften manuell einzutragen und den Dienstplan zu speichern.
 
-Bei der Dienstplanerstellung für Juni 2014 hat bereits ein Algorithmus im Hintergrund gearbeitet und Dienstplanvorschläge erstellt. Der Klient hat den Dienstplan eigenständig in Anwesenheit des Autors erstellt.
+Bei der Dienstplanerstellung für Juni 2014 hat bereits ein Algorithmus im Hintergrund gearbeitet und Dienstplanvorschläge erstellt. Der Klient hat den Dienstplan eigenständig erstellt.
 
-Bei der Dienstplanerstellung für Juli 2014 waren alle nötigen Komponenten vorhanden. Zur Sicherheit haben der Klient und der Autor nochmal gemeinsam den Dienstplan erstellt und verifiziert, dass alle Kompontenten ordungsgemäß funktionieren.
+Bei der Dienstplanerstellung für Juli 2014 waren alle nötigen Komponenten vorhanden. Der Klient hat den Dienstplan eigenständig erstellt und hätte schon sein Team einbeziehen können.
 
-Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen ihre Eingaben selbstständig getätigt. Es war kein Zutun des Autors mehr notwendig. Der Algorithmus zur Dienstplanerstellung hat einen ausgewogenen Dienstplan erstellt, der vom Klienten angenommen wurde.
+Ab dem Dienstplan für den Monat August 2014 haben der Klient und die Assistenen ihre Eingaben selbstständig getätigt. Der Algorithmus zur Dienstplanerstellung hat einen ausgewogenen Dienstplan erstellt, der vom Klienten angenommen wurde.
 
 Durch die iterative Vorgehensweise fühlte sich der Klient sehr gut eingebunden. Er konnte in regelmäßigen Intervallen den aktuellen Stand der Software sehen und sein Feedback äußern, welches direkt in die weitere Entwicklung eingeflossen ist.
 
 \chapter{Ergebnis}
 Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serverbasierte Anwendung geschaffen, um körperlich behinderte Menschen (Klienten) und ihre Assistenz-Teams bei der Planung zu unterstützen.
 
-Der Klient hat die Möglichkeit sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
+Der Klient hat die Möglichkeit, sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenen definieren.
 
-Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
+Der Klient kann mit dem Monats-Plan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten, ihre Termine in einen Kalender einzutragen.
 
 Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontigente berücksichtigt. Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen. Weiterhin ist es möglich den Dienstplan manuell anzupassen.
+
+Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird, liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese Laufzeit vertretbar.
+
+Am Algorithmus ließen sich noch ein paar Dinge optimieren, aber nach dem Motto \Link{http://www.clean-code-developer.de/Roter-Grad.ashx}{\enquote{Vorsicht vor Optimierungen}}{29.08.2014} von Clean Code Developer wurde zu Gunsten der Code-Lesbarkeit vorerst davon abgesehen.
 
 Eine Aufgaben-Verwaltung rundet den Assistenzplaner ab.
 
@@ -1579,20 +1607,20 @@ Die Webanwendung wurde mit vielen gängigen Browsern (Firefox, Chrome, Safari) er
 
 Bei Abgabe dieser vorliegenden Ausarbeitung wurde ein \LinkWithoutDate{http://assistenzplaner.de/master}{Code-Freeze des Assistenzplaners} durchgeführt.
 
+Der Klient ist mit dem Ergebnis sehr zufrieden! Er nutzt nur noch den Assistenzplaner für die Dienstplanerstellung und spart dadurch jeden Monat mehrere Stunden mühseelige Arbeit.
+
 \chapter{Fazit und Ausblick} % alternativ: Diskussion und Ausblick
 Es wurde eine Webanwendung erschaffen, die dem Klienten sehr viel Arbeit abnimmt. Der Klient ist mit der Lösung sehr zufrieden und wird in Zukunft nur noch den Assistenzplaner zur Dienstplanerstellung verwenden. Alle gewünschten Benutzergeschichten (siehe Abschnitt~\ref{sec:userstories}) wurden umgesetzt.
 
 Die entstandende Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch gibt es einige Stellen mit Verbesserungs- oder Erweiterungspotential.
 
-Der Autor plant, das Projekt weiterzuführen und den \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} kontinuierlich zu verbessern und zu erweitern. Die Quellen des Assistenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt. So hat jeder die Möglichkeit sich den Assistenzplaner auf dem eigenen Server einzurichten.
-
 \section{Einsatz bei mehreren Teams}
 Der Assistenzplaner ist derzeit (September 2014) eine spezialisierte Lösung für einen Klienten mit seinem Team.
-Der Autor hatte am 01.09.2014 ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch.}{02.09.2014} Hier hat der Verfasser den Assistenzplaner vorgestellt und sich vom Landesbeauftragten einige Ansprechpartner im Bereich Assistenzplanung nennen lassen. Der Landesbeauftrage hat selbst sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner.
+Am 01.09.2014 fand ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch}{02.09.2014} statt. Hier wurde dem Landesbeauftragten der Assistenzplaner vorgestellt. Der Landesbeauftrage hat selbst sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner. Weiterhin konnte er einige Ansprechpartner im Bereich Assistenzplanung nennen.
 
-Der Autor hofft, dass sich einige Beta-Tester bereit erklären den Assistenzplaner einzusetzen. Sicherlich werden noch Anforderungen hinzukommen, da jeder Klient mit seinem Team einen anderen Prozess und unterschiedliche Rahmenbedingungen bei der Dienstplanerstellung hat.
+In der weiteren Entwicklung werden sich hoffentlich einige Beta-Tester bereit erklären den Assistenzplaner einzusetzen. Sicherlich werden noch Anforderungen hinzukommen, da jeder Klient mit seinem Team einen anderen Prozess und unterschiedliche Rahmenbedingungen bei der Dienstplanerstellung hat.
 
-Sobald der Assistenzplaner von einigen Klienten mit ihren Teams erfolgreich erprobt ist, möchte der Autor den Assistenzplaner öffentlich bewerben.\footnote{Der Autor hat keinerlei finanzielles Interesse. Die Nutzung des Assistenzplaners ist kostenlos und wird es auch immer bleiben.} Einige mögliche Kanäle sind nachfolgend aufgezählt:
+Sobald der Assistenzplaner von einigen Klienten mit ihren Teams erfolgreich erprobt ist, wird der Assistenzplaner öffentlich beworben.\footnote{Es besteht keinerlei finanzielles Interesse. Die Nutzung des Assistenzplaners ist kostenlos und wird es auch immer bleiben.} Einige mögliche Kanäle sind nachfolgend aufgezählt:
 
 \begin{itemize}
 \item \Link{http://inklusion-blog.rlp.de}{Blog von Matthias Rösch, Landesbeauftragter für die Belange behinderter Menschen in Rheinland-Pfalz}{02.09.2014}
@@ -1611,10 +1639,6 @@ In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgeste
 %Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen und keinerlei Anforderungen an den Server (bezüglich einer Datenbank) gestellt werden.
 
 \subsection{Barrierefreiheit}
-\enquote{Barrierefreiheit bezeichnet im deutschen Sprachgebrauch eine Gestaltung der baulichen Umwelt in der Weise, dass sie von Menschen mit Behinderung in der selben Weise genutzt werden kann wie von Menschen ohne Behinderung.} \cite[S.~28]{bremus2013barrierefreiheit}
-
-\enquote{Barrierefreiheit als Thema für Webentwickler und -designer wird auch deshalb immer wichtiger und interessanter, weil die Menschen eine immer höhere Lebenserwartung haben, und gerade Menschen mit Behinderungen immer besser medizinisch versorgt werden können.}  \cite[S.~29]{bremus2013barrierefreiheit} 
-
 \enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability.} \cite[S.~30]{bremus2013barrierefreiheit}
 
 \enquote{Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.}  \cite[S.~31]{bremus2013barrierefreiheit} 
@@ -1663,18 +1687,10 @@ Wünschenswert wäre es, wenn kontextsensitive Informationen zusätzlich über den g
 	\label{fig:jQueryUiTooltip}
 \end{figure}
 
-\subsection{Erhöhung der Sicherheit}
-%TODO schreiben
-* Passwortlänge
-* Hin und wieder neues Passwort vergeben
-* Passwortinhalt - Buchstaben + Zahlen
-* Captcha beim Anlegen eines neuen Klienten-Kontos
-* E-Mail Adresse des Klienten zur Verifzierung - verhindern dass Bots Konten anlegen können
-
 \subsection{Verwendung von Frameworks}
-Derzeit ist alles von Grund auf händisch programmiert. Der Autor hat sich bewusst gegen den Einsatz von Frameworks entschieden, um genau zu verstehen, was im Hintergrund passiert und jederzeit die Kontrolle zu haben. Es ist ein schlankes System entstanden, das unabhängig von Drittanbietern ist.
+Derzeit ist alles von Grund auf händisch programmiert. Es wurden bewusst keine Frameworks eingesetzt, um genau zu verstehen, was im Hintergrund passiert und jederzeit die Kontrolle zu haben. Es ist ein schlankes System entstanden, das unabhängig von Drittanbietern ist.
 
-Unter dem Gesichtspunkt, dass der Autor langfristig eventuell nicht der einzige Entwickler des Assistenzplaners sein wird, wäre es wünschenswert auf Frameworks aufzubauen, die verbreitet sind. Ein Beispiel für ein weit verbreitets JavaScript-Framework ist \Link{http://jquery.com}{jQuery.}{29.08.2014} Ein weiterer Vorteil wäre, dass die Abdeckung aller gängigen Browser garantiert wäre.
+Im Rahmen der Weiterführung als Open-Source-Projekt können mehrere Entwickler am Assistenzplaner arbeiten. Unter diesem Gesichtspunkt wäre es wünschenswert, auf Frameworks aufzubauen, die verbreitet sind. Ein Beispiel für ein weit verbreitetes JavaScript-Framework ist \Link{http://jquery.com}{jQuery.}{29.08.2014} Ein weiterer Vorteil wäre, dass die Abdeckung aller gängigen Browser garantiert wäre.
 
 Serverseitig sei das PHP-Framework \Link{http://symfony.com}{Symfony}{29.08.2014} erwähnt, dass das Prinzip des \NewAbb{MVC}{Model View Controller} konsequent einsetzt.
 
@@ -1707,7 +1723,7 @@ Denkbar wäre, dass der Klient beim Monatsplan einen Button \enquote{Feiertage im
 Derzeit ist nicht nachvollziehbar, wer wann welche Änderungen am Assistenzplaner vorgenommen hat. Für zukünftigen Support und Fehlersuche wäre es wünschenswert ein Log-File zu nutzen. Daraus wäre bei Bedarf ersichtlich, welche Änderungen in der letzten Zeit gemacht wurden und von wem diese durchgeführt wurden.
 
 \subsection{Aufgaben-Verwaltung erweitern}
-Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Klient entschieden die Aufgaben-Verwaltung für sein Team nicht einzusetzen, da der Mehraufwand durch die Verwaltung zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung nach einer Woche wieder eingestellt. Für andere Modelle in der Pflege wäre es aber eventuell von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
+Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Klient entschieden, die Aufgaben-Verwaltung für sein Team nicht einzusetzen, da der Mehraufwand durch die Verwaltung zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung nach einer Woche wieder eingestellt. Für andere Modelle in der Pflege wäre es aber eventuell von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen werden in den folgenden Abschnitten dargestellt.
 
 \subsubsection{Hervorhebungen bei  Datumswahl}
 In der Datumswahl (siehe Abbildung~\ref{fig:ToDoManagerDatePicker}) sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
@@ -1720,6 +1736,11 @@ Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
 
 \subsubsection{Übersicht erledigter Aufgaben}
 Von Vorteil (gerade für die Nachweise der Leistungserbringung) wäre es, wenn nachvollziehbar wäre, welcher Assistent, wann, welche Aufgabe erledigt hat.
+
+\section{Weiterführung}
+Das Projekt wird weitergeführt. Der \LinkWithoutDate{http://assistenzplaner.de}{Assistenzplaner} wird in Zukunft kontinuierlich verbessert und erweitert. Die Quellen des Assistenzplaners sind Open-Source und in einem öffentlichen Repository bei \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} eingecheckt. So hat jeder die Möglichkeit, sich den Assistenzplaner auf dem eigenen Server einzurichten.
+
+%persönliches Fazit?
 
 % Literaturverzeichnis ---------------------------------------------------------
 %   Das Literaturverzeichnis wird aus der BibTeX-Datenbank
@@ -1805,7 +1826,7 @@ Als Client für den Transfer von Daten zwischen Entwicklerlaptop und Server via \
 \end{figure}
 
 \section*{GitHub}
-Der Autor hat ein öffentliches Repository auf \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} erstellt. 
+Es wurde ein öffentliches Repository auf \LinkWithoutDate{https://github.com/Ulle84/AssistancePlaner}{GitHub} erstellt. 
 
 Als Client für den Transfer von Daten zwischen Entwicklerlaptop und GitHub-Server wurde GitHub (Version siehe Abbildung \ref{fig:GitHub}) eingesetzt.
 

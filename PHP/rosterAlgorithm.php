@@ -77,7 +77,7 @@ function createRosterAlgorithm5()
     }
   }
 
-  // konvertiere die Punkte-Tabelle, so dass eine Betrachtung des ganzen Monats moeglich ist
+  // Konvertierung der Punkte-Tabelle, so dass eine Betrachtung des ganzen Monats moeglich ist
   $convertedData = array();
   foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
     for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -98,11 +98,11 @@ function createRosterAlgorithm5()
   $servicePersonsBest = array();
   $standbyPersonsBest = array();
 
-  // Erstelle 1000 Dienstplaene und nimm am Ende den besten
+  // Erstellung von 1000 Dienstplaenen -> am Ende wird der beste gewaehlt
   for ($run = 0; $run < $countOfRuns; $run++) {
 
-    shuffle($convertedData); // randomisieren, damit es keine Block-Bildung bei den Diensten gibt
-    usort($convertedData, 'compare'); // nach Punkten sortieren - die compare-Funktion ist in diesem Listing nicht dargestellt
+    shuffle($convertedData); // Randomisierung, damit es keine Block-Bildung bei den Diensten gibt
+    usort($convertedData, 'compare'); // Sortierung nach Punkten - die compare-Funktion ist in diesem Listing nicht dargestellt
 
     // Dienstplan (vom vorherigen Durchlauf) loeschen
     for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -116,16 +116,16 @@ function createRosterAlgorithm5()
     // Bestimmung der Assistenten fuer die Dienste
     $serviceTolerance = 1;
     $serviceRun = 0;
-    while (!$this->isServiceComplete()) { // Laufe solange, bis alle Dienste eingeteilt sind
-      for ($i = 0; $i < count($convertedData); $i++) { // Laufe ueber alle Elemente der konvertierten Tabelle
-        if ($this->servicePerson[$convertedData[$i][2]] == "") {// Pruefe, ob Dienst noch frei
-          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) { // Pruefe, ob Dienst noch in das Stundenkontigennt (+ Toleranz) reinpasst
-            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1]; // Weise Dienst zu
-            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours; // Ziehe Stunden des zugewiesenen Dienstes von Stundenkontingetn ab
+    while (!$this->isServiceComplete()) { // Schleife, die solange laeuft, bis alle Dienste eingeteilt sind
+      for ($i = 0; $i < count($convertedData); $i++) { // Schleife ueber alle Elemente der konvertierten Tabelle
+        if ($this->servicePerson[$convertedData[$i][2]] == "") {// Pruefung, ob Dienst noch frei
+          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) { // Pruefung, ob Dienst noch in das Stundenkontigennt (+ Toleranz) reinpasst
+            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1]; // Zuweisung des Dienstes
+            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours; // Abziehen der Stunden des zugewiesenen Dienstes von Stundenkontingent
           }
         }
       }
-      // inkrementiere den Durchlauf-Zaehler, damit die Stunden Toleranz beim naechsten Durchlauf eine Stunde groesser ist
+      // Inkrementierung des Durchlauf-Zaehlers, damit die Stunden Toleranz beim naechsten Durchlauf eine Stunde groesser ist
       $serviceRun++;
     }
 
@@ -148,17 +148,16 @@ function createRosterAlgorithm5()
     // Bestimmung der "Metrik" des gerade eben erstellten Dienstplans
     $currentDifference = $serviceRun * $serviceTolerance + $standbyRun * $standbyTolerance;
 
-    if ($currentDifference < $smallestDifference) {
-      // wenn aktueller Dienstplan besser als der bisher Beste, dann als besten Dienstplan merken und kleinste Differenz aktualiseren
+    if ($currentDifference < $smallestDifference) { // Pruefung ob aktueller Dienstplan besser als bisher bester
+      // kleinste Differenz aktualisieren und neuerstellten Dienstplan speichern
       $smallestDifference = $currentDifference;
       $servicePersonsBest = $this->servicePerson;
       $standbyPersonsBest = $this->standbyPerson;
     }
   }
 
-  // Am Ende den besten der 1000 erstellten Dienstplaene speichern
+  // Speicherung des besten Dienstplans
   $this->servicePerson = $servicePersonsBest;
   $this->standbyPerson = $standbyPersonsBest;
 }
-
 ?>
