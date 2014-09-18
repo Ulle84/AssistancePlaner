@@ -622,12 +622,22 @@ Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da
 Die Anforderung \enquote{beschreibt ein oder mehrere Eigenschaften oder Verhaltensweisen eines Systems, die stets erfüllt sein müssen.} \cite[S.~315]{weilkiens2014systems}
 Im Anforderungsdiagramm wird jede Anforderung als Box dargestellt, in deren oberen Bereich der Stereotyp <<requirement>> steht. Die Anforderungen können Beziehungen untereinander haben. Nachfolgend sind die verwendeten Beziehungen dargestellt.
 
-\subsection{Enthältbeziehung}
-Die Enthältbeziehung \enquote{beschreibt, dass eine Anforderung in einer anderen enthalten ist.} \cite[S.~318]{weilkiens2014systems} Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgabenverwaltung} enthalten.
+\subsection{Allgemeine Beziehung}
+Mit der allgemeinen Beziehung lässt sich darstellen, dass eine Anforderung von einer anderen abhängig ist. In Abbildung~\ref{fig:SysMLRequirementLink} ist ein Beispiel dargestellt. Die Anforderung \enquote{Erstellung Monatsplan} ist abhängig von der Anforderung \enquote{Standard-Dienstzeiten}.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementContainment.png}
+	\includegraphics[scale=0.7]{../Images/Modell/SysMLRequirementLink.png}
+	\caption{SysML Anforderungsdiagramm - Allgemeine Beziehung}
+	\label{fig:SysMLRequirementLink}
+\end{figure}
+
+\subsection{Enthältbeziehung}
+Die Enthältbeziehung \enquote{beschreibt, dass eine Anforderung in einer anderen enthalten ist.} \cite[S.~318]{weilkiens2014systems} Dargestellt wird diese Beziehung durch eine Verbindung zweier Anforderungen, wobei an einem Ende der Verbindung ein Kreis mit einem Kreuz ist. In Abbildung~\ref{fig:SysMLRequirementContainment} ist ein Beispiel dargestellt. Die Anforderungen \enquote{Aufgaben als erledigt markieren} und \enquote{Aufgaben erstellen} sind in der Anforderung \enquote{Aufgaben-Verwaltung} enthalten.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.7]{../Images/Modell/SysMLRequirementContainment.png}
 	\caption{SysML Anforderungsdiagramm - Enthältbeziehung}
 	\label{fig:SysMLRequirementContainment}
 \end{figure}
@@ -637,7 +647,7 @@ Die Erfüllungsbeziehung \enquote{beschreibt, dass ein Element eine Anforderung e
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementSatisfy.png}
+	\includegraphics[scale=0.7]{../Images/Modell/SysMLRequirementSatisfy.png}
 	\caption{SysML Anforderungsdiagramm - Erfüllungsbeziehung}
 	\label{fig:SysMLRequirementSatisfy}
 \end{figure}
@@ -647,30 +657,70 @@ Die Verfeinerungsbeziehung \enquote{beschreibt, dass ein Modellelement die Eigen
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirementRefine.png}
+	\includegraphics[scale=0.7]{../Images/Modell/SysMLRequirementRefine.png}
 	\caption{SysML Anforderungsdiagramm - Verfeinerungsbeziehung}
 	\label{fig:SysMLRequirementRefine}
 \end{figure}
 
 \subsection{Anforderungsdiagramm}
-In Abbilung~\ref{fig:SysMLRequirements} ist das Anforderungsdiagramm mit allen Anforderungen und den Beziehungen untereinander zu sehen.
+Die Anforderungen clustern sich in fünf Bereiche:
 
-\begin{figure}[htb]
-	\advance\leftskip-2.7cm
-	\includegraphics[scale=0.6]{../Images/Screenshots/EnterpriseArchitect/SysMLRequirements.png}
-	\caption[SysML Anforderungsdiagramm]{SysML Anforderungsdiagramm}
-	\label{fig:SysMLRequirements}
+\begin{itemize}
+\item Team-Verwaltung
+\item Erstellung Montsplan
+\item Erstellung Dienstplan
+\item Aufgaben-Verwaltung
+\item Sonstiges
+\end{itemize}
+
+In den Abbilungen~\ref{fig:SysMLRequirementsTeamOrganisation} bis \ref{fig:SysMLRequirementsMisc} sind die Anforderungen aus den fünf Bereichen zu sehen.
+
+\begin{figure}[H]
+	\advance\leftskip-2.0cm
+	%\centering
+	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsTeamOrganisation.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Team-Verwaltung}
+	\label{fig:SysMLRequirementsTeamOrganisation}
 \end{figure}
 
-Es ist deutlich eine Clusterung zu erkennen. Die Anforderungen 
-\begin{itemize}
-\item Erstellung Dienstplan
-\item Erstellung Montsplan
-\item Team-Verwaltung
-\item Benutzerverwaltung
-\item Aufgabenverwaltung
-\end{itemize}
-sind die zentralen Anforderungen, die weitere Anforderungen enthalten. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsMonthPlan.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Montsplan}
+	\label{fig:SysMLRequirementsMonthPlan}
+\end{figure}
+
+\begin{figure}[H]
+	\advance\leftskip-2.0cm
+	%\centering
+	\includegraphics[scale=0.50]{../Images/Modell/SysMLRequirementsRoster.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Dienstplan}
+	\label{fig:SysMLRequirementsRoster}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsToDoManager.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Aufgaben-Verwaltung}
+	\label{fig:SysMLRequirementsToDoManager}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsMisc.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Sonstiges}
+	\label{fig:SysMLRequirementsMisc}
+\end{figure}
+
+%Es ist deutlich eine Clusterung zu erkennen. Die Anforderungen 
+%\begin{itemize}
+%\item Erstellung Dienstplan
+%\item Erstellung Montsplan
+%\item Team-Verwaltung
+%\item Benutzerverwaltung
+%\item Aufgabenverwaltung
+%\end{itemize}
+%sind die zentralen Anforderungen, die weitere Anforderungen enthalten. 
 
 \section{UML Komponentendiagramm}
 %allgemeines zum UML Komponentendiagramm schreiben
@@ -743,7 +793,7 @@ Die Komponente \texttt{Settings} (siehe Abbildung~\ref{fig:UMLComponentSettings}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentSettings.png}
+	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentSettings.png}
 	\caption[Klassendiagramm der Komponente \texttt{Settings}]{Klassendiagramm der Komponente \texttt{Settings}}
 	\label{fig:UMLComponentSettings}
 \end{figure}
@@ -755,7 +805,7 @@ Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentT
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.45]{../Images/Screenshots/EnterpriseArchitect/UMLComponentTeamOrganisation.png}
+	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentTeamOrganisation.png}
 	\caption[Klassendiagramm der Komponente \texttt{TeamOrganisation}]{Klassendiagramm der Komponente \texttt{TeamOrganisation}}
 	\label{fig:UMLComponentTeamOrganisation}
 \end{figure}
@@ -767,7 +817,7 @@ Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoMa
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{../Images/Screenshots/EnterpriseArchitect/UMLComponentToDoManager.png}
+	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentToDoManager.png}
 	\caption[Klassendiagramm der Komponente \texttt{ToDoManager}]{Klassendiagramm der Komponente \texttt{ToDoManager}}
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
