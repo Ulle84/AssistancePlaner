@@ -119,7 +119,7 @@ function createRosterAlgorithm5()
     while (!$this->isServiceComplete()) { // Schleife, die solange laeuft, bis alle Dienste eingeteilt sind
       for ($i = 0; $i < count($convertedData); $i++) { // Schleife ueber alle Elemente der konvertierten Tabelle
         if ($this->servicePerson[$convertedData[$i][2]] == "") {// Pruefung, ob Dienst noch frei
-          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) { // Pruefung, ob Dienst noch in das Stundenkontigennt (+ Toleranz) reinpasst
+          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) { // Pruefung, ob Dienst noch in das Stundenkontigennt (+ Toleranz) reinpasst
             $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1]; // Zuweisung des Dienstes
             $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours; // Abziehen der Stunden des zugewiesenen Dienstes von Stundenkontingent
           }
@@ -136,7 +136,7 @@ function createRosterAlgorithm5()
     while (!$this->isStandbyComplete()) {
       for ($i = 0; $i < count($convertedData); $i++) {
         if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
+          if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
             $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
             $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
           }

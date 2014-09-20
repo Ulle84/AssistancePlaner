@@ -24,6 +24,7 @@ class Roster
 {
     private $month;
     private $year;
+    private $rosterAlgorithmVersion;
     private $daysPerMonth;
     private $lastChange;
     private $servicePerson = array();
@@ -34,10 +35,11 @@ class Roster
     private $assistanceInput;
     private $monthPlan;
 
-    function __construct($year, $month)
+    function __construct($year, $month, $rosterAlgorithmVersion)
     {
         $this->year = $year;
         $this->month = $month;
+        $this->rosterAlgorithmVersion = $rosterAlgorithmVersion;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -169,7 +171,7 @@ class Roster
                 $year--;
             }
 
-            $rosterPreviousMonth = new Roster($year, $previousMonth);
+            $rosterPreviousMonth = new Roster($year, $previousMonth, $this->rosterAlgorithmVersion);
             if ($rosterPreviousMonth->rosterExist) {
                 $lastDayOfMonth = date("t", mktime(0, 0, 0, $previousMonth, 1, $year));
                 if ($this->standbyPerson[$day] == $rosterPreviousMonth->servicePerson[$lastDayOfMonth]) {
@@ -458,7 +460,29 @@ class Roster
 
     private function createRoster()
     {
-        $this->createRosterAlgorithm5();
+        switch($this->rosterAlgorithmVersion)
+        {
+            case 1:
+                $this->createRosterAlgorithm1();
+                break;
+            case 2:
+                $this->createRosterAlgorithm2();
+                break;
+            case 3:
+                $this->createRosterAlgorithm3();
+                break;
+            case 4:
+                $this->createRosterAlgorithm4();
+                break;
+            case 5:
+                $this->createRosterAlgorithm5();
+                break;
+            case 6:
+                $this->createRosterAlgorithm6();
+                break;
+            default:
+                $this->createRosterAlgorithm5();
+        }
     }
 
     private function createRosterAlgorithm1()
@@ -539,7 +563,7 @@ class Roster
             }
         }
 
-        $this->printScoreTable($scoreTable);
+        //$this->printScoreTable($scoreTable);
 
         // set service and standby
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -606,7 +630,7 @@ class Roster
             }
         }
 
-        $this->printScoreTable($scoreTable);
+        //$this->printScoreTable($scoreTable);
 
         // set service and standby
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -682,7 +706,7 @@ class Roster
             }
         }
 
-        $this->printScoreTable($scoreTable);
+        //$this->printScoreTable($scoreTable);
 
         // set service and standby
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -836,7 +860,7 @@ class Roster
             while (!$this->isServiceComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours > 0 - ($serviceTolerance * $serviceRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
                             $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
                             $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
                         }
@@ -851,9 +875,177 @@ class Roster
             while (!$this->isStandbyComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours > 0 - ($standbyTolerance * $standbyRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
                             $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
                             $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                        }
+                    }
+
+                }
+                $standbyRun++;
+            }
+
+            $currentDifference = $serviceRun * $serviceTolerance + $standbyRun * $standbyTolerance;
+            if ($currentDifference < $smallestDifference) {
+                $smallestDifference = $currentDifference;
+                $servicePersonsBest = $this->servicePerson;
+                $standbyPersonsBest = $this->standbyPerson;
+
+                /*echo '$run: ' . $run . '<br />';
+                echo '$currentDifference: ' . $currentDifference . '<br />';
+                echo '$serviceRun: ' . $serviceRun . '<br />';
+                echo '$standbyRun: ' . $standbyRun . '<hr />';*/
+
+            }
+        }
+
+        /*$time_taken = (microtime(true) - $start) * 1000;
+        echo 'time taken: ' . $time_taken . ' ms <br />';*/
+
+        $this->servicePerson = $servicePersonsBest;
+        $this->standbyPerson = $standbyPersonsBest;
+    }
+
+    private function createRosterAlgorithm6()
+    {
+        // take priority into account
+        // take preferred weekdays into account
+        // take keywords (in the month plan) into account
+        // take working hours into account
+        // generate score table and sort
+        // generate a lot of rosters and take the best in the end
+
+        if (!$this->assistanceInput->dataExist) {
+            return;
+        }
+
+        // check that there is enough availability
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $sum = 0;
+            foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+                if ($dates[$i - 1] > 0) {
+                    $sum++;
+                }
+            }
+            //echo 'day: ' . $i . ' sum: ' . $sum . '<br />';
+            if ($sum < 2) {
+                return;
+            }
+        }
+
+        // calculate complete quota of hours
+        $totalQuotaOfHours = 0;
+        $quotaOfHours = $this->team->getHours();
+        foreach ($quotaOfHours as $name => $value) {
+            if (array_key_exists($name, $this->assistanceInput->assistanceInput)) {
+                // only add value, if assistant has provided information for this month
+                $totalQuotaOfHours += $value;
+            }
+        }
+
+        // calculate service and standby hours
+        $totalOfServiceHours = 0;
+        $totalOfStandbyHours = 0;
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
+            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
+        }
+
+        $scaleFactor = ($totalOfServiceHours + $totalOfStandbyHours) / $totalQuotaOfHours;
+
+        /*echo '$totalQuotaOfHours: ' . $totalQuotaOfHours . '<br />';
+        echo '$totalOfServiceHours: ' . $totalOfServiceHours . '<br />';
+        echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
+        echo '$scaleFactor: ' . $scaleFactor . '<hr />';*/
+
+        if ($scaleFactor < 1) {
+            $scaleFactor = 1;
+        }
+
+        // calculate score table
+        $priorities = $this->team->getPriorities();
+        $scoreTable = $this->assistanceInput->assistanceInput;
+        $preferredWeekdays = $this->team->getPreferredWeekdays();
+        $keyWords = $this->team->getKeyWords();
+
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $scoreTable[$name][$i - 1] *= $priorities[$name];
+                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                    $scoreTable[$name][$i - 1] *= 2;
+                }
+                foreach ($keyWords[$name] as $keyWord) {
+                    if ($keyWord != "") {
+                        if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
+                            $scoreTable[$name][$i - 1] *= 10;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // convert data
+        $convertedData = array();
+        foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                if ($scoreTable[$name][$i - 1] == 0) {
+                    continue;
+                }
+                $entry = array();
+                array_push($entry, $scoreTable[$name][$i - 1]);
+                array_push($entry, $name);
+                array_push($entry, $i);
+
+                array_push($convertedData, $entry);
+            }
+        }
+        //usort($convertedData, 'compare');
+
+        //$this->printConvertedDataTable($convertedData);
+
+        $countOfRuns = 1;
+        $smallestDifference = PHP_INT_MAX;
+        $servicePersonsBest = array();
+        $standbyPersonsBest = array();
+
+        $start = microtime(true);
+        for ($run = 0; $run < $countOfRuns; $run++) {
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $this->servicePerson[$i] = "";
+                $this->standbyPerson[$i] = "";
+            }
+
+            $quotaOfHours = $this->team->getHours($scaleFactor);
+
+            // set service
+            $serviceTolerance = 1;
+            $serviceRun = 0;
+            while (!$this->isServiceComplete()) {
+                for ($i = 0; $i < count($convertedData); $i++) {
+                    if ($this->servicePerson[$convertedData[$i][2]] == "") {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
+                            $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
+                        }
+                    }
+                }
+                $serviceRun++;
+            }
+
+            // set standby
+            $standbyTolerance = 0.5;
+            $standbyRun = 0;
+            while (!$this->isStandbyComplete()) {
+                for ($i = 0; $i < count($convertedData); $i++) {
+                    if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
+                            //echo "standby run: " . $standbyRun . "<br />";
+                            $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
+                            //echo "standby person: " . $convertedData[$i][1] . "<br />";
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                            //echo "quota: " . $quotaOfHours[$convertedData[$i][1]] . "<br />";
                         }
                     }
 

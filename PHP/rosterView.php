@@ -21,6 +21,7 @@ require_once 'MonthNavigation.php';
 
 $month = date("n");
 $year = date("Y");
+$rosterAlgorithmVersion = 5;
 
 // switch to next month if client
 if ($_SESSION['isClient']) {
@@ -39,9 +40,18 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+if (isset($_SESSION['rosterAlgorithmVersion'])) {
+    $rosterAlgorithmVersion = $_SESSION['rosterAlgorithmVersion'];
+}
+
+if (isset($_GET['ver'])) {
+    $rosterAlgorithmVersion = $_GET['ver'];
+    $_SESSION['rosterAlgorithmVersion'] = $rosterAlgorithmVersion;
+}
+
 $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 
-$roster = new Roster($year, $month);
+$roster = new Roster($year, $month, $rosterAlgorithmVersion);
 
 if ($_SESSION['isClient']) {
     $roster->printNotesFromAssistants();

@@ -20,7 +20,8 @@
     bibliography=totocnumbered, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
     index=totoc, % Index im Inhaltsverzeichnis aufführen
     captions=tableheading, % Beschriftung von Tabellen unterhalb ausgeben
-    final % Status des Dokuments (final/draft)
+    final, % Status des Dokuments (final/draft)
+    numbers=noendperiod %keine Punkte am Ende einer Kapitelüberschrift
 ]{scrreprt}
 
 % Meta-Informationen -----------------------------------------------------------
@@ -138,60 +139,29 @@ Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Ide
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
 
-\section{Netzwerke und Internet}
-\subsection{Client/Server-Paradigma}
-\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S.~405]{comer2002computernetzwerke}
+\section{Web-Grundlagen}
+%\subsection{Client/Server-Paradigma}
+%\enquote{Netzwerkanwendungen arbeiten in einer Kommunikationsform, die man Client/Server-Paradigma nennt. Die Serveranwendung wartet passiv auf Kontaktaufnahme, während die Clientanwendung die Kommunikation aktiv einleitet.} \cite[S.~405]{comer2002computernetzwerke}
 
-\subsection{Clientsoftware}
-Nach \cite[S.~406]{comer2002computernetzwerke} weist die Clientsoftware unter anderem folgende Merkmale auf:
-\begin{itemize}
-\item Sie \enquote{ist ein Anwendungsprogramm, die vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt.}
-\item Sie \enquote{läuft lokal auf dem Personalcomputer eines Benutzers.}
-\item Sie \enquote{leitet den Kontakt mit einem Server aktiv ein.}
-\item Sie \enquote{benötigt keine spezielle Hardware oder ein besonderes Betriebssystem.}
-\end{itemize}
-
-
-\subsection{Serversoftware}
-Nach \cite[S.~406]{comer2002computernetzwerke} weist die Serversoftware unter anderem folgende Merkmale auf:
-\begin{itemize}
-\item Sie \enquote{ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber auch gleichzeitig mehrere entfernte Clients bedienen.}
-\item Sie \enquote{läuft auf einem gemeinsam genutzten Computer.}
-\item Sie \enquote{wartet passiv auf die Verbindungsaufnahme durch einen entfernten Client.}
-\item Sie \enquote{nimmt den Kommunikationswunsch von beliebigen Clients entgegen, bietet aber nur einen Dienst.}
-\item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
-\end{itemize}
-
-\subsection{URL}
-\NewAbb{URL}{Uniform Resource Locator} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
-
-\qquad protokoll://domainNameComputer:port/dokumentName
-
-Die Angabe eines Ports ist optional.
-
-Ein Beispiel für eine URL ist die Startseite des Assistenzplaners: 
-
-\qquad http://assistenzplaner.de/index.html
-
-\subsection{Browser}
-\enquote{Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.} \cite[S.~489]{comer2002computernetzwerke} 
-
-\subsection{Link}
-\label{sec:Link}
-Link (manchmal auch Hyperlink) ist der umgangssprachliche Begriff für eine Hypertext-Referenz. \enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S.~496]{comer2002computernetzwerke} 
+%\subsection{Clientsoftware}
+%Nach \cite[S.~406]{comer2002computernetzwerke} weist die Clientsoftware unter anderem folgende Merkmale auf:
+%\begin{itemize}
+%\item Sie \enquote{ist ein Anwendungsprogramm, die vorübergehend zum Client wird, wenn entfernter Zugriff notwendig ist, das lokal aber auch andere Aufgaben ausführt.}
+%\item Sie \enquote{läuft lokal auf dem Personalcomputer eines Benutzers.}
+%\item Sie \enquote{leitet den Kontakt mit einem Server aktiv ein.}
+%\item Sie \enquote{benötigt keine spezielle Hardware oder ein besonderes Betriebssystem.}
+%\end{itemize}
 
 
-\subsection{HTTP}
-\enquote{Die Interaktion zwischen einem Browser und einem Webserver erfolgt über das \NewAbb{HTTP}{Hypertext Transport Protocol}. HTTP erlaubt es dem Browser, ein bestimmtes Element anzufordern, das der Server ausgibt. In der Praxis ist HTTP aber komplexer, weil ein Server zusätzliche Statusinformationen mit jedem Transfer sendet und das Protokoll es einem Browser gestattet, Informationen zu senden und anzufordern.} \cite[S.~497]{comer2002computernetzwerke}
-
-\enquote{HTTP unterstützt vier Basisoperationen, die ein Browser in einer Anfrage spezifizieren kann:
-\begin{itemize}
-\item \Fachbegriff{GET} verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
-\item \Fachbegriff{HEAD} verlangt Statusinformationen über ein Element. Der Server gibt den Status zurück, jedoch ohne Kopie des Elements selbst.
-\item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
-\item \Fachbegriff{PUT} sendet Daten an den Server. Der Server benutzt die Daten, um ein spezifisches Element zu ersetzten.
-\end{itemize}
-Ein Browser erzeugt eine HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt. In beiden Fällen sendet der Browser eine GET-Anfrage, die ein Element spezifiziert, und der Server gibt ihm das angefragte Element zurück.} \cite[S.~497]{comer2002computernetzwerke}
+%\subsection{Serversoftware}
+%Nach \cite[S.~406]{comer2002computernetzwerke} weist die Serversoftware unter anderem folgende Merkmale auf:
+%\begin{itemize}
+%\item Sie \enquote{ist ein dediziertes Programm mit dem speziellen Zweck, einen Dienst bereitzustellen, kann aber auch gleichzeitig mehrere entfernte Clients bedienen.}
+%\item Sie \enquote{läuft auf einem gemeinsam genutzten Computer.}
+%\item Sie \enquote{wartet passiv auf die Verbindungsaufnahme durch einen entfernten Client.}
+%\item Sie \enquote{nimmt den Kommunikationswunsch von beliebigen Clients entgegen, bietet aber nur einen Dienst.}
+%\item Sie \enquote{setzt leistungsstarke Hardware und ein gehobenes Betriebssystem voraus.}
+%\end{itemize}
 
 \subsection{Webdokumente}
 \label{sec:webdokumente}
@@ -201,6 +171,37 @@ Es gibt drei verschiedene Typen von Webdokumenten \cite[S.~508]{comer2002compute
 \item Dynamisch: Das Dokument ist nicht fest definiert. Sobald eine Anfrage an den Webserver gestellt wird, wird das dynamische Webdokument zusammengestellt. Der Inhalt des dynamischen Dokumentes kann sich von Anfrage zu Anfrage ändern. Das dynamische Verhalten kann mit Server-Script-Sprachen wie z. B. PHP realisiert werden. 
 \item Aktiv: Das aktive Dokument wird vom Client erstellt. Der Server liefert lediglich das Programm zur Erstellung des Dokumentes aus. Die konkrete Struktur des Dokumentes wird im Client zusammengebaut. Die benötigten Inhalte werden vom Client beim Server angefragt. Das aktive Verhalten kann mit Client-Script-Sprachen wie z. B. JavaScript realisiert werden.
 \end{itemize}
+
+\subsection{URL}
+\NewAbb{URL}{Uniform Resource Locator} ist ein Syntaxformat, das alle Informationen kodiert, die zum Erreichen einer Webseite notwendig sind. Die URL hat folgendes Format:
+
+\qquad \texttt{protokoll://domainNameComputer:port/dokumentName}
+
+Die Angabe eines Ports ist optional.
+
+Ein Beispiel für eine URL ist die Startseite des Assistenzplaners: 
+
+\qquad \url{http://assistenzplaner.de/index.html}
+
+\subsection{Browser}
+\enquote{Ein Browser ist ein interaktives Programm, mit dem ein Benutzer Informationen aus dem Web lesen kann. Die Informationen enthalten wählbare Elemente, über die der Benutzer weitere Informationen anzeigen lassen kann.} \cite[S.~489]{comer2002computernetzwerke} 
+
+\subsection{Link}
+\label{sec:Link}
+Link (manchmal auch Hyperlink) ist der umgangssprachliche Begriff für eine Hypertext-Referenz. Es handelt sich um einen Verweis auf ein anderes Hypertext-Dokument oder einen anderen Verweis im vorliegenden Hypertext-Dokument. Dadurch wird eine nicht lineare Vernetzung vieler Informationen in verschiedenen Hypertext-Dokumenten ermöglicht. \cite[S.~28]{meinel2009internetworking}
+
+%\enquote{Im Browser ist eine Hypertext-Referenz in einem angezeigten Dokument zunächst ein wählbares Element. Wählt der Benutzer das Element, folgt der Browser der Referenz, holt das betreffende Dokument und ersetzt die momentane Anzeige durch das neue Dokument.} \cite[S.~496]{comer2002computernetzwerke} 
+
+
+\subsection{HTTP}
+Browser und Webserver kommunizieren über das \NewAbb{HTTP}{Hypertext Transport Protocol}. Der Browser fordert den Server auf bestimmte Elemente zu senden. Ein Browser erzeugt eine HTTP-Anfrage, wenn ein Benutzer eine URL eingibt oder einen Link wählt.
+
+HTTP unterstützt unter anderem die Basisoperationen GET und POST, die ein Browser in einer Anfrage spezifizieren kann  \cite[S.~497]{comer2002computernetzwerke}:
+\begin{itemize}
+\item \Fachbegriff{GET} verlangt ein spezifisches Element vom Server. Der Server gibt einen Kopf (HEAD) zurück, der Statusinformation, gefolgt von einer Leerzeile und dem Element, enhält.
+\item \Fachbegriff{POST} sendet Daten an den Server. Der Server hängt die Daten an ein spezifisches Element an (z. B. wird eine Nachricht an eine Nachrichtenliste angehängt).
+\end{itemize}
+
 
 \subsection{Cookie}
 \enquote{Wenn ein Server umfangreiche Statusinformationen speichern muss, benötigt er die Informationen auf einer lokalen Platte. Statusinformationen werden einem Browser in Form eines \Fachbegriff{Cookies} weitergegeben. Jedes Cookie besteht aus zwei Zeichenketten, die man als \Fachbegriff{Name/Wert-Paar} bezeichnet. Im Teil \Fachbegriff{Name} befindet sich der Name der Website und im Teil \Fachbegriff{Wert} eine kleine Zeichenkette, die der Browser speichert. Wenn der Browser die Website wieder kontaktiert, fügt er das Cookie in die Anfrage ein. Aus Sicht eines Servers hat es also den Anschein, dass der Browser Statusinformationen speichern und zurückgeben kann.} \cite[S.~514f]{comer2002computernetzwerke}
@@ -311,13 +312,14 @@ Mit Hilfe von AJAX ist es möglich, aktive Dokumente (siehe Abschnitt~\ref{sec:we
 Modellierungssprachen dienen der Modellierung von Software. Mit Hilfe von Modellierungssprachen lassen sich komplexe Systeme konstruieren. Mehrere Abstraktionsebenen fördern die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit, sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
 
 \subsection{UML}
-Die \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S.~4]{rupp2012uml}
+\NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientere Vorgehensweisen.} \cite[S.~4]{rupp2012uml}
 
 \subsection{SysML}
 \NewAbb{SysML}{System Modeling Language} ist eine grafische Sprache, die sich zur Modellierung von komplexen Systemen einsetzen lässt. Einige Diagrammtypen aus der UML wurden übernommen und weitere Diagrammtypen hinzugefügt. Mit SysML lassen sich Systeme modellieren, die aus Hard- und Software bestehen.
 
 \subsection{BPMN}
-Die \NewAbb{BPMN}{Business Process Modeling Notation} ist eine grafische Sprache für die Modellierung von Geschäftsprozessen.
+\NewAbb{BPMN}{Business Process Modeling and Notation} ist eine grafische Sprache für die Modellierung von Geschäftsprozessen. Sie dient zur präzisen Darstellung komplexer Prozesse mit allen relevanten Aspekten, wie Verzweigungsregeln, Ereignissen, ausführenden Organisationseinheiten und Datenflüssen.
+Durch die einheitliche Darstellung ist es möglich Prozesse systematisch zu analysieren und ihr dynamisches Verhalten zu simulieren.  \cite[S. 8]{allweyer2009bpmn}
 
 
 \chapter{Anforderungsermittlung}
@@ -1708,13 +1710,16 @@ In diesem Abschnitt werden mögliche Verbesserungen des Assistenzplaners vorgeste
 %Derzeit werden die Daten persistent in Text-Dateien gespeichert. Langfristig sollte über eine Speicherung in einer Datenbank nachgedacht werden. Denkbar wäre, alle Daten in einer großen Datenbank zu speichern. Eine weitere Möglichkeit wäre, pro Klient eine dateibasierte SQLite Datenbank anzulegen. Die zweite Möglichkeit hat den Vorteil, dass sich die Daten leichter zwischen Entwickler-System und Produktiv-System austauschen lassen und keinerlei Anforderungen an den Server (bezüglich einer Datenbank) gestellt werden.
 
 \subsection{Barrierefreiheit}
-\enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability.} \cite[S.~30]{bremus2013barrierefreiheit}
-
-\enquote{Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen.}  \cite[S.~31]{bremus2013barrierefreiheit} 
-
-\enquote{Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S.~31]{bremus2013barrierefreiheit}
+\enquote{Eine barrierefreie Webanwendung basiert grundsätzlich auf zwei Säulen: der Accessibility und der Usability. [...] Unter Accessibilty ist die Zugänglichkeit bzw. Erreichbarkeit in Bezug auf eine Anwendung zu verstehen. Sie beschreibt die Fähigkeit, Informationen für jeden Benutzer zugänglich zu machen, unabhängig von technischen und körperlichen Voraussetzungen und Einschränkungen. [...] Die Usability strebt nach der idealen Strukturierung von Informationen, um eine effiziente Nutzung von Informationen und Technologie überhaupt erst zu ermöglichen.} \cite[S.~30f]{bremus2013barrierefreiheit}
 
 Da der Assistenzplaner langfristig von vielen körperlich behinderten Menschen bedient werden soll, ist eine Untersuchung der entstanden Softwarelösung auf gute Accessibilty und Usability notwendig. Es muss verifiziert werden, dass die Seite im Idealfall barrierefrei, mindestens jedoch barrierearm ist.\footnote{\enquote{Verstärkt setzt sich in der letzten Zeit der Begriff des barrierearmen Webdesigns durch. Das beruht auf der Tatsache, dass eine 100\%-ige Barrierefreiheit einer Webanwendung nicht zu erreichen ist. Verschiedene Benutzerinteressen, Hilfsmittel und technische Voraussetzungen machen die Barrierefreiheit einer Anwendung unmöglich.} \cite[S.~29]{bremus2013barrierefreiheit}}
+
+Besonders bei den körperlich behinderten Menschen ist mit Einschränkungen bei der Bedienung zu rechnen. Auf folgende Punkte ist besonders Rücksicht zu nehmen \cite[S.~16]{radtke2006barrierefrei}:
+\begin{itemize}
+\item Klare Struktur und logischer Aufbau
+\item Ausreichend große Navigationselemente
+\item Keine mausgesteuerten Events
+\end{itemize}
 
 \subsection{AJAX tiefer verwurzeln}
 Derzeit wird AJAX nur auf Knopfdruck eingesetzt. An vielen Stellen muss der Benutzer explizit auf einen Speichern-Button drücken, um die eingegebenen Daten persistent zu sichern. In einer moderenen Webanwendung ist dies ungewöhnlich. Besser wäre es, wenn Änderungen, die der Benutzer vornimmt, direkt per AJAX an den Server geschickt werden und der Server die Daten unverzüglich persistent ablegt.
@@ -1875,7 +1880,7 @@ Die vorliegenden Ausarbeitung wurde mit \LaTeX\ geschrieben. Verwendet wurde die
 \end{figure}
 
 \section*{Enterprise Architect}
-Für die Erstellung der SysML und UML Diagramme wurde Enterprise Architect in der Version 9.2 verwendet.
+Für die Erstellung der SysML, UML und BPMN Diagramme wurde Enterprise Architect in der Version 9.2 verwendet.
 
 \section*{PhpStorm}
 Als \NewAbb{IDE}{Integrated Development Environment} für die Entwicklung von PHP, HTML, CSS und JavaScript wurde PhpStorm (Version siehe Abbildung \ref{fig:PhpStorm}) verwendet.
