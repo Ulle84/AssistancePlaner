@@ -11,7 +11,7 @@
 
 <div class="wrapLongText">
     <h1>Willkommen beim Assistenzplaner</h1>
-    Der Assistenzplaner ist ein Hilfsmittel für körperlich behinderte Menschen, die auf Assistenz angewiesen sind. <br/>
+    Der Assistenzplaner ist ein Hilfsmittel für Menschen, die auf Assistenz angewiesen sind. <br/>
 
     Mit Hilfe des Assistenzplaners ist es unter anderem möglich:
     <ul>

@@ -5,7 +5,7 @@
 function createRosterAlgorithm5()
 {
   if (!$this->assistanceInput->dataExist) {
-    // wenn die Assitenten keine Termine eingetragen haben, kann kein Dienstplan erstellt werden
+    // wenn die Assistenten keine Termine eingetragen haben, kann kein Dienstplan erstellt werden
     return;
   }
 
@@ -77,7 +77,7 @@ function createRosterAlgorithm5()
     }
   }
 
-  // Konvertierung der Punkte-Tabelle, so dass eine Betrachtung des ganzen Monats moeglich ist
+  // Konvertierung der Punkte-Tabelle, so dass eine Betrachtung des gesamten Monats moeglich ist
   $convertedData = array();
   foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
     for ($i = 1; $i <= $this->daysPerMonth; $i++) {
