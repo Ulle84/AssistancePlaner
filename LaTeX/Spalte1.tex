@@ -1,7 +1,18 @@
 \section*{Motivation}
+Viele Menschen mit körperlicher Behinderung sind auf persönliche Assistenz angewiesen. Diese Assistenz umfasst neben der Pflege auch die Erfüllung alltäglicher Aufgaben. Mit Hilfe persönlicher Assistenz wird ein selbstbestimmtes Leben ermöglicht. 
 
-\section*{Kurzfassung}
+In dieser Ausarbeitung wird ein körperlich behinderter Mensch (im folgenden \enquote{Klient} genannt) herausgegriffen. Dieser Klient hat sieben Assistenten. Die Verwaltung geschieht über einen Dienstplan. Bisher erstellte der Klient den Dienstplan jeden Monat manuell. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen mögliche Arbeits-Termine enthalten waren) und einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das manuelle Erstellen des Dienstplans dauerte ca. vier Stunden pro Monat.
 
-\section*{Implementierung}
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als serverbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
-\section*{Ergebnis}
+\section*{Anforderungsermittlung}
+Die Anforderungen wurden zum einen als Benutzergeschichten festgehalten. Weiterhin wurden Anforderungen formuliert, die zwar vom Benutzer nicht explizit erwähnt wurden, jedoch trotzdem für den Assistenzplaner essenziell waren.\\[1ex]
+
+Die Anforderungen wurden in SysML modelliert. Ein beispielhaftes Anforderungsdiagramm ist in Abbildung \ref{fig:SysMLRequirementsRoster} dargestellt.\\[1ex]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{../Images/Modell/SysMLRequirementsRoster.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Dienstplan}
+	\label{fig:SysMLRequirementsRoster}
+\end{figure}
