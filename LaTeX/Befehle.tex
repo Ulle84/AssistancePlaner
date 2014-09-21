@@ -43,8 +43,38 @@
 \newcommand{\NeuerBegriff}[1]{(\textbf{#1})}
 \newcommand{\Fachbegriff}[1]{\textit{#1}}
 
-\newcommand{\file}[1]{\texttt{#1}}
-\newcommand{\folder}[1]{\texttt{#1}}
+\usepackage{tikz}
+
+\newcommand{\foldericon}{%
+\begin{tikzpicture}[inner sep=0pt]
+ \node (base)[rectangle,minimum width=.9em,minimum height=.9em,draw,rounded
+corners=1pt,fill=yellow!50] {};
+ \node (paper)[rectangle,minimum width=.8em,minimum height=.8em,draw,rounded
+corners=1pt,fill=white] {};
+ \node (slant) [rectangle,minimum width=.9em,minimum height=.9em,draw,rounded
+corners=1pt,fill=yellow!50,xslant=-.5pt,anchor=south west] at (base.south west)
+{};
+\end{tikzpicture}
+}
+
+\newcommand{\fileicon}{%
+\begin{tikzpicture}[inner sep=0pt]
+ \node (base)[rectangle,minimum width=.9em,minimum height=.9em,draw,rounded
+corners=1pt,fill=white!50] {};
+ \node (line2)[rectangle,minimum width=.7em,minimum height=.02em,draw,fill=white!50] {};
+ \node (line1)[rectangle,minimum width=.7em,minimum height=.02em,draw,fill=white!50,yshift=.2em] {};
+ \node (line3)[rectangle,minimum width=.7em,minimum height=.02em,draw,fill=white!50,yshift=-.2em] {};
+%  \node (line1)[rectangle,minimum width=.8em,minimum height=.09em,draw,fill=white!50,yslant=-.5pt,anchor=south west] at (base.south west){};
+ %\node (paper)[rectangle,minimum width=.8em,minimum height=.8em,draw,rounded
+%corners=1pt,fill=white] {};
+ %\node (slant) [rectangle,minimum width=.9em,minimum height=.9em,draw,rounded
+%corners=1pt,fill=yellow!50,xslant=-.5pt,anchor=south west] at (base.south west)
+%{};
+\end{tikzpicture}
+}
+
+\newcommand{\file}[1]{\fileicon{}\texttt{#1}}
+\newcommand{\folder}[1]{\foldericon{}\texttt{#1}}
 \newcommand{\button}[1]{Button \enquote{#1}}
 
 \newcommand{\Eingabe}[1]{\texttt{#1}}

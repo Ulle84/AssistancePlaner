@@ -3,7 +3,7 @@
 
 % Seitenränder -----------------------------------------------------------------
 \setlength{\topskip}{\ht\strutbox} % behebt Warnung von geometry
-\geometry{paper=a4paper,left=35mm,right=35mm,top=30mm}
+\geometry{paper=a4paper,left=40mm,right=30mm,top=30mm,bottom=30mm}
 
 % Kopf- und Fußzeilen ----------------------------------------------------------
 \pagestyle{scrheadings}
@@ -13,12 +13,15 @@
 \renewcommand{\headfont}{\normalfont}
 
 % Kopfzeile
-\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] \textit{\headmark}}
+%\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] \textit{\headmark}}
+\ihead{\headmark}
 \chead{}
-\ohead{\includegraphics[scale=0.15]{../Images/Thesis/LogoOhmHochschule}}
-\setlength{\headheight}{21mm} % Höhe der Kopfzeile
+%\ohead{\includegraphics[scale=0.15]{../Images/Thesis/LogoOhmHochschule}}
+%\ohead{\pagemark}
+%\setlength{\headheight}{21mm} % Höhe der Kopfzeile
+
 % Kopfzeile über den Text hinaus verbreitern
-\setheadwidth[0pt]{textwithmarginpar} 
+%\setheadwidth[0pt]{textwithmarginpar} 
 \setheadsepline[text]{0.4pt} % Trennlinie unter Kopfzeile
 
 % Fußzeile
