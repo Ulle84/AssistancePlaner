@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>datePicker.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+datePicker.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">//Todo Declare Class</span><span class="s1"> 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s2">var </span><span class="s1">dp_currentYear; 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s2">var </span><span class="s1">dp_currentMonth; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s2">var </span><span class="s1">dp_displayYear; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s2">var </span><span class="s1">dp_displayMonth; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s2">var </span><span class="s1">dp_monthDescriptions; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s2">var </span><span class="s1">dp_datePicker; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s2">var </span><span class="s1">dp_dateDisplay; 
+<a name="l9"><span class="ln">9    </span></a> 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s2">function </span><span class="s1">dp_init() { 
+<a name="l11"><span class="ln">11   </span></a>    </span><span class="s2">var </span><span class="s1">date = </span><span class="s2">new </span><span class="s1">Date(); 
+<a name="l12"><span class="ln">12   </span></a>    dp_currentYear = date.getFullYear(); 
+<a name="l13"><span class="ln">13   </span></a>    dp_currentMonth = date.getMonthCorrected(); 
+<a name="l14"><span class="ln">14   </span></a>    dp_displayYear = dp_currentYear; 
+<a name="l15"><span class="ln">15   </span></a>    dp_displayMonth = dp_currentMonth; 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a>    dp_datePicker = window.document.getElementById(</span><span class="s3">&quot;myDatePicker&quot;</span><span class="s1">); 
+<a name="l18"><span class="ln">18   </span></a>    dp_dateDisplay = window.document.getElementById(</span><span class="s3">&quot;dueDateInput&quot;</span><span class="s1">); 
+<a name="l19"><span class="ln">19   </span></a> 
+<a name="l20"><span class="ln">20   </span></a>    dp_monthDescriptions = [</span><span class="s3">&quot;Januar&quot;</span><span class="s1">, </span><span class="s3">&quot;Februar&quot;</span><span class="s1">, </span><span class="s3">&quot;März&quot;</span><span class="s1">, </span><span class="s3">&quot;April&quot;</span><span class="s1">, </span><span class="s3">&quot;Mai&quot;</span><span class="s1">, </span><span class="s3">&quot;Juni&quot;</span><span class="s1">, </span><span class="s3">&quot;Juli&quot;</span><span class="s1">, </span><span class="s3">&quot;August&quot;</span><span class="s1">, </span><span class="s3">&quot;September&quot;</span><span class="s1">, </span><span class="s3">&quot;Oktober&quot;</span><span class="s1">, </span><span class="s3">&quot;November&quot;</span><span class="s1">, </span><span class="s3">&quot;Dezember&quot;</span><span class="s1">] 
+<a name="l21"><span class="ln">21   </span></a> 
+<a name="l22"><span class="ln">22   </span></a>    updateMonth(); 
+<a name="l23"><span class="ln">23   </span></a> 
+<a name="l24"><span class="ln">24   </span></a>    </span><span class="s0">/*var calendarInput = window.document.getElementById(&quot;calendarInput&quot;); 
+<a name="l25"><span class="ln">25   </span></a>     calendarInput.appendChild(arrayToTable(createMonthArray(dp_currentYear, dp_currentMonth), 7, true));*/</span><span class="s1"> 
+<a name="l26"><span class="ln">26   </span></a>} 
+<a name="l27"><span class="ln">27   </span></a> 
+<a name="l28"><span class="ln">28   </span></a></span><span class="s2">function </span><span class="s1">arrayToTable(array, width, firstRowIsHeader) { 
+<a name="l29"><span class="ln">29   </span></a>    </span><span class="s2">var </span><span class="s1">table = window.document.createElement(</span><span class="s3">&quot;table&quot;</span><span class="s1">); 
+<a name="l30"><span class="ln">30   </span></a> 
+<a name="l31"><span class="ln">31   </span></a>    </span><span class="s2">var </span><span class="s1">row; 
+<a name="l32"><span class="ln">32   </span></a>    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; array.length; i++) { 
+<a name="l33"><span class="ln">33   </span></a>        </span><span class="s2">if </span><span class="s1">(i % width == </span><span class="s4">0</span><span class="s1">) { 
+<a name="l34"><span class="ln">34   </span></a>            row = window.document.createElement(</span><span class="s3">&quot;tr&quot;</span><span class="s1">); 
+<a name="l35"><span class="ln">35   </span></a>            table.appendChild(row); 
+<a name="l36"><span class="ln">36   </span></a>        } 
+<a name="l37"><span class="ln">37   </span></a>        </span><span class="s2">var </span><span class="s1">cell = window.document.createElement((firstRowIsHeader &amp;&amp; i &lt; width) ? </span><span class="s3">&quot;th&quot; </span><span class="s1">: </span><span class="s3">&quot;td&quot;</span><span class="s1">); 
+<a name="l38"><span class="ln">38   </span></a>        cell.textContent = array[i]; 
+<a name="l39"><span class="ln">39   </span></a>        </span><span class="s2">if </span><span class="s1">(parseInt(array[i]) &gt; </span><span class="s4">0</span><span class="s1">) { 
+<a name="l40"><span class="ln">40   </span></a>            cell.setAttribute(</span><span class="s3">&quot;onclick&quot;</span><span class="s1">, </span><span class="s3">&quot;dateClicked(&quot; </span><span class="s1">+ dp_displayYear + </span><span class="s3">&quot;, &quot; </span><span class="s1">+ dp_displayMonth + </span><span class="s3">&quot;, &quot; </span><span class="s1">+ array[i] + </span><span class="s3">&quot;)&quot;</span><span class="s1">); 
+<a name="l41"><span class="ln">41   </span></a>        } 
+<a name="l42"><span class="ln">42   </span></a>        row.appendChild(cell); 
+<a name="l43"><span class="ln">43   </span></a>    } 
+<a name="l44"><span class="ln">44   </span></a>    </span><span class="s2">return </span><span class="s1">table; 
+<a name="l45"><span class="ln">45   </span></a>} 
+<a name="l46"><span class="ln">46   </span></a> 
+<a name="l47"><span class="ln">47   </span></a></span><span class="s2">function </span><span class="s1">dateClicked(year, month, day) { 
+<a name="l48"><span class="ln">48   </span></a>    hideDatePicker(); 
+<a name="l49"><span class="ln">49   </span></a> 
+<a name="l50"><span class="ln">50   </span></a>    </span><span class="s2">var </span><span class="s1">date = </span><span class="s2">new </span><span class="s1">Date(year, month - </span><span class="s4">1</span><span class="s1">, day); 
+<a name="l51"><span class="ln">51   </span></a> 
+<a name="l52"><span class="ln">52   </span></a>    dp_dateDisplay.value = date.toStringDisplay(); 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>    dueDateChanged(); 
+<a name="l55"><span class="ln">55   </span></a>} 
+<a name="l56"><span class="ln">56   </span></a> 
+<a name="l57"><span class="ln">57   </span></a></span><span class="s2">function </span><span class="s1">createMonthArray(year, month) { 
+<a name="l58"><span class="ln">58   </span></a>    </span><span class="s2">var </span><span class="s1">date = </span><span class="s2">new </span><span class="s1">Date(year, month - </span><span class="s4">1</span><span class="s1">, </span><span class="s4">1</span><span class="s1">); 
+<a name="l59"><span class="ln">59   </span></a>    </span><span class="s2">var </span><span class="s1">numberOfDays = date.getNumberOfDaysInThisMonth(); 
+<a name="l60"><span class="ln">60   </span></a> 
+<a name="l61"><span class="ln">61   </span></a>    </span><span class="s2">var </span><span class="s1">firstDay = date.getDay(); </span><span class="s0">// So = 0; Mo = 1; Di = 2 ...</span><span class="s1"> 
+<a name="l62"><span class="ln">62   </span></a>    </span><span class="s2">var </span><span class="s1">firstDayOffset = (firstDay + </span><span class="s4">6</span><span class="s1">) % </span><span class="s4">7</span><span class="s1">; 
+<a name="l63"><span class="ln">63   </span></a> 
+<a name="l64"><span class="ln">64   </span></a>    </span><span class="s2">var </span><span class="s1">totalCount = firstDayOffset + numberOfDays; 
+<a name="l65"><span class="ln">65   </span></a> 
+<a name="l66"><span class="ln">66   </span></a>    </span><span class="s2">var </span><span class="s1">rowCount = totalCount / </span><span class="s4">7</span><span class="s1">; 
+<a name="l67"><span class="ln">67   </span></a>    </span><span class="s2">if </span><span class="s1">(totalCount % </span><span class="s4">7 </span><span class="s1">!= </span><span class="s4">0</span><span class="s1">) { 
+<a name="l68"><span class="ln">68   </span></a>        rowCount++; 
+<a name="l69"><span class="ln">69   </span></a>    } 
+<a name="l70"><span class="ln">70   </span></a> 
+<a name="l71"><span class="ln">71   </span></a>    </span><span class="s2">var </span><span class="s1">monthArray = [</span><span class="s3">&quot;Mo&quot;</span><span class="s1">, </span><span class="s3">&quot;Di&quot;</span><span class="s1">, </span><span class="s3">&quot;Mi&quot;</span><span class="s1">, </span><span class="s3">&quot;Do&quot;</span><span class="s1">, </span><span class="s3">&quot;Fr&quot;</span><span class="s1">, </span><span class="s3">&quot;Sa&quot;</span><span class="s1">, </span><span class="s3">&quot;So&quot;</span><span class="s1">]; 
+<a name="l72"><span class="ln">72   </span></a> 
+<a name="l73"><span class="ln">73   </span></a>    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; firstDayOffset; i++) { 
+<a name="l74"><span class="ln">74   </span></a>        monthArray.push(</span><span class="s3">&quot;&quot;</span><span class="s1">); 
+<a name="l75"><span class="ln">75   </span></a>    } 
+<a name="l76"><span class="ln">76   </span></a> 
+<a name="l77"><span class="ln">77   </span></a>    </span><span class="s2">for </span><span class="s1">(</span><span class="s2">var </span><span class="s1">i = </span><span class="s4">1</span><span class="s1">; i &lt;= numberOfDays; i++) { 
+<a name="l78"><span class="ln">78   </span></a>        monthArray.push(i); 
+<a name="l79"><span class="ln">79   </span></a>    } 
+<a name="l80"><span class="ln">80   </span></a> 
+<a name="l81"><span class="ln">81   </span></a>    </span><span class="s2">while </span><span class="s1">(monthArray.length % </span><span class="s4">7 </span><span class="s1">!= </span><span class="s4">0</span><span class="s1">) { 
+<a name="l82"><span class="ln">82   </span></a>        monthArray.push(</span><span class="s3">&quot;&quot;</span><span class="s1">); 
+<a name="l83"><span class="ln">83   </span></a>    } 
+<a name="l84"><span class="ln">84   </span></a> 
+<a name="l85"><span class="ln">85   </span></a>    </span><span class="s2">return </span><span class="s1">monthArray; 
+<a name="l86"><span class="ln">86   </span></a>} 
+<a name="l87"><span class="ln">87   </span></a> 
+<a name="l88"><span class="ln">88   </span></a></span><span class="s2">function </span><span class="s1">goToPreviousMonth() { 
+<a name="l89"><span class="ln">89   </span></a>    dp_displayMonth--; 
+<a name="l90"><span class="ln">90   </span></a>    </span><span class="s2">if </span><span class="s1">(dp_displayMonth == </span><span class="s4">0</span><span class="s1">) { 
+<a name="l91"><span class="ln">91   </span></a>        dp_displayMonth = </span><span class="s4">12</span><span class="s1">; 
+<a name="l92"><span class="ln">92   </span></a>        dp_displayYear--; 
+<a name="l93"><span class="ln">93   </span></a>    } 
+<a name="l94"><span class="ln">94   </span></a>    updateMonth(); 
+<a name="l95"><span class="ln">95   </span></a>} 
+<a name="l96"><span class="ln">96   </span></a> 
+<a name="l97"><span class="ln">97   </span></a></span><span class="s2">function </span><span class="s1">goToCurrentMonth() { 
+<a name="l98"><span class="ln">98   </span></a>    dp_displayMonth = dp_currentMonth; 
+<a name="l99"><span class="ln">99   </span></a>    dp_displayYear = dp_currentYear; 
+<a name="l100"><span class="ln">100  </span></a>    updateMonth(); 
+<a name="l101"><span class="ln">101  </span></a>} 
+<a name="l102"><span class="ln">102  </span></a> 
+<a name="l103"><span class="ln">103  </span></a></span><span class="s2">function </span><span class="s1">goToNextMonth() { 
+<a name="l104"><span class="ln">104  </span></a>    dp_displayMonth++; 
+<a name="l105"><span class="ln">105  </span></a>    </span><span class="s2">if </span><span class="s1">(dp_displayMonth == </span><span class="s4">13</span><span class="s1">) { 
+<a name="l106"><span class="ln">106  </span></a>        dp_displayMonth = </span><span class="s4">1</span><span class="s1">; 
+<a name="l107"><span class="ln">107  </span></a>        dp_displayYear++; 
+<a name="l108"><span class="ln">108  </span></a>    } 
+<a name="l109"><span class="ln">109  </span></a>    updateMonth(); 
+<a name="l110"><span class="ln">110  </span></a>} 
+<a name="l111"><span class="ln">111  </span></a> 
+<a name="l112"><span class="ln">112  </span></a></span><span class="s2">function </span><span class="s1">updateMonth() { 
+<a name="l113"><span class="ln">113  </span></a>    </span><span class="s2">var </span><span class="s1">calendarInput = window.document.getElementById(</span><span class="s3">&quot;calendarInput&quot;</span><span class="s1">); 
+<a name="l114"><span class="ln">114  </span></a>    </span><span class="s2">if </span><span class="s1">(calendarInput.hasChildNodes()) { 
+<a name="l115"><span class="ln">115  </span></a>        </span><span class="s2">while </span><span class="s1">(calendarInput.childNodes.length &gt; </span><span class="s4">0</span><span class="s1">) { 
+<a name="l116"><span class="ln">116  </span></a>            calendarInput.removeChild(calendarInput.firstChild); 
+<a name="l117"><span class="ln">117  </span></a>        } 
+<a name="l118"><span class="ln">118  </span></a>    } 
+<a name="l119"><span class="ln">119  </span></a>    calendarInput.appendChild(arrayToTable(createMonthArray(dp_displayYear, dp_displayMonth), </span><span class="s4">7</span><span class="s1">, </span><span class="s2">true</span><span class="s1">)); 
+<a name="l120"><span class="ln">120  </span></a> 
+<a name="l121"><span class="ln">121  </span></a>    </span><span class="s2">var </span><span class="s1">monthDescription = window.document.getElementById(</span><span class="s3">&quot;monthDescription&quot;</span><span class="s1">); 
+<a name="l122"><span class="ln">122  </span></a>    monthDescription.textContent = dp_monthDescriptions[dp_displayMonth - </span><span class="s4">1</span><span class="s1">] + </span><span class="s3">&quot; &quot; </span><span class="s1">+ dp_displayYear; 
+<a name="l123"><span class="ln">123  </span></a>} 
+<a name="l124"><span class="ln">124  </span></a> 
+<a name="l125"><span class="ln">125  </span></a></span><span class="s2">function </span><span class="s1">showDatePicker() { 
+<a name="l126"><span class="ln">126  </span></a>    dp_datePicker.style.display = </span><span class="s3">&quot;block&quot;</span><span class="s1">; 
+<a name="l127"><span class="ln">127  </span></a>} 
+<a name="l128"><span class="ln">128  </span></a> 
+<a name="l129"><span class="ln">129  </span></a></span><span class="s2">function </span><span class="s1">hideDatePicker() { 
+<a name="l130"><span class="ln">130  </span></a>    dp_datePicker.style.display = </span><span class="s3">&quot;none&quot;</span><span class="s1">; 
+<a name="l131"><span class="ln">131  </span></a>} 
+<a name="l132"><span class="ln">132  </span></a> 
+<a name="l133"><span class="ln">133  </span></a></span><span class="s2">function </span><span class="s1">removeDate() { 
+<a name="l134"><span class="ln">134  </span></a>    dp_dateDisplay.value = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+<a name="l135"><span class="ln">135  </span></a>    hideDatePicker(); 
+<a name="l136"><span class="ln">136  </span></a>    dueDateChanged(); 
+<a name="l137"><span class="ln">137  </span></a>}</span></pre>
+</body>
+</html>

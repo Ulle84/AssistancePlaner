@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>sqliteTest.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { }
+.s4 { color: rgb(102,0,0); }
+.s5 { color: rgb(0,0,0); }
+.s6 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+sqliteTest.php</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">&lt;?php include</span><span class="s1">(</span><span class="s2">'authentication.php'</span><span class="s1">); </span><span class="s0">?&gt;</span><span class="s3"> 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">&lt;?php</span><span class="s1"> 
+<a name="l4"><span class="ln">4    </span></a> 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s4">$db </span><span class="s1">= </span><span class="s0">new </span><span class="s5">SQLite3</span><span class="s1">(</span><span class="s2">'../Data/' </span><span class="s1">. </span><span class="s4">$_SESSION</span><span class="s1">[</span><span class="s2">'clientName'</span><span class="s1">] . </span><span class="s2">'/Database.sqlite3'</span><span class="s1">); 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s4">$db</span><span class="s1">-&gt;</span><span class="s5">exec</span><span class="s1">(</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS Team( 
+<a name="l7"><span class="ln">7    </span></a>   id INTEGER PRIMARY KEY AUTOINCREMENT, 
+<a name="l8"><span class="ln">8    </span></a>   FirstName TEXT NOT NULL DEFAULT '0', 
+<a name="l9"><span class="ln">9    </span></a>   LastName TEXT NOT NULL DEFAULT '0', 
+<a name="l10"><span class="ln">10   </span></a>   Priority INTEGER NOT NULL DEFAULT '0')&quot;</span><span class="s1">); 
+<a name="l11"><span class="ln">11   </span></a> 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s4">$db</span><span class="s1">-&gt;</span><span class="s5">exec</span><span class="s1">(</span><span class="s2">&quot;INSERT INTO Team (FirstName, LastName, Priority) 
+<a name="l13"><span class="ln">13   </span></a>VALUES ('Ulrich', 'Belitz', 100)&quot;</span><span class="s1">); 
+<a name="l14"><span class="ln">14   </span></a> 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s6">/*$results = $db-&gt;query(&quot;SELECT s.spielid, t.trackdate, t.id 
+<a name="l16"><span class="ln">16   </span></a>   FROM tableTracks AS t 
+<a name="l17"><span class="ln">17   </span></a>   JOIN tableSpieler AS s 
+<a name="l18"><span class="ln">18   </span></a>   WHERE t.trackspieler = s.id 
+<a name="l19"><span class="ln">19   </span></a>   ORDER BY t.id&quot;); 
+<a name="l20"><span class="ln">20   </span></a>while ($row = $results-&gt;fetchArray()) { 
+<a name="l21"><span class="ln">21   </span></a>    echo $r['trackdate']; 
+<a name="l22"><span class="ln">22   </span></a>    echo $r['spielid']; 
+<a name="l23"><span class="ln">23   </span></a>    … 
+<a name="l24"><span class="ln">24   </span></a>}*/</span><span class="s1"> 
+<a name="l25"><span class="ln">25   </span></a> 
+<a name="l26"><span class="ln">26   </span></a></span><span class="s4">$results </span><span class="s1">= </span><span class="s4">$db</span><span class="s1">-&gt;</span><span class="s5">query</span><span class="s1">(</span><span class="s2">'SELECT * FROM Team'</span><span class="s1">); 
+<a name="l27"><span class="ln">27   </span></a> 
+<a name="l28"><span class="ln">28   </span></a></span><span class="s0">echo </span><span class="s2">&quot;&lt;table&gt; 
+<a name="l29"><span class="ln">29   </span></a>&lt;tr&gt; 
+<a name="l30"><span class="ln">30   </span></a>&lt;th&gt;ID&lt;/th&gt; 
+<a name="l31"><span class="ln">31   </span></a>&lt;th&gt;Firstname&lt;/th&gt; 
+<a name="l32"><span class="ln">32   </span></a>&lt;th&gt;Lastname&lt;/th&gt; 
+<a name="l33"><span class="ln">33   </span></a>&lt;th&gt;Priority&lt;/th&gt; 
+<a name="l34"><span class="ln">34   </span></a>&lt;/tr&gt;&quot;</span><span class="s1">; 
+<a name="l35"><span class="ln">35   </span></a> 
+<a name="l36"><span class="ln">36   </span></a></span><span class="s0">while </span><span class="s1">(</span><span class="s4">$row </span><span class="s1">= </span><span class="s4">$results</span><span class="s1">-&gt;</span><span class="s5">fetchArray</span><span class="s1">()) { 
+<a name="l37"><span class="ln">37   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;tr&gt;&quot;</span><span class="s1">; 
+<a name="l38"><span class="ln">38   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s4">$row</span><span class="s1">[</span><span class="s2">'id'</span><span class="s1">] . </span><span class="s2">&quot;&lt;/td&gt;&quot;</span><span class="s1">; 
+<a name="l39"><span class="ln">39   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s4">$row</span><span class="s1">[</span><span class="s2">'FirstName'</span><span class="s1">] . </span><span class="s2">&quot;&lt;/td&gt;&quot;</span><span class="s1">; 
+<a name="l40"><span class="ln">40   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s4">$row</span><span class="s1">[</span><span class="s2">'LastName'</span><span class="s1">] . </span><span class="s2">&quot;&lt;/td&gt;&quot;</span><span class="s1">; 
+<a name="l41"><span class="ln">41   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;td&gt;&quot; </span><span class="s1">. </span><span class="s4">$row</span><span class="s1">[</span><span class="s2">'Priority'</span><span class="s1">] . </span><span class="s2">&quot;&lt;/td&gt;&quot;</span><span class="s1">; 
+<a name="l42"><span class="ln">42   </span></a>    </span><span class="s0">echo </span><span class="s2">&quot;&lt;/tr&gt;&quot;</span><span class="s1">; 
+<a name="l43"><span class="ln">43   </span></a>} 
+<a name="l44"><span class="ln">44   </span></a> 
+<a name="l45"><span class="ln">45   </span></a></span><span class="s0">echo </span><span class="s2">&quot;&lt;/table&gt;&quot;</span><span class="s1">; 
+<a name="l46"><span class="ln">46   </span></a> 
+<a name="l47"><span class="ln">47   </span></a> 
+<a name="l48"><span class="ln">48   </span></a></span><span class="s0">echo </span><span class="s2">'all operations finished'</span><span class="s1">; 
+<a name="l49"><span class="ln">49   </span></a> 
+<a name="l50"><span class="ln">50   </span></a> 
+<a name="l51"><span class="ln">51   </span></a> 
+<a name="l52"><span class="ln">52   </span></a></span><span class="s6">/*$con = mysqli_connect(&quot;rdbms.strato.de&quot;, &quot;U1702580&quot;, &quot;LdX5GPoDUoYAgPSoa24R6Sf0dPNlAL&quot;, &quot;DB1702580&quot;); 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>// Check connection 
+<a name="l55"><span class="ln">55   </span></a>if (mysqli_connect_errno()) { 
+<a name="l56"><span class="ln">56   </span></a>    echo &quot;Failed to connect to MySQL: &quot; . mysqli_connect_error(); 
+<a name="l57"><span class="ln">57   </span></a>} 
+<a name="l58"><span class="ln">58   </span></a> 
+<a name="l59"><span class="ln">59   </span></a>// Create table 
+<a name="l60"><span class="ln">60   </span></a>$sql = &quot;CREATE TABLE Persons 
+<a name="l61"><span class="ln">61   </span></a>( 
+<a name="l62"><span class="ln">62   </span></a>PID INT NOT NULL AUTO_INCREMENT, 
+<a name="l63"><span class="ln">63   </span></a>PRIMARY KEY(PID), 
+<a name="l64"><span class="ln">64   </span></a>FirstName CHAR(15), 
+<a name="l65"><span class="ln">65   </span></a>LastName CHAR(15), 
+<a name="l66"><span class="ln">66   </span></a>Age INT 
+<a name="l67"><span class="ln">67   </span></a>)&quot;; 
+<a name="l68"><span class="ln">68   </span></a> 
+<a name="l69"><span class="ln">69   </span></a>// Execute query 
+<a name="l70"><span class="ln">70   </span></a>if (mysqli_query($con, $sql)) { 
+<a name="l71"><span class="ln">71   </span></a>    echo &quot;Table persons created successfully&quot;; 
+<a name="l72"><span class="ln">72   </span></a>} else { 
+<a name="l73"><span class="ln">73   </span></a>    echo &quot;Error creating table: &quot; . mysqli_error($con); 
+<a name="l74"><span class="ln">74   </span></a>} 
+<a name="l75"><span class="ln">75   </span></a> 
+<a name="l76"><span class="ln">76   </span></a>mysqli_query($con, &quot;INSERT INTO Persons (FirstName, LastName, Age) 
+<a name="l77"><span class="ln">77   </span></a>VALUES ('Peter', 'Griffin',35)&quot;); 
+<a name="l78"><span class="ln">78   </span></a> 
+<a name="l79"><span class="ln">79   </span></a>mysqli_query($con, &quot;INSERT INTO Persons (FirstName, LastName, Age) 
+<a name="l80"><span class="ln">80   </span></a>VALUES ('Glenn', 'Quagmire',33)&quot;); 
+<a name="l81"><span class="ln">81   </span></a> 
+<a name="l82"><span class="ln">82   </span></a>$result = mysqli_query($con, &quot;SELECT * FROM Persons&quot;); 
+<a name="l83"><span class="ln">83   </span></a> 
+<a name="l84"><span class="ln">84   </span></a>echo &quot;&lt;table&gt; 
+<a name="l85"><span class="ln">85   </span></a>&lt;tr&gt; 
+<a name="l86"><span class="ln">86   </span></a>&lt;th&gt;Firstname&lt;/th&gt; 
+<a name="l87"><span class="ln">87   </span></a>&lt;th&gt;Lastname&lt;/th&gt; 
+<a name="l88"><span class="ln">88   </span></a>&lt;/tr&gt;&quot;; 
+<a name="l89"><span class="ln">89   </span></a> 
+<a name="l90"><span class="ln">90   </span></a>while ($row = mysqli_fetch_array($result)) { 
+<a name="l91"><span class="ln">91   </span></a>    echo &quot;&lt;tr&gt;&quot;; 
+<a name="l92"><span class="ln">92   </span></a>    echo &quot;&lt;td&gt;&quot; . $row['FirstName'] . &quot;&lt;/td&gt;&quot;; 
+<a name="l93"><span class="ln">93   </span></a>    echo &quot;&lt;td&gt;&quot; . $row['LastName'] . &quot;&lt;/td&gt;&quot;; 
+<a name="l94"><span class="ln">94   </span></a>    echo &quot;&lt;/tr&gt;&quot;; 
+<a name="l95"><span class="ln">95   </span></a>} 
+<a name="l96"><span class="ln">96   </span></a> 
+<a name="l97"><span class="ln">97   </span></a>echo &quot;&lt;/table&gt;&quot;; 
+<a name="l98"><span class="ln">98   </span></a> 
+<a name="l99"><span class="ln">99   </span></a>mysqli_close($con);*/</span><span class="s1"> 
+<a name="l100"><span class="ln">100  </span></a></span><span class="s0">?&gt;</span></pre>
+</body>
+</html>

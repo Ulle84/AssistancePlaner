@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>calendarSaver.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(102,0,0); }
+.s5 { color: rgb(0,0,255); }
+.s6 { color: rgb(0,0,0); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+calendarSaver.php</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">&lt;?php</span><span class="s1"> 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s2">session_start</span><span class="s1">(); 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">require_once</span><span class="s1">(</span><span class="s3">'AssistanceInput.php'</span><span class="s1">); 
+<a name="l4"><span class="ln">4    </span></a> 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s4">$content </span><span class="s1">= </span><span class="s4">$_POST</span><span class="s1">[</span><span class="s3">'content'</span><span class="s1">]; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s4">$notes </span><span class="s1">= </span><span class="s4">$_POST</span><span class="s1">[</span><span class="s3">'notes'</span><span class="s1">]; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s4">$year </span><span class="s1">= </span><span class="s4">$_POST</span><span class="s1">[</span><span class="s3">'year'</span><span class="s1">]; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s4">$month </span><span class="s1">= </span><span class="s4">$_POST</span><span class="s1">[</span><span class="s3">'month'</span><span class="s1">]; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s4">$userName </span><span class="s1">= </span><span class="s4">$_POST</span><span class="s1">[</span><span class="s3">'userName'</span><span class="s1">]; 
+<a name="l10"><span class="ln">10   </span></a> 
+<a name="l11"><span class="ln">11   </span></a></span><span class="s4">$lockFileName </span><span class="s1">= </span><span class="s3">&quot;../Data/&quot; </span><span class="s1">. </span><span class="s4">$_SESSION</span><span class="s1">[</span><span class="s3">'clientName'</span><span class="s1">] . </span><span class="s3">&quot;/AssistanceInput/&quot; </span><span class="s1">. </span><span class="s4">$year </span><span class="s1">. </span><span class="s3">&quot;-&quot; </span><span class="s1">. </span><span class="s4">$month </span><span class="s1">. </span><span class="s3">&quot;_lock.txt&quot;</span><span class="s1">; 
+<a name="l12"><span class="ln">12   </span></a> 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s4">$filePath </span><span class="s1">= </span><span class="s2">substr</span><span class="s1">(</span><span class="s4">$lockFileName</span><span class="s1">, </span><span class="s5">0</span><span class="s1">, </span><span class="s2">strrpos</span><span class="s1">(</span><span class="s4">$lockFileName</span><span class="s1">, </span><span class="s3">'/'</span><span class="s1">)); 
+<a name="l14"><span class="ln">14   </span></a> 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s0">if </span><span class="s1">(!</span><span class="s2">file_exists</span><span class="s1">(</span><span class="s4">$filePath</span><span class="s1">)) { 
+<a name="l16"><span class="ln">16   </span></a>    </span><span class="s2">mkdir</span><span class="s1">(</span><span class="s4">$filePath</span><span class="s1">, </span><span class="s5">0777</span><span class="s1">, </span><span class="s6">true</span><span class="s1">); 
+<a name="l17"><span class="ln">17   </span></a>} 
+<a name="l18"><span class="ln">18   </span></a> 
+<a name="l19"><span class="ln">19   </span></a></span><span class="s4">$file </span><span class="s1">= </span><span class="s2">fopen</span><span class="s1">(</span><span class="s4">$lockFileName</span><span class="s1">, </span><span class="s3">&quot;w&quot;</span><span class="s1">); 
+<a name="l20"><span class="ln">20   </span></a> 
+<a name="l21"><span class="ln">21   </span></a></span><span class="s0">if </span><span class="s1">(</span><span class="s2">flock</span><span class="s1">(</span><span class="s4">$file</span><span class="s1">, </span><span class="s6">LOCK_EX</span><span class="s1">)) { 
+<a name="l22"><span class="ln">22   </span></a>    </span><span class="s4">$assistanceInput </span><span class="s1">= </span><span class="s0">new </span><span class="s6">AssistanceInput</span><span class="s1">(</span><span class="s4">$year</span><span class="s1">, </span><span class="s4">$month</span><span class="s1">); 
+<a name="l23"><span class="ln">23   </span></a>    </span><span class="s4">$assistanceInput</span><span class="s1">-&gt;</span><span class="s6">assistanceInput</span><span class="s1">[</span><span class="s4">$userName</span><span class="s1">] = </span><span class="s2">explode</span><span class="s1">(</span><span class="s3">&quot;;&quot;</span><span class="s1">, </span><span class="s4">$content</span><span class="s1">); 
+<a name="l24"><span class="ln">24   </span></a>    </span><span class="s4">$assistanceInput</span><span class="s1">-&gt;</span><span class="s6">assistanceNotes</span><span class="s1">[</span><span class="s4">$userName</span><span class="s1">] = </span><span class="s2">str_replace</span><span class="s1">(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">, </span><span class="s3">&quot;&lt;br /&gt;&quot;</span><span class="s1">, </span><span class="s4">$notes</span><span class="s1">); 
+<a name="l25"><span class="ln">25   </span></a>    </span><span class="s4">$assistanceInput</span><span class="s1">-&gt;</span><span class="s6">saveToFile</span><span class="s1">(); 
+<a name="l26"><span class="ln">26   </span></a>    </span><span class="s0">echo </span><span class="s3">&quot;Eingabe wurde gespeichert&quot;</span><span class="s1">; 
+<a name="l27"><span class="ln">27   </span></a>    </span><span class="s2">flock</span><span class="s1">(</span><span class="s4">$file</span><span class="s1">, </span><span class="s6">LOCK_UN</span><span class="s1">); 
+<a name="l28"><span class="ln">28   </span></a>} 
+<a name="l29"><span class="ln">29   </span></a></span><span class="s0">else </span><span class="s1">{ 
+<a name="l30"><span class="ln">30   </span></a>    </span><span class="s0">echo </span><span class="s3">&quot;Bitte erneut versuchen!&quot;</span><span class="s1">; 
+<a name="l31"><span class="ln">31   </span></a>} 
+<a name="l32"><span class="ln">32   </span></a> 
+<a name="l33"><span class="ln">33   </span></a></span><span class="s2">fclose</span><span class="s1">(</span><span class="s4">$file</span><span class="s1">); 
+<a name="l34"><span class="ln">34   </span></a> 
+<a name="l35"><span class="ln">35   </span></a></span><span class="s0">?&gt;</span></pre>
+</body>
+</html>
