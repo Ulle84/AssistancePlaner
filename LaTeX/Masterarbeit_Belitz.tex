@@ -1,4 +1,4 @@
- % ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Formatvorlage für Masterarbeiten an der Ohm-Hochschule Nürnberg
 % ------------------------------------------------------------------------------
 %   erstellt von Stefan Macke, 24.04.2009
@@ -134,7 +134,7 @@ Viele Menschen mit körperlicher Behinderung sind auf persönliche Assistenz angew
 
 In dieser Ausarbeitung wird ein körperlich behinderter Mensch (im folgenden \enquote{Klient} genannt) herausgegriffen. Dieser Klient hat sieben Assistenten. Die Verwaltung geschieht über einen Dienstplan. Bisher erstellte der Klient den Dienstplan jeden Monat manuell. Der Klient hat gleichzeitig die sieben E-Mails seiner Assistenten überblickt (in denen mögliche Arbeits-Termine enthalten waren) und einen möglichst ausgewogenen Dienstplan erstellt. Der Dienstplan sollte die Verfügbarkeiten und die Stundenkontingente der Assistenten möglichst gut berücksichtigen. Das manuelle Erstellen des Dienstplans dauerte ca. vier Stunden pro Monat.
 
-Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als webbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
+Um den Klienten zu entlasten und technisch besser zu unterstützen, wurde die Idee des Assistenzplaners ins Leben gerufen. Der Assistenzplaner soll als serverbasierte Anwendung den Klienten und sein Team bei der Dienstplanerstellung unterstützen. Der Klient und alle Assistenten erhalten einen personalisierten Zugang zum Assistenzplaner und können alle nötigen Informationen austauschen. Ein Algorithmus erstellt den Dienstplan unter Berücksichtigung aller Vorlieben des Klienten und der Stundenkontingente der Assistenten. Der Zeitaufwand für die Dienstplanerstellung sollte auf wenige Minuten sinken.
 
 \chapter{Grundlagen}
 In diesem Kapitel werden die technischen Grundlagen für das Verständnis der vorliegenden Arbeit gelegt.
@@ -515,7 +515,7 @@ Als Klient möchte ich bei der manuellen Nachbearbeitung des Dienstplanes die Stu
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es ist möglich in einer Tabelle zu sehen, wie die Arbeitsstunden des Monats auf die Assistenten verteilt werden.
-\item Es wird dargestellt, wieviel Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung.
+\item Es wird dargestellt, wie viele Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung.
 \item Die Differenz zwischen Soll- und Ist-Arbeitsstunden pro Assistent wird berechnet.
 \item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
 \end{itemize}
@@ -556,7 +556,7 @@ Akzeptanzkriterien:
 \item Der Algorithmus zur Dienstplanerstellung berücksichtigt die Stundenkontingente und erstellt einen Dienstplan, bei dem die Stundenkontingente aller Assistenten möglichst gleichmäßig ausgeschöpft werden.
 %alle Assistenten ihre Stundenkontingente möglichst gleichmäßig ausgeschöpft bekommen.
 \item Eine Vergleichstabelle zeigt die Ausschöpfung der Stundenkontingente der Assistenten.
-%\item In einer Tabelle kann man sehen, wie gleichmäßig die Stundenkontigente der Assistenten ausgeschöpft sind.
+%\item In einer Tabelle kann man sehen, wie gleichmäßig die Stundenkontingente der Assistenten ausgeschöpft sind.
 \end{itemize}
 
 \subsection{Ansicht Dienst- und Bereitschaftszeiten}
@@ -1420,7 +1420,7 @@ Tag des Monats & Punkte Assistent 1 & Punkte Assistent 2 & Punkte Assistent 3 \\
 \label{sec:algorithmVersion4}
 Der Algorithmus arbeitet prinzipiell wie im vorherigen Abschnitt beschrieben. Bei der Erstellung der Punktetabelle werden jedoch die   privaten Bemerkungen im Monatsplan tageweise nach Stichwörtern durchsucht. Ist ein Stichwort in der Team-Verwaltung bei einem Assistenten hinterlegt, so wird der Punktwert des Assistenten an dem betreffenden Tag verzehnfacht.
 
-Zur Erläuterung ein Beispiel: Angenommen beim Assistenten 3 ist in der Team-Verwaltung das Stichwort \enquote{FCB} hinterlegt. Wenn gleichzeitig bei den privaten Bemerkungen am ersten Tag des Monats ein \enquote{FCB} enthalten ist, so wird der Punktewert des Assistenten von 30 auf 300 verzehnfacht (vergleiche auch Tabelle~\ref{tab:scoreTable4}). Damit hat Assistent 3 die höchste Punktzahl für den ersten Tag des Monats und wird für den Dienst eingeteilt.
+Zur Erläuterung ein Beispiel: Angenommen beim Assistenten 3 ist in der Team-Verwaltung das Stichwort \enquote{FCB} hinterlegt. Wenn gleichzeitig bei den privaten Bemerkungen am ersten Tag des Monats ein \enquote{FCB} enthalten ist, so wird der Punktwert des Assistenten von 30 auf 300 verzehnfacht (vergleiche auch Tabelle~\ref{tab:scoreTable4}). Damit hat Assistent 3 die höchste Punktzahl für den ersten Tag des Monats und wird für den Dienst eingeteilt.
 
 \begin{table}[htb]
 \centering
@@ -1531,12 +1531,12 @@ Punkte & Name & Tag \\
 
 Wenn alle Assistenten an den drei Tagen voll verfügbar wären und alle den Priorisierungswert 1 hätten, dann würden in der konvertierten Tabelle erst alle möglichen Termine von Assistent 1, dann von Assistent 2 und am Ende die von Assistent 3 stehen. Falls nun der Algorithmus von oben nach unten die Dienste verteilen würde, so würde erst Assistent 1 so lange Dienst am Stück bekommen, bis sein Stundenkontingent ausgeschöpft ist, danach Assistent 2 und so weiter.
 
-Um die Blockbildung zu vermeiden, wird die Punktetabelle randomisiert (durcheinandergewürfelt, gemischt). Anschließend wird sie nur nach der ersten Spalte (dem Punktewert) sortiert, damit trotz Randomisierung garantiert ist, dass die Vorlieben des Klienten berücksichtigt werden. 
+Um die Blockbildung zu vermeiden, wird die Punktetabelle randomisiert (durcheinandergewürfelt, gemischt). Anschließend wird sie nur nach der ersten Spalte (dem Punktwert) sortiert, damit trotz Randomisierung garantiert ist, dass die Vorlieben des Klienten berücksichtigt werden. 
 
 Da die Anzahl der benötigten Stunden nicht mit der Anzahl der zur Verfügung stehenden Stunden der Assistenten übereinstimmen muss, wird dies zunächst geprüft. Hierfür werden alle Stundenkontingente der Assistenten, die in der Team-Verwaltung (siehe Abschnitt~\ref{sec:TeamVerwaltung}) hinterlegt sind, addiert.
 
 Dann werden alle Dienst- und Bereitschaftsstunden aus dem Monatsplan addiert.
-Ist die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden geteilt durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht. Damit wird erreicht, dass die Mehrarbeit gleichmäßig auf die Assistenten verteilt wird. Ist die Summe der Dienst- und Bereitschaftsstunden kleiner oder gleich der Summe der Stundenkontingente, bleiben die Stundenkontigente der Assistenten unverändert. Damit wird den Vorlieben des Klienten Vorrang vor einer gleichmäßigen Ausschöpfung der Stundenkontingente gewährt.
+Ist die Summe der Dienst- und Bereitschaftsstunden höher als die Summe der Stundenkontingente, so wird ein Skalierungsfaktor (Summe der Dienst- und Bereitschaftsstunden geteilt durch die Summe der Stundenkontingente) ermittelt und die Stundenkontingente mit dem Skalierungsfaktor multipliziert, sprich die Stundenkontingente aller Assistenten werden um einen Prozentsatz x erhöht. Damit wird erreicht, dass die Mehrarbeit gleichmäßig auf die Assistenten verteilt wird. Ist die Summe der Dienst- und Bereitschaftsstunden kleiner oder gleich der Summe der Stundenkontingente, bleiben die Stundenkontingente der Assistenten unverändert. Damit wird den Vorlieben des Klienten Vorrang vor einer gleichmäßigen Ausschöpfung der Stundenkontingente gewährt.
 
 Nach den Vorbereitungsarbeiten wird der Kern des Algorithmus gestartet. Zuerst werden alle Dienste vergeben, anschließend die Bereitschaften. Der Algorithmus iteriert über die, nach Punkten sortierte, Tabelle~\ref{tab:scoreTableConvertedAndSorted}. In jeder Zeile der Tabelle prüft der Algorithmus ob der Assistent noch genug Stunden zur Verfügung hat und ob der Dienst an dem entsprechenden Tag noch frei ist. Falls beide Bedingungen erfüllt sind, bekommt der Assistent den Dienst eingetragen und seine verfügbaren Stunden werden um die Netto-Dienststundenanzahl des Tages verringert.
 
@@ -1697,11 +1697,11 @@ Durch die iterative Vorgehensweise fühlte sich der Klient sehr gut eingebunden. 
 \chapter{Ergebnis}
 Der \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner} wurde als serverbasierte Anwendung geschaffen, um körperlich behinderte Menschen (Klienten) und ihre Assistenz-Teams bei der Planung zu unterstützen.
 
-Der Klient hat die Möglichkeit, sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontigente der Assistenten definieren.
+Der Klient hat die Möglichkeit, sein Assistenz-Team zu verwalten. Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontingente der Assistenten definieren.
 
 Der Klient kann mit dem Monatsplan die Dienstzeiten für einen Monat festlegen. Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten, ihre Termine in einen Kalender einzutragen.
 
-Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontigente berücksichtigt. Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen. Weiterhin ist es möglich den Dienstplan manuell anzupassen.
+Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontingente berücksichtigt. Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen. Weiterhin ist es möglich den Dienstplan manuell anzupassen.
 
 Die Laufzeit des Algorithmus hängt stark von den möglichen Terminen der Assistenten ab. Die durchschnittliche Laufzeit einer Dienstplanerstellung liegt bei einer Millisekunde. Da 1000 Dienstpläne erstellt werden und der beste gewählt wird, liegt die durchschnittliche Gesamtlaufzeit bei einer Sekunde. Da der Klient nur einmal im Monat einen Dienstplan erstellen lässt, ist diese Laufzeit vertretbar.
 
@@ -1878,6 +1878,7 @@ Auf den Ordnern der beiliegenden CD sind folgende Daten enthalten:
 \item \folder{BibTeX} $\Rightarrow$ BibTeX-Datei, in der alle Literaturquellen enthalten sind
 \item \folder{CSS} $\Rightarrow$ CSS-Dateien, in denen die Style-Formatierungen enthalten sind
 \item \folder{Data} $\Rightarrow$ Die Daten, die der Assistenzplaner persistent speichert
+\item \folder{Dictionaries} $\Rightarrow$ Wörterbücher, die für die Rechtschreibprüfung verwendet wurden
 \item \folder{ExternalResources} $\Rightarrow$ FreePDF und PHPMailer
 \item \folder{HTML} $\Rightarrow$ HTML-Dateien
 \item \folder{iCalendar} $\Rightarrow$ iCalendar-Beispiel-Datei
