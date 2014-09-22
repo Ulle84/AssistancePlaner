@@ -1,0 +1,17 @@
+Start
+Dienstplan anfordern
+Dienstplan anpassen
+Dienstplan freigeben
+Eingabe Monatsdaten
+Nachricht empfangen: Kalenderdaten vollständig
+Ende
+
+Darstellung Kalender
+Dienstplan speichern
+Dienstplanvorschlag mit Algorithmus erstellen
+Nachricht verfassen
+Termine speichern
+
+Link in Nachricht aufrufen
+Nachricht empfangen: Kalenderdaten eintragen
+Termine eintragen
