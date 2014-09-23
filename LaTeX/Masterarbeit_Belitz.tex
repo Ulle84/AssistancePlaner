@@ -387,7 +387,6 @@ Der Zeitaufwand für die Assistenten bleibt unverändert. Der Zeitaufwand für den 
 Der beschriebene Soll-Prozess ist grafisch in Abbildung~\ref{fig:sollprozessBpmn} dargestellt.
 
 \begin{figure}[htb]
-	%\centering
 	\advance\leftskip-0.15\textwidth
 	\Note{Dieses Diagramm wird noch überarbeitet.}
 	\includegraphics[width=1.3\textwidth]{../Images/Modell/BPMNSollProzess.png}
@@ -639,7 +638,7 @@ Ein Beispiel für solch eine Anwendung ist \Link{http://www.qtime.de/kostenlos/di
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.4]{../Images/Screenshots/Q1/Dienstplanung_Schichtstatus.png}
+	\includegraphics[width=1.0\textwidth]{../Images/Screenshots/Q1/Dienstplanung_Schichtstatus.png}
 	\caption[Screenshot QTime]{Screenshot von QTime: Komplexe Software}
 	\label{fig:DienstplanungSchichtstatus}
 \end{figure}
@@ -728,38 +727,37 @@ Die Anforderungen clustern sich in fünf Bereiche:
 In den Abbildungen~\ref{fig:SysMLRequirementsTeamOrganisation}~bis~\ref{fig:SysMLRequirementsMisc} sind die Anforderungen aus den fünf Bereichen zu sehen.
 
 \begin{figure}[H]
-	\advance\leftskip-2.0cm
-	%\centering
-	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsTeamOrganisation.png}
+	\advance\leftskip-0.15\textwidth
+	\includegraphics[width=1.3\textwidth]{../Images/Modell/SysMLRequirementsTeamOrganisation.png}
 	\caption{SysML Anforderungsdiagramm - Bereich Team-Verwaltung}
 	\label{fig:SysMLRequirementsTeamOrganisation}
 \end{figure}
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsMonthPlan.png}
-	\caption{SysML Anforderungsdiagramm - Bereich Montsplan}
+	%\centering
+	\advance\leftskip-0.05\textwidth
+	\includegraphics[width=1.1\textwidth]{../Images/Modell/SysMLRequirementsMonthPlan.png}
+	\caption{SysML Anforderungsdiagramm - Bereich Monatsplan}
 	\label{fig:SysMLRequirementsMonthPlan}
 \end{figure}
 
 \begin{figure}[H]
-	\advance\leftskip-2.0cm
-	%\centering
-	\includegraphics[scale=0.50]{../Images/Modell/SysMLRequirementsRoster.png}
+	\advance\leftskip-0.15\textwidth
+	\includegraphics[width=1.3\textwidth]{../Images/Modell/SysMLRequirementsRoster.png}
 	\caption{SysML Anforderungsdiagramm - Bereich Dienstplan}
 	\label{fig:SysMLRequirementsRoster}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsToDoManager.png}
+	\includegraphics[scale=0.70]{../Images/Modell/SysMLRequirementsToDoManager.png}
 	\caption{SysML Anforderungsdiagramm - Bereich Aufgaben-Verwaltung}
 	\label{fig:SysMLRequirementsToDoManager}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{../Images/Modell/SysMLRequirementsMisc.png}
+	\includegraphics[width=1.0\textwidth]{../Images/Modell/SysMLRequirementsMisc.png}
 	\caption{SysML Anforderungsdiagramm - Bereich Sonstiges}
 	\label{fig:SysMLRequirementsMisc}
 \end{figure}
@@ -790,8 +788,7 @@ Das Anforderungsdiagramm ist auf Deutsch gehalten, da es noch unabhängig von ein
 
 Das Komponentendiagramm ist in Abbildung~\ref{fig:UMLKomponentendiagramm} zu sehen.
 
-\begin{figure}[H]
-%\advance\leftskip-2.0cm
+\begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.62]{../Images/Modell/UMLAllComponents.png}
 	\caption[UML Komponentendiagramm]{UML Komponentendiagramm}
@@ -803,78 +800,77 @@ Ziel der Modellierung war es, die Komponenten voneinander so unabhängig wie mögl
 \section{UML Klassendiagramme}
 In diesem Abschnitt werden die Komponenten aus Abbildung~\ref{fig:UMLKomponentendiagramm} näher beleuchtet und die darin liegenden Klassen gezeigt.
 
-\subsection{Komponente \texttt{MonthNavigation}}
-Die Komponente \texttt{MonthNavigation} (siehe Abbildung~\ref{fig:UMLComponentMonthNavigation}) enthält nur die Klasse \texttt{MonthNavigation}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentMonthNavigation.png}
-	\caption[Klassendiagramm der Komponente \texttt{MonthNavigation}]{Klassendiagramm der Komponente \texttt{MonthNavigation}}
-	\label{fig:UMLComponentMonthNavigation}
-\end{figure}
-
-Die Klasse \texttt{MonthNavigation} ist für die Erstellung der Monats-Navigation (Implementierung siehe Abschnitt~\ref{Monatsnavigation}) zuständig.
-
-\subsection{Komponente \texttt{MonthOrganisation}}
-Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponentMonthOrganisation}) enthält die Klassen \texttt{MonthPlan}, \texttt{AssistanceInput}, \texttt{WorkingTimes} und \texttt{Day}.
-
-\begin{figure}[H]
-	\centering
-	%\advance\leftskip-2.0cm
-	\includegraphics[scale=0.55]{../Images/Modell/UMLComponentMonthOrganisation.png}
-	\caption[Klassendiagramm der Komponente \texttt{MonthOrganisation}]{Klassendiagramm der Komponente \texttt{MonthOrganisation}}
-	\label{fig:UMLComponentMonthOrganisation}
-\end{figure}
-
-Zentrale Klasse ist \texttt{MonthPlan}, die Instanzen von allen weiteren Klassen hat. Mit der Klasse \texttt{MonthPlan} werden alle Daten des Monatsplans (Implementierung siehe Abschnitt~\ref{Monatsplan}) verwaltet. Die Kalendereingaben (Implementierung siehe Abschnitt~\ref{sec:calendar}) der Assistenten werden in der Klasse \texttt{AssistanceInput} hinterlegt. Die Standardarbeitszeiten (Implementierung siehe Abschnitt~\ref{sec:standardDienstzeiten}) werden von der Klasse \texttt{WorkingTimes} bereitgestellt. In der Klasse \texttt{Day} werden alle tagesbezogenen Daten gebündelt.
-
-\subsection{Komponente \texttt{Roster}}
-Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) enthält nur die Klasse \texttt{Roster}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentRoster.png}
-	\caption[Klassendiagramm der Komponente \texttt{Roster}]{Klassendiagramm der Komponente \texttt{Roster}}
-	\label{fig:UMLComponentRoster}
-\end{figure}
-
-Die Klasse \texttt{Roster} wird bei der Dienstplanerstellung (Implementierung siehe Abschnitt~\ref{sec:rosterImplementation}) verwendet.
-
 \subsection{Komponente \texttt{Settings}}
 Die Komponente \texttt{Settings} (siehe Abbildung~\ref{fig:UMLComponentSettings}) enthält die Klassen \texttt{Passwords} und \texttt{Settings}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentSettings.png}
+	\includegraphics[scale=0.7]{../Images/Modell/UMLComponentSettings.png}
 	\caption[Klassendiagramm der Komponente \texttt{Settings}]{Klassendiagramm der Komponente \texttt{Settings}}
 	\label{fig:UMLComponentSettings}
 \end{figure}
 
 Mit der Klasse \texttt{Settings} werden die Einstellungen (Implementierung siehe Abschnitt~\ref{sec:EinstellungenImpl}) des Assistenzplaners verwaltet. In der Klasse \texttt{Passwords} sind alle Funktionen vorhanden, die für die Benutzerverwaltung (Implementierung siehe Abschnitt~\ref{sec:BenutzerVerwaltungImpl}) benötigt werden.
 
-\subsection{Komponente \texttt{TeamOrganisation}}
-Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentTeamOrganisation}) enthält die Klassen \texttt{Team} und \texttt{TeamMember}.
+\subsection{Komponente \texttt{MonthOrganisation}}
+Die Komponente \texttt{MonthOrganisation} (siehe Abbildung~\ref{fig:UMLComponentMonthOrganisation}) enthält die Klassen \texttt{MonthPlan}, \texttt{AssistanceInput}, \texttt{WorkingTimes} und \texttt{Day}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentTeamOrganisation.png}
-	\caption[Klassendiagramm der Komponente \texttt{TeamOrganisation}]{Klassendiagramm der Komponente \texttt{TeamOrganisation}}
-	\label{fig:UMLComponentTeamOrganisation}
+	\advance\leftskip-0.15\textwidth
+	\includegraphics[width=1.3\textwidth]{../Images/Modell/UMLComponentMonthOrganisation.png}
+	\caption[Klassendiagramm der Komponente \texttt{MonthOrganisation}]{Klassendiagramm der Komponente \texttt{MonthOrganisation}}
+	\label{fig:UMLComponentMonthOrganisation}
 \end{figure}
 
-In der Klasse \texttt{Team} ist die Funktionalität für die Team-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:TeamVerwaltung}) implementiert. \texttt{Team} hat so viele Instanzen von \texttt{TeamMember}, wie das Assistenz-Team Mitglieder hat. Die Klasse \texttt{TeamMember} ist eine reine Datenhaltungsklasse\footnote{Alle Member sind \texttt{public}.} ohne Funktionalität.
+Zentrale Klasse ist \texttt{MonthPlan}, die Instanzen von allen weiteren Klassen hat. Mit der Klasse \texttt{MonthPlan} werden alle Daten des Monatsplans (Implementierung siehe Abschnitt~\ref{Monatsplan}) verwaltet. Die Kalendereingaben (Implementierung siehe Abschnitt~\ref{sec:calendar}) der Assistenten werden in der Klasse \texttt{AssistanceInput} hinterlegt. Die Standardarbeitszeiten (Implementierung siehe Abschnitt~\ref{sec:standardDienstzeiten}) werden von der Klasse \texttt{WorkingTimes} bereitgestellt. In der Klasse \texttt{Day} werden alle tagesbezogenen Daten gebündelt.
 
-\subsection{Komponente \texttt{ToDoManager}}
-Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoManager}) enthält die Klassen \texttt{ToDoManager} und \texttt{ToDoItem}. 
+\subsection{Komponente \texttt{MonthNavigation}}
+Die Komponente \texttt{MonthNavigation} (siehe Abbildung~\ref{fig:UMLComponentMonthNavigation}) enthält nur die Klasse \texttt{MonthNavigation}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.62]{../Images/Modell/UMLComponentToDoManager.png}
+	\includegraphics[scale=0.7]{../Images/Modell/UMLComponentMonthNavigation.png}
+	\caption[Klassendiagramm der Komponente \texttt{MonthNavigation}]{Klassendiagramm der Komponente \texttt{MonthNavigation}}
+	\label{fig:UMLComponentMonthNavigation}
+\end{figure}
+
+Die Klasse \texttt{MonthNavigation} ist für die Erstellung der Monats-Navigation (Implementierung siehe Abschnitt~\ref{Monatsnavigation}) zuständig.
+
+\subsection{Komponente \texttt{ToDoManager}}
+Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoManager}) enthält die Klassen \texttt{ToDoItem} und \texttt{ToDoManager}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{../Images/Modell/UMLComponentToDoManager.png}
 	\caption[Klassendiagramm der Komponente \texttt{ToDoManager}]{Klassendiagramm der Komponente \texttt{ToDoManager}}
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
 
 In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) implementiert. \texttt{ToDoManager} hat so viele Instanzen von \texttt{ToDoItem}, wie Aufgaben in der Aufabenliste hinterlegt sind. Die Klasse \texttt{ToDoItem} ist eine reine Datenhaltungsklasse ohne Funktionalität.
+
+\subsection{Komponente \texttt{Roster}}
+Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) enthält nur die Klasse \texttt{Roster}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{../Images/Modell/UMLComponentRoster.png}
+	\caption[Klassendiagramm der Komponente \texttt{Roster}]{Klassendiagramm der Komponente \texttt{Roster}}
+	\label{fig:UMLComponentRoster}
+\end{figure}
+
+Die Klasse \texttt{Roster} wird bei der Dienstplanerstellung (Implementierung siehe Abschnitt~\ref{sec:rosterImplementation}) verwendet.
+
+\subsection{Komponente \texttt{TeamOrganisation}}
+Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentTeamOrganisation}) enthält die Klassen \texttt{Team} und \texttt{TeamMember}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{../Images/Modell/UMLComponentTeamOrganisation.png}
+	\caption[Klassendiagramm der Komponente \texttt{TeamOrganisation}]{Klassendiagramm der Komponente \texttt{TeamOrganisation}}
+	\label{fig:UMLComponentTeamOrganisation}
+\end{figure}
+
+In der Klasse \texttt{Team} ist die Funktionalität für die Team-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:TeamVerwaltung}) implementiert. \texttt{Team} hat so viele Instanzen von \texttt{TeamMember}, wie das Assistenz-Team Mitglieder hat. Die Klasse \texttt{TeamMember} ist eine reine Datenhaltungsklasse\footnote{Alle Member sind \texttt{public}.} ohne Funktionalität.
 
 \chapter{Implementierung}
 In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt. In den Abschnitten \enquote{Implementierungsdetails} werden weiterführende Informationen dargestellt, die für das Gesamtverständnis der Ausarbeitung nicht wichtig sind und übersprungen werden können. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
@@ -924,7 +920,7 @@ Jeder Benutzer des Assistenzplaners kann sich mit eigener Kennung und Passwort a
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/Login.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/Login.png}}
 	\caption{Maske zum Anmelden beim Assistenzplaner}
 	\label{fig:Login}
 \end{figure}
@@ -975,15 +971,15 @@ Die Willkommensseite wird durch das PHP-Script \file{index.php}{} generiert. Es 
 Die Navigation steht immer gut sichtbar rechts oben zur Verfügung. Abhängig davon, ob jemand am System angemeldet ist (siehe Abbildung~\ref{fig:NavigationLoggedIn}) oder nicht (siehe Abbildung~\ref{fig:NavigationLoggedOut}) stellt sie unterschiedliche Informationen dar.
 
 \begin{figure}[htb]
-	\centering
-	\fbox{ \includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedIn.png}}
+	\advance\leftskip-0.1\textwidth
+	\fbox{ \includegraphics[width=1.2\textwidth]{../Images/Screenshots/NavigationLoggedIn.png}}
 	\caption[Navigation bei angemeldetem Assistenten]{Navigation bei angemeldetem Assistenten}
 	\label{fig:NavigationLoggedIn}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		\fbox{\includegraphics[scale=0.5]{../Images/Screenshots/NavigationLoggedOut.png}}
+		\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/NavigationLoggedOut.png}}
 	\caption[Navigation ohne Anmeldung]{Navigation ohne Anmeldung}
 	\label{fig:NavigationLoggedOut}
 \end{figure}
@@ -1023,7 +1019,7 @@ Um einen neuen Klienten-Zugang anzulegen, wird der Benutzer gebeten einen Klient
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/NewClient.png}}
 	\caption[Anlegen eines neuen Klienten]{Anlegen eines neuen Klienten mit Name und Passwort}
 	\label{fig:NewClient}
 \end{figure}
@@ -1052,7 +1048,7 @@ Auf der Übersichts-Seite (siehe Abbildung~\ref{fig:Overview}) werden dem Benutze
 
 \begin{figure}[htb]
 	\centering
-		\fbox{\includegraphics[scale=0.8]{../Images/Screenshots/overview.png}}
+		\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/overview.png}}
 	\caption[Übersicht Assistenzplaner für Klienten]{Übersicht des Assistenzplaners für Klienten mit Links zu allen verfügbaren Seiten}
 	\label{fig:Overview}
 \end{figure}
@@ -1066,7 +1062,7 @@ Um den Assistenzplaner zu konfigurieren, gibt es die Einstellungen (siehe Abbild
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/Settings.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/Settings.png}}
 	\caption[Einstellungsmöglichkeiten des Assistenzplaners]{Einstellungsmöglichkeiten des Assistenzplaners für Klienten}
 	\label{fig:Settings}
 \end{figure}
@@ -1080,7 +1076,7 @@ Bei den Standard-Dienstzeiten (siehe Abbildung~\ref{fig:DefaultTimes}) hat der K
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/DefaultTimes.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/DefaultTimes.png}}
 	\caption[Standard-Dienstzeiten]{Verwaltung der Standard-Dienstzeiten.}
 	\label{fig:DefaultTimes}
 \end{figure}
@@ -1129,7 +1125,7 @@ Mit dem Monatsplan (siehe Abbildung~\ref{fig:MonthPlan3})  plant der Klient den 
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/MonthPlan3.png}
+	\fbox{\includegraphics[width=1.0\textwidth]{../Images/Screenshots/MonthPlan3.png}}
 	\caption[Monatsplan]{Monatsplan mit der Möglichkeit tageweise Dienstbeginn und Dienstende festzulegen und Bemerkungen zu hinterlegen}
 	\label{fig:MonthPlan3}
 \end{figure}
@@ -1140,7 +1136,7 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 
 \begin{figure}[htb]
 	\centering
-	\fbox{\includegraphics[scale=0.5]{../Images/Screenshots/Mail.png}}
+	\fbox{\includegraphics[width=1.0\textwidth]{../Images/Screenshots/Mail.png}}
 	\caption[Benachrichtigung der Assistenten]{Beispielhafte Benachrichtigung der Assistenten mit der Bitte des Klienten, die Termine für den nächsten Monat einzutragen}
 	\label{fig:Mail}
 \end{figure}
@@ -1158,7 +1154,7 @@ Rot bedeutet, der Assistent ist an diesem Datum nicht verfügbar. Gelb bedeutet, 
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/CalendarInput.png}
+	\fbox{\includegraphics[width=1.0\textwidth]{../Images/Screenshots/CalendarInput.png}}
 	\caption[Kalender für die Eingabe möglicher Termine]{Kalender für die Eingabe der möglichen Termine eines Assistenten}
 	\label{fig:CalendarInput}
 \end{figure}
@@ -1169,7 +1165,7 @@ Im oberen Bereich der Webseite sind alle Informationen dargestellt (siehe Abbild
 
 \begin{figure}[htb]
 	\centering
-	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/CalendarNotesFromClient.png}}
+	\fbox{\includegraphics[width=1.0\textwidth]{../Images/Screenshots/CalendarNotesFromClient.png}}
 	\caption[Bemerkungen des Klienten]{Bemerkungen vom Klienten für seine Assistenten}
 	\label{fig:CalendarNotesFromClient}
 \end{figure}
@@ -1190,8 +1186,8 @@ Der Assistenzplaner erstellt eine Tabelle (siehe Abbildung~\ref{fig:RosterClient
 \end{itemize}
 
 \begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/RosterClient1.png}
+	\advance\leftskip-0.1\textwidth
+	\fbox{\includegraphics[width=1.2\textwidth]{../Images/Screenshots/RosterClient1.png}}
 	\caption[Editierbarer Dienstplan]{Editierbarer Dienstplan für den Klienten}
 	\label{fig:RosterClient1}
 \end{figure}
@@ -1208,7 +1204,7 @@ Unterhalb der Dienstplantabelle zeigt eine weitere Tabelle (siehe Abbildung~\ref
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/RosterClient2.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/RosterClient2.png}}
 	\caption[Stundenübersicht Assistenten]{Stundenübersicht der Assistenten}
 	\label{fig:RosterClient2}
 \end{figure}
@@ -1234,8 +1230,8 @@ Per Knopfdruck kann der Klient einige Funktionen ausführen:
 Der Assistent hat keine Möglichkeit den Dienstplan zu verändern. Er kann lediglich den fertigen Dienstplan einsehen. In einer Tabelle (siehe Abbildung~\ref{fig:RosterAssistantMarkus1}) werden tageweise die Dienst-und Bereitschaftszeiten dargestellt. Weiterhin kann der Benutzer sehen, welcher Assistent Dienst bzw. Bereitschaft hat. Die Dienste und Bereitschaften des angemeldeten Assistenten werden farblich hervorgehoben.
 
 \begin{figure}[htb]
-	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/RosterAssistantMarkus1.png}
+	\advance\leftskip-0.05\textwidth
+	\fbox{\includegraphics[width=1.1\textwidth]{../Images/Screenshots/RosterAssistantMarkus1.png}}
 	\caption[Gesamter Dienstplan aus Sicht des Assistenten]{Gesamter Dienstplan aus Sicht des Assistenten \enquote{Markus} - farbig hervorgehoben sind die Dienste bzw. Bereitschaften des angemeldeten Assistenten}
 	\label{fig:RosterAssistantMarkus1}
 \end{figure}
@@ -1244,7 +1240,7 @@ Unter dem allgemeinen Dienstplan gibt es eine Tabelle (siehe Abbildung~\ref{fig:
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{../Images/Screenshots/RosterAssistantMarkus2.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/RosterAssistantMarkus2.png}}
 	\caption[Dienste und Bereitschaften des angemeldeten Assistenten]{Dienste und Bereitschaften des angemeldeten Assistenten \enquote{Markus}}
 	\label{fig:RosterAssistantMarkus2}
 \end{figure}
@@ -1621,7 +1617,8 @@ Der Klient hat als Einziger die Berechtigung, neue Aufgaben zu erstellen. Hierfü
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.45]{../Images/Screenshots/ToDoManagerNewToDo.png}
+	%todo 1.3
+	\fbox{\includegraphics[width=1.3\textwidth]{../Images/Screenshots/ToDoManagerNewToDo.png}}
 	\caption[Erstellen einer neuen Aufgabe]{Aufgaben-Verwaltung - Erstellen einer neuen Aufgabe}
 	\label{fig:ToDoManagerNewToDo}
 \end{figure}
@@ -1630,7 +1627,7 @@ Bei der Auswahl des Fälligkeitsdatums wird er durch einen Kalender (siehe Abbild
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManagerDatePicker.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManagerDatePicker.png}}
 	\caption[Wahl des Datums]{Aufgaben-Verwaltung: Wahl des Datums}
 	\label{fig:ToDoManagerDatePicker}
 \end{figure}
@@ -1654,7 +1651,7 @@ Mit der Feedback-Funktion hat der Benutzer die Möglichkeit, Kontakt zum Entwickl
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.4]{../Images/Screenshots/Feedback.png}
+	\fbox{\includegraphics[width=1.0\textwidth]{../Images/Screenshots/Feedback.png}}
 	\caption{Eingabemaske für das Feedback}
 	\label{fig:Feedback}
 \end{figure}
@@ -1784,7 +1781,7 @@ Derzeit wird das Team mit Hilfe einer Tabelle verwaltet. Zu Beginn der Entwicklu
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.6]{../Images/Screenshots/SingleTeamMember.png}
+	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/SingleTeamMember.png}}
 	\caption[Mögliche neue Darstellungsform des Teams]{Mögliche neue Darstellungsform eines Assistenten in der Team-Übersicht}
 	\label{fig:SingleTeamMember}
 \end{figure}
@@ -1797,7 +1794,7 @@ Wünschenswert wäre es, wenn kontextsensitive Informationen zusätzlich über den g
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.4]{../Images/Screenshots/jQueryUi/jQueryUiTooltip.png}
+	\fbox{\includegraphics[scale=0.4]{../Images/Screenshots/jQueryUi/jQueryUiTooltip.png}}
 	\caption[jQueryUI Tooltip]{jQueryUI Tooltip}
 	\label{fig:jQueryUiTooltip}
 \end{figure}
@@ -1918,7 +1915,14 @@ Die vorliegenden Ausarbeitung wurde mit \LaTeX\ geschrieben. Verwendet wurde die
 \end{figure}
 
 \section*{Enterprise Architect}
-Für die Erstellung der SysML, UML und BPMN Diagramme wurde Enterprise Architect in der Version 9.2 verwendet.
+Für die Erstellung der SysML, UML und BPMN Diagramme wurde Enterprise Architect (Version siehe Abbildung~\ref{fig:EnterpriseArchitect}) verwendet.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.8]{../Images/Screenshots/EnterpriseArchitect.png}
+	\caption{Infodialog der Software Enterprise Architect}
+	\label{fig:EnterpriseArchitect}
+\end{figure}
 
 \section*{PhpStorm}
 Als \NewAbb{IDE}{Integrated Development Environment} für die Entwicklung von PHP, HTML, CSS und JavaScript wurde PhpStorm (Version siehe Abbildung~\ref{fig:PhpStorm}) verwendet.
