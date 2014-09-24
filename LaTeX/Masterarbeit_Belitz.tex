@@ -1617,7 +1617,7 @@ Der Klient hat als Einziger die Berechtigung, neue Aufgaben zu erstellen. Hierfü
 
 \begin{figure}[htb]
 	\centering
-	%todo 1.3
+	\advance\leftskip-0.15\textwidth
 	\fbox{\includegraphics[width=1.3\textwidth]{../Images/Screenshots/ToDoManagerNewToDo.png}}
 	\caption[Erstellen einer neuen Aufgabe]{Aufgaben-Verwaltung - Erstellen einer neuen Aufgabe}
 	\label{fig:ToDoManagerNewToDo}
@@ -1644,7 +1644,7 @@ Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu
 Die Aufgaben-Seite wird vom PHP-Script \file{toDoManagerView.php}{} erstellt. Der größte Teil der Funktionalität ist clientsseitig im JavaScript \file{toDoManager.js}{} implementiert. Hier wird viel mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt~\ref{sec:JavaScript}) in der Datei \file{DateExtended.js}{} um einige Funktionen erweitert wurde.
 Weiterhin ist in der Datei \file{toDoManager.js}{} die Klasse \texttt{ToDo} enthalten. Der \texttt{DatePicker} ist in der Datei \file{datePicker.js}{} definiert.
 
-Das PHP-Script \file{toDoSaver.php}{} speichert die offenen Aufgaben in die Datei \file{toDos.txt}{} und die erledigten Aufgaben in die Datei \file{done.txt}{}. Beide Dateien liegen im Ordner \folder{ToDoManager}.
+Das PHP-Script \file{toDoSaver.php}{} speichert die noch nicht erledigten Aufgaben in die Datei \file{toDos.txt}{} und die erledigten Aufgaben in die Datei \file{done.txt}{}. Beide Dateien liegen im Ordner \folder{ToDoManager}.
 
 \section{Feedback}
 Mit der Feedback-Funktion hat der Benutzer die Möglichkeit, Kontakt zum Entwickler des Assistenzplaners aufzunehmen. Es gibt ein Formular (siehe Abbildung~\ref{fig:Feedback}), worin Feedback, Änderungswünsche und Kritik geäußert werden können. Wenn für den Benutzer eine E-Mail-Adresse hinterlegt ist (Klient $\Rightarrow$ Einstellungen, Assistent $\Rightarrow$ Team-Verwaltung), so wird diese automatisch als E-Mail-Adresse für eine Antwort vorgeschlagen. Der Benutzer kann aber auch eine andere Antwort-Adresse angeben.
