@@ -127,8 +127,15 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \addchap{Vorbemerkungen}
 Zur Erhöhung der Lesbarkeit wurde die männliche Form gewählt (generisches Maskulinum). Leserinnen dieser Arbeit dürfen sich trotz dieser Vereinfachung ebenfalls angesprochen fühlen.
 
-Das hier ist die Online-Version der Master-Thesis. Links sind in rot hinterlegt (zum Beispiel \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner}) und können angeklickt werden.
+Das hier ist die Online-Version der Masterarbeit. Links sind in rot hinterlegt (zum Beispiel \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner}) und können angeklickt werden.
 Im Kapitel \enquote{Implementierung} sind einige Links auf Dateien (zum Beispiel \file{global.css}{}) enthalten, auch diese können angeklickt werden. 
+
+%Das hier ist die Print-Version der Masterarbeit. 
+%Die Online-Version findet sich unter:
+
+%\qquad \texttt{http://assistenzplaner.de/master/Masterarbeit\_Belitz\_Online.pdf}
+
+%In der Online-Version sind die Links farbig hinterlegt und können angeklickt werden.
 
 \tableofcontents % Inhaltsverzeichnis
 
@@ -388,7 +395,6 @@ Der beschriebene Soll-Prozess ist grafisch in Abbildung~\ref{fig:sollprozessBpmn
 
 \begin{figure}[htb]
 	\advance\leftskip-0.15\textwidth
-	\Note{Dieses Diagramm wird noch überarbeitet.}
 	\includegraphics[width=1.3\textwidth]{../Images/Modell/BPMNSollProzess.png}
 	\caption{BPMN Diagramm zur Darstellung des Sollprozesses}
 	\label{fig:sollprozessBpmn}
@@ -1068,7 +1074,7 @@ Um den Assistenzplaner zu konfigurieren, gibt es die Einstellungen (siehe Abbild
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Die Einstellungsseite wird von dem PHP-Script \file{settingsView.php}{} generiert. Drückt der Benutzer auf den \button{Einstellungen speichern}, so wird im JavaScript \file{settings.js}{} die Funktion \texttt{saveSettings} aufgerufen. Diese Funktion parst aus den Einstellungen die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{settingsSaver.php}{}, welches die Daten im Ordner \folder{Organization} persistent in der Datei \file{settings.txt}{} speichert.
+Die Einstellungsseite wird von dem PHP-Script \file{settingsView.php}{} generiert. Wenn der Benutzer auf den \button{Einstellungen speichern} drückt, so wird im JavaScript \file{settings.js}{} die Funktion \texttt{saveSettings} aufgerufen. Diese Funktion parst aus den Einstellungen die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{settingsSaver.php}{}, welches die Daten im Ordner \folder{Organization} persistent in der Datei \file{settings.txt}{} speichert.
 
 \section{Standard-Dienstzeiten}
 \label{sec:standardDienstzeiten}
@@ -1525,7 +1531,7 @@ Punkte & Name & Tag \\
 10 & Assistent 3 & 3 \\ 
 \hline 
 \end{tabular}
-\caption{Umgewandelte Punktetabelle unter der Bedingung, das alle Assistenten Zeit haben und gleich priorisiert sind}
+\caption{Umgewandelte Punktetabelle unter der Bedingung, dass alle Assistenten Zeit haben und gleich priorisiert sind}
 \label{tab:scoreTableConvertedBlock}
 \end{table}
 
@@ -1584,7 +1590,7 @@ Der kommentierte Quellcode\footnote{Die Mischung zwischen englischem Quellcode u
 
 \section{Aufgaben-Verwaltung}
 \label{sec:AufgabenVerwaltung}
-Dem Klienten und seinem Team steht eine Aufgaben-Verwaltung (siehe Abbildung~\ref{fig:ToDoManager}) zur Verfügung.
+Dem Klienten und seinen Assistenten steht eine Aufgaben-Verwaltung (siehe Abbildung~\ref{fig:ToDoManager}) zur Verfügung.
 \begin{figure}[htb]
 	\centering
 	\fbox{\includegraphics[scale=0.6]{../Images/Screenshots/ToDoManager.png}}
@@ -1726,6 +1732,8 @@ Die entstandene Lösung ist voll funktionsfähig und in sich geschlossen. Dennoch 
 \section{Einsatz bei mehreren Teams}
 Der Assistenzplaner ist derzeit (September 2014) eine spezialisierte Lösung für einen Klienten mit seinem Team.
 Am 01.09.2014 fand ein Gespräch mit dem \Link{http://inklusion.rlp.de/der-landesbeauftragte/}{Landesbeauftragten für die Belange behinderter Menschen in Rheinland Pfalz - Matthias Rösch}{02.09.2014} statt. Hier wurde dem Landesbeauftragten der Assistenzplaner vorgestellt. Der Landesbeauftragte hat selbst sechs Assistenten, erstellt derzeit seine Dienstpläne manuell und war sehr interessiert am Assistenzplaner. Weiterhin konnte er einige Ansprechpartner im Bereich Assistenzplanung nennen.
+
+Am 22.09.2014 fand ein Gespräch mit einem Mitarbeiter vom \NewAbb{ZSL}{Zentrum für selbstbestimmtes Leben} in Mainz statt. Auch hier wurde der Assistenzplaner vorgestellt. Der Mitarbeiter hat sich direkt einen eigenen Klienten-Zugang angelegt und wird den Assistenzplaner zukünftig nutzen. Er hat weiterhin wertvolle Hinweise für die Verbesserung des Assistenzplaners geliefert.
 
 In der weiteren Entwicklung werden sich hoffentlich einige Beta-Tester bereit erklären den Assistenzplaner einzusetzen. Sicherlich werden noch Anforderungen hinzukommen, da jeder Klient mit seinem Team einen anderen Prozess und unterschiedliche Rahmenbedingungen bei der Dienstplanerstellung hat.
 
@@ -1878,7 +1886,7 @@ Auf den Ordnern der beiliegenden CD sind folgende Daten enthalten:
 \begin{itemize}
 \item \folder{BibTeX} $\Rightarrow$ BibTeX-Datei, in der alle Literaturquellen enthalten sind
 \item \folder{CSS} $\Rightarrow$ CSS-Dateien, in denen die Style-Formatierungen enthalten sind
-\item \folder{Data} $\Rightarrow$ Die Daten, die der Assistenzplaner persistent speichert
+\item \folder{Data} $\Rightarrow$ Daten, die der Assistenzplaner persistent speichert
 \item \folder{Dictionaries} $\Rightarrow$ Wörterbücher, die für die Rechtschreibprüfung verwendet wurden
 \item \folder{ExternalResources} $\Rightarrow$ FreePDF und PHPMailer
 \item \folder{HTML} $\Rightarrow$ HTML-Dateien
