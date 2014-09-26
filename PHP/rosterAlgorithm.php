@@ -1,5 +1,19 @@
 <?php
 
+// Die Funktion compare ist eine globale Funktion
+function compare($value1, $value2)
+{
+    // Nur der erste Wert (der Punktwert) wird bei der Sortierung beruecksichtigt,
+    $a = $value1[0];
+    $b = $value2[0];
+
+    if ($a == $b) {
+        return 0;
+    }
+
+    return ($a > $b) ? -1 : +1;
+}
+
 // Die Funktion createRosterAlgorithm5() ist eine private Funktion der Klasse Roster ($this) und hat damit Zugriff auf die Kalender-Eingaben der Assistenten und die Daten aus der Team-Verwaltung
 
 function createRosterAlgorithm5()
@@ -102,7 +116,7 @@ function createRosterAlgorithm5()
   for ($run = 0; $run < $countOfRuns; $run++) {
 
     shuffle($convertedData); // Randomisierung, damit es keine Block-Bildung bei den Diensten gibt
-    usort($convertedData, 'compare'); // Sortierung nach Punkten - die compare-Funktion ist in diesem Listing nicht dargestellt
+    usort($convertedData, 'compare'); // Sortierung nach Punkten - die compare-Funktion ist in diesem Listing ganz oben dargestellt
 
     // Dienstplan (vom vorherigen Durchlauf) loeschen
     for ($i = 1; $i <= $this->daysPerMonth; $i++) {

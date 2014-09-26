@@ -62,7 +62,7 @@
 % Deckblatt und Abstract ohne Seitenzahl
 %\ofoot{}
 \include{Deckblatt}
-\include{Erklärung} % Selbständigkeitserklärung
+\include{Erklaerung} % Selbständigkeitserklärung
 
 \addchap{Abstract}
 \label{sec:Abstract}
@@ -127,15 +127,15 @@ Unendlich dankbar bin ich meiner Frau Marielle! Sie hat mich während des gesamte
 \addchap{Vorbemerkungen}
 Zur Erhöhung der Lesbarkeit wurde die männliche Form gewählt (generisches Maskulinum). Leserinnen dieser Arbeit dürfen sich trotz dieser Vereinfachung ebenfalls angesprochen fühlen.
 
-Das hier ist die Online-Version der Masterarbeit. Links sind in rot hinterlegt (zum Beispiel \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner}) und können angeklickt werden.
-Im Kapitel \enquote{Implementierung} sind einige Links auf Dateien (zum Beispiel \file{global.css}{}) enthalten, auch diese können angeklickt werden. 
+%Das hier ist die Online-Version der Masterarbeit. Links sind in rot hinterlegt (zum Beispiel \LinkWithoutDate{http://assistenzplaner.de/}{Assistenzplaner}) und können angeklickt werden.
+%Im Kapitel \enquote{Implementierung} sind einige Links auf Dateien (zum Beispiel \file{global.css}{}) enthalten, auch diese können angeklickt werden. 
 
-%Das hier ist die Print-Version der Masterarbeit. 
-%Die Online-Version findet sich unter:
+Das hier ist die Print-Version der Masterarbeit. 
+Die Online-Version findet sich unter:
 
-%\qquad \texttt{http://assistenzplaner.de/master/Masterarbeit\_Belitz\_Online.pdf}
+\qquad \texttt{http://assistenzplaner.de/master/Masterarbeit\_Belitz\_Online.pdf}
 
-%In der Online-Version sind die Links farbig hinterlegt und können angeklickt werden.
+In der Online-Version sind die Links farbig hinterlegt und können angeklickt werden. Weiterhin sind die Quellcode-Dateien verlinkt und können direkt angesehen werden.
 
 \tableofcontents % Inhaltsverzeichnis
 
@@ -240,7 +240,7 @@ HTTP unterstützt unter anderem die Basisoperationen GET und POST, die ein Browse
 
 \subsection{HTML}
 \label{sec:HTML}
-\NewAbb{HTML}{HyperText Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. [...] HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S.~21]{muenz2012html5}.
+\NewAbb{HTML}{Hypertext Markup Language} ist eine Auszeichnungssprache und hat \enquote{die Aufgabe, die logische Grob- und Feinstruktur einer Webseite zu beschreiben. [...] HTML ist die Sprache zur Strukturierung von Texten, wobei aber auch die Möglichkeit besteht, Grafiken und multimediale Inhalte in Form einer Referenz einzubinden und in den Text zu integrieren} \cite[S.~21]{muenz2012html5}.
 
 Es ist unter anderem möglich:
 \begin{itemize}
@@ -323,17 +323,17 @@ Bei \NewAbb{AJAX}{Asynchronous JavaScript and XML} handelt es sich nicht direkt 
 
 Ein spezielles JavaScript-Objekt namens \texttt{XMLHttpRequest} ermöglicht die asynchrone Kommunikation mit dem Server. Durch den asynchronen Aufruf kann der Benutzer direkt weiterarbeiten und wird nicht durch die Kommunikation mit dem Server blockiert. Ist die Antwort des Servers beim Client angekommen, wird sie sofort verarbeitet und gegebenenfalls dem Benutzer dargestellt.
 
-Mit Hilfe von AJAX ist es möglich, aktive Dokumente (siehe Abschnitt~\ref{sec:webdokumente}) zu erstellen.
+Mit Hilfe von AJAX ist es möglich, aktive Dokumente (siehe Seite~\pageref{sec:webdokumente}) zu erstellen.
 
 \subsection{PHP}
 \label{sec:PHP}
-\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich, Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten, die im Browser angezeigt werden. Mit PHP ist es möglich, objektorientiert zu programmieren. Ein einfaches PHP-Script ist in Listing~\ref{lst:examplePHP} gezeigt.
+\NewAbb{PHP}{PHP Hypertext Preprocessor} ist eine Programmiersprache, die meistens auf dem Server ausgeführt wird. Mit ihr ist es möglich, Internetanwendungen zu erstellen. Dabei erzeugt PHP die HTML-Seiten, die im Browser angezeigt werden. Mit PHP ist es möglich, objektorientiert zu programmieren. Ein einfaches PHP-Script ist in Listing~\ref{lst:examplePHP} gezeigt. Es wird eine Session gestartet und ein HTML-Dokument mit dem Titel \enquote{Assistenzplaner} erzeugt. Weiterhin wird das Stylesheet \file{global.css}{} eingebunden. Im Hauptbereich (\texttt{body}) wird das PHP-Script \file{navigation.php}{} eingebunden, was eine Navigationsleiste erzeugt. Danach wird eine Überschrift ausgegeben.
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:examplePHP,caption=Beispiel für ein PHP-Dokument]{../PHP/exampleBase.php}
 
 \section{Modellierungssprachen}
-Mit Hilfe von Modellierungssprachen lassen sich komplexe Systeme konstruieren. Mehrere Abstraktionsebenen fördern die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit, sich sehr konkret auszudrücken, ohne Code schreiben zu müssen.
+Mit Hilfe von Modellierungssprachen lassen sich komplexe Systeme konstruieren. Mehrere Abstraktionsebenen fördern die Übersicht. Modellierungssprachen geben einem Software-Architekten die Möglichkeit, sich sehr konkret auszudrücken, ohne Code zu schreiben.
 
 \subsection{UML}
 \NewAbb{UML}{Unified Modeling Language} \enquote{dient zur Modellierung, Dokumentation, Spezifizierung und Visualisierung komplexer Systeme, unabhängig von deren Fach- und Realisierungsgebiet. Sie liefert die Notationselemente gleichermaßen für die statischen und dynamischen Modelle von Analyse, Design und Architektur und unterstützt insbesondere objektorientierte Vorgehensweisen.} \cite[S.~4]{rupp2012uml}
@@ -343,7 +343,7 @@ Mit Hilfe von Modellierungssprachen lassen sich komplexe Systeme konstruieren. M
 
 \subsection{BPMN}
 \NewAbb{BPMN}{Business Process Modeling and Notation} ist eine grafische Sprache für die Modellierung von Geschäftsprozessen. Sie dient zur präzisen Darstellung komplexer Prozesse mit allen relevanten Aspekten, wie Verzweigungsregeln, Ereignissen, ausführenden Organisationseinheiten und Datenflüssen.
-Durch die einheitliche Darstellung ist es möglich Prozesse systematisch zu analysieren und ihr dynamisches Verhalten zu simulieren.  \cite[S.~8]{allweyer2009bpmn}
+Durch die einheitliche Darstellung ist es möglich, Prozesse systematisch zu analysieren und ihr dynamisches Verhalten zu simulieren.  \cite[S.~8]{allweyer2009bpmn}
 
 
 \chapter{Anforderungsermittlung}
@@ -470,9 +470,9 @@ Als Klient möchte ich mein Team verwalten.
 Akzeptanzkriterien:
 \begin{itemize}
 \item Es gibt eine Übersicht der Team-Mitglieder.
-\item Es ist möglich, Team-Mitglieder hinzuzufügen.
-\item Es ist möglich, die Eigenschaften der Team-Mitglieder zu editieren.
-\item Es ist möglich, Team-Mitglieder aus dem Team zu entfernen.
+\item Es ist möglich Team-Mitglieder hinzuzufügen.
+\item Es ist möglich die Eigenschaften der Team-Mitglieder zu editieren.
+\item Es ist möglich Team-Mitglieder aus dem Team zu entfernen.
 \item Es ist möglich das Team abzuspeichern und zu einem späteren Zeitpunkt wieder zu laden.
 \end{itemize}
 
@@ -526,7 +526,7 @@ Akzeptanzkriterien:
 \item Es ist möglich in einer Tabelle zu sehen, wie die Arbeitsstunden des Monats auf die Assistenten verteilt werden.
 \item Es wird dargestellt, wie viele Stunden ein Assistent arbeiten müsste. Diese Daten kommen aus der Team-Verwaltung.
 \item Die Differenz zwischen Soll- und Ist-Arbeitsstunden pro Assistent wird berechnet.
-\item Es wird grafisch in 3 Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
+\item Es wird grafisch in drei Kategorien (grün, gelb, rot) dargestellt, wie gut das Stundenkontingent eines Assistenten ausgeschöpft ist.
 \end{itemize}
 
 \subsection{Eingabe möglicher Termine}
@@ -671,9 +671,9 @@ Die meisten Anwendungen zur Dienstplanerstellung sind für die Verwendung im Einz
 Es gibt keine Anknüpfungsmöglichkeiten oder Wiederverwendungsmöglichkeiten, da die meisten Anbieter ein finanzielles Interesse haben und den Code ihrer Lösungen nicht offen gelegt haben.
 
 \chapter{Software-Design}
-In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in einem SysML Anforderungsdiagramm dargestellt. Daraufhin wird ein Software-Design in UML entworfen, das den Anforderungen gerecht wird. 
+In diesem Kapitel werden die Anforderungen aus dem vorletzten Kapitel in SysML Anforderungsdiagrammen dargestellt. Daraufhin wird ein Software-Design in UML entworfen, das den Anforderungen gerecht wird. 
 
-\section{SysML Anforderungsdiagramm}
+\section{SysML Anforderungsdiagramme}
 Mit SysML lassen sich Systeme, bestehend aus Hard- und Software, modellieren. Da in der vorliegenden Arbeit eine Lösung entstanden ist, die ausschließlich aus Software besteht, wurde nur das Anforderungsdiagramm der SysML verwendet. Alles andere wurde in UML modelliert.
 
 Die Anforderung \enquote{beschreibt ein oder mehrere Eigenschaften oder Verhaltensweisen eines Systems, die stets erfüllt sein müssen.} \cite[S.~315]{weilkiens2014systems}
@@ -719,7 +719,7 @@ Die Verfeinerungsbeziehung \enquote{beschreibt, dass ein Modellelement die Eigen
 	\label{fig:SysMLRequirementRefine}
 \end{figure}
 
-\subsection{Anforderungsdiagramm}
+\subsection{Anforderungsdiagramme}
 Die Anforderungen clustern sich in fünf Bereiche:
 
 \begin{itemize}
@@ -852,7 +852,7 @@ Die Komponente \texttt{ToDoManager} (siehe Abbildung~\ref{fig:UMLComponentToDoMa
 	\label{fig:UMLComponentToDoManager}
 \end{figure}
 
-In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) implementiert. \texttt{ToDoManager} hat so viele Instanzen von \texttt{ToDoItem}, wie Aufgaben in der Aufabenliste hinterlegt sind. Die Klasse \texttt{ToDoItem} ist eine reine Datenhaltungsklasse ohne Funktionalität.
+In der Klasse \texttt{ToDoManager} ist die Funktionalität für die Aufgaben-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:AufgabenVerwaltung}) implementiert. \texttt{ToDoManager} hat so viele Instanzen von \texttt{ToDoItem}, wie Aufgaben in der Aufabenliste hinterlegt sind. Die Klasse \texttt{ToDoItem} ist eine reine Datenhaltungsklasse\footnote{Alle Member sind \texttt{public}.} ohne Funktionalität.
 
 \subsection{Komponente \texttt{Roster}}
 Die Komponente \texttt{Roster} (siehe Abbildung~\ref{fig:UMLComponentRoster}) enthält nur die Klasse \texttt{Roster}.
@@ -876,13 +876,13 @@ Die Komponente \texttt{TeamOrganisation} (siehe Abbildung~\ref{fig:UMLComponentT
 	\label{fig:UMLComponentTeamOrganisation}
 \end{figure}
 
-In der Klasse \texttt{Team} ist die Funktionalität für die Team-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:TeamVerwaltung}) implementiert. \texttt{Team} hat so viele Instanzen von \texttt{TeamMember}, wie das Assistenz-Team Mitglieder hat. Die Klasse \texttt{TeamMember} ist eine reine Datenhaltungsklasse\footnote{Alle Member sind \texttt{public}.} ohne Funktionalität.
+In der Klasse \texttt{Team} ist die Funktionalität für die Team-Verwaltung (Implementierung siehe Abschnitt~\ref{sec:TeamVerwaltung}) implementiert. \texttt{Team} hat so viele Instanzen von \texttt{TeamMember}, wie das Assistenz-Team Mitglieder hat. Die Klasse \texttt{TeamMember} ist eine reine Datenhaltungsklasse ohne Funktionalität.
 
 \chapter{Implementierung}
 In diesem Kapitel wird dargestellt, wie die Anforderungen und das Software-Design konkret implementiert wurden. Die Ergebnisse der Implementierung werden kompakt dargestellt. In den Abschnitten \enquote{Implementierungsdetails} werden weiterführende Informationen dargestellt, die für das Gesamtverständnis der Ausarbeitung nicht wichtig sind und übersprungen werden können. Der Schwerpunkt des Kapitels liegt auf der Darstellung des Algorithmus zur Dienstplanerstellung (siehe Abschnitt~\ref{sec:algorithm}).
 
 \section{Wahl der Programmiersprachen}
-Für die Implementierung ist es notwendig sich auf Programmiersprachen festzulegen.
+Für die Implementierung ist es notwendig, sich auf Programmiersprachen festzulegen.
 
 \subsection{Server}
 Bei der Serverseite ist die Wahl der Programmiersprache auf PHP gefallen. Hauptgründe hierfür waren: die \Link{http://w3techs.com/technologies/history_overview/programming_language}{hohe Verbreitung}{23.08.2014} von über 80\% und die Tatsache, dass PHP bei den meisten Webhostern vorinstalliert ist.
@@ -969,8 +969,8 @@ Auf der \Link{http://www.assistenzplaner.de/master/PHP/index.php}{Willkommen-Sei
 \subsection{Implementierungsdetails}
 Die Willkommensseite wird durch das PHP-Script \file{index.php}{} generiert. Es lassen sich zwei Aktionen durchführen:
 \begin{enumerate}
-\item Ein neues Konto anlegen $\Rightarrow$ \file{createNewAccount.php}{}
 \item Anmelden $\Rightarrow$ \file{login.php}{}
+\item Ein neues Konto anlegen $\Rightarrow$ \file{createNewAccount.php}{}
 \end{enumerate}
 
 \section{Navigation}
@@ -995,7 +995,7 @@ Die Navigation wird durch das PHP-Script \file{navigation.php}{} erzeugt. Dieses
 
 \section{Monatsnavigation}
 \label{Monatsnavigation}
-An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Benutzer zwischen den Monaten navigieren können. Mithilfe der Monatsnavigation (siehe Abbildung~\ref{fig:MonthNavigation}) ist es möglich vom derzeit angezeigten Monat immer zum vorherigen, aktuellen (jetzigen) und nächsten Monat zu navigieren.
+An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Benutzer zwischen den Monaten navigieren können. Mit Hilfe der Monatsnavigation (siehe Abbildung~\ref{fig:MonthNavigation}) ist es möglich vom derzeit angezeigten Monat immer zum vorherigen, aktuellen (jetzigen) und nächsten Monat zu navigieren.
 
 \begin{figure}[htb]
 	\centering
@@ -1005,7 +1005,7 @@ An einigen Stellen (Dienstplan, Monatsplan, Kalender) möchte der Benutzer zwisch
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Die Monatsnavigation wird von der PHP-Klasse \texttt{MonthNavigation} erstellt. Es reicht eine Instanz von \texttt{MonthNavigation} zu erstellen. Bei der Konstruktion wird nur ein Pfad auf das aufrufende PHP-Script, das Jahr und der Monat angeben (siehe Listing~\ref{lst:phpMonthNavigation}).  
+Die Monatsnavigation wird von der PHP-Klasse \file{MonthNavigation.php}{} erstellt. Es reicht eine Instanz von \texttt{MonthNavigation} zu erstellen. Bei der Konstruktion wird nur ein Pfad auf das aufrufende PHP-Script, das Jahr und der Monat angeben (siehe Listing~\ref{lst:phpMonthNavigation}).  
 
 \lstset{language=PHP, basicstyle=\ttfamily\color{black}\small, showstringspaces=false,tabsize=2}
 \lstinputlisting[label=lst:phpMonthNavigation,caption=Anlegen der Monatsnavigation]{../PHP/exampleMonthNavigation.php}
@@ -1074,7 +1074,7 @@ Um den Assistenzplaner zu konfigurieren, gibt es die Einstellungen (siehe Abbild
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Die Einstellungsseite wird von dem PHP-Script \file{settingsView.php}{} generiert. Wenn der Benutzer auf den \button{Einstellungen speichern} drückt, so wird im JavaScript \file{settings.js}{} die Funktion \texttt{saveSettings} aufgerufen. Diese Funktion parst aus den Einstellungen die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{settingsSaver.php}{}, welches die Daten im Ordner \folder{Organization} persistent in der Datei \file{settings.txt}{} speichert.
+Die Einstellungsseite wird von dem PHP-Script \file{settingsView.php}{} generiert. Wenn der Benutzer auf den \button{Einstellungen speichern} drückt, so wird im JavaScript \file{settings.js}{} die Funktion \texttt{saveSettings} aufgerufen. Diese Funktion parst aus den Einstellungen die Daten heraus und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{settingsSaver.php}{}, welches  im Ordner \folder{Organization} die Daten persistent in der Datei \file{settings.txt}{} speichert.
 
 \section{Standard-Dienstzeiten}
 \label{sec:standardDienstzeiten}
@@ -1148,7 +1148,7 @@ Der Klient hat jederzeit die Möglichkeit den Monatsplan zu speichern. Möchte er 
 \end{figure}
 
 \subsection{Implementierungsdetails}
-Der Monatsplan wird vom PHP-Script \file{monthPlanView.php}{} erstellt. Darin wird eine Instanz der Klasse \texttt{MonthPlan} erzeugt. Drückt der Benutzer auf den \button{Speichern}, so wird die Funktion \texttt{save} im JavaScript \file{monthPlan.js}{} aufgerufen. Diese Funktion parst aus dem Monatsplan die Daten heraus, ergänzt sie um die Eingaben im Nachrichtenfeld und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{monthPlanSaver.php}{}, welches die Daten persistent in der Datei \fileWithoutLink{YYYY-M.txt}\footnote{YYYY steht für das Jahr, M für den Monat - Beispiel \fileWithoutLink{2014-10.txt}} im Ordner \folder{MonthPlan} speichert.
+Der Monatsplan wird vom PHP-Script \file{monthPlanView.php}{} erstellt. Darin wird eine Instanz der Klasse \file{MonthPlan.php}{} erzeugt. Drückt der Benutzer auf den \button{Speichern}, so wird die Funktion \texttt{save} im JavaScript \file{monthPlan.js}{} aufgerufen. Diese Funktion parst aus dem Monatsplan die Daten heraus, ergänzt sie um die Eingaben im Nachrichtenfeld und schickt sie per \texttt{POST}-Parameter an das PHP-Script \file{monthPlanSaver.php}{}, welches die Daten persistent in der Datei \fileWithoutLink{YYYY-M.txt}\footnote{YYYY steht für das Jahr, M für den Monat - Beispiel \fileWithoutLink{2014-10.txt}} im Ordner \folder{MonthPlan} speichert.
 
 Drückt der Benutzer auf den \button{Team benachrichtigen}, so wird die Funktion \texttt{notifyTeam} im JavaScript \file{monthPlan.js}{} aufgerufen. Per \texttt{POST}-Parameter wird die verfasste Nachricht, Jahr und Monat an das PHP-Script \file{notifyTeam.php}{} geschickt. Dieses Script erstellt im Wesentlichen eine Instanz von \Link{https://github.com/PHPMailer/PHPMailer}{\texttt{PHPMailer}}{12.09.2014} und verschickt eine E-Mail an das Team.
 
@@ -1639,7 +1639,7 @@ Bei der Auswahl des Fälligkeitsdatums wird er durch einen Kalender (siehe Abbild
 \end{figure}
 
 \subsection{Aufgaben als erledigt markieren}
-Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links der Aufgabenbeschreibung angeklickt. Die Aufgabe wird mit Hilfe von JavaScript durchgestrichen und in die Kategorie \enquote{Erledigt} sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
+Sowohl Klient als auch Assistenten können Aufgaben als erledigt markieren. Hierfür wird die Checkbox links der Aufgabenbeschreibung angeklickt. Die Aufgabe wird durchgestrichen und in die Kategorie \enquote{Erledigt} sortiert. Falls die Aufgabe ein Wiederholungsintervall besitzt, wird eine Kopie der Aufgabe mit neu berechnetem Fälligkeitsdatum erstellt. Weiterhin wird protokolliert, wer die Aufgabe als erledigt markiert hat.
 
 Hat der Benutzer aus Versehen eine Aufgabe als erledigt markiert, kann er dies rückgängig machen, in dem er wieder die Checkbox links von der Aufgabenbeschreibung anklickt. Die Aufgabe ist nicht mehr durchgestrichen, wird in die richtige Kategorie (Heute, Morgen, ...) zurück sortiert und die gegebenenfalls erstellte Kopie der Aufgabe (mit neu berechnetem Fälligkeitsdatum) wird gelöscht.
 
@@ -1647,7 +1647,7 @@ Hat der Benutzer aus Versehen eine Aufgabe als erledigt markiert, kann er dies r
 Um Änderungen an den Aufgaben (neue Aufgaben erstellt oder Aufgaben erledigt) zu sichern, muss der Benutzer auf den Knopf \enquote{Speichern} drücken.
 
 \subsection{Implementierungsdetails}
-Die Aufgaben-Seite wird vom PHP-Script \file{toDoManagerView.php}{} erstellt. Der größte Teil der Funktionalität ist clientsseitig im JavaScript \file{toDoManager.js}{} implementiert. Hier wird viel mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt~\ref{sec:JavaScript}) in der Datei \file{DateExtended.js}{} um einige Funktionen erweitert wurde.
+Die Aufgaben-Seite wird vom PHP-Script \file{toDoManagerView.php}{} erstellt. Der größte Teil der Funktionalität ist clientsseitig im JavaScript \file{toDoManager.js}{} implementiert. Hier wird mit dem \texttt{Date}-Objekt gearbeitet, das mit dem Prototyping-Mechanismus (siehe Abschnitt~\ref{sec:JavaScript}) in der Datei \file{DateExtended.js}{} um einige Funktionen erweitert wurde.
 Weiterhin ist in der Datei \file{toDoManager.js}{} die Klasse \texttt{ToDo} enthalten. Der \texttt{DatePicker} ist in der Datei \file{datePicker.js}{} definiert.
 
 Das PHP-Script \file{toDoSaver.php}{} speichert die noch nicht erledigten Aufgaben in die Datei \file{toDos.txt}{} und die erledigten Aufgaben in die Datei \file{done.txt}{}. Beide Dateien liegen im Ordner \folder{ToDoManager}.
@@ -1846,7 +1846,7 @@ Derzeit ist nicht nachvollziehbar, wer wann welche Änderungen am Assistenzplaner
 Die Aufgaben-Verwaltung wurde nur rudimentär entwickelt. Schon zu einem frühen Zeitpunkt hat der Klient entschieden, die Aufgaben-Verwaltung für sein Team nicht einzusetzen, da der Mehraufwand durch die Verwaltung zu groß wäre. Aufgrund dieser Entscheidung wurde die Entwicklung nach einer Woche wieder eingestellt. Für andere Modelle in der Pflege wäre es aber eventuell von Vorteil die Aufgaben-Verwaltung zu nutzen. Mögliche Erweiterungen wären:
 
 \begin{itemize}
-\item Hervorhebungen bei  Datumsangabe: In der Datumsangabe (siehe Abbildung~\ref{fig:ToDoManagerDatePicker}) sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
+\item In der Datumsangabe (siehe Abbildung~\ref{fig:ToDoManagerDatePicker}) sollte der aktuelle Tag sowie der gewählte Tag farblich hervorgehoben werden.
 \item Aufgaben editieren: Aufgaben lassen sich derzeit nur anlegen, nicht im Nachhinein verändern. Eine Editierfunktion wäre von großem Nutzen.
 \item Aufgabe löschen: Aufgaben lassen sich derzeit nur anlegen, aber nicht löschen.
 \item Übersicht erledigter Aufgaben: Von Vorteil (gerade für die Nachweise der Leistungserbringung) wäre es, wenn nachvollziehbar wäre, welcher Assistent, wann, welche Aufgabe erledigt hat.
