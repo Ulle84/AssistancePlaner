@@ -75,17 +75,18 @@
  <img src="../Images/Controls/goLast.png" onclick="goToLastSlide()" id="goLast"/>
 </div>
 
-<div id="pageNumber" onclick="changeSlideNumber()"> </div>
+<div id="pageNumber" onclick="changeSlideNumber()">&nbsp;</div>
 <div id="header">Ulrich Belitz &nbsp; &nbsp; 08.10.2014</div>
-<div id="title"> </div>
-<div id="headings" class="center"></div>
+<div id="title">&nbsp;</div>
+<div id="headings" class="center">&nbsp;</div>
 
 <div class="slide">
  <div class="center">
- <br /><br /><br />
- Assistenzplaner
- <br /><br />
- Serverbasierte Software<br />zur Koordinierung der Assistenten<br />für behinderte Menschen</div>
+  <br/><br/><br/>
+  <b>Assistenzplaner</b>
+  <br/><br/>
+  Serverbasierte Software<br/>zur Koordinierung der Assistenten<br/>für behinderte Menschen
+ </div>
 </div>
 
 <div class="slide" id="gliederung">
@@ -105,75 +106,173 @@
 <div class="slide" gliederung="Einleitung">
  <div class="slideTitle">Einleitung</div>
  <div>
+  <ul>
+   <li>Motivation</li>
+   <li>Begrifflichkeiten</li>
+  </ul>
+ </div>
+</div>
 
+<div class="slide">
+ <div class="slideTitle">Motivation</div>
+ <div>
+  <ul>
+   <li>Körperlich behinderten Menschen bei der Erstellung des Dienstplans unterstützen</li>
+   <li>Manuellen Prozess automatisieren</li>
+  </ul>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="slideTitle">Begrifflichkeiten</div>
+ <div>
+  <ul>
+   <li>Klient</li>
+   <li>Assistent</li>
+   <li>Team</li>
+   <li>Dienst</li>
+   <li>Bereitschaft</li>
+   <li>Dienstplan</li>
+   <li>Stundenkontingent</li>
+  </ul>
  </div>
 </div>
 
 <div class="slide" gliederung="Ist-Prozess">
  <div class="slideTitle">Ist-Prozess</div>
- <div>
-
+ <div class="center">
+  <img src="../Images/Screenshots/DienstplanExcel.png"/>
  </div>
 </div>
 
 <div class="slide" gliederung="Soll-Prozess">
  <div class="slideTitle">Soll-Prozess</div>
- <div>
-
+ <div class="center">
+  <img src="../Images/Modell/BPMNSollProzess.png"/>
  </div>
 </div>
 
 <div class="slide" gliederung="Anforderungen">
- <div class="slideTitle">Anforderungen</div>
- <div>
+ <div class="slideTitle">Sammlung der Anforderungen als Benutzergeschichten</div>
+ <div class="center">
+  <img src="../Images/Screenshots/UserStory.png"/>
+ </div>
+</div>
 
+<div class="slide">
+ <div class="slideTitle">Modellierung der Anforderungen mit SysML</div>
+ <div class="center">
+  <img src="../Images/Modell/SysMLRequirementsMonthPlan.png"/>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="slideTitle">Modellierung der Anforderungen mit SysML</div>
+ <div class="center">
+  <img src="../Images/Modell/SysMLRequirementsToDoManager.png"/>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="slideTitle">Modellierung der Anforderungen mit SysML</div>
+ <div class="center">
+  <img src="../Images/Modell/SysMLRequirementsTeamOrganisation.png"/>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="slideTitle">Modellierung der Anforderungen mit SysML</div>
+ <div class="center">
+  <img src="../Images/Modell/SysMLRequirementsRoster.png"/>
+ </div>
+</div>
+
+<div class="slide">
+ <div class="slideTitle">Modellierung der Anforderungen mit SysML</div>
+ <div class="center">
+  <img src="../Images/Modell/SysMLRequirementsMisc.png"/>
  </div>
 </div>
 
 <div class="slide" gliederung="Marktanalyse">
  <div class="slideTitle">Marktanalyse</div>
  <div>
+  <ul>
+   <li>Excel</li>
+   <li>Offline-Anwendungen</li>
+   <li>Online-Anwendungen</li>
+  </ul>
+ </div>
+</div>
 
+<div class="slide">
+ <div class="slideTitle">Offline-Anwendungen</div>
+ <div class="center">
+  <img width="600px" src="../Images/Screenshots/Q1/Dienstplanung_Schichtstatus.png"/> <br/>
+  Quelle: QTime.de
+ </div>
+</div>
+
+
+<div class="slide">
+ <div class="slideTitle">Online-Anwendungen</div>
+ <div class="center">
+  <img width="800px" src="../Images/Screenshots/ShiftJuggler/Overview.png"/> <br/>
+  Quelle: ShiftJuggler.com/de
  </div>
 </div>
 
 <div class="slide" gliederung="Softwaredesign">
  <div class="slideTitle">Softwaredesign</div>
- <div>
+ <div class="center">
+  <img src="../Images/Modell/UMLAllComponents.png"/>
+ </div>
+</div>
 
+<div class="slide">
+ <div class="slideTitle">Komponente MonthOrganisation</div>
+ <div class="center">
+  <img src="../Images/Modell/UMLComponentMonthOrganisation.png"/>
  </div>
 </div>
 
 <div class="slide" gliederung="Implementierung">
  <div class="slideTitle">Implementierung</div>
  <div>
-
+  <ul>
+   <li>PHP</li>
+   <li>HTML</li>
+   <li>CSS</li>
+   <li>JavaScript</li>
+  </ul>
  </div>
 </div>
 
 <div class="slide" gliederung="Live-Demo">
  <div class="slideTitle">Live-Demo</div>
- <div>
-
+ <div class="center">
+  <br/><br/><br/><br/>
+  Assistenzplaner.de
  </div>
 </div>
 
 <div class="slide" gliederung="Fazit">
  <div class="slideTitle">Fazit</div>
  <div>
-
+  <ul>
+   <li>Klient entlastet!</li>
+   <li>Open-Source-Lösung entwickelt</li>
+   <li>Weiterentwicklung</li>
+   <li>Mehrere Klienten entlasten</li>
+  </ul>
  </div>
 </div>
-
-
 
 
 <div class="slide" gliederung="noHighlighting">
  <div class="slideTitle">Vielen Dank</div>
  <div class="center">
-  <img width="300" src="../Images/Presentation/Aufmerksamkeit.jpg" />
- </div>
- <div class="center">
+  <img width="300" src="../Images/Presentation/Aufmerksamkeit.jpg"/> <br/>
   ... für die Aufmerksamkeit!
  </div>
 </div>

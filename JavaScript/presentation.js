@@ -8,7 +8,7 @@ var slideHeadings = null;
 // stlye stuff
 var active = "1.00";
 var inactive = "0.30";
-var slidesBackgroundColor = "#E6E6FA";
+var slidesBackgroundColor = "whitesmoke";
 var actHeadingColor = "red";
 
 var unit = "px";
@@ -350,5 +350,6 @@ function changeSlideNumber() {
 }
 
 function zoomIn(image) {
+    /*image.style.maxWidth = image.width * zoomFactor;*/
     image.width *= zoomFactor;
 }
