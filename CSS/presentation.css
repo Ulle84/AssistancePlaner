@@ -1,23 +1,7 @@
-/*
-	#F0F8FF aliceblue
-	#E9967A darksalmon
-	#E6E6FA lavender
-	#F08080 lightcoral
-	#B0C4DE lightsteelblue
-	#FAF0E6 linen
-	#FFE4E1 mistyrose
-	#B0E0E6 powderblue
-	#87CEEB skyblue
-	#FF6347 tomato
-	#D8BFD8 thistle
-	#F5F5F5 whitesmoke
-*/
-
 body {
 	font-family: Verdana;
 	background-color: whitesmoke;
 	font-size: 30px;
-	margin: 5px;
 }
 
 table {
@@ -84,12 +68,17 @@ img {
 	clear: both;
 	text-align: center;
 	padding: 10px;
-	border-bottom: 1px solid black;
 }
 
 #headings {
-	border-bottom: 1px solid black;
+    border-top: 2px solid #d3d3d3;
+	border-bottom: 2px solid #d3d3d3;
 	font-size: 60%;
+    padding-top: 2px;
+}
+
+.headingsSeparator {
+    color: #d3d3d3;
 }
 
 #header {
@@ -137,7 +126,6 @@ img {
 .slideTitle {
 	font-weight: bold;
 	font-size: 110%;
-	border-bottom: 1px solid grey;
 	text-align: center;
 	margin-bottom: 20px;
 }
@@ -145,10 +133,7 @@ img {
 .slide {
 	display: none;
 	margin-top: 5px;
-	padding: 10px;
-	background-color: lavender; 
-	-moz-border-radius: 20px;
-    min-height: 600px;
+	min-height: 600px;
 }
 
 .center {
