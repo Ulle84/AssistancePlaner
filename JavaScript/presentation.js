@@ -37,6 +37,22 @@ var preferences = null;
 var preferencesIcon = null;
 var slides = null;
 
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        // left arrow
+        goToPreviousSlide();
+    }
+    else if (e.keyCode == '39') {
+        // right arrow
+        goToNextSlide()
+    }
+}
+
 function styleForPrint() {
     alert("noch nicht implementiert!");
 }
