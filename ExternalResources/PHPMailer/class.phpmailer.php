@@ -1345,7 +1345,7 @@ class PHPMailer
     }
 
     /**
-     * Close the active SMTP session if one exists.
+     * Close the opacityActive SMTP session if one exists.
      * @return void
      */
     public function smtpClose()

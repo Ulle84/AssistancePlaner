@@ -22,7 +22,7 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
-$roster = new Roster($year, $month);
+$roster = new Roster($year, $month, 5);
 $roster->printPdf();
 
 ?>
