@@ -12,7 +12,7 @@ class Passwords
     {
         $this->settings = new Settings($client);
 
-        $this->fileName = "../Data/" . $client ."/Team/passwords.txt";
+        $this->fileName = "../Data/" . strtolower($client) ."/Team/passwords.txt";
         if (file_exists($this->fileName)) {
             $this->readFromFile($this->fileName);
         }

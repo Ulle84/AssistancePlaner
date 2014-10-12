@@ -8,7 +8,7 @@ $year = $_POST['year'];
 $month = $_POST['month'];
 $userName = $_POST['userName'];
 
-$lockFileName = "../Data/" . $_SESSION['clientName'] . "/AssistanceInput/" . $year . "-" . $month . "_lock.txt";
+$lockFileName = "../Data/" . strtolower($_SESSION['clientName']) . "/AssistanceInput/" . $year . "-" . $month . "_lock.txt";
 
 $filePath = substr($lockFileName, 0, strrpos($lockFileName, '/'));
 

@@ -3,7 +3,7 @@ session_start();
 
 $content = $_POST['content'];
 
-$fileName = "../Data/" . $_SESSION['clientName'] . "/Organization/settings.txt";
+$fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Organization/settings.txt";
 
 $filePath = substr($fileName, 0, strrpos($fileName, '/'));
 

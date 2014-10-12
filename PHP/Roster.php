@@ -51,7 +51,7 @@ class Roster
         $this->assistanceInput = new AssistanceInput($year, $month);
         $this->monthPlan = new MonthPlan($year, $month);
 
-        $this->readFromFile("../Data/" . $_SESSION['clientName'] . "/Roster/" . $year . "-" . $month . ".txt");
+        $this->readFromFile("../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt");
 
         if (!$this->rosterExist) {
             $this->createRoster();

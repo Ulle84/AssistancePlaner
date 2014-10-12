@@ -18,7 +18,7 @@ class Settings implements SettingsInterface
     {
         $this->adminName = $adminName;
 
-        $this->fileName = "../Data/" . $adminName . "/Organization/settings.txt";
+        $this->fileName = "../Data/" . strtolower($adminName) . "/Organization/settings.txt";
         $this->readFromFile();
     }
 

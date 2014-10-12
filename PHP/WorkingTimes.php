@@ -13,7 +13,7 @@ class WorkingTimes
 
     function __construct()
     {
-        $fileName = "../Data/" . $_SESSION['clientName'] . "/Organization/defaultTimes.txt";
+        $fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Organization/defaultTimes.txt";
         if (file_exists($fileName)) {
             $this->readFromFile($fileName);
         } else {

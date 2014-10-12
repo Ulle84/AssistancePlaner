@@ -4,7 +4,7 @@ session_start();
 $toDo = $_POST['toDo'];
 $done = $_POST['done'];
 
-$fileNameToDo = "../Data/" . $_SESSION['clientName'] . "/ToDoManager/toDos.txt";
+$fileNameToDo = "../Data/" . strtolower($_SESSION['clientName']) . "/ToDoManager/toDos.txt";
 
 $filePath = substr($fileNameToDo, 0, strrpos($fileNameToDo, '/'));
 

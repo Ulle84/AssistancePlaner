@@ -7,7 +7,7 @@ $clientName = $_POST['clientName'];
 $password = $_POST['password'];
 $assistant = "";
 
-$fileName = "../Data/" . $clientName . "/Team/passwords.txt";
+$fileName = "../Data/" . strtolower($clientName) . "/Team/passwords.txt";
 
 $filePath = substr($fileName, 0, strrpos($fileName, '/'));
 

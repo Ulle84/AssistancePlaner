@@ -4,7 +4,7 @@ session_start();
 $year = $_POST['year'];
 $month = $_POST['month'];
 
-$fileName = "../Data/" . $_SESSION['clientName'] . "/Roster/" . $year . "-" . $month . ".txt";
+$fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt";
 
 if (file_exists($fileName)) {
     unlink($fileName);

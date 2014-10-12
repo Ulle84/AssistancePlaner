@@ -16,7 +16,7 @@ class Team implements TeamOrganisationInterface
 
     function __construct()
     {
-        $this->fileName = "../Data/" . $_SESSION['clientName'] . "/Team/team.txt";
+        $this->fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Team/team.txt";
         $this->readFromFile();
     }
 
