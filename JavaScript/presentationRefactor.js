@@ -66,22 +66,16 @@ function init() {
     makeImagesZoomable();
     setStartSlide();
     updatePageNumber();
-    styleControls();
     setSectionLinks();
+    createControls();
     createSettingsMenu();
 }
 
 function initElements() {
     body = window.document.getElementsByTagName("body")[0];
-    control = window.document.getElementById("control");
     tableOfContents = window.document.getElementById("tableOfContents");
-    goFirst = window.document.getElementById("goFirst");
-    goLast = window.document.getElementById("goLast");
-    goNext = window.document.getElementById("goNext");
-    goPrevious = window.document.getElementById("goPrevious");
     headings = window.document.getElementById("headings").getElementsByTagName("span");
     pageNumber = window.document.getElementById("pageNumber");
-    preferences = window.document.getElementById("preferences");
     slides = window.document.getElementsByClassName("slide");
 }
 
@@ -171,8 +165,47 @@ function setSectionLinks() {
     }
 }
 
+function createControls() {
+    control = window.document.createElement("div");
+    control.setAttribute("id", "control");
+
+    var img1 = window.document.createElement("img");
+    img1.setAttribute("src", "../Images/Controls/preferences.png");
+    img1.setAttribute("onclick", "showPreferences()");
+
+    goFirst = window.document.createElement("img");
+    goFirst.setAttribute("src", "../Images/Controls/goFirst.png");
+    goFirst.setAttribute("onclick", "goToFirstSlide()");
+    goFirst.setAttribute("id", "goFirst");
+
+    goPrevious = window.document.createElement("img");
+    goPrevious.setAttribute("src", "../Images/Controls/goPrevious.png");
+    goPrevious.setAttribute("onclick", "goToPreviousSlide()");
+    goPrevious.setAttribute("id", "goPrevious");
+
+    goNext = window.document.createElement("img");
+    goNext.setAttribute("src", "../Images/Controls/goNext.png");
+    goNext.setAttribute("onclick", "goToNextSlide()");
+    goNext.setAttribute("id", "goNext");
+
+    goLast = window.document.createElement("img");
+    goLast.setAttribute("src", "../Images/Controls/goLast.png");
+    goLast.setAttribute("onclick", "goToLastSlide()");
+    goLast.setAttribute("id", "goLast");
+
+    control.appendChild(img1);
+    control.appendChild(goFirst);
+    control.appendChild(goPrevious);
+    control.appendChild(goNext);
+    control.appendChild(goLast);
+
+    body.insertBefore(control, body.firstChild);
+
+    styleControls();
+}
+
 function createSettingsMenu () {
-    var preferences = window.document.createElement("div");
+    preferences = window.document.createElement("div");
     preferences.setAttribute("id", "preferences");
 
     var img1 = window.document.createElement("img");
@@ -182,8 +215,6 @@ function createSettingsMenu () {
     var img2 = window.document.createElement("img");
     img2.setAttribute("src", "../Images/Controls/format-justify-fill.png");
     img2.setAttribute("onclick", "styleForPrint()");
-
-
 
     var table = window.document.createElement("table");
     for (var i = 0; i < 5; i++) {
@@ -213,77 +244,83 @@ function createSettingsMenu () {
                 img.setAttribute("onclick", "incrementBodyMargin('top')");
                 td.appendChild(img);
             }
+
+            if (i == 1 && j == 0) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goPrevious.png");
+                img.setAttribute("onclick", "decrementBodyMargin('left')");
+                td.appendChild(img);
+            }
+
+            if (i == 1 && j == 4) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goNext.png");
+                img.setAttribute("onclick", "decrementBodyMargin('right')");
+                td.appendChild(img);
+            }
+
+            if (i == 2 && j == 0) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goFirst.png");
+                img.setAttribute("onclick", "resetBodyMargin('left')");
+                td.appendChild(img);
+            }
+
+            if (i == 2 && j == 2) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/edit-redo.png");
+                img.setAttribute("onclick", "resetAllBodyMargins()");
+                td.appendChild(img);
+            }
+
+            if (i == 2 && j == 4) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goLast.png");
+                img.setAttribute("onclick", "resetBodyMargin('right')");
+                td.appendChild(img);
+            }
+
+            if (i == 3 && j == 0) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goNext.png");
+                img.setAttribute("onclick", "incrementBodyMargin('left')");
+                td.appendChild(img);
+            }
+
+            if (i == 3 && j == 4) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goPrevious.png");
+                img.setAttribute("onclick", "incrementBodyMargin('right')");
+                td.appendChild(img);
+            }
+
+            if (i == 4 && j == 1) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goUp.png");
+                img.setAttribute("onclick", "decrementBodyMargin('bottom')");
+                td.appendChild(img);
+            }
+
+            if (i == 4 && j == 2) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goBottom.png");
+                img.setAttribute("onclick", "resetBodyMargin('bottom')");
+                td.appendChild(img);
+            }
+
+            if (i == 4 && j == 3) {
+                var img = window.document.createElement("img");
+                img.setAttribute("src", "../Images/Controls/goDown.png");
+                img.setAttribute("onclick", "incrementBodyMargin('bottom')");
+                td.appendChild(img);
+            }
         }
     }
-
-
 
     preferences.appendChild(img1);
     preferences.appendChild(img2);
     preferences.appendChild(table);
     body.insertBefore(preferences, body.firstChild);
-
-
-    /*
-     <div id="preferences">
-     <table>
-     <tr>
-     <td></td>
-     <td><img src="../Images/Controls/goUp.png" onclick="decrementBodyMargin('top')"/></td>
-     <td><img src="../Images/Controls/goTop.png" onclick="resetBodyMargin('top')"/></td>
-     <td><img src="../Images/Controls/goDown.png" onclick="incrementBodyMargin('top')"/></td>
-     <td></td>
-     </tr>
-     <tr>
-     <td><img src="../Images/Controls/goPrevious.png" onclick="decrementBodyMargin('left')"/></td>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td><img src="../Images/Controls/goNext.png" onclick="decrementBodyMargin('right')"/></td>
-     </tr>
-     <tr>
-     <td><img src="../Images/Controls/goFirst.png" onclick="resetBodyMargin('left')"/></td>
-     <td></td>
-     <td><img src="../Images/Controls/edit-redo.png" onclick="resetAllBodyMargins()"/></td>
-     <td></td>
-     <td><img src="../Images/Controls/goLast.png" onclick="resetBodyMargin('right')"/></td>
-     </tr>
-     <tr>
-     <td><img src="../Images/Controls/goNext.png" onclick="incrementBodyMargin('left')"/></td>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td><img src="../Images/Controls/goPrevious.png" onclick="incrementBodyMargin('right')"/></td>
-     </tr>
-     <tr>
-     <td></td>
-     <td><img src="../Images/Controls/goUp.png" onclick="decrementBodyMargin('bottom')"/></td>
-     <td><img src="../Images/Controls/goBottom.png" onclick="resetBodyMargin('bottom')"/></td>
-     <td><img src="../Images/Controls/goDown.png" onclick="incrementBodyMargin('bottom')"/></td>
-     <td></td>
-     </tr>
-     </table>
-     <!-- Colorpicker not visible with HTML 5 -->
-     <div class="colorpicker">
-     <div style="background-color:#F0F8FF;" onclick="changeSlideBackgroundColor('#F0F8FF')"></div>
-     <div style="background-color:#E9967A;" onclick="changeSlideBackgroundColor('#E9967A')"></div>
-     <div style="background-color:#E6E6FA;" onclick="changeSlideBackgroundColor('#E6E6FA')"></div>
-     <div style="background-color:#F08080;" onclick="changeSlideBackgroundColor('#F08080')"></div>
-     <div style="background-color:#B0C4DE;" onclick="changeSlideBackgroundColor('#B0C4DE')"></div>
-     <div style="background-color:#FAF0E6;" onclick="changeSlideBackgroundColor('#FAF0E6')"></div>
-     </div>
-     <div class="clearBoth"></div>
-     <div class="colorpicker">
-     <div style="background-color:#FFE4E1;" onclick="changeSlideBackgroundColor('#FFE4E1')"></div>
-     <div style="background-color:#B0E0E6;" onclick="changeSlideBackgroundColor('#B0E0E6')"></div>
-     <div style="background-color:#87CEEB;" onclick="changeSlideBackgroundColor('#87CEEB')"></div>
-     <div style="background-color:#FF6347;" onclick="changeSlideBackgroundColor('#FF6347')"></div>
-     <div style="background-color:#D8BFD8;" onclick="changeSlideBackgroundColor('#D8BFD8')"></div>
-     <div style="background-color:#F5F5F5;" onclick="changeSlideBackgroundColor('#F5F5F5')"></div>
-     </div>
-     <div class="clearBoth"></div>
-     </div>
-     */
 }
 
 function styleForPrint() {
