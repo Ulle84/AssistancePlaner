@@ -17,7 +17,7 @@ function login() {
             }
             if (xmlhttp.responseText == "OK") {
                 window.location.href = window.document.getElementById("redirect").textContent;
-                response.innerHTML = "Anmeldung erfolgreich!"
+                response.innerHTML = "Anmeldung erfolgreich! - Einen Moment bitte..."
                 return;
             }
 

@@ -1,8 +1,11 @@
-body {
-    padding: 10px;
+html * {
     font-family: Verdana;
     font-size: 10pt;
     line-height: 150%;
+}
+
+body {
+    padding: 10px;
 }
 
 a {

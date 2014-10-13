@@ -49,11 +49,13 @@ if (isset($_GET['ver'])) {
     $_SESSION['rosterAlgorithmVersion'] = $rosterAlgorithmVersion;
 }
 
+echo '<div id="main">';
+
 $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 
 $roster = new Roster($year, $month, $rosterAlgorithmVersion);
 
-echo '<div id="main">';
+
 if ($_SESSION['isClient']) {
     $roster->printNotesFromAssistants();
     $roster->printTableClient();

@@ -167,67 +167,84 @@ class Team implements TeamOrganisationInterface
     private function printTeamMemberBusinessCard($teamMember)
     {
 
-        /*<div class="businessCard">
- <h1>Markus</h1>
- <table>
-  <tr>
-   <td>Vorname</td>
-   <td>Markus</td>
-  </tr>
-  <tr>
-   <td>Nachname</td>
-   <td>Mustermann</td>
-  </tr>
-  <tr>
-   <td>E-Mail Adresse</td>
-   <td>markus@mustermann.de</td>
-  </tr>
-  <tr>
-   <td>Telefonnummer</td>
-   <td>0800-555000</td>
-  </tr>
-  <tr>
-   <td>Stichwörter</td>
-   <td>FCB</td>
-  </tr>
-  <tr>
-   <td>Stundenkontigent</td>
-   <td>200</td>
-  </tr>
-  <tr>
-   <td>Priorisierung</td>
-   <td>10</td>
-  </tr>
-  <tr>
-   <td>Bevorzugte Tage</td>
-   <td style="min-width: 300px">
-    <span><input type="checkbox" value="Mo">Mo&nbsp;</span>
-    <span><input type="checkbox" value="Di">Di&nbsp;</span>
-    <span><input type="checkbox" value="Mi">Mi&nbsp;</span>
-    <span><input type="checkbox" value="Do">Do&nbsp;</span>
-    <span><input type="checkbox" value="Fr">Fr&nbsp;</span>
-    <span><input type="checkbox" value="Sa">Sa&nbsp;</span>
-    <span><input type="checkbox" value="So">So&nbsp;</span>
-   </td>
-  </tr>
-  <tr>
-   <td>Aktionen</td>
-   <td><input type="button" value="Editieren"> <input type="button" value="Löschen"> <input type="button" value="Passwort zurücksetzen"></td>
-  </tr>
- </table>
-</div>*/
+        //$teamMember->loginName
+
+        echo '<div class="businessCard">';
+        echo '<h1>' . $teamMember->loginName . '</h1>';
+        echo '<table > ';
+        echo '<tr>';
+        echo '<td class="left">ID</td> ';
+        echo '<td class="left">' . $teamMember->loginName . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td  class="left">Vorname</td>';
+        echo '<td class="left">' . $teamMember->firstName . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Nachname</td>';
+        echo '<td class="left">' . $teamMember->lastName . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">E-Mail Adresse</td> ';
+        echo '<td class="left">' . $teamMember->eMailAddress . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Telefonnummer</td>';
+        echo '<td class="left">' . $teamMember->phoneNumber . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Stichwörter</td>';
+        echo '<td class="left">' . implode(" ", $teamMember->keyWords) . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Stundenkontigent</td>';
+        echo '<td class="left">' . $teamMember->hoursPerMonth . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Priorisierung</td>';
+        echo '<td class="left">' . $teamMember->priority . '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Bevorzugte Tage</td>';
+
+        echo '<td class="left">';
+        $weekdays = get_weekdays();
+        for ($j = 0; $j < 7; $j++) {
+            echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
+
+            if ($teamMember->preferredWeekdays[$j] == 1) {
+                echo ' checked="true"';
+            }
+
+            echo '/>' . $weekdays[$j] . '&nbsp;</span>';
+        }
+        echo '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td class="left">Aktionen</td>';
+        echo '<td class="left"><input type="button" value="Editieren"><input type="button" value="Löschen"><input type="button" value="Passwort zurücksetzen"></td>';
+        echo '</tr>';
+        echo '</table>';
+        echo '</div>';
+    }
+
+    public function printAllTeamMembers()
+    {
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            $this->printTeamMemberBusinessCard($this->teamMembers[$i]);
+        }
     }
 
 
     public function printTable()
     {
-        echo '<h1>Team Übersicht</h1>';
+        echo '<h1 > Team Übersicht </h1 > ';
 
-        echo '<table id="' . $this->tableId . '">';
+        echo '<table id = "' . $this->tableId . '" > ';
         $this->printHeader();
 
         if ($this->numberOfTeamMembers == 0) {
-            echo '</table>';
+            echo '</table > ';
             return;
         }
 
@@ -235,7 +252,7 @@ class Team implements TeamOrganisationInterface
             $this->printTeamMember($this->teamMembers[$i]);
         }
 
-        echo '</table>';
+        echo '</table > ';
     }
 
     public function getHours($scaleFactor = 1)

@@ -12,6 +12,7 @@
 <body>
 <?php include('navigation.php'); ?>
 
+<div id="main">
 <?php
 
 require_once "MonthPlan.php";
@@ -57,6 +58,6 @@ echo '<input type="button" value="Speichern" onclick="save(this, \'' . $_SESSION
 Antwort vom Server: <span id="httpResponse"></span>
 
 
-
+</div>
 </body>
 </html>

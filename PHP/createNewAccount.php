@@ -11,6 +11,10 @@
 
 <div class="center">
     <table>
+
+        <tr>
+            <td colspan="2"><b>Erstellung einen neuen Klienten-Zugangs</b></td>
+        </tr>
         <tr>
             <td>Name des Klienten:</td>
             <td><input onchange="validateClientName(this)" onblur="validateClientName(this)" type="text" name="clientName" id="clientName"/></td>

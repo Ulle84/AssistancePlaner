@@ -13,6 +13,9 @@
 <div class="center">
     <table>
         <tr>
+            <td colspan="2"><b>Bitte ändern Sie Ihr Passwort!</b></td>
+        </tr>
+        <tr>
             <td>Aktuelles Passwort:</td>
             <td><input type="password" name="oldPassword" id="oldPassword"/></td>
         </tr>

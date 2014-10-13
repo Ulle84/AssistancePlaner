@@ -18,6 +18,8 @@ echo '<div id="main">';
 if ($_SESSION['isClient']) {
     $team = new Team();
 
+    $team->printAllTeamMembers();
+
     echo 'ToDo';
 
 

@@ -19,6 +19,9 @@ echo '<div id="redirect" class="hidden">' . $redirect . '</div>';
 <div class="center">
     <table>
         <tr>
+            <td colspan="2"><b>Bitte melden Sie sich an!</b></td>
+        </tr>
+        <tr>
             <td>Klient:</td>
             <td>
 
@@ -42,6 +45,8 @@ echo '<div id="redirect" class="hidden">' . $redirect . '</div>';
                 }
                 echo '/>';
                 ?>
+            </td>
+            <!--<td>Klienten lassen dieses Feld leer</td>-->
         </tr>
         <tr>
             <td>Passwort:</td>

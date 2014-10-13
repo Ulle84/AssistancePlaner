@@ -128,18 +128,20 @@ tr:last-child > td {
 
 #navigation {
      text-align: right;
-     margin-bottom: 10px;
      padding-bottom: 10px;
      border-bottom: 1px solid slategray;
  }
 
 #sidebar {
     /*width:150px;*/
+    padding-top: 10px;
     float:left;
     margin-right: 20px;
 }
 
 #main {
     float:left;
-    padding:5px;
+    padding: 10px 10px 10px 20px;
+    border-left: 1px solid slategray;
+    min-height: 250px;
 }

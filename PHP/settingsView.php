@@ -20,7 +20,7 @@ echo '<div id="main">';
 if ($_SESSION['isClient']) {
     $settings = new Settings($_SESSION['clientName']);
 
-    echo '<h1>Einstellungen</h1>';
+    echo '<h1>Allgemein</h1>';
 
     echo '<table>';
 

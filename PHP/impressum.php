@@ -9,27 +9,13 @@
 <body>
 <?php include('navigation.php'); ?>
 
+<div id="main">
 <div class="wrapLongText">
     <h1>Impressum</h1>
 
     <h2>Angaben gemäß § 5 TMG:</h2>
 
-    <p>Ulrich Belitz<br/>
-        Kesselbachstr. 29<br/>
-        65232 Taunusstein
-    </p>
-
-    <h2>Kontakt:</h2>
-    <table>
-        <tr>
-            <td>Telefon:</td>
-            <td>0176 21 00 33 00</td>
-        </tr>
-        <tr>
-            <td>E-Mail:</td>
-            <td>u.belitz@gmx.de</td>
-        </tr>
-    </table>
+    <img width="211px" src="../Images/Screenshots/Impressum.png" />
     <p> </p>
 
     <p>Quelle: <em>Erstellt durch den <a rel="nofollow" href="http://www.e-recht24.de">Impressum-Generator</a> von
@@ -109,6 +95,7 @@
     <p><em>Quellen: <a rel="nofollow" href="http://www.e-recht24.de/muster-datenschutzerklaerung.html" target="_blank">eRecht24</a></em>
     </p>
 
+</div>
 </div>
 
 </body>

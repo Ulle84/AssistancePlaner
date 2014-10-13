@@ -16,31 +16,31 @@ if (isset($_SESSION['assistantName'])) {
     else {
         echo '<span class="hidden" id="username">' . $_SESSION['clientName'] . '</span>';
     }
-    echo '&nbsp;&nbsp;&nbsp;<a href="overview.php">Übersicht</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="changePassword.php">Passwort ändern</a>';
-    echo '&nbsp;&nbsp;&nbsp;<a href="documentation.php">Dokumentation</a>';
-    echo '&nbsp;&nbsp;&nbsp;<a href="feedbackView.php">Feedback</a>';
-    echo '&nbsp;&nbsp;&nbsp;<a href="impressum.php">Impressum</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="logout.php">Abmelden</a>';
 
     echo '</div>';
 
     echo '<div id="sidebar">';
-    echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
+    echo '<a href="rosterView.php">Dienst-Plan</a><br/>';
 
     $settings = new Settings($_SESSION['clientName']);
     if ($settings->showToDoManager == 1) {
-        echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';
+        echo '<a href="toDoManagerView.php">Aufgaben</a><br/>';
     }
 
     if ($_SESSION['isClient']) {
-        echo '<a href="monthPlanView.php">Monats-Plan</a> <br/>';
-        echo '<a href="teamView.php">Team</a> <br/>';
-        echo '<a href="settingsView.php">Einstellungen</a> <br/>';
+        echo '<a href="monthPlanView.php">Monats-Plan</a><br/>';
+        echo '<a href="teamView.php">Team</a><br/>';
+        echo '<a href="settingsView.php">Einstellungen</a><br/>';
     }
     else {
-        echo '<a href="calendarView.php">Kalender</a> <br/>';
+        echo '<a href="calendarView.php">Kalender</a><br/>';
     }
+
+    echo '<a href="documentation.php">Dokumentation</a><br/>';
+    echo '<a href="feedbackView.php">Feedback</a><br/>';
+    echo '<a href="impressum.php">Impressum</a><br/>';
 }
 else
 {
