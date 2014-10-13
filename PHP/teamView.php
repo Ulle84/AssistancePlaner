@@ -17,8 +17,8 @@ require_once 'Team.php';
 echo '<div id="main">';
 if ($_SESSION['isClient']) {
     $team = new Team();
-    $team->setTableId("team");
-    $team->printTable();
+
+    echo 'ToDo';
 
 
     echo '<br/>';

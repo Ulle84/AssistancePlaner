@@ -1,7 +1,7 @@
-function save(button) {
+function saveWorkingTimes(button) {
     button.disabled = true;
 
-    var response = document.getElementById("httpResponse");
+    var response = document.getElementById("httpResponseWorkingTimes");
     response.innerHTML = "";
 
     var teamTable = window.document.getElementById("defaultTimes")

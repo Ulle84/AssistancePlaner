@@ -38,6 +38,10 @@ function save(button, year, month) {
 }
 
 function notifyTeam(year, month) {
+    if (!confirm("Möchten Sie wirklich eine E-Mail an das Team verschicken?")) {
+        return;
+    }
+
     var httpResponse = document.getElementById("httpResponse");
 
     httpResponse.innerHTML = "";

@@ -9,7 +9,7 @@
 <?php include('navigation.php'); ?>
 
 <?php
-$redirect = 'overview.php';
+$redirect = 'rosterView.php';
 if (isset($_GET['redirect'])) {
     $redirect = $_GET['redirect'] . '.php';
 }

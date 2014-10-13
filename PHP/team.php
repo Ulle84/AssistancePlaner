@@ -164,6 +164,61 @@ class Team implements TeamOrganisationInterface
         echo '</tr>';
     }
 
+    private function printTeamMemberBusinessCard($teamMember)
+    {
+
+        /*<div class="businessCard">
+ <h1>Markus</h1>
+ <table>
+  <tr>
+   <td>Vorname</td>
+   <td>Markus</td>
+  </tr>
+  <tr>
+   <td>Nachname</td>
+   <td>Mustermann</td>
+  </tr>
+  <tr>
+   <td>E-Mail Adresse</td>
+   <td>markus@mustermann.de</td>
+  </tr>
+  <tr>
+   <td>Telefonnummer</td>
+   <td>0800-555000</td>
+  </tr>
+  <tr>
+   <td>Stichwörter</td>
+   <td>FCB</td>
+  </tr>
+  <tr>
+   <td>Stundenkontigent</td>
+   <td>200</td>
+  </tr>
+  <tr>
+   <td>Priorisierung</td>
+   <td>10</td>
+  </tr>
+  <tr>
+   <td>Bevorzugte Tage</td>
+   <td style="min-width: 300px">
+    <span><input type="checkbox" value="Mo">Mo&nbsp;</span>
+    <span><input type="checkbox" value="Di">Di&nbsp;</span>
+    <span><input type="checkbox" value="Mi">Mi&nbsp;</span>
+    <span><input type="checkbox" value="Do">Do&nbsp;</span>
+    <span><input type="checkbox" value="Fr">Fr&nbsp;</span>
+    <span><input type="checkbox" value="Sa">Sa&nbsp;</span>
+    <span><input type="checkbox" value="So">So&nbsp;</span>
+   </td>
+  </tr>
+  <tr>
+   <td>Aktionen</td>
+   <td><input type="button" value="Editieren"> <input type="button" value="Löschen"> <input type="button" value="Passwort zurücksetzen"></td>
+  </tr>
+ </table>
+</div>*/
+    }
+
+
     public function printTable()
     {
         echo '<h1>Team Übersicht</h1>';

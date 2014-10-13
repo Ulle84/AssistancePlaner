@@ -6,6 +6,7 @@
     <title>Assistenzplaner - Einstellungen</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
     <script language="JavaScript" src="../JavaScript/settings.js"></script>
+    <script language="JavaScript" src="../JavaScript/defaultTimes.js"></script>
 </head>
 <body>
 <?php include('navigation.php'); ?>
@@ -13,7 +14,9 @@
 <?php
 
 require_once 'Settings.php';
+require_once 'WorkingTimes.php';
 
+echo '<div id="main">';
 if ($_SESSION['isClient']) {
     $settings = new Settings($_SESSION['clientName']);
 
@@ -41,9 +44,20 @@ if ($_SESSION['isClient']) {
 
     echo '<br/>';
     echo 'Antwort des Servers: <span id="httpResponse"></span>';
+
+    echo '<hr />';
+
+    $workingTimes = new WorkingTimes();
+    $workingTimes->printTable();
+
+    echo '<br/>';
+    echo '<input type="button" value="Standard-Dienstzeiten Speichern" onclick="saveWorkingTimes(this)"/>';
+    echo '<br/>';
+    echo 'Antwort des Servers: <span id="httpResponseWorkingTimes"></span>';
 } else {
     echo 'Zugang nicht erlaubt!';
 }
+echo '</div>';
 ?>
 </body>
 </html>

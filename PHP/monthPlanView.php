@@ -33,6 +33,7 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+echo '<div id="main">';
 if ($_SESSION['isClient']) {
 
     $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
@@ -50,6 +51,7 @@ if ($_SESSION['isClient']) {
 } else {
     echo 'Zugang nicht erlaubt!';
 }
+echo '</div>';
 ?>
 
 

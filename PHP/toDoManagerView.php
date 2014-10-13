@@ -18,6 +18,7 @@ require_once('ToDoManager.php');
 
 $toDoManager = new ToDoManager();
 
+echo '<div id="main">';
 if ($_SESSION['isClient']) {
     $toDoManager->printToDoInput();
 }
@@ -29,7 +30,7 @@ echo '<br />';
 echo '<input type="button" onclick="save(this)" value="Speichern" />';
 echo '<br />';
 echo 'Antwort vom Server: <span id="httpResponse"></span>';
-
+echo '</div>';
 ?>
 
 

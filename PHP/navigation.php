@@ -1,4 +1,7 @@
 <?php
+
+require_once 'Settings.php';
+
 $client = "";
 if (isset($_SESSION['clientName'])) {
     $client = $_SESSION['clientName'];
@@ -19,6 +22,25 @@ if (isset($_SESSION['assistantName'])) {
     echo '&nbsp;&nbsp;&nbsp;<a href="feedbackView.php">Feedback</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="impressum.php">Impressum</a>';
     echo '&nbsp;&nbsp;&nbsp;<a href="logout.php">Abmelden</a>';
+
+    echo '</div>';
+
+    echo '<div id="sidebar">';
+    echo '<a href="rosterView.php">Dienst-Plan</a> <br/>';
+
+    $settings = new Settings($_SESSION['clientName']);
+    if ($settings->showToDoManager == 1) {
+        echo '<a href="toDoManagerView.php">Aufgaben</a> <br/>';
+    }
+
+    if ($_SESSION['isClient']) {
+        echo '<a href="monthPlanView.php">Monats-Plan</a> <br/>';
+        echo '<a href="teamView.php">Team</a> <br/>';
+        echo '<a href="settingsView.php">Einstellungen</a> <br/>';
+    }
+    else {
+        echo '<a href="calendarView.php">Kalender</a> <br/>';
+    }
 }
 else
 {
