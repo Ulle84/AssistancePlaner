@@ -164,75 +164,77 @@ class Team implements TeamOrganisationInterface
         echo '</tr>';
     }
 
-    private function printTeamMemberBusinessCard($teamMember)
+    public function printTeamMemberBusinessCard($teamMember)
     {
-
-        //$teamMember->loginName
-
-        echo '<div class="businessCard">';
+        echo '<div class="businessCard" id="' . $teamMember->loginName . '">';
         echo '<h1>' . $teamMember->loginName . '</h1>';
-        echo '<table > ';
+        echo '<table>';
+        echo '<tbody>';
         echo '<tr>';
-        echo '<td class="left">ID</td> ';
-        echo '<td class="left">' . $teamMember->loginName . '</td>';
+        echo '<td>ID</td>';
+        echo '<td>' . $teamMember->loginName . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td  class="left">Vorname</td>';
-        echo '<td class="left">' . $teamMember->firstName . '</td>';
+        echo '<td>Vorname</td>';
+        echo '<td>' . $teamMember->firstName . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Nachname</td>';
-        echo '<td class="left">' . $teamMember->lastName . '</td>';
+        echo '<td>Nachname</td>';
+        echo '<td>' . $teamMember->lastName . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">E-Mail Adresse</td> ';
-        echo '<td class="left">' . $teamMember->eMailAddress . '</td>';
+        echo '<td>E-Mail Adresse</td> ';
+        echo '<td>' . $teamMember->eMailAddress . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Telefonnummer</td>';
-        echo '<td class="left">' . $teamMember->phoneNumber . '</td>';
+        echo '<td>Telefonnummer</td>';
+        echo '<td>' . $teamMember->phoneNumber . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Stichwörter</td>';
-        echo '<td class="left">' . implode(" ", $teamMember->keyWords) . '</td>';
+        echo '<td>Stichwörter</td>';
+        echo '<td>' . implode(" ", $teamMember->keyWords) . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Stundenkontigent</td>';
-        echo '<td class="left">' . $teamMember->hoursPerMonth . '</td>';
+        echo '<td>Stundenkontigent</td>';
+        echo '<td>' . $teamMember->hoursPerMonth . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Priorisierung</td>';
-        echo '<td class="left">' . $teamMember->priority . '</td>';
+        echo '<td>Priorisierung</td>';
+        echo '<td>' . $teamMember->priority . '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Bevorzugte Tage</td>';
+        echo '<td>Bevorzugte Tage</td>';
 
-        echo '<td class="left">';
+        echo '<td>';
         $weekdays = get_weekdays();
         for ($j = 0; $j < 7; $j++) {
-            echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
+            //echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
 
             if ($teamMember->preferredWeekdays[$j] == 1) {
-                echo ' checked="true"';
+                //echo ' checked="true"';
+                echo $weekdays[$j] . '&nbsp;';
             }
 
-            echo '/>' . $weekdays[$j] . '&nbsp;</span>';
+            //echo '/>' . $weekdays[$j] . '&nbsp;</span>';
         }
         echo '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td class="left">Aktionen</td>';
-        echo '<td class="left"><input type="button" value="Editieren"><input type="button" value="Löschen"><input type="button" value="Passwort zurücksetzen"></td>';
+        echo '<td>Aktionen</td>';
+        echo '<td><input type="button" onclick="editMember(this)" value="Editieren"><input type="button" onclick="removeMember(this)" value="Löschen"><input type="button" onclick="resetPassword(this)" value="Passwort zurücksetzen"></td>';
         echo '</tr>';
+        echo '</tbody>';
         echo '</table>';
         echo '</div>';
     }
 
     public function printAllTeamMembers()
     {
+        echo '<div id="team">';
         for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
             $this->printTeamMemberBusinessCard($this->teamMembers[$i]);
         }
+        echo '</div>';
     }
 
 
