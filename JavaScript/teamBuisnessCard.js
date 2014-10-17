@@ -170,100 +170,131 @@ function newMember() {
     td19.appendChild(input0);
     td19.appendChild(input1);
     td19.appendChild(input2);
+
+    editMember(input0);
 }
 
 function editMember(button) {
     var cells = button.parentNode.parentNode.parentNode.getElementsByTagName("td");
 
-    var id = cells[1].textContent;
-    var firstName = cells[3].textContent;
-    var lastName =  cells[5].textContent;
-    var eMailAddress =  cells[7].textContent;
-    //...
+    for (var i = 0; i < 8; i++) {
+        var cellIndex = 2 * i + 1;
 
-    var inputId = window.document.createElement("input");
-    inputId.setAttribute("type", "text");
-    inputId.setAttribute("size", "20");
-    cells[1].appendChild(inputId);
-}
+        var input = window.document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("size", "45");
+        input.setAttribute("value", cells[cellIndex].textContent);
 
-function checkLoginNames() {
-    var teamTable = window.document.getElementById("team")
-    var businessCards = teamTable.getElementsByClassName("businessCard");
-
-    var loginNames = [];
-    for (var i = 0; i < businessCards.length; i++) {
-        loginNames.push(businessCards.getAttribute("id"));
-    }
-
-    loginNames.sort();
-    var last = loginNames[0];
-    for (var i = 1; i < loginNames.length; i++) {
-        if (loginNames[i] == last) {
-            alert("Die Tabelle kann nicht gespeichert werden!\nDie Kennung " + last + " ist doppelt enthalten.");
-            return false;
+        while (cells[cellIndex].hasChildNodes()) {
+            cells[cellIndex].removeChild(cells[cellIndex].firstChild);
         }
-        last = loginNames[i];
-    }
-    return true;
 
+        cells[cellIndex].appendChild(input);
+    }
+
+    var weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+    var content = cells[17].textContent;
+
+    var cellIndex = 17;
+    while (cells[cellIndex].hasChildNodes()) {
+        cells[cellIndex].removeChild(cells[cellIndex].firstChild);
+    }
+
+    for (var i = 0; i < weekdays.length; i++) {
+        var span = window.document.createElement("span");
+        cells[cellIndex].appendChild(span);
+
+        var checkbox = window.document.createElement("input");
+        if (content.indexOf(weekdays[i]) > -1) {
+            checkbox.checked = true;
+        }
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("value", weekdays[i]);
+        span.appendChild(checkbox);
+        span.appendChild(window.document.createTextNode(weekdays[i] + " "));
+    }
+
+    button.setAttribute("value", "Speichern");
+    button.setAttribute("onclick", "saveMember(this)");
 }
 
+function saveMember(button) {
+    var businessCard = button.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var cells = businessCard.getElementsByTagName("td");
 
-//TODO rework
-function saveTeam(button) {
-    if (!checkLoginNames()) {
+
+    var id = cells[1].firstChild.value;
+
+    if (!checkLoginNames(businessCard, id)) {
         return;
     }
-    button.disabled = true;
 
-    var response = document.getElementById("httpResponse");
-    response.innerHTML = "";
+    businessCard.setAttribute("id", id);
+    businessCard.firstChild.textContent = id;
 
-    var teamTable = window.document.getElementById("team")
+    for (var i = 0; i < 8; i++) {
+        var cellIndex = 2 * i + 1;
 
-    var rows = teamTable.getElementsByTagName("tr");
+        var content = cells[cellIndex].firstChild.value;
 
-    var content = "";
-    content += (rows.length - 1) + "\n";
+        while (cells[cellIndex].hasChildNodes()) {
+            cells[cellIndex].removeChild(cells[cellIndex].firstChild);
+        }
 
-    for (var i = 1; i < rows.length; i++) {
-        var data = rows[i].getElementsByTagName("td");
-        for (var j = 0; j < data.length; j++) {
-            if (j < 8) {
-                content += data[j].firstChild.value + "\n";
+        cells[cellIndex].textContent = content;
+    }
+
+    var cellIndex = 17;
+    var checkboxes = cells[cellIndex].getElementsByTagName("input");
+    var checkedWeekdays = "";
+    var firstWeekdayFound = false;
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked == true) {
+            if (firstWeekdayFound) {
+                checkedWeekdays += "+ ";
             }
-            if (j == 8) {
-                var checkBoxes = data[j].getElementsByTagName("input");
-                var contentCheckBoxes = "";
-                for (var k = 0; k < checkBoxes.length; k++) {
-                    if (contentCheckBoxes != "") {
-                        contentCheckBoxes += ";";
-                    }
-                    if (checkBoxes[k].checked == true) {
-                        contentCheckBoxes += 1;
-                    }
-                    else {
-                        contentCheckBoxes += 0;
-                    }
-
-                }
-                content += contentCheckBoxes + "\n";
+            else {
+                firstWeekdayFound = true;
             }
+            checkedWeekdays += checkboxes[i].parentNode.textContent;
         }
     }
 
+    while (cells[cellIndex].hasChildNodes()) {
+        cells[cellIndex].removeChild(cells[cellIndex].firstChild);
+    }
+
+    cells[cellIndex].textContent = checkedWeekdays;
+
+    button.disabled = true;
+
+    //TODO sent save-request to server
 
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            response.innerHTML = xmlhttp.responseText;
+            button.setAttribute("value", "Editieren");
+            button.setAttribute("onclick", "editMember(this)");
             button.disabled = false;
         }
     }
 
-    xmlhttp.open("POST", "../PHP/teamSaver.php", true);
+    xmlhttp.open("POST", "../PHP/teamMemberSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("content=" + content);
+    xmlhttp.send("content=" + "helloWorld");
+}
+
+function checkLoginNames(businessCard, id) {
+    var businessCards = window.document.getElementsByClassName("businessCard");
+
+    for (var i = 0; i < businessCards.length; i++) {
+        if (businessCards[i] != businessCard) {
+            if (businessCards[i].getAttribute("id") == id) {
+                alert("Das Team-Mitglied kann nicht gespeichert werden!\nDie Kennung " + id + " ist bereits vergeben.");
+                return false;
+            }
+        }
+    }
+    return true;
 }

@@ -4,6 +4,7 @@
 .idea/scopes/*.xml
 
 Data
+master
 
 LaTeX/*.4ct
 LaTeX/*.4tc
