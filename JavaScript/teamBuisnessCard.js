@@ -224,10 +224,22 @@ function saveMember(button) {
 
 
     var id = cells[1].firstChild.value;
+    var oldId = businessCard.firstChild.textContent;
 
     if (!checkLoginNames(businessCard, id)) {
         return;
     }
+
+    var requestContent = "oldId=" + oldId;
+    requestContent += "&id=" + id;
+    requestContent += "&firstName=" + cells[3].firstChild.value;
+    requestContent += "&lastName=" + cells[5].firstChild.value;
+    requestContent += "&eMailAddress=" + cells[7].firstChild.value;
+    requestContent += "&phoneNumber=" + cells[9].firstChild.value;
+    requestContent += "&keyWords=" + cells[11].firstChild.value;
+    requestContent += "&hoursPerMonth=" + cells[13].firstChild.value;
+    requestContent += "&priority=" + cells[15].firstChild.value;
+    requestContent += "&preferredWeekdays=" + "1;0;0;1;0;0;1"; //TODO analyse checkboxes
 
     businessCard.setAttribute("id", id);
     businessCard.firstChild.textContent = id;
@@ -274,7 +286,7 @@ function saveMember(button) {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            button.setAttribute("value", "Editieren");
+            button.setAttribute("value", xmlhttp.responseText);    // "Editieren");
             button.setAttribute("onclick", "editMember(this)");
             button.disabled = false;
         }
@@ -282,7 +294,7 @@ function saveMember(button) {
 
     xmlhttp.open("POST", "../PHP/teamMemberSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("content=" + "helloWorld");
+    xmlhttp.send(requestContent);
 }
 
 function checkLoginNames(businessCard, id) {

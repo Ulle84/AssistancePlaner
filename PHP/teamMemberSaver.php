@@ -2,10 +2,21 @@
 session_start();
 
 require_once('Team.php');
-require_once('Passwords.php');
+require_once('TeamMember.php');
 
-$content = $_POST['content'];
+$teamMember = new TeamMember();
+$teamMember->loginName = $_POST['id'];
+$teamMember->firstName = $_POST['firstName'];
+$teamMember->lastName = $_POST['lastName'];
+$teamMember->eMailAddress = $_POST['eMailAddress'];
+$teamMember->phoneNumber = $_POST['phoneNumber'];
+$teamMember->keyWords = $_POST['keyWords'];
+$teamMember->hoursPerMonth = $_POST['hoursPerMonth'];
+$teamMember->priority = $_POST['priority'];
+$teamMember->preferredWeekdays = $_POST['preferredWeekdays'];
 
-echo "Team-Mitglied wurde gespeichert";
+$team = new Team();
+$team->saveMember($_POST['oldId'], $teamMember);
 
+echo "OK";
 ?>

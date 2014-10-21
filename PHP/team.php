@@ -90,6 +90,12 @@ class Team implements TeamOrganisationInterface
         }
     }
 
+    public function saveMember($oldId, $teamMember)
+    {
+        echo 'ToDo';
+        //echo $teamMember->lastName;
+    }
+
     public function saveToFile($content)
     {
         $filePath = substr($this->fileName, 0, strrpos($this->fileName, '/'));
