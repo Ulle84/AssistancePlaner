@@ -3,6 +3,7 @@
 require_once 'TeamOrganisationInterface.php';
 
 require_once 'TeamMember.php';
+require_once 'Passwords.php';
 require_once 'functions.php';
 
 
@@ -12,7 +13,7 @@ class Team implements TeamOrganisationInterface
     private $fileName;
 
     public $teamMembers = array();
-    public $numberOfTeamMembers = 0;
+    public $numberOfTeamMembers = 0; //TODO remove, since this information is contained in $teamMembers-array
 
     function __construct()
     {
@@ -92,8 +93,62 @@ class Team implements TeamOrganisationInterface
 
     public function saveMember($oldId, $teamMember)
     {
-        echo 'ToDo';
-        //echo $teamMember->lastName;
+        if ($oldId == "") { // add team member
+            array_push($this->teamMembers, $teamMember);
+            $this->numberOfTeamMembers++;
+        } else { // update member
+            for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+                if ($this->teamMembers[$i]->loginName == $oldId) {
+                    $this->teamMembers[$i] = $teamMember;
+                    break;
+                }
+            }
+        }
+        $this->saveTeamToFile();
+    }
+
+    public function removeMember($id)
+    {
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            if ($this->teamMembers[$i]->loginName == $id) {
+                unset($this->teamMembers[$i]);
+                $this->teamMembers = array_values($this->teamMembers);
+                $this->numberOfTeamMembers--;
+                $this->saveTeamToFile();
+                break;
+            }
+        }
+    }
+
+    public function saveTeamToFile()
+    {
+        $filePath = substr($this->fileName, 0, strrpos($this->fileName, '/'));
+
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0777, true);
+        }
+
+        $fh = fopen($this->fileName, "w");
+
+        fwrite($fh, $this->numberOfTeamMembers . "\n");
+
+        for ($i = 0; $i < $this->numberOfTeamMembers; $i++) {
+            fwrite($fh, $this->teamMembers[$i]->loginName . "\n");
+            fwrite($fh, $this->teamMembers[$i]->firstName . "\n");
+            fwrite($fh, $this->teamMembers[$i]->lastName . "\n");
+            fwrite($fh, $this->teamMembers[$i]->eMailAddress . "\n");
+            fwrite($fh, $this->teamMembers[$i]->phoneNumber . "\n");
+            fwrite($fh, implode(";", $this->teamMembers[$i]->keyWords) . "\n");
+            fwrite($fh, $this->teamMembers[$i]->hoursPerMonth . "\n");
+            fwrite($fh, $this->teamMembers[$i]->priority . "\n");
+            fwrite($fh, implode(";", $this->teamMembers[$i]->preferredWeekdays) . "\n");
+        }
+
+
+        fclose($fh);
+
+        $passwords = new Passwords($_SESSION['clientName']);
+        $passwords->checkTeam($this->getLoginNames());
     }
 
     public function saveToFile($content)
@@ -213,21 +268,27 @@ class Team implements TeamOrganisationInterface
 
         echo '<td>';
         $weekdays = get_weekdays();
+        $firstPrinted = false;
         for ($j = 0; $j < 7; $j++) {
-            //echo '<span><input type="checkbox" value="' . $weekdays[$j] . '"';
-
             if ($teamMember->preferredWeekdays[$j] == 1) {
-                //echo ' checked="true"';
-                echo $weekdays[$j] . '&nbsp;';
+                if ($firstPrinted) {
+                    echo ' + ';
+                }
+                else {
+                    $firstPrinted = true;
+                }
+                echo $weekdays[$j];
             }
-
-            //echo '/>' . $weekdays[$j] . '&nbsp;</span>';
         }
         echo '</td>';
         echo '</tr>';
         echo '<tr>';
         echo '<td>Aktionen</td>';
-        echo '<td><input type="button" onclick="editMember(this)" value="Editieren"><input type="button" onclick="removeMember(this)" value="Löschen"><input type="button" onclick="resetPassword(this)" value="Passwort zurücksetzen"></td>';
+        echo '<td>';
+        echo '<input type="button" onclick="editMember(this)" value="Editieren">';
+        echo '<input type="button" onclick="resetPassword(this)" value="Passwort zurücksetzen">';
+        echo '<input type="button" onclick="removeMember(this)" value="Löschen">';
+        echo '</td>';
         echo '</tr>';
         echo '</tbody>';
         echo '</table>';

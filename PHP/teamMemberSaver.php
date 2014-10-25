@@ -10,10 +10,10 @@ $teamMember->firstName = $_POST['firstName'];
 $teamMember->lastName = $_POST['lastName'];
 $teamMember->eMailAddress = $_POST['eMailAddress'];
 $teamMember->phoneNumber = $_POST['phoneNumber'];
-$teamMember->keyWords = $_POST['keyWords'];
+$teamMember->keyWords = explode(" ", $_POST['keyWords']);
 $teamMember->hoursPerMonth = $_POST['hoursPerMonth'];
 $teamMember->priority = $_POST['priority'];
-$teamMember->preferredWeekdays = $_POST['preferredWeekdays'];
+$teamMember->preferredWeekdays = explode(";", $_POST['preferredWeekdays']);
 
 $team = new Team();
 $team->saveMember($_POST['oldId'], $teamMember);

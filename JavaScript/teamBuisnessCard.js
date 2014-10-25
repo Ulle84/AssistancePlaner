@@ -1,63 +1,52 @@
-function validateInteger(element, minValue, maxValue) {
-    var integerValue = parseInt(element.value);
-    if (isNaN(integerValue)) {
-        element.value = 0;
-        alert("Die Eingabe '" + value + "' ist ungültig und wurde auf 0 gesetzt!");
+function removeMember(button) {
+    if (!confirm("Person wirklich löschen?")) {
         return;
     }
 
-    if (integerValue < minValue) {
-        element.value = minValue;
-        alert("Werte kleiner als " + minValue + " sind nicht zulässig.\nDer Wert wurde auf " + minValue + " gesetzt!");
-        return;
-    }
+    var businessCard = button.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var id = businessCard.getAttribute("id");
 
-    if (integerValue > maxValue) {
-        element.value = maxValue;
-        alert("Werte größer als " + maxValue + " sind nicht zulässig.\nDer Wert wurde auf " + maxValue + " gesetzt!");
-        return;
-    }
+    button.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode.parentNode.parentNode.parentNode);
 
-    element.value = integerValue;
+    var xmlhttp = new XMLHttpRequest();
+
+    /*xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            alert(xmlhttp.responseText);
+        }
+    }*/
+
+    xmlhttp.open("POST", "../PHP/teamMemberEraser.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("id=" + id);
 }
 
-function validateString(element) {
-    if (element.value.contains("&")) {
-        element.value = element.value.replace(new RegExp("&", 'g'), "");
-        alert("Das Zeichen '&' ist ein unerlaubtes Sonderzeichen und wurde entfernt!");
-    }
-}
-
-function removeMember(element) {
-    if (confirm("Person wirklich löschen?")) {
-        element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode.parentNode.parentNode.parentNode);
-    }
-}
-
-function resetPassword(element) {
-    var response = document.getElementById("httpResponse");
-    response.innerHTML = "";
-
-    var userName = element.parentNode.parentNode.parentNode.firstChild.childNodes[2].textContent;
+function resetPassword(button) {
+    var businessCard = button.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var id = businessCard.getAttribute("id");
 
     //confirmation
-    if (!confirm("Passwort von " + userName + " wirklich zurücksetzen?")) {
+    if (!confirm("Passwort von " + id + " wirklich zurücksetzen?")) {
         return;
     }
 
-    element.disabled = true;
+    button.disabled = true;
+    button.previousSibling.disabled = true;
+    button.nextSibling.disabled = true;
 
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            element.disabled = false;
+            button.disabled = false;
+            button.previousSibling.disabled = false;
+            button.nextSibling.disabled = false;
         }
     }
 
     xmlhttp.open("POST", "../PHP/resetPassword.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("userName=" + userName);
+    xmlhttp.send("userName=" + id);
 }
 
 function newMember() {
@@ -160,12 +149,12 @@ function newMember() {
     input2.setAttribute("type", "button");
 
     input0.setAttribute("value", "Editieren");
-    input1.setAttribute("value", "Löschen");
-    input2.setAttribute("value", "Passwort zurücksetzen");
+    input1.setAttribute("value", "Passwort zurücksetzen");
+    input2.setAttribute("value", "Löschen");
 
     input0.setAttribute("onclick", "editMember(this)");
-    input1.setAttribute("onclick", "removeMember(this)");
-    input2.setAttribute("onclick", "resetPassword(this)");
+    input1.setAttribute("onclick", "resetPassword(this)");
+    input2.setAttribute("onclick", "removeMember(this)");
 
     td19.appendChild(input0);
     td19.appendChild(input1);
@@ -175,6 +164,9 @@ function newMember() {
 }
 
 function editMember(button) {
+    button.nextSibling.disabled = true;
+    button.nextSibling.nextSibling.disabled = true;
+
     var cells = button.parentNode.parentNode.parentNode.getElementsByTagName("td");
 
     for (var i = 0; i < 8; i++) {
@@ -184,6 +176,17 @@ function editMember(button) {
         input.setAttribute("type", "text");
         input.setAttribute("size", "45");
         input.setAttribute("value", cells[cellIndex].textContent);
+
+        var functionCall = "validateString(this)";
+        if (i == 6) {
+            functionCall = "validateInteger(this, 0, 999)";
+        }
+        if (i == 7) {
+            functionCall = "validateInteger(this, 1, 999)";
+        }
+
+        input.setAttribute("onchange", functionCall);
+        input.setAttribute("onblur", functionCall);
 
         while (cells[cellIndex].hasChildNodes()) {
             cells[cellIndex].removeChild(cells[cellIndex].firstChild);
@@ -224,6 +227,12 @@ function saveMember(button) {
 
 
     var id = cells[1].firstChild.value;
+    if (id == "") {
+        alert("Bitte eine ID vergeben!");
+        return;
+    }
+
+
     var oldId = businessCard.firstChild.textContent;
 
     if (!checkLoginNames(businessCard, id)) {
@@ -239,7 +248,23 @@ function saveMember(button) {
     requestContent += "&keyWords=" + cells[11].firstChild.value;
     requestContent += "&hoursPerMonth=" + cells[13].firstChild.value;
     requestContent += "&priority=" + cells[15].firstChild.value;
-    requestContent += "&preferredWeekdays=" + "1;0;0;1;0;0;1"; //TODO analyse checkboxes
+
+    var checkBoxes = cells[17].getElementsByTagName("input");
+
+    var contentCheckBoxes = "";
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if (contentCheckBoxes != "") {
+            contentCheckBoxes += ";";
+        }
+        if (checkBoxes[i].checked == true) {
+            contentCheckBoxes += 1;
+        }
+        else {
+            contentCheckBoxes += 0;
+        }
+    }
+
+    requestContent += "&preferredWeekdays=" + contentCheckBoxes;
 
     businessCard.setAttribute("id", id);
     businessCard.firstChild.textContent = id;
@@ -280,15 +305,15 @@ function saveMember(button) {
 
     button.disabled = true;
 
-    //TODO sent save-request to server
-
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            button.setAttribute("value", xmlhttp.responseText);    // "Editieren");
+            button.setAttribute("value", "Editieren");
             button.setAttribute("onclick", "editMember(this)");
             button.disabled = false;
+            button.nextSibling.disabled = false;
+            button.nextSibling.nextSibling.disabled = false;
         }
     }
 

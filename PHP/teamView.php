@@ -5,6 +5,7 @@
 <head>
     <title>Assistenzplaner - Team</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <script language="JavaScript" src="../JavaScript/inputValidation.js"></script>
     <script language="JavaScript" src="../JavaScript/teamBuisnessCard.js"></script>
 </head>
 <body>
