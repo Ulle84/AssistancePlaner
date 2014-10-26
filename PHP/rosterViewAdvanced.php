@@ -6,6 +6,7 @@
     <title>Assistenzplaner - Dienstplan</title>
     <link rel="stylesheet" type="text/css" href="../CSS/calendar.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <script language="JavaScript" src="../JavaScript/inputValidation.js"></script>
     <script language="JavaScript" src="../JavaScript/DateExtended.js"></script>
     <script language="JavaScript" src="../JavaScript/roster.js"></script>
 </head>
@@ -52,7 +53,11 @@ if ($_SESSION['isClient']) {
     $roster->printTableClient();
     $roster->printHourTable();
 
+    $monthPlan = new MonthPlan($year, $month);
+    $monthPlan->printNotesInputForAdmin();
+
     echo '<br/>';
+    echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(1)"/>';
     echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan löschen" onclick="deleteRoster(this, ' . $year . ', ' . $month . ')"/>';

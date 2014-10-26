@@ -22,7 +22,7 @@ if (isset($_SESSION['assistantName'])) {
     echo '</div>';
 
     echo '<div id="sidebar">';
-    echo '<a href="rosterView.php">Dienst-Plan</a><br/>';
+    echo '<a href="rosterViewAdvanced.php">Dienst-Plan</a><br/>';
 
     $settings = new Settings($_SESSION['clientName']);
     if ($settings->showToDoManager == 1) {

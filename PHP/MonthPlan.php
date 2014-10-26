@@ -16,7 +16,7 @@ class MonthPlan implements MonthOrganisationInterface
     public $calendarId = "calendar";
     public $days = array();
     public $notes = array();
-    private $defaultWorkingTimes;
+    public $defaultWorkingTimes;
     private $settings;
 
     private $daysPerMonth;

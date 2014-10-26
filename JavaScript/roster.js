@@ -33,7 +33,7 @@ function entryClicked(element) {
     calcHours(); //TODO only one column is affected - do not calculate the whole table
 }
 
-function checkRoster(showSuccess) {
+function checkRoster(showMessage) {
     var rosterTable = window.document.getElementById("rosterTable")
 
     var rows = rosterTable.getElementsByClassName("rosterData");
@@ -56,20 +56,25 @@ function checkRoster(showSuccess) {
         }
 
         if (countOfService != 1 || countOfStandby != 1) {
-            alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
+            if (showMessage) {
+                alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
+            }
             return false;
         }
     }
 
-    if (showSuccess) {
+    if (showMessage) {
         alert("Alles in Ordnung!");
     }
     return true;
 }
 
 function save(button, year, month) {
+    var saveRoster = true;
     if (!checkRoster(false)) {
-        return;
+        saveRoster = false;
+        alert("Der Dienstplan ist nicht korrekt und wird daher nicht gespeichert!\n"
+        + "Bitte Button 'Dienstplan prüfen' für Details drücken.")
     }
     button.disabled = true;
 
@@ -78,33 +83,49 @@ function save(button, year, month) {
     httpResponse.innerHTML = "";
 
 
-    var content = "";
-
+    var contentRoster = "";
     var rosterTable = window.document.getElementById("rosterTable")
 
-    var rows = rosterTable.getElementsByClassName("rosterData");
+    if (saveRoster) {
 
-    var persons = rows[0].getElementsByTagName("th");
+        var rows = rosterTable.getElementsByClassName("rosterData");
 
-    for (var i = 1; i < rows.length; i++) {
-        var personOfService = "";
-        var personOfStandby = "";
+        var persons = rows[0].getElementsByTagName("th");
 
-        var data = rows[i].getElementsByTagName("td");
+        for (var i = 1; i < rows.length; i++) {
+            var personOfService = "";
+            var personOfStandby = "";
 
-        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
-            if (data[j].textContent == serviceDescription) {
-                personOfService = persons[j].textContent;
+            var data = rows[i].getElementsByTagName("td");
+
+            for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+                if (data[j].textContent == serviceDescription) {
+                    personOfService = persons[j].textContent;
+                }
+
+                if (data[j].textContent == standbyDescription) {
+                    personOfStandby = persons[j].textContent;
+                }
             }
 
-            if (data[j].textContent == standbyDescription) {
-                personOfStandby = persons[j].textContent;
-            }
+            contentRoster += personOfService + ";" + personOfStandby + "\n";
         }
+    }
+    var contentMonthPlan = "";
 
-        content += personOfService + ";" + personOfStandby + "\n";
+    var selects = rosterTable.getElementsByTagName("select");
+    var inputs = rosterTable.getElementsByTagName("input");
+
+    for (var i = 0; i < selects.length; i += 2) {
+        contentMonthPlan += selects[i].value;
+        contentMonthPlan += " - ";
+        contentMonthPlan += selects[i + 1].value + "\n";
+        contentMonthPlan += inputs[i].value + "\n";
+        contentMonthPlan += inputs[i + 1].value + "\n";
     }
 
+    var notes = window.document.getElementById("notes");
+    contentMonthPlan += notes.value;
 
     var xmlhttp = new XMLHttpRequest();
 
@@ -112,17 +133,19 @@ function save(button, year, month) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             httpResponse.innerHTML = xmlhttp.responseText;
 
-            var now = new Date();
-            var lastChange = window.document.getElementById("lastChange");
-            lastChange.textContent = now.toStringDisplayWithTime();
+            if (xmlhttp.responseText != "") {
+                var now = new Date();
+                var lastChange = window.document.getElementById("lastChange");
+                lastChange.textContent = now.toStringDisplayWithTime();
+            }
 
             button.disabled = false;
         }
     }
 
-    xmlhttp.open("POST", "../PHP/rosterSaver.php", true);
+    xmlhttp.open("POST", "../PHP/rosterAndMonthPlanSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
+    xmlhttp.send("year=" + year + "&month=" + month + "&contentRoster=" + contentRoster + "&contentMonthPlan=" + contentMonthPlan);
 }
 
 function createPdf(button, year, month) {
@@ -255,6 +278,30 @@ function checkAvailability() {
         alert("Es gibt Tage, an denen nicht genug Assistenten Zeit haben:\n" + badDays);
     }
 
+}
+
+function notifyTeam(year, month) {
+    if (!confirm("Möchten Sie wirklich eine E-Mail an das Team verschicken?")) {
+        return;
+    }
+
+    var httpResponse = document.getElementById("httpResponse");
+
+    httpResponse.innerHTML = "";
+
+    var content = window.document.getElementById("notes").value.replace(new RegExp("\n", 'g'), "<br />");
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            httpResponse.innerHTML = xmlhttp.responseText;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/notifyTeam.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
 }
 
 function init() {

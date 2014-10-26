@@ -175,6 +175,7 @@ function editMember(button) {
         var input = window.document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("size", "45");
+        input.setAttribute("maxlength", "50");
         input.setAttribute("value", cells[cellIndex].textContent);
 
         var functionCall = "validateString(this)";

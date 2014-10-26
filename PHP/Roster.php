@@ -24,7 +24,6 @@ class Roster
 {
     private $month;
     private $year;
-    private $rosterAlgorithmVersion;
     private $daysPerMonth;
     private $lastChange;
     private $servicePerson = array();
@@ -35,11 +34,10 @@ class Roster
     private $assistanceInput;
     private $monthPlan;
 
-    function __construct($year, $month, $rosterAlgorithmVersion)
+    function __construct($year, $month)
     {
         $this->year = $year;
         $this->month = $month;
-        $this->rosterAlgorithmVersion = $rosterAlgorithmVersion;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
@@ -171,7 +169,7 @@ class Roster
                 $year--;
             }
 
-            $rosterPreviousMonth = new Roster($year, $previousMonth, $this->rosterAlgorithmVersion);
+            $rosterPreviousMonth = new Roster($year, $previousMonth);
             if ($rosterPreviousMonth->rosterExist) {
                 $lastDayOfMonth = date("t", mktime(0, 0, 0, $previousMonth, 1, $year));
                 if ($this->standbyPerson[$day] == $rosterPreviousMonth->servicePerson[$lastDayOfMonth]) {
@@ -214,7 +212,35 @@ class Roster
     {
         echo '<tr class="rosterData">';
         echo '<td class="date">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
-        echo '<td>' . $day->getWorkingHours() . '</td>';
+        //echo '<td>' . $day->getWorkingHours() . '</td>'; //TODO can be updated through drop downs
+
+        echo '<td>';
+
+        echo '<select size="1">';
+
+        foreach ($this->monthPlan->defaultWorkingTimes->startTimes as $startTime) {
+            echo '<option';
+            if ($startTime == $day->serviceBegin) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $startTime . '</option>';
+        }
+
+        echo '</select>';
+        echo ' - ';
+
+        echo '<select size="1">';
+
+        foreach ($this->monthPlan->defaultWorkingTimes->endTimes as $endTime) {
+            echo '<option';
+            if ($endTime == $day->serviceEnd) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $endTime . '</option>';
+        }
+
+        echo '</select>';
+
         echo '<td class="hidden">' . $day->serviceHours . '</td>';
         echo '<td class="hidden">' . $day->standbyHours . '</td>';
 
@@ -251,8 +277,10 @@ class Roster
             echo '<td onclick="entryClicked(this)" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
         }
 
-        echo '<td class="left">' . $day->publicNotes . '</td>';
-        echo '<td class="left">' . $day->privateNotes . '</td>';
+        /*echo '<td class="left">' . $day->publicNotes . '</td>';
+        echo '<td class="left">' . $day->privateNotes . '</td>';*/
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
 
         echo '</tr>';
 
@@ -460,29 +488,7 @@ class Roster
 
     private function createRoster()
     {
-        switch($this->rosterAlgorithmVersion)
-        {
-            case 1:
-                $this->createRosterAlgorithm1();
-                break;
-            case 2:
-                $this->createRosterAlgorithm2();
-                break;
-            case 3:
-                $this->createRosterAlgorithm3();
-                break;
-            case 4:
-                $this->createRosterAlgorithm4();
-                break;
-            case 5:
-                $this->createRosterAlgorithm5();
-                break;
-            case 6:
-                $this->createRosterAlgorithm6();
-                break;
-            default:
-                $this->createRosterAlgorithm5();
-        }
+        $this->createRosterAlgorithm5();
     }
 
     private function createRosterAlgorithm1()
