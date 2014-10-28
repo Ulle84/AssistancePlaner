@@ -22,7 +22,7 @@ if (isset($_SESSION['assistantName'])) {
     echo '</div>';
 
     echo '<div id="sidebar">';
-    echo '<a href="rosterViewAdvanced.php">Dienst-Plan</a><br/>';
+    echo '<a href="rosterView.php">Dienst-Plan</a><br/>';
 
     $settings = new Settings($_SESSION['clientName']);
     if ($settings->showToDoManager == 1) {
@@ -30,7 +30,7 @@ if (isset($_SESSION['assistantName'])) {
     }
 
     if ($_SESSION['isClient']) {
-        echo '<a href="monthPlanView.php">Monats-Plan</a><br/>';
+        //echo '<a href="monthPlanView.php">Monats-Plan</a><br/>';
         echo '<a href="teamView.php">Team</a><br/>';
         echo '<a href="settingsView.php">Einstellungen</a><br/>';
     }
@@ -38,7 +38,7 @@ if (isset($_SESSION['assistantName'])) {
         echo '<a href="calendarView.php">Kalender</a><br/>';
     }
 
-    echo '<a href="documentation.php">Dokumentation</a><br/>';
+    //echo '<a href="documentation.php">Dokumentation</a><br/>';
     echo '<a href="feedbackView.php">Feedback</a><br/>';
     echo '<a href="impressum.php">Impressum</a><br/>';
 }

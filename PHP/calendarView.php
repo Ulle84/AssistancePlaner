@@ -15,7 +15,7 @@
 <div id="main">
 <?php
 
-require_once "MonthPlan.php";
+require_once "Roster.php";
 require_once "MonthNavigation.php";
 
 $month = date("n");
@@ -39,7 +39,7 @@ if (isset($_GET['month'])) {
 $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
 
 $id = 'calendar';
-$calendar = new MonthPlan($year, $month);
+$calendar = new Roster($year, $month);
 $calendar->calendarId = $id;
 $calendar->printHeader();
 $calendar->printNotesFromAdmin();

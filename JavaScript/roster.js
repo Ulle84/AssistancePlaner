@@ -69,63 +69,146 @@ function checkRoster(showMessage) {
     return true;
 }
 
-function save(button, year, month) {
-    var saveRoster = true;
-    if (!checkRoster(false)) {
-        saveRoster = false;
-        alert("Der Dienstplan ist nicht korrekt und wird daher nicht gespeichert!\n"
-        + "Bitte Button 'Dienstplan prüfen' für Details drücken.")
+function requestRoster(button, year, month) {
+    button.disabled = true;
+
+    // Zeiten zusammensuchen
+    var rows = rosterTable.getElementsByClassName("rosterData");
+
+    var workingTimes = "";
+
+    for (var i = 1; i < rows.length; i++) {
+
+        var selects = rows[i].getElementsByTagName("select");
+
+        workingTimes += selects[0].value;
+        workingTimes += " - ";
+        workingTimes += selects[1].value + "\n";
     }
+
+
+    // request mit zeiten an server stellen
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var roster = xmlhttp.responseText.split("\n");
+
+            clearRoster();
+            setNewRoster(roster);
+
+            button.disabled = false;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/rosterGenerator.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month + "&workingTimes=" + workingTimes);
+}
+
+function setNewRoster(roster) {
+    var rows = rosterTable.getElementsByClassName("rosterData");
+    var persons = rows[0].getElementsByTagName("th");
+
+    for (var i = 1; i < rows.length; i++) {
+        // check that we have ONE 'Dienst' and ONE 'Bereitschaft'
+        var data = rows[i].getElementsByTagName("td");
+
+        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+            if (persons[j].textContent == roster[(i - 1) * 2]) {
+                data[j].textContent = serviceDescription;
+                data[j].setAttribute("baseClass", data[j].getAttribute("baseClass"));
+                data[j].setAttribute("class", "service");
+            }
+
+            if (persons[j].textContent == roster[(i - 1) * 2 + 1]) {
+                data[j].textContent = standbyDescription;
+                data[j].setAttribute("baseClass", data[j].getAttribute("baseClass"));
+                data[j].setAttribute("class", "standby");
+            }
+        }
+    }
+
+    calcHours();
+}
+
+function resetRoster() {
+    if (!confirm("Möchten Sie den Dienstplan wirklich verwerfen?")) {
+        return;
+    }
+
+    clearRoster();
+
+    calcHours();
+}
+
+function clearRoster() {
+    var services = window.document.getElementsByClassName("service");
+    while (services.length > 0) {
+        services[0].textContent = "";
+        services[0].setAttribute("class", services[0].getAttribute("baseClass"));
+    }
+
+    var standbys = window.document.getElementsByClassName("standby");
+    while (standbys.length > 0) {
+        standbys[0].textContent = "";
+        standbys[0].setAttribute("class", standbys[0].getAttribute("baseClass"));
+    }
+}
+
+function save(button, year, month) {
+    /*var saveRoster = true;
+     if (!checkRoster(false)) {
+     saveRoster = false;
+     alert("Der Dienstplan ist nicht korrekt und wird daher nicht gespeichert!\n"
+     + "Bitte Button 'Dienstplan prüfen' für Details drücken.")
+     }*/
     button.disabled = true;
 
     var httpResponse = document.getElementById("httpResponse");
 
     httpResponse.innerHTML = "";
 
-
     var contentRoster = "";
-    var rosterTable = window.document.getElementById("rosterTable")
+    var rosterTable = window.document.getElementById("rosterTable");
+    var rows = rosterTable.getElementsByClassName("rosterData");
+    var persons = rows[0].getElementsByTagName("th");
 
-    if (saveRoster) {
+    for (var i = 1; i < rows.length; i++) {
 
-        var rows = rosterTable.getElementsByClassName("rosterData");
+        var selects = rows[i].getElementsByTagName("select");
+        var inputs = rows[i].getElementsByTagName("input");
 
-        var persons = rows[0].getElementsByTagName("th");
+        contentRoster += selects[0].value;
+        contentRoster += " - ";
+        contentRoster += selects[1].value + "\n";
+        contentRoster += inputs[0].value + "\n";
+        contentRoster += inputs[1].value + "\n";
 
-        for (var i = 1; i < rows.length; i++) {
-            var personOfService = "";
-            var personOfStandby = "";
 
-            var data = rows[i].getElementsByTagName("td");
+        var personOfService = "";
+        var personOfStandby = "";
 
-            for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
-                if (data[j].textContent == serviceDescription) {
-                    personOfService = persons[j].textContent;
-                }
+        //if (saveRoster) {
+        var data = rows[i].getElementsByTagName("td");
 
-                if (data[j].textContent == standbyDescription) {
-                    personOfStandby = persons[j].textContent;
-                }
+        for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
+            if (data[j].textContent == serviceDescription) {
+                personOfService = persons[j].textContent;
             }
 
-            contentRoster += personOfService + ";" + personOfStandby + "\n";
+            if (data[j].textContent == standbyDescription) {
+                personOfStandby = persons[j].textContent;
+            }
         }
-    }
-    var contentMonthPlan = "";
+        //}
 
-    var selects = rosterTable.getElementsByTagName("select");
-    var inputs = rosterTable.getElementsByTagName("input");
-
-    for (var i = 0; i < selects.length; i += 2) {
-        contentMonthPlan += selects[i].value;
-        contentMonthPlan += " - ";
-        contentMonthPlan += selects[i + 1].value + "\n";
-        contentMonthPlan += inputs[i].value + "\n";
-        contentMonthPlan += inputs[i + 1].value + "\n";
+        contentRoster += personOfService + "\n";
+        contentRoster += personOfStandby + "\n";
     }
 
     var notes = window.document.getElementById("notes");
-    contentMonthPlan += notes.value;
+    contentRoster += notes.value;
 
     var xmlhttp = new XMLHttpRequest();
 
@@ -134,6 +217,7 @@ function save(button, year, month) {
             httpResponse.innerHTML = xmlhttp.responseText;
 
             if (xmlhttp.responseText != "") {
+                //TODO take last change of server!
                 var now = new Date();
                 var lastChange = window.document.getElementById("lastChange");
                 lastChange.textContent = now.toStringDisplayWithTime();
@@ -143,12 +227,16 @@ function save(button, year, month) {
         }
     }
 
-    xmlhttp.open("POST", "../PHP/rosterAndMonthPlanSaver.php", true);
+    xmlhttp.open("POST", "../PHP/rosterSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month + "&contentRoster=" + contentRoster + "&contentMonthPlan=" + contentMonthPlan);
+    xmlhttp.send("year=" + year + "&month=" + month + "&content=" + contentRoster);
 }
 
 function createPdf(button, year, month) {
+    if (!confirm("Haben Sie den Dienstplan gespeichert?")) {
+        return;
+    }
+
 
     if (!checkRoster(false)) {
         return;

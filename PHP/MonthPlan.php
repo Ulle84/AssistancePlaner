@@ -1,5 +1,7 @@
 <?php
 
+/* Attention DO NOT USE ANYMORE!!! */
+
 require_once 'MonthOrganisationInterface.php';
 
 require_once 'Day.php';

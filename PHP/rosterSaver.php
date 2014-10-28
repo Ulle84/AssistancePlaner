@@ -13,8 +13,10 @@ if (!file_exists($filePath)) {
     mkdir($filePath, 0777, true);
 }
 
+$now = date("d.m.Y H:i"); //date('Y-m-d H:i:s')
+
 $fh = fopen($fileName, "w");
-fwrite($fh, date("d.m.Y H:i\n")); //date('Y-m-d H:i:s')
+fwrite($fh, $now . "\n");
 fwrite($fh, $content);
 fclose($fh);
 

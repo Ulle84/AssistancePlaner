@@ -5,6 +5,10 @@ require_once 'TeamOrganisationInterface.php';
 require_once 'AssistanceInput.php';
 require_once 'Team.php';
 require_once 'MonthPlan.php';
+require_once 'Day.php';
+require_once 'functions.php';
+require_once 'WorkingTimes.php';
+require_once 'Settings.php';
 
 require_once '../ExternalResources/FreePDF_v1_7/fpdf.php';
 
@@ -34,11 +38,21 @@ class Roster
     private $assistanceInput;
     private $monthPlan;
 
+    public $calendarId = "calendar";
+    public $days = array();
+    public $notes = array();
+    public $defaultWorkingTimes;
+    private $settings;
+
     function __construct($year, $month)
     {
         $this->year = $year;
         $this->month = $month;
         $this->daysPerMonth = date("t", mktime(0, 0, 0, $month, 1, $year));
+
+        $this->defaultWorkingTimes = new WorkingTimes();
+
+        $this->settings = new Settings($_SESSION['clientName']);
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             $this->servicePerson[$i] = "";
@@ -47,35 +61,123 @@ class Roster
 
         $this->team = new Team();
         $this->assistanceInput = new AssistanceInput($year, $month);
-        $this->monthPlan = new MonthPlan($year, $month);
 
-        $this->readFromFile("../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt");
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $this->days[$i] = new Day();
+            $this->days[$i]->dayNumber = $i;
+        }
 
-        if (!$this->rosterExist) {
+        $this->initWeekdays();
+
+        $fileName = "../Data/" . $_SESSION['clientName'] . "/Roster/" . $year . "-" . $month . ".txt";
+
+        $this->readFromFile($fileName);
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            if (!file_exists($fileName)) {
+                $this->days[$i]->serviceBegin = $this->defaultWorkingTimes->begin[$this->days[$i]->weekday];
+                $this->days[$i]->serviceEnd = $this->defaultWorkingTimes->end[$this->days[$i]->weekday];
+            }
+
+            $this->days[$i]->calculateWorkingHours();
+        }
+
+        /*if (!$this->rosterExist) {
             $this->createRoster();
+        }*/
+    }
+
+    public function generateRoster($workingTimes) {
+        $workingTimesArray = explode("\n", $workingTimes);
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $this->days[$i]->serviceBegin = substr($workingTimesArray[$i-1], 0, 5);
+            $this->days[$i]->serviceEnd = substr($workingTimesArray[$i-1], 8, 5);
+            $this->days[$i]->calculateWorkingHours();
+        }
+
+        $this->createRoster();
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            echo $this->servicePerson[$i] . "\n";
+            echo $this->standbyPerson[$i] . "\n";
         }
     }
 
     private function readFromFile($fileName)
     {
+        /*
+         * if (file_exists($fileName)) {
+            $file = fopen($fileName, "r");
+
+            $this->days = array();
+
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                $day = new Day();
+
+                $times = fgets($file);
+                $day->serviceBegin = substr($times, 0, 5);
+                $day->serviceEnd = substr($times, 8, 5);
+                $day->publicNotes = rtrim(fgets($file));
+                $day->privateNotes = rtrim(fgets($file));
+                $day->dayNumber = $i;
+                $day->calculateWorkingHours();
+
+                $this->days[$i] = $day;
+            }
+
+            while (!feof($file)) {
+                $line = rtrim(fgets($file));
+                array_push($this->notes, $line);
+            }
+
+            fclose($file);
+        }
+
+        $this->initWeekdays();
+         */
+
+
         if (file_exists($fileName)) {
-            $this->rosterExist = true;
 
             $file = fopen($fileName, "r");
 
             $this->lastChange = rtrim(fgets($file));
 
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-                $line = rtrim(fgets($file));
-                $lineContent = explode(";", $line);
-                $this->servicePerson[$i] = $lineContent[0];
-                $this->standbyPerson[$i] = $lineContent[1];
+                $day = new Day();
+
+                $times = fgets($file);
+                $day->serviceBegin = substr($times, 0, 5);
+                $day->serviceEnd = substr($times, 8, 5);
+                $day->publicNotes = rtrim(fgets($file));
+                $day->privateNotes = rtrim(fgets($file));
+                $day->dayNumber = $i;
+                $day->calculateWorkingHours();
+
+                $this->days[$i] = $day;
+
+                $this->servicePerson[$i] = rtrim(fgets($file));
+                $this->standbyPerson[$i] = rtrim(fgets($file));
             }
 
+            if ($this->servicePerson[1] != "") {
+                $this->rosterExist = true;
+            }
+
+            while (!feof($file)) {
+                $line = rtrim(fgets($file));
+                array_push($this->notes, $line);
+            }
+
+            fclose($file);
+
         }
+
+        $this->initWeekdays();
     }
 
-    private function writeToFile()
+    /*private function writeToFile()
     {
         $fileName = "../Data/" . $_SESSION['clientName'] . "/Roster/" . $this->year . "-" . $this->month . ".txt";
         $fh = fopen($fileName, "w");
@@ -86,7 +188,7 @@ class Roster
         }
 
         fclose($fh);
-    }
+    }*/
 
     //TODO put compareTimes, getLatterTime, addOneHour in a helper class
 
@@ -151,14 +253,11 @@ class Roster
 
     private function getServiceHours($day)
     {
-        //substr($this->serviceBegin, 3, 2)
-        //$hourOfServiceBeg$this->monthPlan->days[$day]->serviceBegin
-
         $serviceHours = "10:00 - 11:00";
 
         if ($day != 1) {
             if ($this->standbyPerson[$day] == $this->servicePerson[$day - 1]) {
-                $latterTime = $this->getLatterTime("10:00", $this->monthPlan->days[$day - 1]->serviceEnd);
+                $latterTime = $this->getLatterTime("10:00", $this->days[$day - 1]->serviceEnd);
                 $serviceHours = $latterTime . " - " . $this->addOneHour($latterTime);
             }
         } else {
@@ -179,7 +278,7 @@ class Roster
             }
         }
 
-        if ($this->monthPlan->days[$day]->serviceHours > 13) {
+        if ($this->days[$day]->serviceHours > 13) {
             $serviceHours .= " und 18:00 - 19:00";
         }
 
@@ -218,7 +317,7 @@ class Roster
 
         echo '<select size="1">';
 
-        foreach ($this->monthPlan->defaultWorkingTimes->startTimes as $startTime) {
+        foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
             echo '<option';
             if ($startTime == $day->serviceBegin) {
                 echo ' selected="selected"';
@@ -231,7 +330,7 @@ class Roster
 
         echo '<select size="1">';
 
-        foreach ($this->monthPlan->defaultWorkingTimes->endTimes as $endTime) {
+        foreach ($this->defaultWorkingTimes->endTimes as $endTime) {
             echo '<option';
             if ($endTime == $day->serviceEnd) {
                 echo ' selected="selected"';
@@ -300,8 +399,8 @@ class Roster
         $this->printTableHeader(true);
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $this->printDayRow($this->monthPlan->days[$i]);
-            if ($this->monthPlan->days[$i]->weekday == 7 && $i < $this->daysPerMonth) {
+            $this->printDayRow($this->days[$i]);
+            if ($this->days[$i]->weekday == 7 && $i < $this->daysPerMonth) {
                 $this->printTableHeader(false);
             }
 
@@ -363,12 +462,12 @@ class Roster
             }
 
             echo '><td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-            echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
+            echo '<td class="left">' . $this->days[$i]->getWorkingHours() . '</td>';
             echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
 
             echo '<td class="left">' . $this->getServiceHours($i) . '</td>';
             echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
-            echo '<td class="left">' . $this->monthPlan->days[$i]->publicNotes . '</td>';
+            echo '<td class="left">' . $this->days[$i]->publicNotes . '</td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -387,7 +486,7 @@ class Roster
             if ($this->servicePerson[$i] == $_SESSION['assistantName']) {
                 echo '<tr>';
                 echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-                echo '<td class="left">' . $this->monthPlan->days[$i]->getWorkingHours() . '</td>';
+                echo '<td class="left">' . $this->days[$i]->getWorkingHours() . '</td>';
                 echo '<td class="left">Dienst</td>';
                 echo '</tr>';
             }
@@ -476,7 +575,7 @@ class Roster
 
 
             $pdf->Cell($w[0], $cellHeight, get_short_date($this->year, $this->month, $i), 1, 0, 'R', false);
-            $pdf->Cell($w[1], $cellHeight, $this->monthPlan->days[$i]->getWorkingHours(), 1, 0, 'C', false);
+            $pdf->Cell($w[1], $cellHeight, $this->days[$i]->getWorkingHours(), 1, 0, 'C', false);
             $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
 
             $pdf->Cell($w[3], $cellHeight, $this->getServiceHours($i), 1, 0, 'L', false);
@@ -630,7 +729,7 @@ class Roster
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $scoreTable[$name][$i - 1] *= $priorities[$name];
-                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                if ($preferredWeekdays[$name][$this->days[$i]->weekday - 1] == 1) {
                     $scoreTable[$name][$i - 1] *= 2;
                 }
             }
@@ -699,12 +798,12 @@ class Roster
         foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $scoreTable[$name][$i - 1] *= $priorities[$name];
-                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                if ($preferredWeekdays[$name][$this->days[$i]->weekday - 1] == 1) {
                     $scoreTable[$name][$i - 1] *= 2;
                 }
                 foreach ($keyWords[$name] as $keyWord) {
                     if ($keyWord != "") {
-                        if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
+                        if (strpos(strtolower($this->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
                             $scoreTable[$name][$i - 1] *= 10;
                         }
                     }
@@ -785,8 +884,8 @@ class Roster
         $totalOfServiceHours = 0;
         $totalOfStandbyHours = 0;
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
-            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
+            $totalOfServiceHours += $this->days[$i]->serviceHours;
+            $totalOfStandbyHours += $this->days[$i]->standbyHours;
         }
 
         $scaleFactor = ($totalOfServiceHours + $totalOfStandbyHours) / $totalQuotaOfHours;
@@ -810,12 +909,12 @@ class Roster
 
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $scoreTable[$name][$i - 1] *= $priorities[$name];
-                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                if ($preferredWeekdays[$name][$this->days[$i]->weekday - 1] == 1) {
                     $scoreTable[$name][$i - 1] *= 2;
                 }
                 foreach ($keyWords[$name] as $keyWord) {
                     if ($keyWord != "") {
-                        if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
+                        if (strpos(strtolower($this->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
                             $scoreTable[$name][$i - 1] *= 10;
                         }
 
@@ -866,9 +965,9 @@ class Roster
             while (!$this->isServiceComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
                             $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->days[$convertedData[$i][2]]->serviceHours;
                         }
                     }
                 }
@@ -881,9 +980,9 @@ class Roster
             while (!$this->isStandbyComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
                             $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->days[$convertedData[$i][2]]->standbyHours;
                         }
                     }
 
@@ -953,8 +1052,8 @@ class Roster
         $totalOfServiceHours = 0;
         $totalOfStandbyHours = 0;
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $totalOfServiceHours += $this->monthPlan->days[$i]->serviceHours;
-            $totalOfStandbyHours += $this->monthPlan->days[$i]->standbyHours;
+            $totalOfServiceHours += $this->days[$i]->serviceHours;
+            $totalOfStandbyHours += $this->days[$i]->standbyHours;
         }
 
         $scaleFactor = ($totalOfServiceHours + $totalOfStandbyHours) / $totalQuotaOfHours;
@@ -978,12 +1077,12 @@ class Roster
 
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $scoreTable[$name][$i - 1] *= $priorities[$name];
-                if ($preferredWeekdays[$name][$this->monthPlan->days[$i]->weekday - 1] == 1) {
+                if ($preferredWeekdays[$name][$this->days[$i]->weekday - 1] == 1) {
                     $scoreTable[$name][$i - 1] *= 2;
                 }
                 foreach ($keyWords[$name] as $keyWord) {
                     if ($keyWord != "") {
-                        if (strpos(strtolower($this->monthPlan->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
+                        if (strpos(strtolower($this->days[$i]->privateNotes), strtolower($keyWord)) !== false) {
                             $scoreTable[$name][$i - 1] *= 10;
                         }
 
@@ -1031,9 +1130,9 @@ class Roster
             while (!$this->isServiceComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->servicePerson[$convertedData[$i][2]] == "") {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->days[$convertedData[$i][2]]->serviceHours >= 0 - ($serviceTolerance * $serviceRun)) {
                             $this->servicePerson[$convertedData[$i][2]] = $convertedData[$i][1];
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->serviceHours;
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->days[$convertedData[$i][2]]->serviceHours;
                         }
                     }
                 }
@@ -1046,11 +1145,11 @@ class Roster
             while (!$this->isStandbyComplete()) {
                 for ($i = 0; $i < count($convertedData); $i++) {
                     if ($this->standbyPerson[$convertedData[$i][2]] == "" && $this->servicePerson[$convertedData[$i][2]] != $convertedData[$i][1]) {
-                        if ($quotaOfHours[$convertedData[$i][1]] - $this->monthPlan->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
+                        if ($quotaOfHours[$convertedData[$i][1]] - $this->days[$convertedData[$i][2]]->standbyHours >= 0 - ($standbyTolerance * $standbyRun)) {
                             //echo "standby run: " . $standbyRun . "<br />";
                             $this->standbyPerson[$convertedData[$i][2]] = $convertedData[$i][1];
                             //echo "standby person: " . $convertedData[$i][1] . "<br />";
-                            $quotaOfHours[$convertedData[$i][1]] -= $this->monthPlan->days[$convertedData[$i][2]]->standbyHours;
+                            $quotaOfHours[$convertedData[$i][1]] -= $this->days[$convertedData[$i][2]]->standbyHours;
                             //echo "quota: " . $quotaOfHours[$convertedData[$i][1]] . "<br />";
                         }
                     }
@@ -1097,7 +1196,7 @@ class Roster
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
             echo '<tr>';
             echo '<td>' . get_short_date($this->year, $this->month, $i) . '</td>';
-            echo '<td>' . $this->monthPlan->days[$i]->privateNotes . '</td>';
+            echo '<td>' . $this->days[$i]->privateNotes . '</td>';
             foreach ($scoreTable as $name => $dates) {
                 echo '<td>' . $dates[$i - 1] . '</td>';
             }
@@ -1151,6 +1250,227 @@ class Roster
             }
         }
         return true;
+    }
+
+    public function getDays()
+    {
+        return $this->days;
+    }
+
+    private function initWeekdays()
+    {
+        $weekday = date("N", mktime(0, 0, 0, $this->month, 1, $this->year));
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $this->days[$i]->weekday = $weekday;
+
+            $weekday++;
+            if ($weekday == 8) {
+                $weekday = 1;
+            }
+        }
+    }
+
+    private function hasPublicNotes()
+    {
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            if ($this->days[$i]->publicNotes != "") {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function printTableHeaderMonthPlan()
+    {
+        echo '<tr>';
+
+        echo '<th>Datum</th>';
+        echo '<th>Dienstbeginn</th>';
+        echo '<th>Dienstende</th>';
+        echo '<th>Bemerkungen (öffentlich)</th>';
+        echo '<th>Bemerkungen (privat)</th>';
+
+        echo '</tr>';
+    }
+
+    private function printDay($day)
+    {
+        echo '<tr class="data">';
+
+        echo '<td class="date">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
+
+
+        echo '<td>';
+
+        echo '<select size="1">';
+
+        foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
+            echo '<option';
+            if ($startTime == $day->serviceBegin) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $startTime . '</option>';
+        }
+
+        echo '</select>';
+        echo '<td>';
+
+        echo '<select size="1">';
+
+        foreach ($this->defaultWorkingTimes->endTimes as $endTime) {
+            echo '<option';
+            if ($endTime == $day->serviceEnd) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $endTime . '</option>';
+        }
+
+        echo '</select>';
+
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
+
+        echo '</tr>';
+    }
+
+    public function printNotesInputForAdmin()
+    {
+        echo '<br />';
+        echo '<h1>Nachricht an das Team</h1>';
+        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        echo '<br />';
+    }
+
+    public function printNotesInputForAssistant()
+    {
+        echo '<br />';
+        echo '<h1>Nachricht an ' . $this->settings->adminName . '</h1>';
+        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notesAssistant" name="notesAssistant" cols="100" rows="10">' . str_replace("<br />", "&#10;", $this->assistanceInput->assistanceNotes[$_SESSION['assistantName']]) . '</textarea>';
+        echo '<br />';
+    }
+
+    public function printTable()
+    {
+        echo '<h1>Monatsplan für ' . get_month_description($this->month) . ' ' . $this->year . '</h1>';
+
+        echo '<table>';
+        $this->printTableHeaderMonthPlan();
+
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $this->printDay($this->days[$i]);
+        }
+
+        echo '</table>';
+    }
+
+    private function printCalendarHeader()
+    {
+        echo "<tr>";
+        echo "<th>Mo</th>";
+        echo "<th>Di</th>";
+        echo "<th>Mi</th>";
+        echo "<th>Do</th>";
+        echo "<th>Fr</th>";
+        echo "<th>Sa</th>";
+        echo "<th>So</th>";
+        echo "</tr>";
+    }
+
+    public function printCalendar()
+    {
+        echo '<h2>Eingabe der Daten</h2>';
+
+        $weekday = date("N", mktime(0, 0, 0, $this->month, 1, $this->year));
+
+        echo '<table id="' . $this->calendarId . '" >';
+
+        $this->printCalendarHeader();
+
+        echo "<tr>";
+
+        $cellCounter = 0;
+
+        // print empty cells
+        for ($i = 1; $i < $weekday; $i++) {
+            echo "<td></td>";
+            $cellCounter++;
+        }
+
+        $dataStored = false;
+        if (array_key_exists($_SESSION['assistantName'], $this->assistanceInput->assistanceInput)) {
+            $dataStored = true;
+        }
+
+        // print days
+        for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            $className = "bad";
+            if ($dataStored) {
+                if ($this->assistanceInput->assistanceInput[$_SESSION['assistantName']][$i - 1] == 1) {
+                    $className = "okay";
+                }
+                if ($this->assistanceInput->assistanceInput[$_SESSION['assistantName']][$i - 1] == 10) {
+                    $className = "good";
+                }
+            }
+            echo '<td class="' . $className . '" onclick="dateClicked(this)"><b>' . $i . '</b><br />';
+            echo $this->days[$i]->serviceBegin . ' - ' . $this->days[$i]->serviceEnd . '</td>';
+            $cellCounter++;
+
+            if ($cellCounter % 7 == 0 && $i != $this->daysPerMonth) {
+                echo "</tr><tr>";
+            }
+        }
+
+        // print empty cells
+        while ($cellCounter % 7 != 0) {
+            echo "<td></td>";
+            $cellCounter++;
+        }
+
+        echo "</tr>";
+        echo "</table>";
+    }
+
+    public function printHeader()
+    {
+        echo generate_header($this->month, $this->year);
+    }
+
+    public function printPublicNotes()
+    {
+        if ($this->hasPublicNotes()) {
+            echo '<h2>Bemerkungen zu den Terminen</h2>';
+            echo '<table>';
+
+            echo "<tr>";
+            echo "<th>Datum</th>";
+            echo "<th>Bemerkung</th>";
+            echo "</tr>";
+
+            for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+                if ($this->days[$i]->publicNotes != "") {
+                    echo "<tr>";
+                    echo '<td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
+                    echo '<td class="left">' . $this->days[$i]->publicNotes . '</td>';
+                    echo '</tr>';
+                }
+            }
+            echo '</table>';
+        }
+    }
+
+    public function printNotesFromAdmin()
+    {
+        $notes = implode("<br />", $this->notes);
+
+        if ($notes != "") {
+            echo '<h2>Allgemeine Bemerkungen von ' . $this->settings->adminName . '</h2>';
+            echo '<div class="wrapLongText">';
+            echo $notes;
+            echo '</div>';
+
+        }
     }
 }
 
