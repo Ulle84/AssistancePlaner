@@ -315,7 +315,7 @@ class Roster
 
         echo '<td>';
 
-        echo '<select size="1">';
+        echo '<select onchange="onStartTimeChanged(this)" size="1">';
 
         foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
             echo '<option';
@@ -328,7 +328,7 @@ class Roster
         echo '</select>';
         echo ' - ';
 
-        echo '<select size="1">';
+        echo '<select onchange="onEndTimeChanged(this)" size="1">';
 
         foreach ($this->defaultWorkingTimes->endTimes as $endTime) {
             echo '<option';

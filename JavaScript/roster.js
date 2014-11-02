@@ -33,7 +33,7 @@ function entryClicked(element) {
     calcHours(); //TODO only one column is affected - do not calculate the whole table
 }
 
-function checkRoster(showMessage) {
+function checkRoster(showErrorMessage, showSuccesMessage) {
     var rosterTable = window.document.getElementById("rosterTable")
 
     var rows = rosterTable.getElementsByClassName("rosterData");
@@ -56,14 +56,14 @@ function checkRoster(showMessage) {
         }
 
         if (countOfService != 1 || countOfStandby != 1) {
-            if (showMessage) {
+            if (showErrorMessage) {
                 alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
             }
             return false;
         }
     }
 
-    if (showMessage) {
+    if (showSuccesMessage) {
         alert("Alles in Ordnung!");
     }
     return true;
@@ -238,7 +238,7 @@ function createPdf(button, year, month) {
     }
 
 
-    if (!checkRoster(false)) {
+    if (!checkRoster(true, false)) {
         return;
     }
 
@@ -334,6 +334,37 @@ function calcHours() {
             element.parentNode.setAttribute("class", "bad");
         }
     }
+}
+
+function onEndTimeChanged(element) {
+    recalculateHours(element.previousSibling.previousSibling, element);
+}
+
+function onStartTimeChanged(element) {
+    recalculateHours(element, element.nextSibling.nextSibling);
+}
+
+function recalculateHours(startElement, stopElement) {
+    /*var start = parseInt(startElement.value);
+    var stop = parseInt(stopElement.value);*/
+
+    var workingHours = timeToNumber(stopElement.value) + 24 - 6 - timeToNumber(startElement.value);
+    var standbyHours = 1;
+
+    if (workingHours <= 13) {
+        standbyHours = 0.5;
+    }
+
+    startElement.parentNode.nextSibling.textContent = workingHours.toString();
+    startElement.parentNode.nextSibling.nextSibling.textContent = standbyHours.toString();
+
+    calcHours();
+}
+
+function timeToNumber(time) {
+    var parts = time.split(":");
+
+    return parseInt(parts[0]) + parseInt(parts[1]) / 60.0;
 }
 
 function checkAvailability() {

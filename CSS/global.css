@@ -91,7 +91,7 @@ tr:last-child > td {
 }
 
 .hidden {
-    /*display: none;*/
+    display: none;
 }
 
 .highlighted {

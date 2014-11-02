@@ -26,6 +26,7 @@ class Day
             $this->serviceHours += 0.5;
         }
 
+        //TODO make configurabele
         if ($this->serviceHours <= 13) {
             $this->standbyHours = 0.5;
         } else {
