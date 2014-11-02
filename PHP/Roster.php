@@ -69,7 +69,7 @@ class Roster
 
         $this->initWeekdays();
 
-        $fileName = "../Data/" . $_SESSION['clientName'] . "/Roster/" . $year . "-" . $month . ".txt";
+        $fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt";
 
         $this->readFromFile($fileName);
 
@@ -310,10 +310,10 @@ class Roster
     private function printDayRow($day)
     {
         echo '<tr class="rosterData">';
-        echo '<td class="date">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
+        echo '<td class="date" style="min-width: 80px">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
         //echo '<td>' . $day->getWorkingHours() . '</td>'; //TODO can be updated through drop downs
 
-        echo '<td>';
+        echo '<td  style="min-width: 180px">';
 
         echo '<select onchange="onStartTimeChanged(this)" size="1">';
 
