@@ -508,6 +508,11 @@ class Roster
 
     public function printHourTable()
     {
+        if (!$this->assistanceInput->dataExist) {
+            return;
+        }
+
+
         echo '<h1>Stundenübersicht</h1>';
 
         echo '<table id="hourTable">';

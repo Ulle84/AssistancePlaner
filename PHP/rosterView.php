@@ -55,6 +55,7 @@ if ($_SESSION['isClient']) {
 
 
     echo '<br/>';
+    echo '<input type="button" value="Verfügbarkeit prüfen" onclick="checkAvailability()"/>';
     echo '<input type="button" value="Dienstplan anfordern" onclick="requestRoster(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(true, true)"/>';
     echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';

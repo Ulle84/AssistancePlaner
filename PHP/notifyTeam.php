@@ -48,7 +48,14 @@ $mail->SMTPSecure = 'ssl'; // Enable encryption, 'ssl' also accepted
 $mail->Port = "465";
 
 $mail->From = 'info@assistenzplaner.de';
-$mail->FromName = 'Assistenzplaner';
+
+$sender = $settings->adminName;
+if ($settings->adminFirstName != "" && $settings->adminLastName != "")
+{
+    $sender = $settings->adminFirstName . ' ' . $settings->adminLastName;
+}
+
+$mail->FromName = $sender . ' via Assistenzplaner';
 
 foreach ($mailAddresses as $mailAddress => $name) {
     $mail->addAddress($mailAddress, $name);

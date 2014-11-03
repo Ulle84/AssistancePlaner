@@ -35,7 +35,7 @@ function createNewAccount() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if (xmlhttp.responseText == "OK") {
-                window.location.href = "overview.php"
+                window.location.href = "settingsView.php"
                 response.innerHTML = "Kontoerstellung erfolgreich! Sie werden zur Startseite weitergeleitet."
                 return;
 

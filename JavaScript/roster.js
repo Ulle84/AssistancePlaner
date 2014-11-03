@@ -393,8 +393,11 @@ function checkAvailability() {
     if (badDaysCount == 1) {
         alert("Am " + badDays + " haben nicht genug Assistenten Zeit!");
     }
-    if (badDaysCount > 1) {
+    else if (badDaysCount > 1) {
         alert("Es gibt Tage, an denen nicht genug Assistenten Zeit haben:\n" + badDays);
+    }
+    else {
+        alert("An allen Tagen sind genug Assistenten verfügbar.");
     }
 
 }
@@ -425,7 +428,6 @@ function notifyTeam(year, month) {
 
 function init() {
     calcHours();
-    checkAvailability();
 }
 
 
