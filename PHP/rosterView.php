@@ -12,7 +12,7 @@
 </head>
 <body onload="init()">
 <?php include('navigation.php'); ?>
-
+<div id="dirtyPositionHack" style="background-color: white; min-width: 1px; min-height: 1px; float: left;"></div>
 <?php
 
 require_once 'functions.php';

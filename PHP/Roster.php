@@ -293,7 +293,8 @@ class Roster
         }
         echo '>';
         echo '<th>Datum</th>';
-        echo '<th>Zeit</th>';
+        echo '<th>Beginn</th>';
+        echo '<th>Ende</th>';
         echo '<th class="hidden">Dienst</th>';
         echo '<th class="hidden">Bereitschaft</th>';
 
@@ -313,9 +314,76 @@ class Roster
         echo '<td class="date" style="min-width: 80px">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
         //echo '<td>' . $day->getWorkingHours() . '</td>'; //TODO can be updated through drop downs
 
-        echo '<td  style="min-width: 180px">';
+        echo '<td style="min-width: 120px">';
+        echo '<select onchange="onStartTimeHourChanged(this)" size="1">';
+        $startTime = explode(":", $day->serviceBegin);
+        for ($i = 0; $i < 24; $i++) {
+            $hour = "";
+            if ($i < 10) {
+                $hour = "0";
+            }
+            $hour .= $i;
 
-        echo '<select onchange="onStartTimeChanged(this)" size="1">';
+            echo '<option';
+            if ($startTime[0] == $hour) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $hour . '</option>';
+        }
+        echo '</select>';
+
+        echo '<select onchange="onStartTimeMinuteChanged(this)" size="1">';
+        for ($i = 0; $i < 60; $i += 15) {
+            $minute = "";
+            if ($i < 10) {
+                $minute = "0";
+            }
+            $minute .= $i;
+
+            echo '<option';
+            if ($startTime[1] == $minute) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $minute . '</option>';
+        }
+        echo '</select>';
+
+        echo '</td><td style="min-width: 120px">';
+
+        echo '<select onchange="onEndTimeHourChanged(this)" size="1">';
+        $endTime = explode(":", $day->serviceEnd);
+        for ($i = 0; $i < 24; $i++) {
+            $hour = "";
+            if ($i < 10) {
+                $hour = "0";
+            }
+            $hour .= $i;
+
+            echo '<option';
+            if ($endTime[0] == $hour) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $hour . '</option>';
+        }
+        echo '</select>';
+
+        echo '<select onchange="onEndTimeMinuteChanged(this)" size="1">';
+        for ($i = 0; $i < 60; $i += 15) {
+            $minute = "";
+            if ($i < 10) {
+                $minute = "0";
+            }
+            $minute .= $i;
+
+            echo '<option';
+            if ($endTime[1] == $minute) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $minute . '</option>';
+        }
+        echo '</select>';
+
+        /*echo '<select onchange="onStartTimeChanged(this)" size="1">';
 
         foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
             echo '<option';
@@ -338,7 +406,9 @@ class Roster
             echo '>' . $endTime . '</option>';
         }
 
-        echo '</select>';
+        echo '</select>';*/
+
+        echo '</td>';
 
         echo '<td class="hidden">' . $day->serviceHours . '</td>';
         echo '<td class="hidden">' . $day->standbyHours . '</td>';

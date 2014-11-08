@@ -1,6 +1,6 @@
 var serviceDescription = "Dienst";
 var standbyDescription = "Bereitschaft"
-var columnOffsetLeft = 4;
+var columnOffsetLeft = 5;
 var columnOffsetRight = 2;
 
 function entryClicked(element) {
@@ -180,8 +180,12 @@ function save(button, year, month) {
         var inputs = rows[i].getElementsByTagName("input");
 
         contentRoster += selects[0].value;
+        contentRoster += ":";
+        contentRoster += selects[1].value;
         contentRoster += " - ";
-        contentRoster += selects[1].value + "\n";
+        contentRoster += selects[2].value;
+        contentRoster += ":";
+        contentRoster += selects[3].value + "\n";
         contentRoster += inputs[0].value + "\n";
         contentRoster += inputs[1].value + "\n";
 
@@ -286,8 +290,8 @@ function calcHours() {
     var rosterTable = window.document.getElementById("rosterTable");
     var hourTable = window.document.getElementById("hourTable");
 
-    var serviceHoursIndex = 2;
-    var standbyHoursIndex = 3;
+    var serviceHoursIndex = 3;
+    var standbyHoursIndex = 4;
 
 
     var rows = rosterTable.getElementsByClassName("rosterData");
@@ -336,27 +340,42 @@ function calcHours() {
     }
 }
 
-function onEndTimeChanged(element) {
-    recalculateHours(element.previousSibling.previousSibling, element);
+function onStartTimeHourChanged(element) {
+    recalculateHours(element);
 }
 
-function onStartTimeChanged(element) {
-    recalculateHours(element, element.nextSibling.nextSibling);
+function onStartTimeMinuteChanged(element) {
+    recalculateHours(element.previousSibling);
 }
 
-function recalculateHours(startElement, stopElement) {
-    /*var start = parseInt(startElement.value);
-    var stop = parseInt(stopElement.value);*/
+function onEndTimeHourChanged(element) {
+    recalculateHours(element.parentNode.previousSibling.firstChild);
+}
 
-    var workingHours = timeToNumber(stopElement.value) + 24 - 6 - timeToNumber(startElement.value);
+function onEndTimeMinuteChanged(element) {
+    recalculateHours(element.parentNode.previousSibling.firstChild);
+}
+
+
+
+function recalculateHours(startHoursElement) {
+    var startMinutesElement = startHoursElement.nextSibling;
+    var stopHoursElement = startHoursElement.parentNode.nextSibling.firstChild;
+    var stopMinutesElement = startHoursElement.parentNode.nextSibling.firstChild.nextSibling;
+
+
+    var startTime = startHoursElement.value + ":" + startMinutesElement.value;
+    var stopTime = stopHoursElement.value + ":" + stopMinutesElement.value;
+
+    var workingHours = timeToNumber(stopTime) + 24 - 6 - timeToNumber(startTime);
     var standbyHours = 1;
 
     if (workingHours <= 13) {
         standbyHours = 0.5;
     }
 
-    startElement.parentNode.nextSibling.textContent = workingHours.toString();
-    startElement.parentNode.nextSibling.nextSibling.textContent = standbyHours.toString();
+    startHoursElement.parentNode.nextSibling.nextSibling.textContent = workingHours.toString();
+    startHoursElement.parentNode.nextSibling.nextSibling.nextSibling.textContent = standbyHours.toString();
 
     calcHours();
 }
@@ -427,8 +446,16 @@ function notifyTeam(year, month) {
 }
 
 function init() {
+    doDirtyRepositionHack();
     calcHours();
 }
 
+function doDirtyRepositionHack() {
+    // really dirty positioning hack ;-)
+    var smallElement = window.document.getElementById("dirtyPositionHack");
+    var main = window.document.getElementById("main");
 
-
+    main.style.position = "absolute";
+    main.style.left = smallElement.offsetLeft + "px";
+    main.style.top = smallElement.offsetTop + "px";
+}

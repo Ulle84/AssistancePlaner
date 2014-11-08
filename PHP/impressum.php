@@ -15,7 +15,7 @@
 
     <h2>Angaben gemäß § 5 TMG:</h2>
 
-    <img width="211px" src="../Images/Screenshots/Impressum.png" />
+    <img width="211px" src="../Images/Impressum.png" />
     <p> </p>
 
     <p>Quelle: <em>Erstellt durch den <a rel="nofollow" href="http://www.e-recht24.de">Impressum-Generator</a> von
