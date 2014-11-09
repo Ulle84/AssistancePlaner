@@ -13,6 +13,12 @@ class Day
 
     public function calculateWorkingHours()
     {
+        if (substr($this->serviceBegin, 0, 2) == "--") {
+            $this->standbyHours = 0;
+            $this->serviceHours = 0;
+            return;
+        }
+
         $hoursStartTime = floatval(substr($this->serviceBegin, 0, 2));
         $minutesStartTime = floatval(substr($this->serviceBegin, 3, 2));
         $hoursEndTime = floatval(substr($this->serviceEnd, 0, 2));

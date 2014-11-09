@@ -10,9 +10,6 @@
     <script language="JavaScript" src="../JavaScript/DateExtended.js"></script>
     <script language="JavaScript" src="../JavaScript/roster.js"></script>
 </head>
-<body onload="init()">
-<?php include('navigation.php'); ?>
-<div id="dirtyPositionHack" style="background-color: white; min-width: 1px; min-height: 1px; float: left;"></div>
 <?php
 
 require_once 'functions.php';
@@ -41,6 +38,10 @@ if (isset($_GET['month'])) {
     $month = $_GET['month'];
 }
 
+echo '<body onload="init(' . $year . ', ' . $month . ')">';
+include('navigation.php');
+echo '<div id="dirtyPositionHack" style="background-color: white; min-width: 1px; min-height: 1px; float: left;"></div>';
+
 echo '<div id="main">';
 
 $navigation = new MonthNavigation(basename($_SERVER['PHP_SELF']), $year, $month);
@@ -58,7 +59,7 @@ if ($_SESSION['isClient']) {
     echo '<input type="button" value="Verfügbarkeit prüfen" onclick="checkAvailability()"/>';
     echo '<input type="button" value="Dienstplan anfordern" onclick="requestRoster(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(true, true)"/>';
-    echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
+    //echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan verwerfen" onclick="resetRoster()"/>';
     //echo '<input type="button" value="Dienstplan löschen" onclick="deleteRoster(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan als PDF anzeigen" onclick="createPdf(this, ' . $year . ', ' . $month . ')"/>';

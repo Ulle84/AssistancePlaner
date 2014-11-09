@@ -2,8 +2,14 @@ var serviceDescription = "Dienst";
 var standbyDescription = "Bereitschaft"
 var columnOffsetLeft = 5;
 var columnOffsetRight = 2;
+var const_year;
+var const_month;
 
 function entryClicked(element) {
+    if (element.parentNode.firstChild.nextSibling.firstChild.value == "--") {
+        alert("An diesem Tag wird kein Dienst benötigt!");
+        return;
+    }
 
     switch (element.getAttribute("class")) {
         case "good":
@@ -39,6 +45,9 @@ function checkRoster(showErrorMessage, showSuccesMessage) {
     var rows = rosterTable.getElementsByClassName("rosterData");
 
     for (var i = 1; i < rows.length; i++) {
+
+        var selects = rows[i].getElementsByTagName("select");
+
         var countOfService = 0;
         var countOfStandby = 0;
 
@@ -55,11 +64,21 @@ function checkRoster(showErrorMessage, showSuccesMessage) {
             }
         }
 
-        if (countOfService != 1 || countOfStandby != 1) {
-            if (showErrorMessage) {
-                alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
+        if (selects[0].value == "--") {
+            if (countOfService != 0 || countOfStandby != 0) {
+                if (showErrorMessage) {
+                    alert("Am " + data[0].textContent + " ist kein Dienst!");
+                }
+                return false;
             }
-            return false;
+        }
+        else {
+            if (countOfService != 1 || countOfStandby != 1) {
+                if (showErrorMessage) {
+                    alert("Der Dienstplan für den " + data[0].textContent + " ist nicht korrekt!");
+                }
+                return false;
+            }
         }
     }
 
@@ -81,9 +100,9 @@ function requestRoster(button, year, month) {
 
         var selects = rows[i].getElementsByTagName("select");
 
-        workingTimes += selects[0].value;
+        workingTimes += selects[0].value + ":" + selects[1].value;
         workingTimes += " - ";
-        workingTimes += selects[1].value + "\n";
+        workingTimes += selects[2].value + ":" + selects[3].value + "\n";
     }
 
 
@@ -98,6 +117,7 @@ function requestRoster(button, year, month) {
             setNewRoster(roster);
 
             button.disabled = false;
+            save(year, month);
         }
     }
 
@@ -156,19 +176,7 @@ function clearRoster() {
     }
 }
 
-function save(button, year, month) {
-    /*var saveRoster = true;
-     if (!checkRoster(false)) {
-     saveRoster = false;
-     alert("Der Dienstplan ist nicht korrekt und wird daher nicht gespeichert!\n"
-     + "Bitte Button 'Dienstplan prüfen' für Details drücken.")
-     }*/
-    button.disabled = true;
-
-    var httpResponse = document.getElementById("httpResponse");
-
-    httpResponse.innerHTML = "";
-
+function save(year, month) {
     var contentRoster = "";
     var rosterTable = window.document.getElementById("rosterTable");
     var rows = rosterTable.getElementsByClassName("rosterData");
@@ -218,16 +226,12 @@ function save(button, year, month) {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            httpResponse.innerHTML = xmlhttp.responseText;
-
             if (xmlhttp.responseText != "") {
                 //TODO take last change of server!
                 var now = new Date();
                 var lastChange = window.document.getElementById("lastChange");
                 lastChange.textContent = now.toStringDisplayWithTime();
             }
-
-            button.disabled = false;
         }
     }
 
@@ -237,11 +241,6 @@ function save(button, year, month) {
 }
 
 function createPdf(button, year, month) {
-    if (!confirm("Haben Sie den Dienstplan gespeichert?")) {
-        return;
-    }
-
-
     if (!checkRoster(true, false)) {
         return;
     }
@@ -341,6 +340,21 @@ function calcHours() {
 }
 
 function onStartTimeHourChanged(element) {
+    if (element.value == "--") {
+        var services = element.parentNode.parentNode.getElementsByClassName("service");
+        var standbys = element.parentNode.parentNode.getElementsByClassName("standby");
+
+        while (services.length > 0) {
+            services[0].textContent = "";
+            services[0].setAttribute("class", services[0].getAttribute("baseClass"));
+        }
+
+        while (standbys.length > 0) {
+            standbys[0].textContent = "";
+            standbys[0].setAttribute("class", standbys[0].getAttribute("baseClass"));
+        }
+    }
+
     recalculateHours(element);
 }
 
@@ -376,6 +390,20 @@ function recalculateHours(startHoursElement) {
 
     startHoursElement.parentNode.nextSibling.nextSibling.textContent = workingHours.toString();
     startHoursElement.parentNode.nextSibling.nextSibling.nextSibling.textContent = standbyHours.toString();
+
+    if (startHoursElement.value == "--") {
+        startHoursElement.parentNode.nextSibling.nextSibling.textContent = "0";
+        startHoursElement.parentNode.nextSibling.nextSibling.nextSibling.textContent = "0";
+
+        startMinutesElement.style.display = "none";
+        stopHoursElement.style.display = "none";
+        stopMinutesElement.style.display = "none";
+    }
+    else {
+        startMinutesElement.style.display = "inline";
+        stopHoursElement.style.display = "inline";
+        stopMinutesElement.style.display = "inline";
+    }
 
     calcHours();
 }
@@ -445,7 +473,9 @@ function notifyTeam(year, month) {
     xmlhttp.send("year=" + year + "&month=" + month + "&content=" + content);
 }
 
-function init() {
+function init(year, month) {
+    const_year = year;
+    const_month = month;
     doDirtyRepositionHack();
     calcHours();
 }
@@ -459,3 +489,7 @@ function doDirtyRepositionHack() {
     main.style.left = smallElement.offsetLeft + "px";
     main.style.top = smallElement.offsetTop + "px";
 }
+
+/*window.addEventListener("beforeunload", function (e) {
+    save(const_year, const_month);
+});*/

@@ -312,11 +312,19 @@ class Roster
     {
         echo '<tr class="rosterData">';
         echo '<td class="date" style="min-width: 80px">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
-        //echo '<td>' . $day->getWorkingHours() . '</td>'; //TODO can be updated through drop downs
 
         echo '<td style="min-width: 120px">';
-        echo '<select onchange="onStartTimeHourChanged(this)" size="1">';
+        echo '<select onchange="onStartTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1">';
         $startTime = explode(":", $day->serviceBegin);
+        $hideOptions = false;
+
+        echo '<option';
+        if ($startTime[0] == "--") {
+            echo ' selected="selected"';
+            $hideOptions = true;
+        }
+        echo '>--</option>';
+
         for ($i = 0; $i < 24; $i++) {
             $hour = "";
             if ($i < 10) {
@@ -332,7 +340,11 @@ class Roster
         }
         echo '</select>';
 
-        echo '<select onchange="onStartTimeMinuteChanged(this)" size="1">';
+        echo '<select onchange="onStartTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+        if ($hideOptions) {
+            echo ' class="hidden"';
+        }
+        echo '>';
         for ($i = 0; $i < 60; $i += 15) {
             $minute = "";
             if ($i < 10) {
@@ -350,7 +362,11 @@ class Roster
 
         echo '</td><td style="min-width: 120px">';
 
-        echo '<select onchange="onEndTimeHourChanged(this)" size="1">';
+        echo '<select onchange="onEndTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+        if ($hideOptions) {
+            echo ' class="hidden"';
+        }
+        echo '>';
         $endTime = explode(":", $day->serviceEnd);
         for ($i = 0; $i < 24; $i++) {
             $hour = "";
@@ -367,7 +383,11 @@ class Roster
         }
         echo '</select>';
 
-        echo '<select onchange="onEndTimeMinuteChanged(this)" size="1">';
+        echo '<select onchange="onEndTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+        if ($hideOptions) {
+            echo ' class="hidden"';
+        }
+        echo '>';
         for ($i = 0; $i < 60; $i += 15) {
             $minute = "";
             if ($i < 10) {
@@ -382,31 +402,6 @@ class Roster
             echo '>' . $minute . '</option>';
         }
         echo '</select>';
-
-        /*echo '<select onchange="onStartTimeChanged(this)" size="1">';
-
-        foreach ($this->defaultWorkingTimes->startTimes as $startTime) {
-            echo '<option';
-            if ($startTime == $day->serviceBegin) {
-                echo ' selected="selected"';
-            }
-            echo '>' . $startTime . '</option>';
-        }
-
-        echo '</select>';
-        echo ' - ';
-
-        echo '<select onchange="onEndTimeChanged(this)" size="1">';
-
-        foreach ($this->defaultWorkingTimes->endTimes as $endTime) {
-            echo '<option';
-            if ($endTime == $day->serviceEnd) {
-                echo ' selected="selected"';
-            }
-            echo '>' . $endTime . '</option>';
-        }
-
-        echo '</select>';*/
 
         echo '</td>';
 
@@ -443,13 +438,13 @@ class Roster
                 $cellTextContent = "Dienst";
             }
 
-            echo '<td onclick="entryClicked(this)" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
+            echo '<td onclick="entryClicked(this); save(' . $this->year . ', ' . $this->month . ')" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
         }
 
         /*echo '<td class="left">' . $day->publicNotes . '</td>';
         echo '<td class="left">' . $day->privateNotes . '</td>';*/
-        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
-        echo '<td><input onchange="validateString(this)" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
 
         echo '</tr>';
 
@@ -532,12 +527,25 @@ class Roster
             }
 
             echo '><td class="date">' . get_short_date($this->year, $this->month, $i) . '</td>';
-            echo '<td class="left">' . $this->days[$i]->getWorkingHours() . '</td>';
-            echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
 
-            echo '<td class="left">' . $this->getServiceHours($i) . '</td>';
-            echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
+            if (substr($this->days[$i]->serviceBegin, 0, 2) == "--") {
+                echo '<td class="left">kein Dienst</td>';
+                echo '<td class="left"></td>';
+
+                echo '<td class="left"></td>';
+                echo '<td class="left"></td>';
+            }
+            else {
+                echo '<td class="left">' . $this->days[$i]->getWorkingHours() . '</td>';
+                echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
+
+                echo '<td class="left">' . $this->getServiceHours($i) . '</td>';
+                echo '<td class="left">' . $this->standbyPerson[$i] . '</td>';
+            }
+
             echo '<td class="left">' . $this->days[$i]->publicNotes . '</td>';
+
+
             echo '</tr>';
         }
         echo '</table>';
@@ -650,11 +658,21 @@ class Roster
 
 
             $pdf->Cell($w[0], $cellHeight, get_short_date($this->year, $this->month, $i), 1, 0, 'R', false);
-            $pdf->Cell($w[1], $cellHeight, $this->days[$i]->getWorkingHours(), 1, 0, 'C', false);
-            $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
 
-            $pdf->Cell($w[3], $cellHeight, $this->getServiceHours($i), 1, 0, 'L', false);
-            $pdf->Cell($w[4], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->standbyPerson[$i])), 1, 0, 'L', false);
+            if (substr($this->days[$i]->serviceBegin, 0, 2) == "--") {
+                $pdf->Cell($w[1], $cellHeight, 'Kein Dienst', 1, 0, 'C', false);
+                $pdf->Cell($w[2], $cellHeight, '', 1, 0, 'L', false);
+
+                $pdf->Cell($w[3], $cellHeight, '', 1, 0, 'L', false);
+                $pdf->Cell($w[4], $cellHeight, '', 1, 0, 'L', false);
+            }
+            else {
+                $pdf->Cell($w[1], $cellHeight, $this->days[$i]->getWorkingHours(), 1, 0, 'C', false);
+                $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
+
+                $pdf->Cell($w[3], $cellHeight, $this->getServiceHours($i), 1, 0, 'L', false);
+                $pdf->Cell($w[4], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->standbyPerson[$i])), 1, 0, 'L', false);
+            }
         }
 
         $pdf->Output();
@@ -1005,6 +1023,9 @@ class Roster
                 if ($scoreTable[$name][$i - 1] == 0) {
                     continue;
                 }
+                if (substr($this->days[$i]->serviceBegin, 0, 2) == "--") {
+                    continue;
+                }
                 $entry = array();
                 array_push($entry, $scoreTable[$name][$i - 1]);
                 array_push($entry, $name);
@@ -1310,7 +1331,7 @@ class Roster
     private function isServiceComplete()
     {
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            if ($this->servicePerson[$i] == "") {
+            if ($this->servicePerson[$i] == "" && substr($this->days[$i]->serviceBegin, 0, 2) != "--") {
                 return false;
             }
         }
@@ -1320,7 +1341,7 @@ class Roster
     private function isStandbyComplete()
     {
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            if ($this->standbyPerson[$i] == "") {
+            if ($this->standbyPerson[$i] == "" && substr($this->days[$i]->serviceBegin, 0, 2) != "--") {
                 return false;
             }
         }

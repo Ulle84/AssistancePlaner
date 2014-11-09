@@ -68,34 +68,149 @@ class WorkingTimes
         for ($i = 1; $i <= 7; $i++) {
             echo '<tr>';
             echo '<td>' . $weekdays[$i - 1] . '</td>';
+
+            /*
+             * echo '<select onchange="onStartTimeHourChanged(this)" size="1">';
+        $startTime = explode(":", $day->serviceBegin);
+        for ($i = 0; $i < 24; $i++) {
+            $hour = "";
+            if ($i < 10) {
+                $hour = "0";
+            }
+            $hour .= $i;
+
+            echo '<option';
+            if ($startTime[0] == $hour) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $hour . '</option>';
+        }
+        echo '</select>';
+
+        echo '<select onchange="onStartTimeMinuteChanged(this)" size="1">';
+        for ($i = 0; $i < 60; $i += 15) {
+            $minute = "";
+            if ($i < 10) {
+                $minute = "0";
+            }
+            $minute .= $i;
+
+            echo '<option';
+            if ($startTime[1] == $minute) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $minute . '</option>';
+        }
+        echo '</select>';
+
+        echo '</td><td style="min-width: 120px">';
+
+        echo '<select onchange="onEndTimeHourChanged(this)" size="1">';
+        $endTime = explode(":", $day->serviceEnd);
+        for ($i = 0; $i < 24; $i++) {
+            $hour = "";
+            if ($i < 10) {
+                $hour = "0";
+            }
+            $hour .= $i;
+
+            echo '<option';
+            if ($endTime[0] == $hour) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $hour . '</option>';
+        }
+        echo '</select>';
+
+        echo '<select onchange="onEndTimeMinuteChanged(this)" size="1">';
+        for ($i = 0; $i < 60; $i += 15) {
+            $minute = "";
+            if ($i < 10) {
+                $minute = "0";
+            }
+            $minute .= $i;
+
+            echo '<option';
+            if ($endTime[1] == $minute) {
+                echo ' selected="selected"';
+            }
+            echo '>' . $minute . '</option>';
+        }
+        echo '</select>';
+
+             */
+
+
             echo '<td>';
 
-            echo '<select size="1">';
+            echo '<select onchange="saveWorkingTimes()" size="1">';
 
-            foreach ($this->startTimes as $startTime) {
+            $startTime = explode(":", $this->begin[$i]);
+            for ($j = 0; $j < 24; $j++) {
+                $hour = "";
+                if ($j < 10) {
+                    $hour = "0";
+                }
+                $hour .= $j;
+
                 echo '<option';
-                if ($startTime == $this->begin[$i]) {
+                if ($startTime[0] == $hour) {
                     echo ' selected="selected"';
                 }
-                echo '>' . $startTime . '</option>';
+                echo '>' . $hour . '</option>';
             }
-
             echo '</select>';
 
-            echo '</td>';
-            echo '<td>';
-            echo '<select size="1">';
+            echo '<select onchange="saveWorkingTimes()" size="1">';
+            for ($j = 0; $j < 60; $j += 15) {
+                $minute = "";
+                if ($j < 10) {
+                    $minute = "0";
+                }
+                $minute .= $j;
 
-            foreach ($this->endTimes as $endTime) {
                 echo '<option';
-                if ($endTime == $this->end[$i]) {
+                if ($startTime[1] == $minute) {
                     echo ' selected="selected"';
                 }
-                echo '>' . $endTime . '</option>';
+                echo '>' . $minute . '</option>';
             }
-
             echo '</select>';
 
+            echo '</td><td>';
+
+            echo '<select onchange="saveWorkingTimes()" size="1">';
+            $endTime = explode(":", $this->end[$i]);
+            for ($j = 0; $j < 24; $j++) {
+                $hour = "";
+                if ($j < 10) {
+                    $hour = "0";
+                }
+                $hour .= $j;
+
+                echo '<option';
+                if ($endTime[0] == $hour) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $hour . '</option>';
+            }
+            echo '</select>';
+
+            echo '<select onchange="saveWorkingTimes()" size="1">';
+            for ($j = 0; $j < 60; $j += 15) {
+                $minute = "";
+                if ($j < 10) {
+                    $minute = "0";
+                }
+                $minute .= $j;
+
+                echo '<option';
+                if ($endTime[1] == $minute) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $minute . '</option>';
+            }
+            echo '</select>';
             echo '</td>';
             echo '</tr>';
 
