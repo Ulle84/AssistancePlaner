@@ -9,6 +9,8 @@ require_once 'functions.php';
 $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
+$action = $_POST['action'];
+
 
 $monthReminder = $month - 1;
 $yearReminder = $year;
@@ -25,15 +27,29 @@ $mailAddresses = $team->getMailAddresses();
 
 $settings = new Settings($_SESSION['clientName']);
 
-$message = 'Liebes Team,<br /><br />';
-$message .= 'bitte tragt bis <b>15. ' . get_month_description($monthReminder) . ' ' . $yearReminder . '</b> Eure möglichen Termine für den ';
-$message .= get_month_description($month) . ' ' . $year . ' im ';
-$message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/login.php?client=' . $_SESSION['clientName'] . '&redirect=calendarView">';
-$message .= 'Assistenzplaner</a> ein.<br /><br />Vielen Dank!';
+$sender = $settings->adminName;
+if ($settings->adminFirstName != "" && $settings->adminLastName != "") {
+    $sender = $settings->adminFirstName . ' ' . $settings->adminLastName;
+}
 
-if ($content != "") {
-    $message .= '<br /><br />Hier noch eine Nachricht von ' . $settings->adminName . ': <br /><hr />';
-    $message .= $content;
+if ($action == "newRoster") {
+    $subject = 'Assistenzplaner - Neuer Dienstplan verfügbar';
+
+    $message = 'Liebes Team,<br /><br />';
+    $message .= 'der Dienstplan für den Monat <b>' . get_month_description($month) . ' ' . $year . '</b> ist fertiggestellt und kann im ';
+    $message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/login.php?client=' . $_SESSION['clientName'] . '&redirect=rosterView&year=' . $year . '&month=' . $month .'">';
+    $message .= 'Assistenzplaner</a> eingesehen werden.<br /><br />Viele Grüße<br />';
+    $message .= $sender;
+}
+
+if ($action == "requestDates") {
+    $subject = 'Assistenzplaner - Bitte mögliche Termine eintragen';
+
+    $message = 'Liebes Team,<br /><br />';
+    $message .= 'bitte tragt bis <b>15. ' . get_month_description($monthReminder) . ' ' . $yearReminder . '</b> Eure möglichen Termine für den ';
+    $message .= get_month_description($month) . ' ' . $year . ' im ';
+    $message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/login.php?client=' . $_SESSION['clientName'] . '&redirect=calendarView">';
+    $message .= 'Assistenzplaner</a> ein.<br /><br />Vielen Dank!';
 }
 
 $mail = new PHPMailer;
@@ -49,16 +65,15 @@ $mail->Port = "465";
 
 $mail->From = 'info@assistenzplaner.de';
 
-$sender = $settings->adminName;
-if ($settings->adminFirstName != "" && $settings->adminLastName != "")
-{
-    $sender = $settings->adminFirstName . ' ' . $settings->adminLastName;
-}
-
 $mail->FromName = $sender . ' via Assistenzplaner';
 
 foreach ($mailAddresses as $mailAddress => $name) {
     $mail->addAddress($mailAddress, $name);
+}
+
+// also notify client
+if ($settings->mailAddress != "") {
+    $mail->addCC($settings->mailAddress, $sender);
 }
 
 // also notify developer
@@ -74,7 +89,7 @@ $mail->WordWrap = 50; // Set word wrap to 50 characters
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true); // Set email format to HTML
 
-$mail->Subject = 'Assistenzplaner - Bitte mögliche Termine eintragen';
+$mail->Subject = $subject;
 $mail->Body = $message;
 
 

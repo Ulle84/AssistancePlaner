@@ -9,7 +9,7 @@
 <body>
 <?php include('navigation.php'); ?>
 
-<div class="wrapLongText">
+<div id="main" class="wrapLongText">
     <h1>Willkommen beim Assistenzplaner</h1>
     Der Assistenzplaner ist ein Hilfsmittel für Menschen, die auf Assistenz angewiesen sind. <br/>
 

@@ -59,6 +59,7 @@ if ($_SESSION['isClient']) {
     echo '<input type="button" value="Verfügbarkeit prüfen" onclick="checkAvailability()"/>';
     echo '<input type="button" value="Dienstplan anfordern" onclick="requestRoster(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(true, true)"/>';
+    echo '<input type="button" value="Dienstplan veröffentlichen" onclick="publishRoster(this, ' . $year . ', ' . $month . ')"/>';
     //echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
     echo '<input type="button" value="Dienstplan verwerfen" onclick="resetRoster()"/>';
     //echo '<input type="button" value="Dienstplan löschen" onclick="deleteRoster(this, ' . $year . ', ' . $month . ')"/>';
@@ -67,11 +68,6 @@ if ($_SESSION['isClient']) {
     echo '<br/>';
     $roster->printNotesInputForAdmin();
     echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
-
-
-    echo '<br/>';
-
-    echo 'Antwort vom Server: <span id="httpResponse"></span>';
 }
 else {
     $roster->printTablesAssistant();

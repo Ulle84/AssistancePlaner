@@ -4,6 +4,9 @@ session_start();
 $content = $_POST['content'];
 $year = $_POST['year'];
 $month = $_POST['month'];
+$lastChangeTime = $_POST['lastChangeTime'];
+$publishedDate = $_POST['publishedDate'];
+$closedDate = $_POST['closedDate'];
 
 $fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt";
 
@@ -13,13 +16,13 @@ if (!file_exists($filePath)) {
     mkdir($filePath, 0777, true);
 }
 
-$now = date("d.m.Y H:i"); //date('Y-m-d H:i:s')
-
 $fh = fopen($fileName, "w");
-fwrite($fh, $now . "\n");
+fwrite($fh, $lastChangeTime . "\n");
+fwrite($fh, $publishedDate . "\n");
+fwrite($fh, $closedDate . "\n");
 fwrite($fh, $content);
 fclose($fh);
 
-echo "Dienstplan wurde gespeichert";
+echo $lastChangeTime;
 
 ?>

@@ -30,6 +30,8 @@ class Roster
     private $year;
     private $daysPerMonth;
     private $lastChange;
+    private $publishedDate;
+    private $closedDate;
     private $servicePerson = array();
     private $standbyPerson = array();
     private $rosterExist = false;
@@ -77,9 +79,8 @@ class Roster
             if (!file_exists($fileName)) {
                 $this->days[$i]->serviceBegin = $this->defaultWorkingTimes->begin[$this->days[$i]->weekday];
                 $this->days[$i]->serviceEnd = $this->defaultWorkingTimes->end[$this->days[$i]->weekday];
+                $this->days[$i]->calculateWorkingHours();
             }
-
-            $this->days[$i]->calculateWorkingHours();
         }
 
         /*if (!$this->rosterExist) {
@@ -87,12 +88,13 @@ class Roster
         }*/
     }
 
-    public function generateRoster($workingTimes) {
+    public function generateRoster($workingTimes)
+    {
         $workingTimesArray = explode("\n", $workingTimes);
 
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
-            $this->days[$i]->serviceBegin = substr($workingTimesArray[$i-1], 0, 5);
-            $this->days[$i]->serviceEnd = substr($workingTimesArray[$i-1], 8, 5);
+            $this->days[$i]->serviceBegin = substr($workingTimesArray[$i - 1], 0, 5);
+            $this->days[$i]->serviceEnd = substr($workingTimesArray[$i - 1], 8, 5);
             $this->days[$i]->calculateWorkingHours();
         }
 
@@ -143,6 +145,8 @@ class Roster
             $file = fopen($fileName, "r");
 
             $this->lastChange = rtrim(fgets($file));
+            $this->publishedDate = rtrim(fgets($file));
+            $this->closedDate = rtrim(fgets($file));
 
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $day = new Day();
@@ -453,7 +457,30 @@ class Roster
     private function printTableBase()
     {
         echo '<h1>Dienstplan für ' . get_month_description($this->month) . ' ' . $this->year . '</h1>';
-        echo '<div>Letze Änderung: <span id="lastChange">' . $this->lastChange . '</span></div><br />';
+        echo '<div>';
+
+        echo '<span';
+        if ($this->lastChange == "") {
+            echo ' class="hidden"';
+        }
+        echo '>Letze Änderung am: <span id="lastChange">' . $this->lastChange . '</span></span>';
+
+
+        echo '<span';
+        if ($this->publishedDate == "") {
+            echo ' class="hidden"';
+        }
+        echo '>&nbsp;&nbsp;&nbsp;Veröffentlicht am: <span id="publishedDate">' . $this->publishedDate . '</span></span>';
+
+        echo '<span';
+        if ($this->closedDate == "") {
+            echo ' class="hidden"';
+        }
+        echo '>&nbsp;&nbsp;&nbsp;Abgeschlossen am: <span id="closedDate">' . $this->closedDate . '</span></span>';
+
+        echo '</div><br />';
+
+
         echo '<table id="rosterTable">';
     }
 
@@ -502,7 +529,7 @@ class Roster
 
     public function printTablesAssistant()
     {
-        if ($this->lastChange == "") {
+        if ($this->publishedDate == "") {
             echo '<br />Der Dienstplan für den Monat ' . get_month_description($this->month) . ' ' . $this->year . ' wurde noch nicht fertiggestellt.';
             return;
         }
@@ -534,8 +561,7 @@ class Roster
 
                 echo '<td class="left"></td>';
                 echo '<td class="left"></td>';
-            }
-            else {
+            } else {
                 echo '<td class="left">' . $this->days[$i]->getWorkingHours() . '</td>';
                 echo '<td class="left">' . $this->servicePerson[$i] . '</td>';
 
@@ -665,8 +691,7 @@ class Roster
 
                 $pdf->Cell($w[3], $cellHeight, '', 1, 0, 'L', false);
                 $pdf->Cell($w[4], $cellHeight, '', 1, 0, 'L', false);
-            }
-            else {
+            } else {
                 $pdf->Cell($w[1], $cellHeight, $this->days[$i]->getWorkingHours(), 1, 0, 'C', false);
                 $pdf->Cell($w[2], $cellHeight, utf8_decode($this->team->getFullNameFromId($this->servicePerson[$i])), 1, 0, 'L', false);
 
@@ -951,6 +976,11 @@ class Roster
 
         // check that there is enough availability
         for ($i = 1; $i <= $this->daysPerMonth; $i++) {
+            if (substr($this->days[$i]->serviceBegin, 0, 2) == "--") {
+                // no service needed
+                continue;
+            }
+
             $sum = 0;
             foreach ($this->assistanceInput->assistanceInput as $name => $dates) {
                 if ($dates[$i - 1] > 0) {
@@ -1434,7 +1464,7 @@ class Roster
     {
         echo '<br />';
         echo '<h1>Nachricht an das Team</h1>';
-        echo '<textarea onchange="validateString(this)" onblur="validateString(this)" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        echo '<textarea onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this); save(' . $this->year . ', ' . $this->month . ')" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
         echo '<br />';
     }
 
