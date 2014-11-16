@@ -12,6 +12,11 @@ function saveSettings() {
     content += "\n" + window.document.getElementById("mailAddress").value;
     content += "\n" + window.document.getElementById("standardPassword").value;
 
+    // provider settings
+    content += "\n" + window.document.getElementById("firstNameProvider").value;
+    content += "\n" + window.document.getElementById("lastNameProvider").value;
+    content += "\n" + window.document.getElementById("mailAddressProvider").value;
+
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.open("POST", "../PHP/settingsSaver.php", true);

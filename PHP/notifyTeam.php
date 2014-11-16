@@ -52,6 +52,15 @@ if ($action == "requestDates") {
     $message .= 'Assistenzplaner</a> ein.<br /><br />Vielen Dank!';
 }
 
+if ($action == "notifyProvider") {
+    $subject = 'Assistenzplaner - Monatsabschluss';
+
+    $message = 'Hallo,<br /><br />';
+    $message .= 'der Dienstplan für den Monat <b>' . get_month_description($month) . ' ' . $year . '</b> wurde abgeschlossen.';
+    $message .= '<br /><br />Viele Grüße<br />';
+    $message .= $sender;
+}
+
 $mail = new PHPMailer;
 
 $mail->CharSet = "UTF - 8";
@@ -67,8 +76,13 @@ $mail->From = 'info@assistenzplaner.de';
 
 $mail->FromName = $sender . ' via Assistenzplaner';
 
-foreach ($mailAddresses as $mailAddress => $name) {
-    $mail->addAddress($mailAddress, $name);
+if ($action == "notifyProvider") {
+    $mail->addAddress($settings->mailAddressProvider, $settings->firstNameProvider . ' ' . $settings->lastNameProvider);
+}
+else {
+    foreach ($mailAddresses as $mailAddress => $name) {
+        $mail->addAddress($mailAddress, $name);
+    }
 }
 
 // also notify client
@@ -85,6 +99,20 @@ $mail->addBCC('u.belitz@gmx.de', 'Ulrich Belitz');
 //$mail->addBCC('bcc@example.com');
 
 $mail->WordWrap = 50; // Set word wrap to 50 characters
+
+/*if ($action == "notifyProvider") {
+    //$pathToPdf = '../Data/' . strtolower($_SESSION['clientName']) . '/' . 'Dienstplan-' . $year . '-' . $month . '.pdf';
+    $pathToPdf = 'test.pdf';
+
+    //$roster = new Roster($year, $month);
+    //$roster->printPdf($pathToPdf);
+
+    $mail->addAttachment($pathToPdf);
+
+    //TODO delete file afterwards
+}*/
+
+
 //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true); // Set email format to HTML

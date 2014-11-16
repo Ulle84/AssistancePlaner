@@ -10,6 +10,10 @@ class Settings implements SettingsInterface
     public $adminFirstName;
     public $adminLastName;
     public $mailAddress;
+    public $firstNameProvider;
+    public $lastNameProvider;
+    public $mailAddressProvider;
+
     public $showToDoManager;
 
     private $fileName;
@@ -38,6 +42,10 @@ class Settings implements SettingsInterface
             $this->showToDoManager = rtrim(fgets($file));
             $this->mailAddress = rtrim(fgets($file));
             $this->standardPassword = rtrim(fgets($file));
+
+            $this->firstNameProvider = rtrim(fgets($file));
+            $this->lastNameProvider = rtrim(fgets($file));
+            $this->mailAddressProvider = rtrim(fgets($file));
 
             if ($this->standardPassword == "") {
                 $this->standardPassword = $defaultPassword;

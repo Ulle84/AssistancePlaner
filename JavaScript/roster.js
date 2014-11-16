@@ -180,9 +180,38 @@ function publishRoster(button, year, month) {
 
     publishedDate.parentNode.setAttribute("class", "");
 
-    save(year, month);
-
     var action = "newRoster";
+
+    var content = "";
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            button.disabled = false;
+        }
+    }
+
+    xmlhttp.open("POST", "../PHP/notifyTeam.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("year=" + year + "&month=" + month + "&action=" + action+ "&content=" + content);
+}
+
+function closeRoster(button, year, month) {
+    if (!confirm("Möchten Sie wirklich den Dienstplan abschließen?")) {
+        return;
+    }
+
+    button.disabled = true;
+
+    var now = new Date();
+
+    var closedDate = window.document.getElementById("closedDate");
+    closedDate.textContent = now.toStringDisplayWithTime();
+
+    closedDate.parentNode.setAttribute("class", "");
+
+    var action = "notifyProvider";
 
     var content = "";
 
@@ -272,11 +301,9 @@ function save(year, month) {
         contentRoster += inputs[0].value + "\n";
         contentRoster += inputs[1].value + "\n";
 
-
         var personOfService = "";
         var personOfStandby = "";
 
-        //if (saveRoster) {
         var data = rows[i].getElementsByTagName("td");
 
         for (var j = columnOffsetLeft; j < data.length - columnOffsetRight; j++) {
@@ -288,7 +315,6 @@ function save(year, month) {
                 personOfStandby = persons[j].textContent;
             }
         }
-        //}
 
         contentRoster += personOfService + "\n";
         contentRoster += personOfStandby + "\n";
@@ -323,44 +349,7 @@ function createPdf(button, year, month) {
         return;
     }
 
-    if (window.document.getElementById("lastChange").textContent == "") {
-        alert("Bitte erst den Dienstplan speichern!");
-        return;
-    }
-
     window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month);
-}
-
-function deleteRoster(button, year, month) {
-
-    if (!confirm("Dienstplan wirklich löschen?")) {
-        return;
-    }
-
-    button.disabled = true;
-
-    var httpResponse = document.getElementById("httpResponse");
-
-    httpResponse.innerHTML = "";
-
-    var xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            httpResponse.innerHTML = xmlhttp.responseText;
-
-            var lastChange = window.document.getElementById("lastChange");
-            lastChange.textContent = "";
-
-            button.disabled = false;
-        }
-    }
-
-    xmlhttp.open("POST", "../PHP/rosterEraser.php", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month);
-
-
 }
 
 function calcHours() {
