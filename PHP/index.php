@@ -1,10 +1,11 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<meta charset="utf-8">
-<html>
+<html lang="de">
 <head>
+<meta charset="utf-8"/>
     <title>Assistenzplaner</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/global.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../CSS/tooltip.css" media="all" />
 </head>
 <body>
 <?php include('navigation.php'); ?>
@@ -14,8 +15,8 @@
     Der Assistenzplaner ist ein Hilfsmittel für Menschen, die auf Assistenz angewiesen sind. <br/>
 
     Die Planung umfasst die Erstellung von Dienstplänen und die Verwaltung von Aufgaben.<br />
-
-    Mit dem Assistenzplaner hat der Klient die Möglichkeit, sein Assistenz-Team zu verwalten.
+<!-- Texte für Tooltip siehe Thesis S. 20 -->
+    Mit dem Assistenzplaner hat der <span class="tooltip" data-tooltip="Körperlich behinderter Mensch, der im alltäglichen Leben permanent auf Hilfe angewiesen ist">Klient</span> die Möglichkeit, sein <span class="tooltip" data-tooltip="Helfer, der den Klienten pflegt und im Alltag unterstützt">Assistenz</span>-Team zu verwalten.
     Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontingent der Assistenten definieren.<br />
 
     Der Klient kann mit dem Monatsplan die Dienstzeiten für einen Monat festlegen.
