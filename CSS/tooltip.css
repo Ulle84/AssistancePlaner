@@ -1,0 +1,33 @@
+/* tooltip.css
+   2014-11-04 fm
+   tooltips for uncommon words */
+
+/* CSS Mastery by Andy Budd et al, p 90 
+a.tooltip {
+	position: relative;
+}
+
+a.tooltip span {
+	display: none;
+}
+*/
+
+/*
+Aufwändiger(er) Tooltip:
+http://www.webdesign-klamonfra.de/codeschnipsel/tooltip-anzeige.php
+*/
+[data-tooltip] { position: relative; display: inline-block; }
+
+[data-tooltip]:before { content: ''; position: absolute; visibility: hidden; opacity: 0; width: 0; margin-top: -8px; border: 8px solid transparent; border-bottom: 10px solid #2895f1; border-top: none; z-index: 1001; transition: .3s; }
+
+[data-tooltip]:hover:before, [data-tooltip]:focus:before { visibility: visible; opacity: 1; margin-top: 5px; }
+
+.tooltip:before { top: 100%; left: 45%; }
+
+span.tooltip { cursor: help; border-bottom: 1px dotted #000; line-height: 1.1em; }
+
+[data-tooltip]:after { content: attr(data-tooltip); position: absolute; visibility: hidden; opacity: 0; margin-top: -1px; padding: 8px 10px; background: #2895f1; background: linear-gradient(#2895f1,#568bbc); border-radius: 5px; text-shadow: 0 -1px 0 #000; font-size: 1em; line-height: 1.4em; white-space: nowrap; color: #fff; box-shadow: 10px 10px 12px #111; z-index: 1001; transition: .3s; font-weight: bold; }
+
+[data-tooltip]:hover:after, [data-tooltip]:focus:after { visibility: visible; opacity: 1; margin-top: 15px; }
+
+.tooltip:after { top: 100%; left: 45%; margin-left: -50%; }
