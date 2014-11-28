@@ -9,25 +9,36 @@
 <body>
 <?php include('navigation.php'); ?>
 
-<div id="main" class="wrapLongText">
+<div
+    <?php
+    if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn']) {
+        echo 'id="main"';
+    }
+    ?>
+
+
+    class="wrapLongText">
     <h1>Willkommen beim Assistenzplaner</h1>
     Der Assistenzplaner ist ein Hilfsmittel für Menschen, die auf Assistenz angewiesen sind. <br/>
 
-    Die Planung umfasst die Erstellung von Dienstplänen und die Verwaltung von Aufgaben.<br />
+    Die Planung umfasst die Erstellung von Dienstplänen und die Verwaltung von Aufgaben.<br/>
 
     Mit dem Assistenzplaner hat der Klient die Möglichkeit, sein Assistenz-Team zu verwalten.
-    Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontingent der Assistenten definieren.<br />
+    Dabei kann der Klient neben den Kontaktdaten auch Priorisierungswerte und Stundenkontingent der Assistenten
+    definieren.<br/>
 
     Der Klient kann mit dem Monatsplan die Dienstzeiten für einen Monat festlegen.
     Seine Assistenten werden per Knopfdruck benachrichtigt und gebeten ihre Termine in einen Kalender einzutragen.
-    Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst gleichmäßige Ausschöpfung der Stundenkontingente berücksichtigt.
+    Ein Algorithmus erstellt automatisch einen Dienstplanvorschlag, der alle Vorlieben des Klienten und die möglichst
+    gleichmäßige Ausschöpfung der Stundenkontingente berücksichtigt.
     Der Klient kann sich mehrere Dienstplanvorschläge erstellen lassen.
-    Weiterhin ist es möglich, den Dienstplan manuell anzupassen.<br />
+    Weiterhin ist es möglich, den Dienstplan manuell anzupassen.<br/>
 
-    Eine Aufgaben-Verwaltung rundet den Assistenzplaner ab.<br />
+    Eine Aufgaben-Verwaltung rundet den Assistenzplaner ab.<br/>
 
 
-    Bitte <a href="login.php">melden Sie sich an</a> oder <a href="createNewAccount.php">legen Sie einen neuen Klienten-Zugang
+    Bitte <a href="login.php">melden Sie sich an</a> oder <a href="createNewAccount.php">legen Sie einen neuen
+        Klienten-Zugang
         an</a>.
 
 
