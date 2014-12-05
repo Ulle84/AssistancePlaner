@@ -50,25 +50,11 @@ $roster = new Roster($year, $month);
 
 
 if ($_SESSION['isClient']) {
-    $roster->printNotesFromAssistants();
     $roster->printTableClient();
     $roster->printHourTable();
-
-
-    echo '<br/>';
-    echo '<input type="button" value="Verfügbarkeit prüfen" onclick="checkAvailability()"/>';
-    echo '<input type="button" value="Dienstplan anfordern" onclick="requestRoster(this, ' . $year . ', ' . $month . ')"/>';
-    echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(true, true)"/>';
-    echo '<input type="button" value="Dienstplan veröffentlichen" onclick="publishRoster(this, ' . $year . ', ' . $month . ')"/>';
-    //echo '<input type="button" value="Dienstplan abschließen" onclick="closeRoster(this, ' . $year . ', ' . $month . ')"/>';
-    //echo '<input type="button" value="Dienstplan speichern" onclick="save(this, ' . $year . ', ' . $month . ')"/>';
-    echo '<input type="button" value="Dienstplan verwerfen" onclick="resetRoster()"/>';
-    //echo '<input type="button" value="Dienstplan löschen" onclick="deleteRoster(this, ' . $year . ', ' . $month . ')"/>';
-    echo '<input type="button" value="Dienstplan als PDF anzeigen" onclick="createPdf(this, ' . $year . ', ' . $month . ')"/>';
-
-    echo '<br/>';
+    $roster->printButtons();
     $roster->printNotesInputForAdmin();
-    echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $year . ', ' . $month . ')"/>';
+    $roster->printNotesFromAssistants();
 }
 else {
     $roster->printTablesAssistant();

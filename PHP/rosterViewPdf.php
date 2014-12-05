@@ -1,11 +1,13 @@
 <?php
-
-include('authentication.php');
+session_start();
 
 require_once 'Roster.php';
 
 $month = date("n");
 $year = date("Y");
+$id = $_GET['id'];
+
+$_SESSION['clientName'] = $_GET['clientName'];
 
 // switch to next month
 $month++;
@@ -23,6 +25,16 @@ if (isset($_GET['month'])) {
 }
 
 $roster = new Roster($year, $month);
-$roster->printPdf();
+
+if ($roster->checkId($id))
+{
+    $roster->printPdf();
+}
+else
+{
+    echo 'Access forbidden!';
+}
+
+
 
 ?>

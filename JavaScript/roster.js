@@ -199,7 +199,7 @@ function publishRoster(button, year, month) {
 }
 
 function closeRoster(button, year, month) {
-    if (!confirm("Möchten Sie wirklich den Dienstplan abschließen?")) {
+    if (!confirm("Möchten Sie wirklich den Dienstplan abschließen?\nDanach sind keine Änderungen möglich.")) {
         return;
     }
 
@@ -212,21 +212,25 @@ function closeRoster(button, year, month) {
 
     closedDate.parentNode.setAttribute("class", "");
 
+    save(year, month);
+
     var action = "notifyProvider";
 
     var content = "";
+
+    var uniqueID = window.document.getElementById("uniqueID").textContent;
 
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            button.disabled = false;
+            location.reload(true);
         }
     }
 
     xmlhttp.open("POST", "../PHP/notifyTeam.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month + "&action=" + action+ "&content=" + content);
+    xmlhttp.send("year=" + year + "&month=" + month + "&action=" + action + "&content=" + content + "&uniqueID=" + uniqueID);
 }
 
 function setNewRoster(roster) {
@@ -330,6 +334,7 @@ function save(year, month) {
     var lastChange = window.document.getElementById("lastChange");
     var publishedDate = window.document.getElementById("publishedDate").textContent;
     var closedDate = window.document.getElementById("closedDate").textContent;
+    var uniqueID = window.document.getElementById("uniqueID").textContent;
 
     var xmlhttp = new XMLHttpRequest();
 
@@ -342,15 +347,20 @@ function save(year, month) {
 
     xmlhttp.open("POST", "../PHP/rosterSaver.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("year=" + year + "&month=" + month + "&lastChangeTime=" + lastChangeTime + "&publishedDate=" + publishedDate + "&closedDate=" + closedDate + "&content=" + contentRoster);
+    xmlhttp.send("year=" + year + "&month=" + month + "&lastChangeTime=" + lastChangeTime + "&publishedDate=" + publishedDate + "&closedDate=" + closedDate + "&content=" + contentRoster + "&uniqueID=" + uniqueID);
 }
 
-function createPdf(button, year, month) {
-    if (!checkRoster(true, false)) {
-        return;
-    }
+function createPdf(button, year, month, checkRoster) {
+    if (checkRoster) {
+        if (!checkRoster(true, false)) {
+            return;
+        }
+     }
 
-    window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month);
+    var uniqueID = window.document.getElementById("uniqueID").textContent;
+    var clientName = window.document.getElementById("clientName").textContent;
+
+    window.open("../PHP/rosterViewPdf.php?year=" + year + "&month=" + month + "&clientName=" + clientName + "&id=" + uniqueID);
 }
 
 function calcHours() {

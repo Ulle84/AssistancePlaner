@@ -32,9 +32,11 @@ class Roster
     private $lastChange;
     private $publishedDate;
     private $closedDate;
+    private $id;
     private $servicePerson = array();
     private $standbyPerson = array();
     private $rosterExist = false;
+    private $rosterClosed = false;
 
     private $team;
     private $assistanceInput;
@@ -72,6 +74,8 @@ class Roster
         $this->initWeekdays();
 
         $fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt";
+
+        $this->id = md5(uniqid());
 
         $this->readFromFile($fileName);
 
@@ -147,6 +151,8 @@ class Roster
             $this->lastChange = rtrim(fgets($file));
             $this->publishedDate = rtrim(fgets($file));
             $this->closedDate = rtrim(fgets($file));
+            $this->rosterClosed = ($this->closedDate != "");
+            $this->id = rtrim(fgets($file));
 
             for ($i = 1; $i <= $this->daysPerMonth; $i++) {
                 $day = new Day();
@@ -317,97 +323,105 @@ class Roster
         echo '<tr class="rosterData">';
         echo '<td class="date" style="min-width: 80px">' . get_short_date($this->year, $this->month, $day->dayNumber) . '</td>';
 
-        echo '<td style="min-width: 120px">';
-        echo '<select onchange="onStartTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1">';
-        $startTime = explode(":", $day->serviceBegin);
-        $hideOptions = false;
-
-        echo '<option';
-        if ($startTime[0] == "--") {
-            echo ' selected="selected"';
-            $hideOptions = true;
+        if ($this->rosterClosed)
+        {
+            echo '<td>' . $day->serviceBegin . '</td>';
+            echo '<td>' . $day->serviceEnd . '</td>';
         }
-        echo '>--</option>';
-
-        for ($i = 0; $i < 24; $i++) {
-            $hour = "";
-            if ($i < 10) {
-                $hour = "0";
-            }
-            $hour .= $i;
+        else
+        {
+            echo '<td style="min-width: 120px">';
+            echo '<select onchange="onStartTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1">';
+            $startTime = explode(":", $day->serviceBegin);
+            $hideOptions = false;
 
             echo '<option';
-            if ($startTime[0] == $hour) {
+            if ($startTime[0] == "--") {
                 echo ' selected="selected"';
+                $hideOptions = true;
             }
-            echo '>' . $hour . '</option>';
-        }
-        echo '</select>';
+            echo '>--</option>';
 
-        echo '<select onchange="onStartTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
-        if ($hideOptions) {
-            echo ' class="hidden"';
-        }
-        echo '>';
-        for ($i = 0; $i < 60; $i += 15) {
-            $minute = "";
-            if ($i < 10) {
-                $minute = "0";
+            for ($i = 0; $i < 24; $i++) {
+                $hour = "";
+                if ($i < 10) {
+                    $hour = "0";
+                }
+                $hour .= $i;
+
+                echo '<option';
+                if ($startTime[0] == $hour) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $hour . '</option>';
             }
-            $minute .= $i;
+            echo '</select>';
 
-            echo '<option';
-            if ($startTime[1] == $minute) {
-                echo ' selected="selected"';
+            echo '<select onchange="onStartTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+            if ($hideOptions) {
+                echo ' class="hidden"';
             }
-            echo '>' . $minute . '</option>';
-        }
-        echo '</select>';
+            echo '>';
+            for ($i = 0; $i < 60; $i += 15) {
+                $minute = "";
+                if ($i < 10) {
+                    $minute = "0";
+                }
+                $minute .= $i;
 
-        echo '</td><td style="min-width: 120px">';
-
-        echo '<select onchange="onEndTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
-        if ($hideOptions) {
-            echo ' class="hidden"';
-        }
-        echo '>';
-        $endTime = explode(":", $day->serviceEnd);
-        for ($i = 0; $i < 24; $i++) {
-            $hour = "";
-            if ($i < 10) {
-                $hour = "0";
+                echo '<option';
+                if ($startTime[1] == $minute) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $minute . '</option>';
             }
-            $hour .= $i;
+            echo '</select>';
 
-            echo '<option';
-            if ($endTime[0] == $hour) {
-                echo ' selected="selected"';
+            echo '</td><td style="min-width: 120px">';
+
+            echo '<select onchange="onEndTimeHourChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+            if ($hideOptions) {
+                echo ' class="hidden"';
             }
-            echo '>' . $hour . '</option>';
-        }
-        echo '</select>';
+            echo '>';
+            $endTime = explode(":", $day->serviceEnd);
+            for ($i = 0; $i < 24; $i++) {
+                $hour = "";
+                if ($i < 10) {
+                    $hour = "0";
+                }
+                $hour .= $i;
 
-        echo '<select onchange="onEndTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
-        if ($hideOptions) {
-            echo ' class="hidden"';
-        }
-        echo '>';
-        for ($i = 0; $i < 60; $i += 15) {
-            $minute = "";
-            if ($i < 10) {
-                $minute = "0";
+                echo '<option';
+                if ($endTime[0] == $hour) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $hour . '</option>';
             }
-            $minute .= $i;
+            echo '</select>';
 
-            echo '<option';
-            if ($endTime[1] == $minute) {
-                echo ' selected="selected"';
+            echo '<select onchange="onEndTimeMinuteChanged(this); save(' . $this->year . ', ' . $this->month . ')" size="1"';
+            if ($hideOptions) {
+                echo ' class="hidden"';
             }
-            echo '>' . $minute . '</option>';
-        }
-        echo '</select>';
+            echo '>';
+            for ($i = 0; $i < 60; $i += 15) {
+                $minute = "";
+                if ($i < 10) {
+                    $minute = "0";
+                }
+                $minute .= $i;
 
-        echo '</td>';
+                echo '<option';
+                if ($endTime[1] == $minute) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $minute . '</option>';
+            }
+            echo '</select>';
+
+            echo '</td>';
+        }
 
         echo '<td class="hidden">' . $day->serviceHours . '</td>';
         echo '<td class="hidden">' . $day->standbyHours . '</td>';
@@ -442,15 +456,51 @@ class Roster
                 $cellTextContent = "Dienst";
             }
 
-            echo '<td onclick="entryClicked(this); save(' . $this->year . ', ' . $this->month . ')" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
+            if ($this->rosterClosed)
+            {
+                echo '<td class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
+            }
+            else
+            {
+                echo '<td onclick="entryClicked(this); save(' . $this->year . ', ' . $this->month . ')" class="' . $className . '" baseClass="' . $baseClassName . '">' . $cellTextContent . '</td>';
+            }
+
         }
 
-        /*echo '<td class="left">' . $day->publicNotes . '</td>';
-        echo '<td class="left">' . $day->privateNotes . '</td>';*/
-        echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
-        echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        if ($this->rosterClosed)
+        {
+            echo '<td>' . $day->publicNotes . '</td>';
+            echo '<td>' . $day->privateNotes . '</td>';
+        }
+        else
+        {
+            echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->publicNotes) . '" type="text" size="30" maxlength="200" /></td>';
+            echo '<td><input onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this)" value="' . htmlspecialchars($day->privateNotes) . '" type="text" size="30" maxlength="200" /></td>';
+        }
 
         echo '</tr>';
+
+    }
+
+    public function printButtons()
+    {
+        echo '<br/>';
+        if (!$this->rosterClosed)
+        {
+            echo '<input type="button" value="Verfügbarkeit prüfen" onclick="checkAvailability()"/>';
+            echo '<input type="button" value="Dienstplan anfordern" onclick="requestRoster(this, ' . $this->year . ', ' . $this->month . ')"/>';
+            echo '<input type="button" value="Dienstplan prüfen" onclick="checkRoster(true, true)"/>';
+            echo '<input type="button" value="Dienstplan veröffentlichen" onclick="publishRoster(this, ' . $this->year . ', ' . $this->month . ')"/>';
+            echo '<input type="button" value="Dienstplan abschließen" onclick="closeRoster(this, ' . $this->year . ', ' . $this->month . ')"/>';
+            echo '<input type="button" value="Dienstplan verwerfen" onclick="resetRoster()"/>';
+            echo '<input type="button" value="Dienstplan als PDF anzeigen" onclick="createPdf(this, ' . $this->year . ', ' . $this->month . ', true)"/>';
+        }
+        else
+        {
+            echo '<input type="button" value="Dienstplan als PDF anzeigen" onclick="createPdf(this, ' . $this->year . ', ' . $this->month . ', false)"/>';
+        }
+
+        echo '<br/>';
 
     }
 
@@ -478,10 +528,18 @@ class Roster
         }
         echo '>&nbsp;&nbsp;&nbsp;Abgeschlossen am: <span id="closedDate">' . $this->closedDate . '</span></span>';
 
+        echo '<span class="hidden" id="uniqueID">' . $this->id . '</span>';
+        echo '<span class="hidden" id="clientName">' . $_SESSION['clientName'] . '</span>';
+
         echo '</div><br />';
 
 
         echo '<table id="rosterTable">';
+    }
+
+    public function checkId($id)
+    {
+        return $this->id == $id;
     }
 
     public function printTableClient()
@@ -1462,10 +1520,32 @@ class Roster
 
     public function printNotesInputForAdmin()
     {
+        if ($this->rosterClosed)
+        {
+            if (!empty($this->notes))
+            {
+                if ($this->notes[0] != "")
+                {
+                    echo '<br />';
+                    echo '<h1>Nachricht an das Team</h1>';
+                    echo '<div>' . implode('<br />', $this->notes) . '</div>';
+                }
+            }
+        }
+        else
+        {
+            echo '<br />';
+            echo '<h1>Nachricht an das Team</h1>';
+            echo '<textarea onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this); save(' . $this->year . ', ' . $this->month . ')" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
+        }
+
+
         echo '<br />';
-        echo '<h1>Nachricht an das Team</h1>';
-        echo '<textarea onchange="validateString(this); save(' . $this->year . ', ' . $this->month . ')" onblur="validateString(this); save(' . $this->year . ', ' . $this->month . ')" id="notes" name="notes" cols="100" rows="10">' . implode('&#10;', $this->notes) . '</textarea>';
-        echo '<br />';
+
+        if (!$this->rosterClosed)
+        {
+            echo '<input type="button" value="Team benachrichtigen" onclick="notifyTeam(' . $this->year . ', ' . $this->month . ')"/>';
+        }
     }
 
     public function printNotesInputForAssistant()

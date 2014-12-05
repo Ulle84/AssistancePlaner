@@ -7,6 +7,7 @@ $month = $_POST['month'];
 $lastChangeTime = $_POST['lastChangeTime'];
 $publishedDate = $_POST['publishedDate'];
 $closedDate = $_POST['closedDate'];
+$uniqueID = $_POST['uniqueID'];
 
 $fileName = "../Data/" . strtolower($_SESSION['clientName']) . "/Roster/" . $year . "-" . $month . ".txt";
 
@@ -20,6 +21,7 @@ $fh = fopen($fileName, "w");
 fwrite($fh, $lastChangeTime . "\n");
 fwrite($fh, $publishedDate . "\n");
 fwrite($fh, $closedDate . "\n");
+fwrite($fh, $uniqueID . "\n");
 fwrite($fh, $content);
 fclose($fh);
 

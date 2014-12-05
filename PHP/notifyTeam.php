@@ -53,10 +53,14 @@ if ($action == "requestDates") {
 }
 
 if ($action == "notifyProvider") {
+    $id = $_POST['uniqueID'];
+
     $subject = 'Assistenzplaner - Monatsabschluss';
 
     $message = 'Hallo,<br /><br />';
-    $message .= 'der Dienstplan für den Monat <b>' . get_month_description($month) . ' ' . $year . '</b> wurde abgeschlossen.';
+    $message .= 'der Dienstplan für den Monat <b>' . get_month_description($month) . ' ' . $year . '</b> wurde abgeschlossen und kann im ';
+    $message .= '<a href="http://' . $hostname . ($path == '/' ? '' : $path) . '/rosterViewPdf.php?clientName=' . $_SESSION['clientName'] . '&year=' . $year . '&month=' . $month . '&id=' . $id . '">';
+    $message .= 'Assistenzplaner</a> eingesehen werden.';
     $message .= '<br /><br />Viele Grüße<br />';
     $message .= $sender;
 }
