@@ -350,8 +350,8 @@ function save(year, month) {
     xmlhttp.send("year=" + year + "&month=" + month + "&lastChangeTime=" + lastChangeTime + "&publishedDate=" + publishedDate + "&closedDate=" + closedDate + "&content=" + contentRoster + "&uniqueID=" + uniqueID);
 }
 
-function createPdf(button, year, month, checkRoster) {
-    if (checkRoster) {
+function createPdf(button, year, month, checkTheRoster) {
+    if (checkTheRoster) {
         if (!checkRoster(true, false)) {
             return;
         }
