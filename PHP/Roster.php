@@ -288,7 +288,7 @@ class Roster
             }
         }
 
-        if ($this->days[$day]->serviceHours > 13) {
+        if ($this->days[$day]->serviceHours > 19) {
             $serviceHours .= " und 18:00 - 19:00";
         }
 
@@ -1075,7 +1075,6 @@ class Roster
         echo '$totalOfServiceHours: ' . $totalOfServiceHours . '<br />';
         echo '$totalOfStandbyHours: ' . $totalOfStandbyHours . '<br />';
         echo '$scaleFactor: ' . $scaleFactor . '<hr />';*/
-
         if ($scaleFactor < 1) {
             $scaleFactor = 1;
         }

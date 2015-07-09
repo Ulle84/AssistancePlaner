@@ -459,10 +459,17 @@ function recalculateHours(startHoursElement) {
     var startTime = startHoursElement.value + ":" + startMinutesElement.value;
     var stopTime = stopHoursElement.value + ":" + stopMinutesElement.value;
 
-    var workingHours = timeToNumber(stopTime) + 24 - 6 - timeToNumber(startTime);
+    /*var workingHours = timeToNumber(stopTime) + 24 - 6 - timeToNumber(startTime);
     var standbyHours = 1;
 
     if (workingHours <= 13) {
+        standbyHours = 0.5;
+    }*/
+
+    var workingHours = timeToNumber(stopTime) + 24 - timeToNumber(startTime);
+    var standbyHours = 1;
+
+    if (workingHours <= 19) {
         standbyHours = 0.5;
     }
 

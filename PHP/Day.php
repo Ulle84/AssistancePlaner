@@ -27,10 +27,21 @@ class Day
         $startTime = $hoursStartTime + $minutesStartTime / 60;
         $endTime = $hoursEndTime + $minutesEndTime / 60;
 
-        $this->serviceHours = 24 - $startTime + $endTime - 6; // 6 hours during the night do not count
+        /* old calculation before minimum wage
+         *
+         * $this->serviceHours = 24 - $startTime + $endTime - 6; // 6 hours during the night do not count
 
         //TODO make configurabele
         if ($this->serviceHours <= 13) {
+            $this->standbyHours = 0.5;
+        } else {
+            $this->standbyHours = 1.0;
+        }*/
+
+        $this->serviceHours = 24 - $startTime + $endTime;
+
+        //TODO make configurabele
+        if ($this->serviceHours <= 19) {
             $this->standbyHours = 0.5;
         } else {
             $this->standbyHours = 1.0;
