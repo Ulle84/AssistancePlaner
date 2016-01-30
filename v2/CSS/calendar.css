@@ -1,0 +1,13 @@
+.date {
+    text-align: right;
+}
+
+.service {
+    background-color: #A9BCF5;
+    cursor: pointer;
+}
+
+.standby {
+    background-color: #CEECF5;
+    cursor: pointer;
+}

@@ -30,3 +30,5 @@ LaTeX/*.tmp
 LaTeX/*.toc
 LaTeX/*.tps
 LaTeX/*.xref
+
+v2/.idea/*
