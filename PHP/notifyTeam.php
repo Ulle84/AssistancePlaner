@@ -5,6 +5,7 @@ require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
 require_once 'Team.php';
 require_once 'Settings.php';
 require_once 'functions.php';
+require_once 'Password.php';
 
 $content = $_POST['content'];
 $year = $_POST['year'];
@@ -72,7 +73,6 @@ $mail->isSMTP(); // Set mailer to use SMTP
 $mail->Host = 'smtp.strato.de'; // Specify main and backup server
 $mail->SMTPAuth = true; // Enable SMTP authentication
 $mail->Username = 'info@assistenzplaner.de'; // SMTP username
-$mail->Password = '8XELhtUfgwFc'; // SMTP password
 $mail->SMTPSecure = 'ssl'; // Enable encryption, 'ssl' also accepted
 $mail->Port = "465";
 
@@ -123,6 +123,9 @@ $mail->isHTML(true); // Set email format to HTML
 
 $mail->Subject = $subject;
 $mail->Body = $message;
+
+$password = new Password();
+$mail->Password = $password->getMailPassword();
 
 
 //$mail->SMTPDebug = 1;

@@ -32,3 +32,5 @@ LaTeX/*.tps
 LaTeX/*.xref
 
 v2/.idea/*
+
+PHP/Password.php

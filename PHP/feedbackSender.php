@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../ExternalResources/PHPMailer/PHPMailerAutoload.php';
+require_once 'Password.php';
 
 $feedback = $_POST['feedback'];
 $mailAddress = $_POST['mailAddress'];
@@ -21,7 +22,6 @@ $mail->isSMTP(); // Set mailer to use SMTP
 $mail->Host = 'smtp.strato.de'; // Specify main and backup server
 $mail->SMTPAuth = true; // Enable SMTP authentication
 $mail->Username = 'info@assistenzplaner.de'; // SMTP username
-$mail->Password = '8XELhtUfgwFc'; // SMTP password
 $mail->SMTPSecure = 'ssl'; // Enable encryption, 'ssl' also accepted
 $mail->Port = "465";
 
@@ -45,6 +45,9 @@ $mail->Body = $mailContent;
 
 
 //$mail->SMTPDebug = 1;
+
+$password = new Password();
+$mail->Password = $password->getMailPassword();
 
 if (!$mail->send()) {
     echo 'Nachricht konnte nicht gesendet werden. ';
